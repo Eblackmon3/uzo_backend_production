@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AppController {
 
-    @RequestMapping("/bands")
+    @RequestMapping("/")
     public String index() {
-        return "Finding Bets Now";
+        return "UZO WebAPI";
     }
 
-    
+
 
 }
