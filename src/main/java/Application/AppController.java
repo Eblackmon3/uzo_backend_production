@@ -36,7 +36,7 @@ public class AppController {
         return studentid;
     }
 
-    @RequestMapping(value = "/insert_student_by_id/", method = RequestMethod.PUT)
+    @RequestMapping(value = "insert_student_by_id", method = RequestMethod.PUT)
     public @ResponseBody int updateStudent(@RequestParam("studentid") int  studentid){
         System.out.println(studentid);
         return studentid;
