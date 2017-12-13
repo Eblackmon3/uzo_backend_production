@@ -30,6 +30,7 @@ public class DbConn {
     public DbConn(){
         try{
             URI dbUri = new URI(System.getenv("DATABASE_URL"));
+            System.out.println(dbUri.toString());
             String JDBC_USER = dbUri.getUserInfo().split(":")[0];
             String JDBC_PASS = dbUri.getUserInfo().split(":")[1];
             String JDBC_DB_URL="jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
