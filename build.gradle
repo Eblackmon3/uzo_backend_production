@@ -57,6 +57,15 @@ dependencies {
 
     compile 'org.jsoup:jsoup:1.11.2'
     compile group: "com.twilio.sdk", name: "twilio", version: "7.11.+"
+    compile 'org.postgresql:postgresql:42.1.1'
+
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2
+    compile group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.1.1'
+
+    // https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp
+    compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
+
+
 
 
 
