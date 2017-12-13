@@ -3,8 +3,7 @@ package Application;
 import Model.DbConn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,21 +24,12 @@ public class AppController {
 
     @RequestMapping("/")
     public String index() {
-        ResultSet rsObj = null;
-        Connection connObj = null;
-        PreparedStatement pstmtObj = null;
-        DbConn jdbcObj = new DbConn();
-        try {
-            DataSource dataSource = jdbcObj.setUpPool();
-            System.out.println(jdbcObj.printDbStatus());
-            // Performing Database Operation!
-            connObj = dataSource.getConnection();
-            System.out.println(jdbcObj.printDbStatus());
-            return (jdbcObj.printDbStatus());
+        return("Welcome to the UZO-API");
+    }
 
-        } catch (Exception e) {
-            return (e.toString());
-        }
-
+    @RequestMapping(value="user", method = RequestMethod.GET)
+    public @ResponseBody int getitem(@RequestParam("data") int  itemid){
+        System.out.println(itemid);
+        return itemid;
     }
 }
