@@ -34,10 +34,10 @@ public class AppController {
      * api call example https://uzo-web-app.herokuapp.com/get_student_by_id?studentid=002
      */
     @RequestMapping(value="get_student_by_id")
-    public @ResponseBody JSONObject getStudentById(@RequestParam("studentid") int  studentid){
+    public @ResponseBody String getStudentById(@RequestParam("studentid") int  studentid){
         JSONObject student= manager.getStudentById(studentid);
         System.out.println(student.toString());
-        return student;
+        return student.toString();
     }
 
     /*
