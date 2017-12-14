@@ -35,6 +35,7 @@ public class DbManager {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1,id);
             ResultSet rs= pstmt.executeQuery();
+            System.out.println(rs.next());
             while(rs.next()){
                 email=rs.getString("email");
                 password=rs.getString("password");
