@@ -65,8 +65,6 @@ public class DbManager {
         String sql="insert into t_Student_info(email, password, on_call,first_name, last_name)"+
         "Values('?','281330800fB',false, 'Celina', 'Amados');";
         DbConn jdbcObj = new DbConn();
-        String email="";String password="";String first="";String last="";
-        boolean onCall=false;
         JSONObject studentObj= new JSONObject();
         int affectedRows=0;
         try{
