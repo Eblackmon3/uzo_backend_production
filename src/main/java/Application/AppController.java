@@ -44,11 +44,11 @@ public class AppController {
      * api call example https://uzo-web-app.herokuapp.com/insert_student_by_id?studentid=2
      */
     @RequestMapping(value = "insert_student")
-    public @ResponseBody String updateStudent(@RequestParam("studentEmail") int  studentEmail,
-                                           @RequestParam("studentPassword") int  studentPassword,
+    public @ResponseBody String insertStudent(@RequestParam("studentEmail") String  studentEmail,
+                                           @RequestParam("studentPassword") String  studentPassword,
                                            @RequestParam("onCall") boolean onCall,
-                                           @RequestParam("studentFirstName") int  studentFirstName,
-                                           @RequestParam("studentLastName") int  studentLastName){
+                                           @RequestParam("studentFirstName") String  studentFirstName,
+                                           @RequestParam("studentLastName") String  studentLastName){
         System.out.println(studentEmail+" "+ studentPassword+ " "+ onCall+ " "+studentFirstName+" "+ studentLastName);
         return studentEmail+" "+ studentPassword+ " "+ onCall+ " "+studentFirstName+" "+ studentLastName;
     }
