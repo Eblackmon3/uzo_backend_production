@@ -29,14 +29,14 @@ public class AppController {
         return("Welcome to the UZO-API");
     }
 
-    @RequestMapping(value="get_student_by_id", method = RequestMethod.GET)
+    @RequestMapping(value="get_student_by_id")
     public @ResponseBody int getStudentById(@RequestParam("studentid") int  studentid){
         //manager.getStudentById(studentid);
         System.out.println(studentid);
         return studentid;
     }
 
-    @RequestMapping(value = "insert_student_by_id", method = RequestMethod.PUT)
+    @RequestMapping(value = "insert_student_by_id")
     public @ResponseBody int updateStudent(@RequestBody int  studentid){
         System.out.println(studentid);
         return studentid;
