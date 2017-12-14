@@ -35,7 +35,6 @@ public class DbManager {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1,id);
             ResultSet rs= pstmt.executeQuery();
-            System.out.println(rs.next());
             while(rs.next()){
                 email=rs.getString("email");
                 password=rs.getString("password");
@@ -46,6 +45,7 @@ public class DbManager {
             rs.close();
             pstmt.close();
             conn.close();
+            System.out.println(email);
             studentObj.put("email",email);
             studentObj.put("password",password);
             studentObj.put("first_name",first);
