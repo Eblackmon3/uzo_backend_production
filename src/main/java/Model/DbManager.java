@@ -38,7 +38,7 @@ public class DbManager {
             while(rs.next()){
                 email=rs.getString("email");
                 password=rs.getString("password");
-                first=rs.getString("frist_name");
+                first=rs.getString("first_name");
                 last=rs.getString("last_name");
                 onCall=rs.getBoolean("on_call");
             }
