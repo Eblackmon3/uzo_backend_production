@@ -23,7 +23,6 @@ public class DbManager {
         String email="";String password="";String first="";String last="";
         boolean onCall=false;
         JSONObject studentObj= new JSONObject();
-        int affectedRows=0;
         try {
             //Connect to the database
             DataSource dataSource = jdbcObj.setUpPool();
@@ -58,4 +57,24 @@ public class DbManager {
 
         return studentObj;
     }
+
+    public int insertStudent(String email, String password, boolean onCall, String first, String last){
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="insert into t_Student_info(email, password, on_call,first_name, last_name)"+
+        "Values('?','281330800fB',false, 'Celina', 'Amados');";
+        DbConn jdbcObj = new DbConn();
+        String email="";String password="";String first="";String last="";
+        boolean onCall=false;
+        JSONObject studentObj= new JSONObject();
+        int affectedRows=0;
+        try{
+
+        }catch(Exception e){
+
+        }
+        return affectedRows;
+    }
+
 }
