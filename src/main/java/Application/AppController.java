@@ -2,6 +2,7 @@ package Application;
 
 import Model.DbConn;
 import Model.DbManager;
+import Model.Student;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
@@ -43,13 +44,9 @@ public class AppController {
     /*
      * api call example https://uzo-web-app.herokuapp.com/insert_student_by_id?studentid=2
      */
-    @RequestMapping(value = "insert_student")
-    public @ResponseBody String insertStudent(@RequestParam("studentEmail") String  studentEmail,
-                                           @RequestParam("studentPassword") String  studentPassword,
-                                           @RequestParam("onCall") boolean onCall,
-                                           @RequestParam("studentFirstName") String  studentFirstName,
-                                           @RequestParam("studentLastName") String  studentLastName){
-        System.out.println(studentEmail+" "+ studentPassword+ " "+ onCall+ " "+studentFirstName+" "+ studentLastName);
-        return studentEmail+" "+ studentPassword+ " "+ onCall+ " "+studentFirstName+" "+ studentLastName;
+    @PostMapping(value = "insert_student")
+    public @ResponseBody Student insertStudent(@RequestBody Student insertStudent){
+        return insertStudent;
+
     }
 }
