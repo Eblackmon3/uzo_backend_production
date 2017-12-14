@@ -18,7 +18,7 @@ public class DbManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="﻿select * from t_student_info where student_id=?";
+        String sql="select * from t_student_info where student_id=?";
         DbConn jdbcObj = new DbConn();
         String email="";String password="";String first="";String last="";
         boolean onCall=false;
