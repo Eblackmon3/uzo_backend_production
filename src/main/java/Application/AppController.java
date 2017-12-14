@@ -2,6 +2,7 @@ package Application;
 
 import Model.DbConn;
 import Model.DbManager;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
 import org.springframework.web.bind.annotation.*;
@@ -29,13 +30,19 @@ public class AppController {
         return("Welcome to the UZO-API");
     }
 
+    /*
+     * api call example https://uzo-web-app.herokuapp.com/get_student_by_id?studentid=002
+     */
     @RequestMapping(value="get_student_by_id")
-    public @ResponseBody int getStudentById(@RequestParam("studentid") int  studentid){
-        //manager.getStudentById(studentid);
-        System.out.println(studentid);
-        return studentid;
+    public @ResponseBody JSONObject getStudentById(@RequestParam("studentid") int  studentid){
+        JSONObject student= manager.getStudentById(studentid);
+        System.out.println(student.toString());
+        return student;
     }
 
+    /*
+     * api call example https://uzo-web-app.herokuapp.com/insert_student_by_id?studentid=2
+     */
     @RequestMapping(value = "insert_student_by_id")
     public @ResponseBody int updateStudent(@RequestParam("studentid") int  studentid){
         System.out.println(studentid);
