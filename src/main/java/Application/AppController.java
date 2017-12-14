@@ -44,7 +44,7 @@ public class AppController {
      * api call example https://uzo-web-app.herokuapp.com/insert_student_by_id?studentid=2
      */
     @RequestMapping(value = "insert_student_by_id")
-    public @ResponseBody String updateStudent(@RequestParam("studentid") int  studentEmail,
+    public @ResponseBody String updateStudent(@RequestParam("studentEmail") int  studentEmail,
                                            @RequestParam("studentPassword") int  studentPassword,
                                            @RequestParam("onCall") boolean onCall,
                                            @RequestParam("studentFirstName") int  studentFirstName,
