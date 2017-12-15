@@ -58,21 +58,38 @@ public class DbManager {
         return studentObj;
     }
 
-    public int insertStudent(String email, String password, boolean onCall, String first, String last){
+    public JSONObject insertStudent(Student student){
+        JSONObject insertedStudent= new JSONObject();
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_Student_info(email, password, on_call,first_name, last_name)"+
-        "Values('?','281330800fB',false, 'Celina', 'Amados');";
+        String sql="insert into t_student_info(email, password, on_call,first_name, last_name) Values(?,?,?, ?, ?);";
         DbConn jdbcObj = new DbConn();
-        JSONObject studentObj= new JSONObject();
         int affectedRows=0;
         try{
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, student.getEmail());
+            pstmt.setString(2,student.getPassword());
+            pstmt.setBoolean(3,student.isOn_call());
+            pstmt.setString(4,student.getFirst_name());
+            pstmt.setString(5,student.getLast_name());
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            insertedStudent.put(student.toString(),"Inserted");
 
         }catch(Exception e){
+            e.printStackTrace();
 
         }
-        return affectedRows;
+        return insertedStudent;
     }
 
 }

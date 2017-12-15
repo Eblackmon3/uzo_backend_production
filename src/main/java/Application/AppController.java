@@ -51,6 +51,5 @@ public class AppController {
     public String insertStudent(@RequestBody Student insertStudent){
         return insertStudent.toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
-
     }
 }
