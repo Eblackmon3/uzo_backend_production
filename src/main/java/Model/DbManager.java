@@ -93,4 +93,40 @@ public class DbManager {
         return insertedStudent;
     }
 
+    public JSONObject insertCompany(Company company){
+        JSONObject insertedStudent= new JSONObject();
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="insert into t_company_info(email, address, website_link,company_name, password) Values(?,?,?, ?, ?);";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, company.getEmail());
+            pstmt.setString(2,company.getAddress());
+            pstmt.setString(3,company.getWebsite_link());
+            pstmt.setString(4,company.getCompany_name());
+            pstmt.setString(5,company.getPassword());
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            insertedStudent.put(company.toString(),"Inserted");
+            insertedStudent.put("affected Rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+
+        }
+        return insertedStudent;
+    }
+
+
 }

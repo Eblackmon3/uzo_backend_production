@@ -1,5 +1,6 @@
 package Application;
 
+import Model.Company;
 import Model.DbConn;
 import Model.DbManager;
 import Model.Student;
@@ -46,12 +47,27 @@ public class AppController {
     }
 
     /*
-     * api call example https://uzo-web-app.herokuapp.com/insert_student_by_id?studentid=2
+     * api call example https://uzo-web-app.herokuapp.com/insert_student
+     * headers
+     * {
+         "student_id": 3,
+         "email": "stephenoakala@gmail.com",
+         "password": "281330800fB",
+         "on_call": true,
+         "first_name": "Stephen",
+         "last_name":"Okala"
+        }
      * used a string as to not process the JSONOBJECT on response
      */
     @PostMapping(value = "/insert_student")
     public String insertStudent(@RequestBody Student insertStudent){
         return manager.insertStudent(insertStudent).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PostMapping(value = "/insert_company")
+    public String insertCompany(@RequestBody Company insertCompany){
+        return manager.insertCompany(insertCompany).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
