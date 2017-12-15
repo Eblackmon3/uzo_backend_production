@@ -45,7 +45,7 @@ public class AppController {
     /*
      * api call example https://uzo-web-app.herokuapp.com/insert_student_by_id?studentid=2
      */
-    @PostMapping(value = "insert_student", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "insert_student", consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody Student insertStudent(@RequestBody Student insertStudent){
         return insertStudent;
 
