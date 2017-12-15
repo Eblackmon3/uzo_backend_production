@@ -7,7 +7,7 @@ public class Student {
     private boolean on_call;
     private String first_name;
     private String last_name;
-    
+
 
     public String getEmail() {
         return email;
