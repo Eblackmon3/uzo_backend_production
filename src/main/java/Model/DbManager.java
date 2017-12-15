@@ -1,6 +1,7 @@
 package Model;
 
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.sql.DataSource;
@@ -170,6 +171,76 @@ public class DbManager {
         }
         return insertedStudent;
     }
+
+
+    public JSONObject insertJob(Job job){
+        JSONObject insertedJob= new JSONObject();
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="insert into t_job_info(completed, date,rate,dress_code,precision,open,clock_out,clock_in,job_title) " +
+                "Values(?,?, ?, ?,?,?,?,?,?);";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setBoolean(1, job.isCompleted());
+            pstmt.setString(2,job.getDate().toString());
+            pstmt.setString(3,job.getRate());
+            pstmt.setString(4,job.getDress_code());
+            pstmt.setDouble(5,job.getPrecision());
+            pstmt.setBoolean(6, job.isOpen());
+            pstmt.setString(7,job.getClock_out().toString());
+            pstmt.setString(8,job.getClock_in().toString());
+            pstmt.setString(9,job.getJob_title());
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            insertedJob.put(job.toString(),"Inserted");
+            insertedJob.put("affected Rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+
+        }
+        return insertedJob;
+
+    }
+
+    /*
+    public JSONArray assignStudentJob(){
+
+        //TODO: complete method
+
+    }
+
+
+    public JSONObject removeStudentJob(){
+
+        //TODO: complete method
+
+    }
+
+    public JSONArray getJobStudentList(){
+
+        //TODO: complete method
+
+    }
+
+    public JSONArray getStudentJobList(){
+
+        //TODO: complete method
+
+    }
+    */
+
 
 
 }

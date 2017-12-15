@@ -1,9 +1,6 @@
 package Application;
 
-import Model.Company;
-import Model.DbConn;
-import Model.DbManager;
-import Model.Student;
+import Model.*;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
@@ -97,6 +94,12 @@ public class AppController {
     @PostMapping(value = "/insert_company")
     public String insertCompany(@RequestBody Company insertCompany){
         return manager.insertCompany(insertCompany).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PostMapping(value = "/insert_Job")
+    public String insertJob(@RequestBody Job insertJob){
+        return manager.insertJob(insertJob).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
