@@ -181,7 +181,7 @@ public class DbManager {
         Connection conn = null;
         PreparedStatement pstmt = null;
         String sql="insert into t_job_info(completed, date,rate,dress_code,duration,open,job_title, time, company_id) " +
-                "Values(?,?, ?, ?,?,?,?,?);";
+                "Values(?,?, ?, ?,?,?,?,?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
