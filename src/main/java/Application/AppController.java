@@ -36,6 +36,7 @@ public class AppController {
 
     /*
      * api call example https://uzo-web-app.herokuapp.com/get_student_by_id?studentid=002
+     * used a string as to not process the JSONOBJECT on response
      */
     @RequestMapping(value="get_student_by_id")
     public @ResponseBody String getStudentById(@RequestParam("studentid") int  studentid){
@@ -46,11 +47,12 @@ public class AppController {
 
     /*
      * api call example https://uzo-web-app.herokuapp.com/insert_student_by_id?studentid=2
+     * used a string as to not process the JSONOBJECT on response
      */
     @PostMapping(value = "/insert_student")
-    public JSONObject insertStudent(@RequestBody Student insertStudent){
+    public String insertStudent(@RequestBody Student insertStudent){
         manager.insertStudent(insertStudent);
-        return manager.insertStudent(insertStudent);
+        return manager.insertStudent(insertStudent).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
