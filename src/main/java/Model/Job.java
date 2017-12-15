@@ -66,8 +66,8 @@ public class Job {
         return duration;
     }
 
-    public void setDuration(double precision) {
-        this.duration = precision;
+    public void setDuration(double duration) {
+        this.duration = duration;
     }
 
     public boolean isOpen() {
