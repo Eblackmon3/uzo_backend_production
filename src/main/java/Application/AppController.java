@@ -65,6 +65,35 @@ public class AppController {
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+
+
+
+    /*
+     * api call example https://uzo-web-app.herokuapp.com/get_student_by_id?studentid=002
+     * used a string as to not process the JSONOBJECT on response
+     */
+    @RequestMapping(value="get_company_by_id")
+    public @ResponseBody String getCompanyById(@RequestParam("companyid") int  companyid){
+        JSONObject company= manager.getCompanyById(companyid);
+        System.out.println(company.toString());
+        return company.toString();
+    }
+
+
+      /*
+     * api call example https://uzo-web-app.herokuapp.com/insert_company
+     * headers
+     * {
+         "company_id": 3,
+         "email": "eric.blackmon@uzo.com",
+         "address": "2700 gray valley court houston tx",
+         "website_link": "uzo.com",
+         "company_name": "UZO",
+         "password":"281330800fB"
+        }
+     * used a string as to not process the JSONOBJECT on response
+     */
+
     @PostMapping(value = "/insert_company")
     public String insertCompany(@RequestBody Company insertCompany){
         return manager.insertCompany(insertCompany).toString();

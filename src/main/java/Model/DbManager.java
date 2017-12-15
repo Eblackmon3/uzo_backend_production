@@ -93,6 +93,49 @@ public class DbManager {
         return insertedStudent;
     }
 
+    public JSONObject getCompanyById(int id){
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="select * from t_company_info where company_id=?";
+        DbConn jdbcObj = new DbConn();
+        String email="";String password="";String address="";String website_link="";
+        String company_name="";
+        JSONObject companyObj= new JSONObject();
+        try {
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,id);
+            ResultSet rs= pstmt.executeQuery();
+            while(rs.next()){
+                email=rs.getString("email");
+                password=rs.getString("password");
+                address=rs.getString("address");
+                website_link=rs.getString("website_link");
+                company_name=rs.getString("company_name");
+            }
+            rs.close();
+            pstmt.close();
+            conn.close();
+            companyObj.put("email",email);
+            companyObj.put("password",password);
+            companyObj.put("first_name",company_name);
+            companyObj.put("last_name", website_link);
+            companyObj.put("onCall",address);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return companyObj;
+    }
+
     public JSONObject insertCompany(Company company){
         JSONObject insertedStudent= new JSONObject();
         ResultSet rsObj = null;
