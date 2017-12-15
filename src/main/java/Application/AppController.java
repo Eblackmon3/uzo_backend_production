@@ -51,7 +51,6 @@ public class AppController {
      */
     @PostMapping(value = "/insert_student")
     public String insertStudent(@RequestBody Student insertStudent){
-        manager.insertStudent(insertStudent);
         return manager.insertStudent(insertStudent).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
