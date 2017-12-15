@@ -173,7 +173,7 @@ public class DbManager {
     }
 
 
-    public JSONObject insertJob(Job job){
+    public JSONObject insertJob(JobInsert jobInsert){
         JSONObject insertedJob= new JSONObject();
         ResultSet rsObj = null;
         Connection conn = null;
@@ -191,17 +191,17 @@ public class DbManager {
             System.out.println(jdbcObj.printDbStatus());
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
-            pstmt.setBoolean(1, job.isCompleted());
-            pstmt.setString(2,job.getDate().toString());
-            pstmt.setString(3,job.getRate());
-            pstmt.setString(4,job.getDress_code());
-            pstmt.setDouble(5,job.getDuration());
-            pstmt.setBoolean(6, job.isOpen());
-            pstmt.setString(7,job.getJob_title());
+            pstmt.setBoolean(1, jobInsert.isCompleted());
+            pstmt.setString(2,jobInsert.getDate().toString());
+            pstmt.setString(3,jobInsert.getRate());
+            pstmt.setString(4,jobInsert.getDress_code());
+            pstmt.setDouble(5,jobInsert.getDuration());
+            pstmt.setBoolean(6, jobInsert.isOpen());
+            pstmt.setString(7,jobInsert.getJob_title());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            insertedJob.put(job.toString(),"Inserted");
+            insertedJob.put(jobInsert.toString(),"Inserted");
             insertedJob.put("affected Rows",affectedRows);
 
         }catch(Exception e){
