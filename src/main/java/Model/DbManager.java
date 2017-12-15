@@ -178,8 +178,8 @@ public class DbManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_job_info(completed, date,rate,dress_code,precision,open,clock_out,clock_in,job_title) " +
-                "Values(?,?, ?, ?,?,?,?,?,?);";
+        String sql="insert into t_job_info(completed, date,rate,dress_code,duration,open,job_title) " +
+                "Values(?,?, ?, ?,?,?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
@@ -195,11 +195,9 @@ public class DbManager {
             pstmt.setString(2,job.getDate().toString());
             pstmt.setString(3,job.getRate());
             pstmt.setString(4,job.getDress_code());
-            pstmt.setDouble(5,job.getPrecision());
+            pstmt.setDouble(5,job.getDuration());
             pstmt.setBoolean(6, job.isOpen());
-            pstmt.setString(7,job.getClock_out().toString());
-            pstmt.setString(8,job.getClock_in().toString());
-            pstmt.setString(9,job.getJob_title());
+            pstmt.setString(7,job.getJob_title());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();

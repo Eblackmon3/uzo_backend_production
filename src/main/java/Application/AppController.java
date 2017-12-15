@@ -97,7 +97,7 @@ public class AppController {
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PostMapping(value = "/insert_Job")
+    @PostMapping(value = "/insert_job")
     public String insertJob(@RequestBody Job insertJob){
         return manager.insertJob(insertJob).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();

@@ -8,7 +8,7 @@ public class Job {
     private DateTime date;
     private String rate;
     private String dress_code;
-    private double precision;
+    private double duration;
     private boolean open;
     private DateTime clock_out;
     private DateTime clock_in;
@@ -62,12 +62,12 @@ public class Job {
         this.dress_code = dress_code;
     }
 
-    public double getPrecision() {
-        return precision;
+    public double getDuration() {
+        return duration;
     }
 
-    public void setPrecision(double precision) {
-        this.precision = precision;
+    public void setDuration(double precision) {
+        this.duration = precision;
     }
 
     public boolean isOpen() {
