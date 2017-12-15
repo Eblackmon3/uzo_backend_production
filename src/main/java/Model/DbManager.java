@@ -84,6 +84,7 @@ public class DbManager {
             pstmt.close();
             conn.close();
             insertedStudent.put(student.toString(),"Inserted");
+            insertedStudent.put("affected Rows",affectedRows);
 
         }catch(Exception e){
             e.printStackTrace();
