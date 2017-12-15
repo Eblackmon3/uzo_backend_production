@@ -48,8 +48,8 @@ public class AppController {
      * api call example https://uzo-web-app.herokuapp.com/insert_student_by_id?studentid=2
      */
     @PostMapping(value = "/insert_student")
-    public @ResponseBody HttpStatus insertStudent(@RequestBody Student insertStudent){
-        return HttpStatus.OK;
+    public ResponseEntity < String > insertStudent(@RequestBody Student insertStudent){
+        return ResponseEntity.status(HttpStatus.CREATED).build();
 
     }
 }
