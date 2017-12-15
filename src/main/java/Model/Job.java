@@ -1,17 +1,18 @@
 package Model;
 
-import org.joda.time.DateTime;
+import java.time.LocalDateTime;
+
 
 public class Job {
     private int job_id;
     private boolean completed;
-    private DateTime date;
+    private LocalDateTime date;
     private String rate;
     private String dress_code;
     private double duration;
     private boolean open;
-    private DateTime clock_out;
-    private DateTime clock_in;
+    private LocalDateTime clock_out;
+    private LocalDateTime clock_in;
     private String job_title;
 
     public int getJob_id() {
@@ -38,11 +39,11 @@ public class Job {
         this.completed = completed;
     }
 
-    public DateTime getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(DateTime date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
@@ -78,19 +79,19 @@ public class Job {
         this.open = open;
     }
 
-    public DateTime getClock_in() {
+    public LocalDateTime getClock_in() {
         return clock_in;
     }
 
-    public void setClock_in(DateTime clock_in) {
+    public void setClock_in(LocalDateTime clock_in) {
         this.clock_in = clock_in;
     }
 
-    public DateTime getClock_out() {
+    public LocalDateTime getClock_out() {
         return clock_out;
     }
 
-    public void setClock_out(DateTime clock_out) {
+    public void setClock_out(LocalDateTime clock_out) {
         this.clock_out = clock_out;
     }
 

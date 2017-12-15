@@ -1,6 +1,8 @@
 package Application;
 
 import Model.*;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
@@ -97,6 +99,7 @@ public class AppController {
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     @PostMapping(value = "/insert_job")
     public String insertJob(@RequestBody JobInsert insertJob){
         return manager.insertJob(insertJob).toString();

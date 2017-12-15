@@ -1,16 +1,27 @@
 package Model;
 
-import org.joda.time.DateTime;
+
+
+import java.time.LocalDateTime;
 
 public class JobInsert {
     private boolean completed;
-    private DateTime date;
+    private LocalDateTime date;
     private String rate;
     private String dress_code;
     private double duration;
     private boolean open;
     private String job_title;
+    private String company_id;
 
+
+    public String getCompany_id() {
+        return company_id;
+    }
+
+    public void setCompany_id(String company_id) {
+        this.company_id = company_id;
+    }
 
     public String getJob_title() {
         return job_title;
@@ -28,11 +39,11 @@ public class JobInsert {
         this.completed = completed;
     }
 
-    public DateTime getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(DateTime date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
@@ -68,6 +79,14 @@ public class JobInsert {
         this.open = open;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        JobInsert job=(JobInsert)obj;
+        if(job.getJob_title().equals(job_title)&&job.getCompany_id()==company_id){
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public String toString() {

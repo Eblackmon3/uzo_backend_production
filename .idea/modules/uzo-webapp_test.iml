@@ -19,6 +19,7 @@
     <orderEntry type="library" name="Gradle: org.apache.commons:commons-dbcp2:2.1.1" level="project" />
     <orderEntry type="library" name="Gradle: commons-dbcp:commons-dbcp:1.4" level="project" />
     <orderEntry type="library" name="Gradle: org.json:json:20090211" level="project" />
+    <orderEntry type="library" name="Gradle: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.4.0" level="project" />
     <orderEntry type="library" name="Gradle: junit:junit:4.12" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter:1.5.9.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.hibernate:hibernate-validator:5.3.6.Final" level="project" />
