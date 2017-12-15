@@ -201,7 +201,7 @@ public class DbManager {
             pstmt.setBoolean(6, jobInsert.isOpen());
             pstmt.setString(7,jobInsert.getJob_title());
             pstmt.setInt(8,jobInsert.getTime());
-            pstmt.setString(9,jobInsert.getCompany_id());
+            pstmt.setInt(9,jobInsert.getCompany_id());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();

@@ -12,15 +12,15 @@ public class JobInsert {
     private double duration;
     private boolean open;
     private String job_title;
-    private String company_id;
+    private int company_id;
     private int time;
 
 
-    public String getCompany_id() {
+    public int getCompany_id() {
         return company_id;
     }
 
-    public void setCompany_id(String company_id) {
+    public void setCompany_id(int company_id) {
         this.company_id = company_id;
     }
 
