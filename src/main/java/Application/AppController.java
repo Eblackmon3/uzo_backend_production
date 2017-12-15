@@ -48,8 +48,9 @@ public class AppController {
      * api call example https://uzo-web-app.herokuapp.com/insert_student_by_id?studentid=2
      */
     @PostMapping(value = "/insert_student")
-    public String insertStudent(@RequestBody Student insertStudent){
-        return insertStudent.toString();
+    public JSONObject insertStudent(@RequestBody Student insertStudent){
+        manager.insertStudent(insertStudent);
+        return manager.insertStudent(insertStudent);
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
