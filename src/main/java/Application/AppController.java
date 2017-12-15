@@ -6,7 +6,9 @@ import Model.Student;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Connection;
@@ -45,9 +47,9 @@ public class AppController {
     /*
      * api call example https://uzo-web-app.herokuapp.com/insert_student_by_id?studentid=2
      */
-    @PostMapping(value = "insert_student", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody Student insertStudent(@RequestBody Student insertStudent){
-        return insertStudent;
+    @PostMapping(value = "insert_student", consumes = MediaType.APPLICATION_JSON_VALUE, produces =MediaType.APPLICATION_JSON_VALUE )
+    public @ResponseBody HttpStatus insertStudent(@RequestBody Student insertStudent){
+        return HttpStatus.OK;
 
     }
 }
