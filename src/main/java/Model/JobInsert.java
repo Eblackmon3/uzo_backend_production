@@ -6,13 +6,14 @@ import java.time.LocalDateTime;
 
 public class JobInsert {
     private boolean completed;
-    private LocalDateTime date;
+    private String date;
     private String rate;
     private String dress_code;
     private double duration;
     private boolean open;
     private String job_title;
     private String company_id;
+    private int time;
 
 
     public String getCompany_id() {
@@ -39,11 +40,11 @@ public class JobInsert {
         this.completed = completed;
     }
 
-    public LocalDateTime getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -77,6 +78,14 @@ public class JobInsert {
 
     public void setOpen(boolean open) {
         this.open = open;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
     }
 
     @Override

@@ -1,19 +1,22 @@
 package Model;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDateTime;
 
 
 public class Job {
     private int job_id;
     private boolean completed;
-    private LocalDateTime date;
+    private Date date;
     private String rate;
     private String dress_code;
     private double duration;
     private boolean open;
-    private LocalDateTime clock_out;
-    private LocalDateTime clock_in;
+    private Time clock_out;
+    private Time clock_in;
     private String job_title;
+
 
     public int getJob_id() {
         return job_id;
@@ -39,11 +42,11 @@ public class Job {
         this.completed = completed;
     }
 
-    public LocalDateTime getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -79,19 +82,19 @@ public class Job {
         this.open = open;
     }
 
-    public LocalDateTime getClock_in() {
+    public Time getClock_in() {
         return clock_in;
     }
 
-    public void setClock_in(LocalDateTime clock_in) {
+    public void setClock_in(Time clock_in) {
         this.clock_in = clock_in;
     }
 
-    public LocalDateTime getClock_out() {
+    public Time getClock_out() {
         return clock_out;
     }
 
-    public void setClock_out(LocalDateTime clock_out) {
+    public void setClock_out(Time clock_out) {
         this.clock_out = clock_out;
     }
 

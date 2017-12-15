@@ -99,7 +99,6 @@ public class AppController {
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
     @PostMapping(value = "/insert_job")
     public String insertJob(@RequestBody JobInsert insertJob){
         return manager.insertJob(insertJob).toString();

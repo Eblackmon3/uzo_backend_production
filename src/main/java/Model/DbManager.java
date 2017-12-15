@@ -1,12 +1,14 @@
 package Model;
 
 
+import org.joda.time.DateTime;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.sql.DataSource;
 import java.awt.print.Book;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -178,8 +180,8 @@ public class DbManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_job_info(completed, date,rate,dress_code,duration,open,job_title) " +
-                "Values(?,?, ?, ?,?,?,?);";
+        String sql="insert into t_job_info(completed, date,rate,dress_code,duration,open,job_title, time, company_id) " +
+                "Values(?,?, ?, ?,?,?,?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
@@ -192,12 +194,14 @@ public class DbManager {
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
             pstmt.setBoolean(1, jobInsert.isCompleted());
-            pstmt.setString(2,jobInsert.getDate().toString());
+            pstmt.setDate(2, Date.valueOf(jobInsert.getDate()));
             pstmt.setString(3,jobInsert.getRate());
             pstmt.setString(4,jobInsert.getDress_code());
             pstmt.setDouble(5,jobInsert.getDuration());
             pstmt.setBoolean(6, jobInsert.isOpen());
             pstmt.setString(7,jobInsert.getJob_title());
+            pstmt.setInt(8,jobInsert.getTime());
+            pstmt.setString(9,jobInsert.getCompany_id());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
