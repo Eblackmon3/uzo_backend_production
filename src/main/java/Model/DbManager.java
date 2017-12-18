@@ -221,8 +221,8 @@ public class DbManager {
         JSONObject insertedStudentJob= new JSONObject();
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_student_job_map(student_id,job_id) " +
-                "Values(?,?);";
+        String sql="insert into t_student_job_map(company_id,job_id, job_id) " +
+                "Values(?,?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
@@ -236,6 +236,7 @@ public class DbManager {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, studJob.getStudent_id());
             pstmt.setInt(2, studJob.getCompany_id());
+            pstmt.setInt(3,studJob.getJob_id());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
