@@ -222,7 +222,7 @@ public class DbManager {
         Connection conn = null;
         PreparedStatement pstmt = null;
         String sql="insert into t_job_info(student_id,job_id) " +
-                "Values(?,?;";
+                "Values(?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
