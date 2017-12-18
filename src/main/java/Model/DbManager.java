@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import javax.sql.DataSource;
 import java.awt.print.Book;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DbManager {
 /*
@@ -290,7 +291,9 @@ public class DbManager {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs;
+        ArrayList<Integer> studentsJobs= new ArrayList<>();
         int job_id;
+        int studentJobID;
         boolean completed;
         Date date;
         String rate;
@@ -302,9 +305,9 @@ public class DbManager {
         String job_title;
         int time;
         int company_id;
+        String sql2= "select * from t_job_info where job_id=?";
         String sql="select * from t_student_job_map where student_id =?";
         DbConn jdbcObj = new DbConn();
-        int affectedRows=0;
         try{
             //Connect to the database
             DataSource dataSource = jdbcObj.setUpPool();
@@ -317,33 +320,45 @@ public class DbManager {
             pstmt.setInt(1, student.getStudent_id());
             rs= pstmt.executeQuery();
             while(rs.next()){
-                job_id=rs.getInt("job_id");
-                completed=rs.getBoolean("completed");
-                date=rs.getDate("date");
-                rate=rs.getString("rate");
-                dress_code= rs.getString("dress_code");
-                duration = rs.getDouble("duration");
-                open= rs.getBoolean("open");
-                clock_out= rs.getTime("clock_out");
-                clock_in=rs.getTime("clock_in");
-                job_title= rs.getString("job_title");
-                company_id=rs.getInt("company_id");
-                time=rs.getInt("time");
-                selectedStudentJob.put("job_id",job_id);
-                selectedStudentJob.put("completed",completed);
-                selectedStudentJob.put("date",date);
-                selectedStudentJob.put("rate",rate);
-                selectedStudentJob.put("dress_code",dress_code);
-                selectedStudentJob.put("duration",duration);
-                selectedStudentJob.put("open", open);
-                selectedStudentJob.put("clock_out", clock_out);
-                selectedStudentJob.put("clock_in", clock_in);
-                selectedStudentJob.put("job_title", job_title);
-                selectedStudentJob.put("company_id",company_id);
-                selectedStudentJob.put("time", time);
-                selectedJobs.put(selectedStudentJob);
+                studentJobID=rs.getInt("job_id");
+                studentsJobs.add(studentJobID);
+            }
+
+            pstmt = conn.prepareStatement(sql2);
+            for(int i=0;i<studentsJobs.size();i++){
+                pstmt.setInt(i, student.getStudent_id());
+                rs= pstmt.executeQuery();
+                while(rs.next()){
+                    job_id=rs.getInt("job_id");
+                    completed=rs.getBoolean("completed");
+                    date=rs.getDate("date");
+                    rate=rs.getString("rate");
+                    dress_code= rs.getString("dress_code");
+                    duration = rs.getDouble("duration");
+                    open= rs.getBoolean("open");
+                    clock_out= rs.getTime("clock_out");
+                    clock_in=rs.getTime("clock_in");
+                    job_title= rs.getString("job_title");
+                    company_id=rs.getInt("company_id");
+                    time=rs.getInt("time");
+                    selectedStudentJob.put("job_id",job_id);
+                    selectedStudentJob.put("completed",completed);
+                    selectedStudentJob.put("date",date);
+                    selectedStudentJob.put("rate",rate);
+                    selectedStudentJob.put("dress_code",dress_code);
+                    selectedStudentJob.put("duration",duration);
+                    selectedStudentJob.put("open", open);
+                    selectedStudentJob.put("clock_out", clock_out);
+                    selectedStudentJob.put("clock_in", clock_in);
+                    selectedStudentJob.put("job_title", job_title);
+                    selectedStudentJob.put("company_id",company_id);
+                    selectedStudentJob.put("time", time);
+                    selectedJobs.put(selectedStudentJob);
+
+                }
 
             }
+
             pstmt.close();
             conn.close();
 
