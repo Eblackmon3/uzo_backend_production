@@ -240,7 +240,7 @@ public class DbManager {
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            insertedStudentJob.put("Student ID: "+studJob.toString()+" Company ID "+studJob.getCompany_id(),"Inserted");
+            insertedStudentJob.put(studJob.toString(),"Inserted");
             insertedStudentJob.put("affected Rows",affectedRows);
 
         }catch(Exception e){
@@ -252,14 +252,41 @@ public class DbManager {
 
 
     }
-    /*
 
 
-    public JSONObject removeStudentJob(){
 
-        //TODO: complete method
+    public JSONObject removeStudentJob(StudentJob studJob){
+        JSONObject deletedStudentJob= new JSONObject();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="delete from t_student_job_map where student_id =? and job_id =?";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, studJob.getStudent_id());
+            pstmt.setInt(2,studJob.getJob_id());
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            deletedStudentJob.put(studJob.toString(),"deleted");
+            deletedStudentJob.put("affected Rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+
+        }
+        return deletedStudentJob;
 
     }
+    /*
 
     public JSONArray getJobStudentList(){
 

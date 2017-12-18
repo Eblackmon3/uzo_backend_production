@@ -117,9 +117,25 @@ public class AppController {
         return manager.insertJob(insertJob).toString();
     }
 
+    /*
+     * Example url: https://uzo-web-app.herokuapp.com/assign_student_job
+     * example json
+     * {
+         "student_id": 1,
+         "company_id": 19,
+         "job_id":1
+        }
+     */
+
     @PostMapping(value = "/assign_student_job")
     public String assignStudentJob(@RequestBody StudentJob studentJob){
         return manager.assignStudentJob(studentJob).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PostMapping(value = "/delete_student_job")
+    public String deleteStudentJob(@RequestBody StudentJob studentJob){
+        return manager.removeStudentJob(studentJob).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
