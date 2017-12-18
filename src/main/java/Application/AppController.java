@@ -49,7 +49,6 @@ public class AppController {
      * api call example https://uzo-web-app.herokuapp.com/insert_student
      * headers
      * {
-         "student_id": 3,
          "email": "stephenoakala@gmail.com",
          "password": "281330800fB",
          "on_call": true,
@@ -83,7 +82,6 @@ public class AppController {
      * api call example https://uzo-web-app.herokuapp.com/insert_company
      * headers
      * {
-         "company_id": 3,
          "email": "eric.blackmon@uzo.com",
          "address": "2700 gray valley court houston tx",
          "website_link": "uzo.com",
@@ -99,9 +97,30 @@ public class AppController {
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    /*
+     * api call example https://uzo-web-app.herokuapp.com/insert_job
+     * header
+     * {
+         "completed": false,
+         "date": "2018-06-15",
+         "rate": "40/hr",
+         "dress_code": "Formal",
+         "duration":2.5,
+         "open": true,
+         "job_title": "Janitor",
+         "time":2300,
+         "company_id":1
+}
+     */
     @PostMapping(value = "/insert_job")
     public String insertJob(@RequestBody JobInsert insertJob){
         return manager.insertJob(insertJob).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PostMapping(value = "/assign_student_job")
+    public String assignStudentJob(@RequestBody StudentJob studentJob){
+        return manager.assignStudentJob(studentJob).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

@@ -216,12 +216,42 @@ public class DbManager {
 
     }
 
-    /*
-    public JSONArray assignStudentJob(){
 
-        //TODO: complete method
+    public JSONObject assignStudentJob(StudentJob studJob){
+        JSONObject insertedStudentJob= new JSONObject();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="insert into t_job_info(student_id,job_id) " +
+                "Values(?,?;";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, studJob.getStudent_id());
+            pstmt.setInt(2, studJob.getCompany_id());
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            insertedStudentJob.put("Student ID: "+studJob.toString()+" Company ID "+studJob.getCompany_id(),"Inserted");
+            insertedStudentJob.put("affected Rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+
+        }
+        return insertedStudentJob;
+
+
 
     }
+    /*
 
 
     public JSONObject removeStudentJob(){
