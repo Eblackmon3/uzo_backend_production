@@ -146,9 +146,18 @@ public class AppController {
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    /*
+     * example url:https://uzo-web-app.herokuapp.com/get_student_job_by_id
+     * example header:
+     * {
+         "student_id": 1
+        }
+     *
+     */
+
     @PostMapping(value = "/get_student_job_by_id")
     public String getStudentJobList(@RequestBody Student student){
-        return manager.getJobStudentList(student).toString();
+        return manager.getStudentJobList(student).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

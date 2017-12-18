@@ -285,7 +285,7 @@ public class DbManager {
 
     }
 
-    public JSONArray getJobStudentList(Student student){
+    public JSONArray getStudentJobList(Student student){
         JSONObject selectedStudentJob= new JSONObject();
         JSONArray selectedJobs= new JSONArray();
         Connection conn = null;
@@ -370,12 +370,13 @@ public class DbManager {
     }
 
     /*
-    public JSONArray getStudentJobList(){
+    public JSONArray getStudentJobList(Job job){
 
         //TODO: complete method
 
     }
     */
+
 
 
 
