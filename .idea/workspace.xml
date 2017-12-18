@@ -22,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DbManager.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DbManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/DbManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="387" column="64" lean-forward="false" selection-start-line="387" selection-start-column="64" selection-end-line="387" selection-end-column="64" />
+            <state relative-caret-position="131">
+              <caret line="402" column="50" lean-forward="false" selection-start-line="402" selection-start-column="50" selection-end-line="402" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -141,19 +141,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AppController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AppController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="168" column="5" lean-forward="true" selection-start-line="168" selection-start-column="5" selection-end-line="168" selection-end-column="5" />
+            <state relative-caret-position="240">
+              <caret line="163" column="27" lean-forward="true" selection-start-line="163" selection-start-column="27" selection-end-line="163" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1085#1086#0" expanded="true" />
                 <element signature="e#1133#1134#0" expanded="true" />
                 <element signature="e#3775#3776#0" expanded="true" />
                 <element signature="e#3837#3838#0" expanded="true" />
-                <element signature="e#5256#5257#0" expanded="true" />
-                <element signature="e#5320#5321#0" expanded="true" />
+                <element signature="e#5258#5259#0" expanded="true" />
+                <element signature="e#5322#5323#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -638,8 +638,8 @@
         <option value="$PROJECT_DIR$/src/main/java/Model/JobInsert.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/StudentJob.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/Job.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Model/DbManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/Application/AppController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Model/DbManager.java" />
       </list>
     </option>
   </component>
@@ -955,8 +955,8 @@
             <element signature="e#1133#1134#0" expanded="true" />
             <element signature="e#3775#3776#0" expanded="true" />
             <element signature="e#3837#3838#0" expanded="true" />
-            <element signature="e#5256#5257#0" expanded="true" />
-            <element signature="e#5320#5321#0" expanded="true" />
+            <element signature="e#5258#5259#0" expanded="true" />
+            <element signature="e#5322#5323#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1001,8 +1001,8 @@
             <element signature="e#1133#1134#0" expanded="true" />
             <element signature="e#3775#3776#0" expanded="true" />
             <element signature="e#3837#3838#0" expanded="true" />
-            <element signature="e#5256#5257#0" expanded="true" />
-            <element signature="e#5320#5321#0" expanded="true" />
+            <element signature="e#5258#5259#0" expanded="true" />
+            <element signature="e#5322#5323#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1137,16 +1137,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/DbManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="387" column="64" lean-forward="false" selection-start-line="387" selection-start-column="64" selection-end-line="387" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/Student.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-394">
@@ -1157,16 +1147,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="168" column="5" lean-forward="true" selection-start-line="168" selection-start-column="5" selection-end-line="168" selection-end-column="5" />
+        <state relative-caret-position="240">
+          <caret line="163" column="27" lean-forward="true" selection-start-line="163" selection-start-column="27" selection-end-line="163" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1085#1086#0" expanded="true" />
             <element signature="e#1133#1134#0" expanded="true" />
             <element signature="e#3775#3776#0" expanded="true" />
             <element signature="e#3837#3838#0" expanded="true" />
-            <element signature="e#5256#5257#0" expanded="true" />
-            <element signature="e#5320#5321#0" expanded="true" />
+            <element signature="e#5258#5259#0" expanded="true" />
+            <element signature="e#5322#5323#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/DbManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="402" column="50" lean-forward="false" selection-start-line="402" selection-start-column="50" selection-end-line="402" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

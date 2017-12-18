@@ -400,7 +400,7 @@ public class DbManager {
             pstmt.setInt(1, job.getJob_id());
             rs= pstmt.executeQuery();
             while(rs.next()){
-                jobStudentID=rs.getInt("jobStudentID");
+                jobStudentID=rs.getInt("student_id");
                 jobsStudents.add(jobStudentID);
             }
 
