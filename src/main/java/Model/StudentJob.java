@@ -41,6 +41,6 @@ public class StudentJob {
 
     @Override
     public String toString() {
-        return "Company ID:"+company_id+ "Student ID:"+student_id+" for Job ID:"+ job_id;
+        return "Company ID:"+company_id+ " Student ID:"+student_id+" for Job ID:"+ job_id;
     }
 }

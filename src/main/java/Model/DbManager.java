@@ -7,10 +7,7 @@ import org.json.JSONObject;
 
 import javax.sql.DataSource;
 import java.awt.print.Book;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 
 public class DbManager {
 /*
@@ -286,14 +283,78 @@ public class DbManager {
         return deletedStudentJob;
 
     }
-    /*
 
-    public JSONArray getJobStudentList(){
+    public JSONArray getJobStudentList(Student student){
+        JSONObject selectedStudentJob= new JSONObject();
+        JSONArray selectedJobs= new JSONArray();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs;
+        int job_id;
+        boolean completed;
+        Date date;
+        String rate;
+        String dress_code;
+        double duration;
+        boolean open;
+        Time clock_out;
+        Time clock_in;
+        String job_title;
+        int time;
+        int company_id;
+        String sql="select * from t_student_job_map where student_id =?";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, student.getStudent_id());
+            rs= pstmt.executeQuery();
+            while(rs.next()){
+                job_id=rs.getInt("job_id");
+                completed=rs.getBoolean("completed");
+                date=rs.getDate("date");
+                rate=rs.getString("rate");
+                dress_code= rs.getString("dress_code");
+                duration = rs.getDouble("duration");
+                open= rs.getBoolean("open");
+                clock_out= rs.getTime("clock_out");
+                clock_in=rs.getTime("clock_in");
+                job_title= rs.getString("job_title");
+                company_id=rs.getInt("company_id");
+                time=rs.getInt("time");
+                selectedStudentJob.put("job_id",job_id);
+                selectedStudentJob.put("completed",completed);
+                selectedStudentJob.put("date",date);
+                selectedStudentJob.put("rate",rate);
+                selectedStudentJob.put("dress_code",dress_code);
+                selectedStudentJob.put("duration",duration);
+                selectedStudentJob.put("open", open);
+                selectedStudentJob.put("clock_out", clock_out);
+                selectedStudentJob.put("clock_in", clock_in);
+                selectedStudentJob.put("job_title", job_title);
+                selectedStudentJob.put("company_id",company_id);
+                selectedStudentJob.put("time", time);
+                selectedJobs.put(selectedStudentJob);
 
-        //TODO: complete method
+            }
+            pstmt.close();
+            conn.close();
 
+        }catch(Exception e){
+            e.printStackTrace();
+
+        }
+        return selectedJobs;
     }
 
+    /*
     public JSONArray getStudentJobList(){
 
         //TODO: complete method

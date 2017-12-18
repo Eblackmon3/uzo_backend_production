@@ -16,6 +16,8 @@ public class Job {
     private Time clock_out;
     private Time clock_in;
     private String job_title;
+    private int company_id;
+    private int time;
 
 
     public int getJob_id() {
@@ -96,6 +98,22 @@ public class Job {
 
     public void setClock_out(Time clock_out) {
         this.clock_out = clock_out;
+    }
+
+    public void setCompany_id(int company_id) {
+        this.company_id = company_id;
+    }
+
+    public int getCompany_id() {
+        return company_id;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
     }
 
     @Override
