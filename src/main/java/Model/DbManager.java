@@ -369,13 +369,76 @@ public class DbManager {
         return selectedJobs;
     }
 
-    /*
-    public JSONArray getStudentJobList(Job job){
 
-        //TODO: complete method
+    public JSONArray getJobStudentList(Job job){
+
+        JSONObject selectedJobsStudent= new JSONObject();
+        JSONArray selectedStudents= new JSONArray();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs;
+        ArrayList<Integer> jobsStudents= new ArrayList<>();
+        int jobStudentID;
+        int student_id;
+        String email;
+        String password;
+        boolean on_call;
+        String first_name;
+        String last_name;
+        String sql2= "select * from t_student_info where student_id=?";
+        String sql="select * from t_student_job_map where job_id =?";
+        DbConn jdbcObj = new DbConn();
+        try{
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, job.getJob_id());
+            rs= pstmt.executeQuery();
+            while(rs.next()){
+                jobStudentID=rs.getInt("jobStudentID");
+                jobsStudents.add(jobStudentID);
+            }
+
+            pstmt = conn.prepareStatement(sql2);
+            for(int i=0;i<jobsStudents.size();i++){
+                pstmt.setInt(1, jobsStudents.get(i));
+                rs= pstmt.executeQuery();
+                while(rs.next()){
+                    student_id=rs.getInt("student_id");
+                    email=rs.getString("email");
+                    password=rs.getString("password");
+                    on_call=rs.getBoolean("on_call");
+                    first_name=rs.getString("first_name");
+                    last_name=rs.getString("last_name");
+
+                    selectedJobsStudent.put("student_id",student_id);
+                    selectedJobsStudent.put("email",email);
+                    selectedJobsStudent.put("password",password);
+                    selectedJobsStudent.put("on_call",on_call);
+                    selectedJobsStudent.put("first_name",first_name);
+                    selectedJobsStudent.put("last_name",last_name);
+                    selectedStudents.put(selectedStudents);
+
+                }
+
+            }
+
+            pstmt.close();
+            conn.close();
+
+        }catch(Exception e){
+            e.printStackTrace();
+
+        }
+        return selectedStudents;
 
     }
-    */
+
 
 
 
