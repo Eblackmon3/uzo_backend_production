@@ -25,7 +25,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/DbManager.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="98">
-              <caret line="223" column="68" lean-forward="false" selection-start-line="223" selection-start-column="68" selection-end-line="223" selection-end-column="68" />
+              <caret line="223" column="57" lean-forward="false" selection-start-line="223" selection-start-column="57" selection-end-line="223" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1075,7 +1075,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/DbManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="98">
-          <caret line="223" column="68" lean-forward="false" selection-start-line="223" selection-start-column="68" selection-end-line="223" selection-end-column="68" />
+          <caret line="223" column="57" lean-forward="false" selection-start-line="223" selection-start-column="57" selection-end-line="223" selection-end-column="57" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
