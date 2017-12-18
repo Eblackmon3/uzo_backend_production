@@ -146,7 +146,7 @@ public class AppController {
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PostMapping(value = "/delete_student_job")
+    @PostMapping(value = "/get_student_job_by_id")
     public String getStudentJobList(@RequestBody Student student){
         return manager.getJobStudentList(student).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
