@@ -221,7 +221,7 @@ public class DbManager {
         JSONObject insertedStudentJob= new JSONObject();
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_student_job_map(company_id,job_id, job_id) " +
+        String sql="insert into t_student_job_map(company_id,company_id, job_id) " +
                 "Values(?,?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;

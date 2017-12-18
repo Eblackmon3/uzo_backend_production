@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a552cfe1-dd65-4578-b180-6a4d6a4d042b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/Model/DbManager.java" afterPath="$PROJECT_DIR$/src/main/java/Model/DbManager.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/StudentJob.java" afterPath="$PROJECT_DIR$/src/main/java/Model/StudentJob.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -25,8 +24,8 @@
       <file leaf-file-name="DbManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/DbManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="248" column="9" lean-forward="true" selection-start-line="248" selection-start-column="9" selection-end-line="248" selection-end-column="9" />
+            <state relative-caret-position="98">
+              <caret line="223" column="68" lean-forward="false" selection-start-line="223" selection-start-column="68" selection-end-line="223" selection-end-column="68" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1075,8 +1074,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/DbManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="248" column="9" lean-forward="true" selection-start-line="248" selection-start-column="9" selection-end-line="248" selection-end-column="9" />
+        <state relative-caret-position="98">
+          <caret line="223" column="68" lean-forward="false" selection-start-line="223" selection-start-column="68" selection-end-line="223" selection-end-column="68" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
