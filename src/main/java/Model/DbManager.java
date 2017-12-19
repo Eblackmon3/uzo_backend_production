@@ -426,7 +426,7 @@ public class DbManager {
                     selectedJobsStudent.put("on_call",on_call);
                     selectedJobsStudent.put("first_name",first_name);
                     selectedJobsStudent.put("last_name",last_name);
-                    selectedStudents.put(selectedStudents);
+                    selectedStudents.put(selectedJobsStudent);
 
                 }
 
