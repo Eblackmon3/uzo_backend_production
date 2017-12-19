@@ -371,13 +371,16 @@ public class DbManager {
 
 
     public JSONArray getJobStudentList(Job job){
-
+        //One of the students that are associated with a job
         JSONObject selectedJobsStudent= new JSONObject();
+        //the list of selected students
         JSONArray selectedStudents= new JSONArray();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs;
+        //the student IDs for th associated job
         ArrayList<Integer> jobsStudents= new ArrayList<>();
+        //holder for the student IDs that are associated witht he job
         int jobStudentID;
         int student_id;
         String email;
@@ -405,6 +408,7 @@ public class DbManager {
             }
 
             pstmt = conn.prepareStatement(sql2);
+            System.out.println(jobsStudents.size());
             for(int i=0;i<jobsStudents.size();i++){
                 pstmt.setInt(1, jobsStudents.get(i));
                 rs= pstmt.executeQuery();
