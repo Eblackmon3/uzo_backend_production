@@ -4,8 +4,8 @@ public class Student {
     private int student_id;
     private String email;
     private String password;
-    private boolean on_call;
     private String first_name;
+    private String resumeLocation;
     private String last_name;
 
 
@@ -15,14 +15,6 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public boolean isOn_call() {
-        return on_call;
-    }
-
-    public void setOn_call(boolean on_call) {
-        this.on_call = on_call;
     }
 
     public int getStudent_id() {
@@ -57,10 +49,18 @@ public class Student {
         this.first_name = first_name;
     }
 
+    public String getResumeLocation() {
+        return resumeLocation;
+    }
+
+    public void setResumeLocation(String resumeLocation) {
+        this.resumeLocation = resumeLocation;
+    }
+
     @Override
     public String toString() {
         return "Student Email: "+ email+ " Student Name:"+ first_name+
-                " "+ last_name+ "Student id "+ student_id+" On Call?: "+ on_call;
+                " "+ last_name+ "Student id "+ student_id;
     }
 
     @Override

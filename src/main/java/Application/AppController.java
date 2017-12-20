@@ -36,7 +36,6 @@ public class AppController {
 
     /*
      * api call example https://uzo-web-app.herokuapp.com/get_student_by_id?studentid=002
-     * used a string as to not process the JSONOBJECT on response
      */
     @RequestMapping(value="get_student_by_id")
     public @ResponseBody String getStudentById(@RequestParam("studentid") int  studentid){
@@ -51,7 +50,6 @@ public class AppController {
      * {
          "email": "stephenoakala@gmail.com",
          "password": "281330800fB",
-         "on_call": true,
          "first_name": "Stephen",
          "last_name":"Okala"
         }
@@ -67,7 +65,7 @@ public class AppController {
 
 
     /*
-     * api call example https://uzo-web-app.herokuapp.com/get_student_by_id?studentid=002
+     * api call example https://uzo-web-app.herokuapp.com/get_company_by_id?companyid=001
      * used a string as to not process the JSONOBJECT on response
      */
     @RequestMapping(value="get_company_by_id")
@@ -160,10 +158,24 @@ public class AppController {
         return manager.getStudentJobList(student).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-
+    /*
+     *example url:https://uzo-web-app.herokuapp.com/get_jobs_students_by_id
+     * example header:
+     * {
+         "job_id": 1
+        }
+     */
     @PostMapping(value = "/get_jobs_students_by_id")
     public String getJobStudentList(@RequestBody Job job) {
         return manager.getJobStudentList(job).toString();
     }
+/*
+    @PostMapping(value = "/get_students_by_company")
+    public String getJobStudentList(@RequestBody Company company) {
+        return manager.getCompanyStudentList(company).toString();
+    }
+    */
+
+
 
     }

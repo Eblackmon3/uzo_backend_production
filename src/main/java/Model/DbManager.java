@@ -64,7 +64,7 @@ public class DbManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_student_info(email, password, on_call,first_name, last_name) Values(?,?,?, ?, ?);";
+        String sql="insert into t_student_info(email, password, first_name, last_name) Values(?,?,?, ?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
@@ -78,9 +78,8 @@ public class DbManager {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, student.getEmail());
             pstmt.setString(2,student.getPassword());
-            pstmt.setBoolean(3,student.isOn_call());
-            pstmt.setString(4,student.getFirst_name());
-            pstmt.setString(5,student.getLast_name());
+            pstmt.setString(3,student.getFirst_name());
+            pstmt.setString(4,student.getLast_name());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
@@ -422,7 +421,6 @@ public class DbManager {
 
                     selectedJobsStudent.put("student_id",student_id);
                     selectedJobsStudent.put("email",email);
-                    selectedJobsStudent.put("password",password);
                     selectedJobsStudent.put("on_call",on_call);
                     selectedJobsStudent.put("first_name",first_name);
                     selectedJobsStudent.put("last_name",last_name);
@@ -442,6 +440,11 @@ public class DbManager {
         return selectedStudents;
 
     }
+/*
+    public JSONArray getCompanyStudentList(Company company){
+
+    }
+    */
 
 
 

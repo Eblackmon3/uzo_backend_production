@@ -14,6 +14,9 @@ public class JobInsert {
     private String job_title;
     private int company_id;
     private int time;
+    private int captain_id;
+    private int coCaptain_id;
+
 
 
     public int getCompany_id() {
@@ -86,6 +89,22 @@ public class JobInsert {
 
     public void setTime(int time) {
         this.time = time;
+    }
+
+    public int getCaptain_id() {
+        return captain_id;
+    }
+
+    public void setCaptain_id(int captain_id) {
+        this.captain_id = captain_id;
+    }
+
+    public int getCoCaptain_id() {
+        return coCaptain_id;
+    }
+
+    public void setCoCaptain_id(int coCaptain_id) {
+        this.coCaptain_id = coCaptain_id;
     }
 
     @Override
