@@ -5,8 +5,9 @@ public class Student {
     private String email;
     private String password;
     private String first_name;
-    private String resumeLocation;
+    private String resume_location;
     private String last_name;
+    private String university;
 
 
     public String getEmail() {
@@ -49,12 +50,20 @@ public class Student {
         this.first_name = first_name;
     }
 
-    public String getResumeLocation() {
-        return resumeLocation;
+    public String getResume_location() {
+        return resume_location;
     }
 
-    public void setResumeLocation(String resumeLocation) {
-        this.resumeLocation = resumeLocation;
+    public void setResume_location(String resume_location) {
+        this.resume_location = resume_location;
+    }
+
+    public String getUniversity() {
+        return university;
+    }
+
+    public void setUniversity(String university) {
+        this.university = university;
     }
 
     @Override

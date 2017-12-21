@@ -169,12 +169,12 @@ public class AppController {
     public String getJobStudentList(@RequestBody Job job) {
         return manager.getJobStudentList(job).toString();
     }
-/*
-    @PostMapping(value = "/get_students_by_company")
-    public String getJobStudentList(@RequestBody Company company) {
-        return manager.getCompanyStudentList(company).toString();
+
+    @PostMapping(value = "/on_call_student")
+    public String insertOnCallStudent(@RequestBody JobOnCall onCall){
+        return manager.insertStudentOnCall(onCall).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-    */
 
 
 

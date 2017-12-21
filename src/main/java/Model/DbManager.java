@@ -22,6 +22,7 @@ public class DbManager {
         String sql="select * from t_student_info where student_id=?";
         DbConn jdbcObj = new DbConn();
         String email="";String password="";String first="";String last="";
+        String university="";
         boolean onCall=false;
         JSONObject studentObj= new JSONObject();
         try {
@@ -41,6 +42,7 @@ public class DbManager {
                 first=rs.getString("first_name");
                 last=rs.getString("last_name");
                 onCall=rs.getBoolean("on_call");
+                university=rs.getString("university");
             }
             rs.close();
             pstmt.close();
@@ -51,6 +53,7 @@ public class DbManager {
             studentObj.put("first_name",first);
             studentObj.put("last_name", last);
             studentObj.put("onCall",onCall);
+            studentObj.put("university",university);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -440,11 +443,39 @@ public class DbManager {
         return selectedStudents;
 
     }
-/*
-    public JSONArray getCompanyStudentList(Company company){
 
+    public JSONObject insertStudentOnCall(JobOnCall onCall){
+        JSONObject insertedOncall= new JSONObject();
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="insert into t_job_on_call(student_id, job_id) Values(?,?);";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, onCall.getStudent_id());
+            pstmt.setInt(2,onCall.getJob_id());
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            insertedOncall.put(onCall.toString(),"Inserted");
+            insertedOncall.put("affected Rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+
+        }
+        return insertedOncall;
     }
-    */
+
 
 
 
