@@ -803,7 +803,7 @@ public class DbManager {
                 total_rating=rs.getInt("total_rating");
                 times_rated=rs.getInt("times_rated");
             }
-            averageRating=total_rating/times_rated;
+            averageRating=(double)total_rating/(double)times_rated;
             rs.close();
             pstmt.close();
             conn.close();
