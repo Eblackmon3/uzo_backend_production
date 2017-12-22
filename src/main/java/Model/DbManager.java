@@ -325,7 +325,7 @@ public class DbManager {
             pstmt = conn.prepareStatement(sql2);
             for(int i=0;i<studentsJobs.size();i++){
                 pstmt.setInt(1, studentsJobs.get(i));
-                System.out.println(i);
+                System.out.println(studentsJobs.get(i));
                 rs= pstmt.executeQuery();
                 while(rs.next()){
                     job_id=rs.getInt("job_id");
