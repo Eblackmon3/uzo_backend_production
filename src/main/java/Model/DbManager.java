@@ -319,6 +319,7 @@ public class DbManager {
             rs= pstmt.executeQuery();
             while(rs.next()){
                 studentJobID=rs.getInt("job_id");
+                System.out.println(studentJobID);
                 studentsJobs.add(studentJobID);
             }
 
