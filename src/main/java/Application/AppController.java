@@ -244,6 +244,20 @@ public class AppController {
     }
 
 
+     /*
+        example url: https://uzo-web-app.herokuapp.com/update_student_rating
+        header:
+            {
+             "student_id": 2
+            }
+
+     */
+
+    @PostMapping(value = "/update_student_rating")
+    public String updateStudentRating(@RequestBody Student student){
+        return manager.updateStudentUniversity(student).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 
 
 }

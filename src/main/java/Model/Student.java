@@ -8,6 +8,8 @@ public class Student {
     private String resume_location;
     private String last_name;
     private String university;
+    private int total_rating;
+    private int times_rated;
 
 
     public String getEmail() {
@@ -64,6 +66,22 @@ public class Student {
 
     public void setUniversity(String university) {
         this.university = university;
+    }
+
+    public int getTimes_rated() {
+        return times_rated;
+    }
+
+    public void setTimes_rated(int times_rated) {
+        this.times_rated = times_rated;
+    }
+
+    public int getTotal_rating() {
+        return total_rating;
+    }
+
+    public void setTotal_rating(int total_rating) {
+        this.total_rating = total_rating;
     }
 
     @Override

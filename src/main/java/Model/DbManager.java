@@ -730,6 +730,52 @@ public class DbManager {
         return updateUniversity;
     }
 
+    public JSONObject addRating(Student student){
+        JSONObject updateUniversity= new JSONObject();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs;
+        int previousRating=0;
+        int previousTimesRated=0;
+        String sql="select t_student_info where student_id =?";
+        String sql2="update t_student_info set total_rating=?, times_rated=? where student_id=?;";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, student.getStudent_id());
+            rs= pstmt.executeQuery();
+            while(rs.next()){
+                previousRating=rs.getInt("total_rating");
+                previousTimesRated=rs.getInt("times_rated");
+            }
+
+            pstmt = conn.prepareStatement(sql2);
+            pstmt.setInt(1, previousRating+student.getTotal_rating());
+            pstmt.setInt(2, previousTimesRated+1);
+            pstmt.setInt(3, student.getStudent_id());
+            affectedRows=pstmt.executeUpdate();
+
+            pstmt.close();
+            conn.close();
+            updateUniversity.put("Student:"+student.getStudent_id(), "Rating updated");
+            updateUniversity.put("affected Rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+
+        }
+        return updateUniversity;
+
+    }
+
 
 
 }
