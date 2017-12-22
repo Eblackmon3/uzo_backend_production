@@ -319,13 +319,13 @@ public class DbManager {
             rs= pstmt.executeQuery();
             while(rs.next()){
                 studentJobID=rs.getInt("job_id");
-                System.out.println(studentJobID);
                 studentsJobs.add(studentJobID);
             }
 
             pstmt = conn.prepareStatement(sql2);
             for(int i=0;i<studentsJobs.size();i++){
                 pstmt.setInt(1, studentsJobs.get(i));
+                System.out.println(i);
                 rs= pstmt.executeQuery();
                 while(rs.next()){
                     job_id=rs.getInt("job_id");
