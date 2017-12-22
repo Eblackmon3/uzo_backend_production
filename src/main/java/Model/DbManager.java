@@ -44,7 +44,6 @@ public class DbManager {
             rs.close();
             pstmt.close();
             conn.close();
-            System.out.println(email);
             studentObj.put("email",email);
             studentObj.put("password",password);
             studentObj.put("first_name",first);
@@ -402,8 +401,10 @@ public class DbManager {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, job.getJob_id());
             rs= pstmt.executeQuery();
+
             while(rs.next()){
                 jobStudentID=rs.getInt("student_id");
+                System.out.println(jobStudentID);
                 jobsStudents.add(jobStudentID);
             }
 
