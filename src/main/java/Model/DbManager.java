@@ -388,7 +388,7 @@ public class DbManager {
         String last_name;
         String university;
         String sql2= "select * from t_student_info where student_id=?";
-        String sql="select * from t_job_on_call where job_id =?";
+        String sql="select * from t_student_job_map where job_id =?";
         DbConn jdbcObj = new DbConn();
         try{
             //Connect to the database
@@ -404,7 +404,6 @@ public class DbManager {
 
             while(rs.next()){
                 jobStudentID=rs.getInt("student_id");
-                System.out.println(jobStudentID);
                 jobsStudents.add(jobStudentID);
             }
 
