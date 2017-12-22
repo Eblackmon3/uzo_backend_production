@@ -737,7 +737,7 @@ public class DbManager {
         ResultSet rs;
         int previousRating=0;
         int previousTimesRated=0;
-        String sql="select t_student_info where student_id =?";
+        String sql="select * from t_student_info where student_id =?";
         String sql2="update t_student_info set total_rating=?, times_rated=? where student_id=?;";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
