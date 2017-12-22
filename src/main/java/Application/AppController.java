@@ -218,12 +218,29 @@ public class AppController {
     *example url:https://uzo-web-app.herokuapp.com/get_companys_past_students_by_id
     * example header:
     * {
-        "student_id": 1
+       company_id": 1
        }
     */
     @PostMapping(value = "/get_companys_past_students_by_id")
     public String getStudentsByCompany(@RequestBody Company company) {
         return manager.getStudentsByCompany(company).toString();
+    }
+
+
+    /*
+        example url: update_student_university
+        header:
+            {
+             "student_id": 2,
+             "university":"UVA"
+            }
+
+     */
+
+    @PostMapping(value = "/update_student_university")
+    public String updateStudentUniversity(@RequestBody Student student){
+        return manager.updateStudentUniversity(student).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 

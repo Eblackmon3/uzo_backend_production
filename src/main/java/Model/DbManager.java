@@ -702,6 +702,37 @@ public class DbManager {
     }
 
 
+    public JSONObject updateStudentUniversity(Student student ){
+        JSONObject updateUniversity= new JSONObject();
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="\uFEFFupdate t_student_info set university=? where student_id=?";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, student.getUniversity());
+            pstmt.setInt(2,student.getStudent_id());
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            updateUniversity.put("Student:"+student.getStudent_id()+ " University updated","Inserted");
+            updateUniversity.put("affected Rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+
+        }
+        return updateUniversity;
+    }
 
 
 
