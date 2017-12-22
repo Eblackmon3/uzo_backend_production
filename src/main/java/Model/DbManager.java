@@ -11,10 +11,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class DbManager {
-/*
- *INSERT EXAMPE
- *﻿insert into t_Student_info(email, password, on_call) Values('ericblackmon52@yahoo.com','281330800fB',true)
- */
+
     public JSONObject getStudentById(int id){
         ResultSet rsObj = null;
         Connection conn = null;
@@ -128,9 +125,9 @@ public class DbManager {
             conn.close();
             companyObj.put("email",email);
             companyObj.put("password",password);
-            companyObj.put("first_name",company_name);
-            companyObj.put("last_name", website_link);
-            companyObj.put("onCall",address);
+            companyObj.put("company_name",company_name);
+            companyObj.put("website_link", website_link);
+            companyObj.put("address",address);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -390,8 +387,9 @@ public class DbManager {
         boolean on_call;
         String first_name;
         String last_name;
+        String university;
         String sql2= "select * from t_student_info where student_id=?";
-        String sql="select * from t_student_job_map where job_id =?";
+        String sql="select * from t_job_on_call where job_id =?";
         DbConn jdbcObj = new DbConn();
         try{
             //Connect to the database
@@ -417,16 +415,15 @@ public class DbManager {
                 while(rs.next()){
                     student_id=rs.getInt("student_id");
                     email=rs.getString("email");
-                    password=rs.getString("password");
-                    on_call=rs.getBoolean("on_call");
                     first_name=rs.getString("first_name");
                     last_name=rs.getString("last_name");
+                    university=rs.getString("university");
 
                     selectedJobsStudent.put("student_id",student_id);
                     selectedJobsStudent.put("email",email);
-                    selectedJobsStudent.put("on_call",on_call);
                     selectedJobsStudent.put("first_name",first_name);
                     selectedJobsStudent.put("last_name",last_name);
+                    selectedJobsStudent.put("university",university);
                     selectedStudents.put(selectedJobsStudent);
 
                 }
@@ -441,7 +438,6 @@ public class DbManager {
 
         }
         return selectedStudents;
-
     }
 
     public JSONObject insertStudentOnCall(JobOnCall onCall){
@@ -475,7 +471,231 @@ public class DbManager {
         }
         return insertedOncall;
     }
+    public JSONArray getSudentsOncallJobs(Student student){
+        JSONObject selectedStudentJob= new JSONObject();
+        JSONArray selectedJobs= new JSONArray();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs;
+        ArrayList<Integer> studentsJobs= new ArrayList<>();
+        int job_id;
+        int studentJobID;
+        boolean completed;
+        Date date;
+        String rate;
+        String dress_code;
+        double duration;
+        boolean open;
+        Time clock_out;
+        Time clock_in;
+        String job_title;
+        int time;
+        int company_id;
+        String sql2= "select * from t_job_info where job_id=?";
+        String sql="select * from t_job_on_call where student_id =?";
+        DbConn jdbcObj = new DbConn();
+        try{
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, student.getStudent_id());
+            rs= pstmt.executeQuery();
+            while(rs.next()){
+                studentJobID=rs.getInt("job_id");
+                studentsJobs.add(studentJobID);
+            }
 
+            pstmt = conn.prepareStatement(sql2);
+            for(int i=0;i<studentsJobs.size();i++){
+                pstmt.setInt(1, studentsJobs.get(i));
+                rs= pstmt.executeQuery();
+                while(rs.next()){
+                    job_id=rs.getInt("job_id");
+                    completed=rs.getBoolean("completed");
+                    date=rs.getDate("date");
+                    rate=rs.getString("rate");
+                    dress_code= rs.getString("dress_code");
+                    duration = rs.getDouble("duration");
+                    open= rs.getBoolean("open");
+                    clock_out= rs.getTime("clock_out");
+                    clock_in=rs.getTime("clock_in");
+                    job_title= rs.getString("job_title");
+                    company_id=rs.getInt("company_id");
+                    time=rs.getInt("time");
+                    selectedStudentJob.put("job_id",job_id);
+                    selectedStudentJob.put("completed",completed);
+                    selectedStudentJob.put("date",date);
+                    selectedStudentJob.put("rate",rate);
+                    selectedStudentJob.put("dress_code",dress_code);
+                    selectedStudentJob.put("duration",duration);
+                    selectedStudentJob.put("open", open);
+                    selectedStudentJob.put("clock_out", clock_out);
+                    selectedStudentJob.put("clock_in", clock_in);
+                    selectedStudentJob.put("job_title", job_title);
+                    selectedStudentJob.put("company_id",company_id);
+                    selectedStudentJob.put("time", time);
+                    selectedJobs.put(selectedStudentJob);
+
+                }
+
+            }
+
+            pstmt.close();
+            conn.close();
+
+        }catch(Exception e){
+            e.printStackTrace();
+
+        }
+        return selectedJobs;
+    }
+
+    public JSONArray getJobsOnCallStudents(Job job){
+        //One of the students that are associated with a job
+        JSONObject selectedJobsStudent= new JSONObject();
+        //the list of selected students
+        JSONArray selectedStudents= new JSONArray();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs;
+        //the student IDs for th associated job
+        ArrayList<Integer> jobsStudents= new ArrayList<>();
+        //holder for the student IDs that are associated witht he job
+        int jobStudentID;
+        int student_id;
+        String email;
+        String first_name;
+        String last_name;
+        String university;
+        String sql2= "select * from t_student_info where student_id=?";
+        String sql="select * from t_job_on_call where job_id =?";
+        DbConn jdbcObj = new DbConn();
+        try{
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, job.getJob_id());
+            rs= pstmt.executeQuery();
+            while(rs.next()){
+                jobStudentID=rs.getInt("student_id");
+                jobsStudents.add(jobStudentID);
+            }
+
+            pstmt = conn.prepareStatement(sql2);
+            System.out.println(jobsStudents.size());
+            for(int i=0;i<jobsStudents.size();i++){
+                pstmt.setInt(1, jobsStudents.get(i));
+                rs= pstmt.executeQuery();
+                while(rs.next()){
+                    student_id=rs.getInt("student_id");
+                    email=rs.getString("email");
+                    first_name=rs.getString("first_name");
+                    last_name=rs.getString("last_name");
+                    university=rs.getString("university");
+
+                    selectedJobsStudent.put("student_id",student_id);
+                    selectedJobsStudent.put("email",email);
+                    selectedJobsStudent.put("first_name",first_name);
+                    selectedJobsStudent.put("last_name",last_name);
+                    selectedJobsStudent.put("university",university);
+                    selectedStudents.put(selectedJobsStudent);
+
+                }
+
+            }
+
+            pstmt.close();
+            conn.close();
+
+        }catch(Exception e){
+            e.printStackTrace();
+
+        }
+        return selectedStudents;
+
+    }
+
+    public JSONArray getStudentsByCompany(Company company ){
+        //One of the students that are associated with a job
+        JSONObject selectedJobsStudent= new JSONObject();
+        //the list of selected students
+        JSONArray selectedStudents= new JSONArray();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs;
+        //the student IDs for th associated job
+        ArrayList<Integer> jobsStudents= new ArrayList<>();
+        //holder for the student IDs that are associated witht he job
+        int jobStudentID;
+        int student_id;
+        String email;
+        String first_name;
+        String last_name;
+        String university;
+        String sql2= "select * from t_student_info where student_id=?";
+        String sql="select * from t_student_job_map where company_id =?";
+        DbConn jdbcObj = new DbConn();
+        try{
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, company.getCompany_id());
+            rs= pstmt.executeQuery();
+            while(rs.next()){
+                jobStudentID=rs.getInt("student_id");
+                jobsStudents.add(jobStudentID);
+            }
+
+            pstmt = conn.prepareStatement(sql2);
+            System.out.println(jobsStudents.size());
+            for(int i=0;i<jobsStudents.size();i++){
+                pstmt.setInt(1, jobsStudents.get(i));
+                rs= pstmt.executeQuery();
+                while(rs.next()){
+                    student_id=rs.getInt("student_id");
+                    email=rs.getString("email");
+                    first_name=rs.getString("first_name");
+                    last_name=rs.getString("last_name");
+                    university=rs.getString("university");
+
+                    selectedJobsStudent.put("student_id",student_id);
+                    selectedJobsStudent.put("email",email);
+                    selectedJobsStudent.put("first_name",first_name);
+                    selectedJobsStudent.put("last_name",last_name);
+                    selectedJobsStudent.put("university",university);
+                    selectedStudents.put(selectedJobsStudent);
+
+                }
+
+            }
+
+            pstmt.close();
+            conn.close();
+
+        }catch(Exception e){
+            e.printStackTrace();
+
+        }
+        return selectedStudents;
+
+
+
+    }
 
 
 

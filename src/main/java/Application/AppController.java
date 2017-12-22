@@ -170,12 +170,63 @@ public class AppController {
         return manager.getJobStudentList(job).toString();
     }
 
-    @PostMapping(value = "/on_call_student")
+    /*
+        example url: https://uzo-web-app.herokuapp.com/insert_on_call_student
+        header:
+            {
+             "student_id": 1,
+             "job_id":1
+            }
+
+     */
+
+    @PostMapping(value = "/insert_on_call_student")
     public String insertOnCallStudent(@RequestBody JobOnCall onCall){
         return manager.insertStudentOnCall(onCall).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 
+    /*
+     * example url:https://uzo-web-app.herokuapp.com/get_students_on_call_jobs_by_id
+     * example header:
+     * {
+         "student_id": 1
+        }
+     *
+     */
 
+    @PostMapping(value = "/get_students_on_call_jobs_by_id")
+    public String getSudentsOncallJobs(@RequestBody Student student){
+        return manager.getSudentsOncallJobs(student).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    /*
+    *example url:https://uzo-web-app.herokuapp.com/get_jobs_on_call_students_by_id
+    * example header:
+    * {
+        "job_id": 1
+       }
+    */
+    @PostMapping(value = "/get_jobs_on_call_students_by_id")
+    public String getJobOnCallStudents(@RequestBody Job job) {
+        return manager.getJobsOnCallStudents(job).toString();
+    }
+
+    /*
+    *example url:https://uzo-web-app.herokuapp.com/get_companys_past_students_by_id
+    * example header:
+    * {
+        "student_id": 1
+       }
+    */
+    @PostMapping(value = "/get_companys_past_students_by_id")
+    public String getStudentsByCompany(@RequestBody Company company) {
+        return manager.getStudentsByCompany(company).toString();
+    }
+
+
+
+
+}
