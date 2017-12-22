@@ -260,5 +260,20 @@ public class AppController {
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    /*
+        example url: https://uzo-web-app.herokuapp.com/get_student_rating
+        header:
+            {
+             "student_id": 2
+            }
+
+     */
+
+    @PostMapping(value = "/get_student_rating")
+    public String getStudentAvgRating(@RequestBody Student student){
+        return manager.getStudentAvgRating(student).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
 
 }
