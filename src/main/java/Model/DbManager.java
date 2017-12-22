@@ -38,7 +38,6 @@ public class DbManager {
                 password=rs.getString("password");
                 first=rs.getString("first_name");
                 last=rs.getString("last_name");
-                onCall=rs.getBoolean("on_call");
                 university=rs.getString("university");
             }
             rs.close();
@@ -48,7 +47,6 @@ public class DbManager {
             studentObj.put("password",password);
             studentObj.put("first_name",first);
             studentObj.put("last_name", last);
-            studentObj.put("onCall",onCall);
             studentObj.put("university",university);
 
         } catch (Exception e) {
@@ -382,8 +380,6 @@ public class DbManager {
         int jobStudentID;
         int student_id;
         String email;
-        String password;
-        boolean on_call;
         String first_name;
         String last_name;
         String university;
@@ -724,7 +720,7 @@ public class DbManager {
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            updateUniversity.put("Student:"+student.getStudent_id()+ " University updated","Inserted");
+            updateUniversity.put("Student:"+student.getStudent_id()+" "+student.getUniversity(), "University Updated");
             updateUniversity.put("affected Rows",affectedRows);
 
         }catch(Exception e){
