@@ -707,7 +707,7 @@ public class DbManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="\uFEFFupdate t_student_info set university=? where student_id=?";
+        String sql="update t_student_info set university=? where student_id=?";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{

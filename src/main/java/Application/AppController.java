@@ -228,7 +228,7 @@ public class AppController {
 
 
     /*
-        example url: update_student_university
+        example url: https://uzo-web-app.herokuapp.com/update_student_university
         header:
             {
              "student_id": 2,
