@@ -1,6 +1,7 @@
 package Model;
 
 
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonAnyFormatVisitor;
 import org.joda.time.DateTime;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -777,5 +778,43 @@ public class DbManager {
     }
 
 
+    public JSONObject getStudentAvgRating(Student student){
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="select * from t_student_info where student_id=?";
+        DbConn jdbcObj = new DbConn();
+        int total_rating=1;
+        int times_rated=1;
+        double averageRating;
+        JSONObject studentObj= new JSONObject();
+        try {
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,student.getStudent_id());
+            ResultSet rs= pstmt.executeQuery();
+            while(rs.next()){
+                total_rating=rs.getInt("total_rating");
+                times_rated=rs.getInt("times_rated");
+            }
+            averageRating=total_rating/times_rated;
+            rs.close();
+            pstmt.close();
+            conn.close();
+            studentObj.put("average_rating",averageRating);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return studentObj;
+
+    }
 
 }
