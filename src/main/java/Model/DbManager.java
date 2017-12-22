@@ -425,6 +425,7 @@ public class DbManager {
                     selectedJobsStudent.put("last_name",last_name);
                     selectedJobsStudent.put("university",university);
                     selectedStudents.put(selectedJobsStudent);
+                    selectedJobsStudent=new JSONObject();
 
                 }
 
@@ -540,6 +541,7 @@ public class DbManager {
                     selectedStudentJob.put("company_id",company_id);
                     selectedStudentJob.put("time", time);
                     selectedJobs.put(selectedStudentJob);
+                    selectedStudentJob= new JSONObject();
 
                 }
 
@@ -609,6 +611,7 @@ public class DbManager {
                     selectedJobsStudent.put("last_name",last_name);
                     selectedJobsStudent.put("university",university);
                     selectedStudents.put(selectedJobsStudent);
+                    selectedJobsStudent= new JSONObject();
 
                 }
 
@@ -679,6 +682,7 @@ public class DbManager {
                     selectedJobsStudent.put("last_name",last_name);
                     selectedJobsStudent.put("university",university);
                     selectedStudents.put(selectedJobsStudent);
+                    selectedJobsStudent=new JSONObject();
 
                 }
 
