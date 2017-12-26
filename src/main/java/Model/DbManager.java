@@ -928,8 +928,8 @@ public class DbManager {
                 job_title= rs.getString("job_title");
                 company_id=rs.getInt("company_id");
                 time=rs.getInt("time");
-                captain=rs.getInt("captin");
-                co_captain=rs.getInt("co_captin");
+                captain=rs.getInt("captain");
+                co_captain=rs.getInt("co_captain");
                 selectedStudentJob.put("job_id",job_id);
                 selectedStudentJob.put("completed",completed);
                 selectedStudentJob.put("date",date);
