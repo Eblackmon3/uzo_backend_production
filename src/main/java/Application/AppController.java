@@ -275,5 +275,21 @@ public class AppController {
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+     /*
+        example url: https://uzo-web-app.herokuapp.com/insert_on_call_student
+        header:
+            {
+             "student_id": 1,
+             "job_id":1
+            }
+
+     */
+
+    @PostMapping(value = "/insert_job_captain")
+    public String insertJobCaptain(@RequestBody StudentJob studentJob){
+        return manager.insertJobCaptain(studentJob).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
 
 }
