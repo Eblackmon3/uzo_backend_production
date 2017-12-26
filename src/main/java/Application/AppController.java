@@ -276,7 +276,7 @@ public class AppController {
     }
 
      /*
-        example url: https://uzo-web-app.herokuapp.com/insert_on_call_student
+        example url: https://uzo-web-app.herokuapp.com/insert_job_captain
         header:
             {
              "student_id": 1,
@@ -291,5 +291,20 @@ public class AppController {
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+     /*
+        example url: https://uzo-web-app.herokuapp.com/insert_job_co_captain
+        header:
+            {
+             "student_id": 1,
+             "job_id":1
+            }
+
+     */
+
+    @PostMapping(value = "/insert_job_co_captain")
+    public String insertJobCoCaptain(@RequestBody StudentJob studentJob){
+        return manager.insertJobCoCaptain(studentJob).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 
 }

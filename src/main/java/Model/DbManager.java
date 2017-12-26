@@ -839,7 +839,40 @@ public class DbManager {
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            insertedCaptain.put(insertedCaptain.toString(),"Inserted");
+            insertedCaptain.put("Student:"+studentJob.getStudent_id(),"Inserted");
+            insertedCaptain.put("affected Rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+
+        }
+        return insertedCaptain;
+
+    }
+
+    public JSONObject insertJobCoCaptain(StudentJob studentJob){
+        JSONObject insertedCaptain= new JSONObject();
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="update t_job_info set co_captain= ? where job_id=?;";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, studentJob.getStudent_id());
+            pstmt.setInt(2, studentJob.getJob_id());
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            insertedCaptain.put("Student:"+studentJob.getStudent_id(),"Inserted");
             insertedCaptain.put("affected Rows",affectedRows);
 
         }catch(Exception e){
