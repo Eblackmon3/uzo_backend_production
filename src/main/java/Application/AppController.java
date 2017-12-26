@@ -322,4 +322,13 @@ public class AppController {
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    /*
+        example url: https://uzo-web-app.herokuapp.com/get_job_by_id
+        header:
+            {
+             "job_id":1
+            }
+
+     */
+
 }
