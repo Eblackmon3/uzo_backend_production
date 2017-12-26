@@ -307,4 +307,19 @@ public class AppController {
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    /*
+        example url: https://uzo-web-app.herokuapp.com/get_job_by_id
+        header:
+            {
+             "job_id":1
+            }
+
+     */
+
+    @PostMapping(value = "/get_job_by_id")
+    public String getJobById(@RequestBody Job job){
+        return manager.getJobById(job).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
 }

@@ -415,7 +415,6 @@ public class DbManager {
                     first_name=rs.getString("first_name");
                     last_name=rs.getString("last_name");
                     university=rs.getString("university");
-
                     selectedJobsStudent.put("student_id",student_id);
                     selectedJobsStudent.put("email",email);
                     selectedJobsStudent.put("first_name",first_name);
@@ -839,7 +838,7 @@ public class DbManager {
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            insertedCaptain.put("Student:"+studentJob.getStudent_id(),"Inserted");
+            insertedCaptain.put("Student Captain:"+studentJob.getStudent_id(),"Inserted");
             insertedCaptain.put("affected Rows",affectedRows);
 
         }catch(Exception e){
@@ -872,7 +871,7 @@ public class DbManager {
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            insertedCaptain.put("Student:"+studentJob.getStudent_id(),"Inserted");
+            insertedCaptain.put("Student CoCaptain:"+studentJob.getStudent_id(),"Inserted");
             insertedCaptain.put("affected Rows",affectedRows);
 
         }catch(Exception e){
@@ -881,6 +880,81 @@ public class DbManager {
         }
         return insertedCaptain;
 
+    }
+
+    public JSONObject getJobById(Job job){
+        JSONObject selectedStudentJob= new JSONObject();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs;
+        int job_id;
+        boolean completed;
+        Date date;
+        String rate;
+        String dress_code;
+        double duration;
+        boolean open;
+        Time clock_out;
+        Time clock_in;
+        String job_title;
+        int time;
+        int company_id;
+        int captain;
+        int co_captain;
+        DbConn jdbcObj = new DbConn();
+        String sql= "select * from t_job_info where job_id=?";
+        try {
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, job.getJob_id());
+            rs= pstmt.executeQuery();
+            while(rs.next()){
+                job_id=rs.getInt("job_id");
+                completed=rs.getBoolean("completed");
+                date=rs.getDate("date");
+                rate=rs.getString("rate");
+                dress_code= rs.getString("dress_code");
+                duration = rs.getDouble("duration");
+                open= rs.getBoolean("open");
+                clock_out= rs.getTime("clock_out");
+                clock_in=rs.getTime("clock_in");
+                job_title= rs.getString("job_title");
+                company_id=rs.getInt("company_id");
+                time=rs.getInt("time");
+                captain=rs.getInt("captin");
+                co_captain=rs.getInt("co_captin");
+                selectedStudentJob.put("job_id",job_id);
+                selectedStudentJob.put("completed",completed);
+                selectedStudentJob.put("date",date);
+                selectedStudentJob.put("rate",rate);
+                selectedStudentJob.put("dress_code",dress_code);
+                selectedStudentJob.put("duration",duration);
+                selectedStudentJob.put("open", open);
+                selectedStudentJob.put("clock_out", clock_out);
+                selectedStudentJob.put("clock_in", clock_in);
+                selectedStudentJob.put("job_title", job_title);
+                selectedStudentJob.put("company_id",company_id);
+                selectedStudentJob.put("time", time);
+                selectedStudentJob.put("captain", captain);
+                selectedStudentJob.put("co_captain",co_captain);
+            }
+            pstmt.close();
+            conn.close();
+
+        }catch( Exception e){
+            e.printStackTrace();
+
+        }
+
+
+        return  selectedStudentJob;
     }
 
 }
