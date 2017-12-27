@@ -17,7 +17,9 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import org.json.JSONObject;
+import org.springframework.context.annotation.PropertySource;
 
+@PropertySource("classpath:application.properties")
 public class s3Operations {
     private static String bucketName = "${uzo-s3-bucket}";
     private static AWSCredentials credentials = new BasicAWSCredentials("${jsa.aws.access_key_id}", "${jsa.aws.secret_access_key}");
@@ -31,9 +33,7 @@ public class s3Operations {
 
     //use this method to create a new folder on our s3 bucket to store students resumes
     public static  JSONObject createFolder(Student student) {
-        for (Bucket bucket : s3client.listBuckets()) {
-            System.out.println(" - " + bucket.getName());
-        }
+        System.out.println("bucketName");
         JSONObject ret=new JSONObject();
         try {
             // create meta-data for your folder and set content-length to 0
