@@ -31,9 +31,11 @@ public class s3Operations {
 
     @Autowired
     private static Environment env;
-    private String accessKeyId=env.getProperty("{aws.accessKeyId}");
-    private static String bucketName = env.getProperty("${jsa.s3.bucket}") ;
-    private static AWSCredentials credentials = new BasicAWSCredentials("${jsa.aws.access_key_id}", "${jsa.aws.secret_access_key}");
+    private static String accessKeyId=System.getenv("S3_KEY");
+    private static String accessSecret=System.getenv("S3_SECRET");
+    private static String bucketName = System.getenv("S3_BUCKET");
+    private static String region=System.getenv("REGION");
+    private static AWSCredentials credentials = new BasicAWSCredentials(accessKeyId, accessSecret);
 
     private static AmazonS3 s3client = new AmazonS3Client(credentials);
 
