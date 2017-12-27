@@ -33,7 +33,7 @@ public class s3Operations {
 
     //use this method to create a new folder on our s3 bucket to store students resumes
     public static  JSONObject createFolder(Student student) {
-        System.out.println("bucketName");
+        System.out.println(bucketName);
         JSONObject ret=new JSONObject();
         try {
             // create meta-data for your folder and set content-length to 0
