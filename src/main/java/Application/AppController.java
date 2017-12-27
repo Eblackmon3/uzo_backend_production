@@ -1,5 +1,6 @@
 package Application;
 
+import AmazonController.s3Operations;
 import Model.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
@@ -322,13 +323,12 @@ public class AppController {
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    /*
-        example url: https://uzo-web-app.herokuapp.com/get_job_by_id
-        header:
-            {
-             "job_id":1
-            }
 
-     */
+    @PostMapping(value = "/create_student_resume_folder")
+    public String createStudentResumeFolder(@RequestBody Student student){
+        return s3Operations.createFolder(student).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
 
 }
