@@ -17,15 +17,21 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 
-@Component
+@Configuration
 @PropertySource("classpath:application.properties")
 public class s3Operations {
-    private static String bucketName = "${uzo-s3-bucket}";
-    private static String Name = "uzo-s3-bucket";
+
+    @Autowired
+    private static Environment env;
+    private static String bucketName = env.getProperty("uzo-s3-bucket");
+    private static String Name = env.getProperty("jsa.aws.access_key_id");
     private static AWSCredentials credentials = new BasicAWSCredentials("${jsa.aws.access_key_id}", "${jsa.aws.secret_access_key}");
 
     private static AmazonS3 s3client = new AmazonS3Client(credentials);
