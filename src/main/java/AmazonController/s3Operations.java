@@ -18,10 +18,14 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import org.json.JSONObject;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 
+
+@Component
 @PropertySource("classpath:application.properties")
 public class s3Operations {
     private static String bucketName = "${uzo-s3-bucket}";
+    private static String Name = "uzo-s3-bucket";
     private static AWSCredentials credentials = new BasicAWSCredentials("${jsa.aws.access_key_id}", "${jsa.aws.secret_access_key}");
 
     private static AmazonS3 s3client = new AmazonS3Client(credentials);
@@ -34,6 +38,7 @@ public class s3Operations {
     //use this method to create a new folder on our s3 bucket to store students resumes
     public static  JSONObject createFolder(Student student) {
         System.out.println(bucketName);
+        System.out.println(Name);
         JSONObject ret=new JSONObject();
         try {
             // create meta-data for your folder and set content-length to 0
