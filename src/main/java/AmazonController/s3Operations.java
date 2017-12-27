@@ -10,7 +10,6 @@ import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.ObjectMetadata;
@@ -24,6 +23,7 @@ public class s3Operations {
     private static AWSCredentials credentials = new BasicAWSCredentials("${jsa.aws.access_key_id}", "${jsa.aws.secret_access_key}");
 
     private static AmazonS3 s3client = new AmazonS3Client(credentials);
+
 
     public static void uploadResume(String resume) throws IOException {
 

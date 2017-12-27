@@ -47,7 +47,7 @@ targetCompatibility = 1.8
 
 dependencyManagement {
     imports {
-        mavenBom 'com.amazonaws:aws-java-sdk-bom:1.11.136'
+        mavenBom 'com.amazonaws:aws-java-sdk-bom:1.11.228'
     }
 }
 
@@ -79,7 +79,7 @@ dependencies {
     compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.4.0")
 
     // https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk
-    compile group: 'com.amazonaws', name: 'aws-java-sdk', version: '1.11.136'
+    compile 'com.amazonaws:aws-java-sdk-s3'
 
 
 
