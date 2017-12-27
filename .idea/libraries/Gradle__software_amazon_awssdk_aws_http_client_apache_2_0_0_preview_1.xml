@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: software.amazon.awssdk:aws-http-client-apache:2.0.0-preview-1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/software.amazon.awssdk/aws-http-client-apache/2.0.0-preview-1/1a956596d4793defb6bb5bd1aa0033cf3088df32/aws-http-client-apache-2.0.0-preview-1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/software.amazon.awssdk/aws-http-client-apache/2.0.0-preview-1/432e70326ec39436f20b160b4d4cd0e1f35f5181/aws-http-client-apache-2.0.0-preview-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

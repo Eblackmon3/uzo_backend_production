@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: software.amazon.awssdk:test-utils:2.0.0-preview-1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/software.amazon.awssdk/test-utils/2.0.0-preview-1/5c486a6c935be87e860f3ce57e5bbc9a47e74b6b/test-utils-2.0.0-preview-1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/software.amazon.awssdk/test-utils/2.0.0-preview-1/3061d461f2e08a3223f3c75da8546a89a12e45d0/test-utils-2.0.0-preview-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

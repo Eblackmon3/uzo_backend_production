@@ -4,6 +4,7 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin:'application'
+apply plugin: "io.spring.dependency-management"
 
 mainClassName = "Application.Main"
 applicationName = "uzo-web-app"
@@ -43,6 +44,12 @@ repositories {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+dependencyManagement {
+    imports {
+        mavenBom 'software.amazon.awssdk:bom:2.0.0-preview-1'
+    }
+}
+
 dependencies {
     // tag::jetty[]
     compile("org.springframework.boot:spring-boot-starter-web") {
@@ -69,6 +76,9 @@ dependencies {
     compile group: 'org.json', name: 'json', version: '20090211'
 
     compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.4.0")
+
+    //AWS
+    compile 'software.amazon.awssdk:s3'
 
 
 
