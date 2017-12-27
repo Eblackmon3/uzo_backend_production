@@ -339,4 +339,23 @@ public class AppController {
     }
 
 
+     /*
+        example url: https://uzo-web-app.herokuapp.com/create_student_resume_folder
+        header:
+            {
+             "student_id":1,
+             "resume_location":"/Users/ericblackmon/Documents/WinterTime.jpg"
+            }
+
+     */
+
+    @PostMapping(value = "/upload_student_resume")
+    public String uploadFile(@RequestBody Student student){
+        return s3Operations.uploadFile(student).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+
+
+
 }
