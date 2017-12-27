@@ -47,9 +47,6 @@ public class s3Operations {
     //use this method to create a new folder on our s3 bucket to store students resumes
     public static  JSONObject createFolder(Student student) {
         JSONObject ret=new JSONObject();
-        for (Bucket bucket : s3client.listBuckets()) {
-            System.out.println(" - " + bucket.getName());
-        }
         try {
             // create meta-data for your folder and set content-length to 0
             ObjectMetadata metadata = new ObjectMetadata();
@@ -67,5 +64,28 @@ public class s3Operations {
             e.printStackTrace();
         }
         return ret;
+    }
+
+    public static JSONObject uploadFile(Student student){
+        String fileName =  student.getStudent_id()+"/Resume";
+        JSONObject ret=new JSONObject();
+        try {
+            // create meta-data for your folder and set content-length to 0
+            ObjectMetadata metadata = new ObjectMetadata();
+            metadata.setContentLength(0);
+            // create empty content
+            InputStream emptyContent = new ByteArrayInputStream(new byte[0]);
+            // create a PutObjectRequest passing the folder name suffixed by /
+            PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName,
+                    new File(student.getResume_location()));
+            // send request to S3 to create folder
+            PutObjectResult result = s3client.putObject(putObjectRequest);
+            ret.put("Student:" + student.getStudent_id(), "Resume added to Folder");
+            ret.put("Put result", result.toString());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return ret;
+
     }
 }
