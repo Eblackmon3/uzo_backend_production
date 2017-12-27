@@ -18,6 +18,7 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -30,6 +31,13 @@ public class s3Operations {
 
     @Autowired
     private static Environment env;
+    @Value("${accessKeyId}")
+    private String accessKeyId;
+    private static String bucketName = env.getProperty("uzo-s3-bucket");
+    private static String Name = env.getProperty("jsa.aws.access_key_id");
+    private static AWSCredentials credentials = new BasicAWSCredentials("${jsa.aws.access_key_id}", "${jsa.aws.secret_access_key}");
+
+    private static AmazonS3 s3client = new AmazonS3Client(credentials);
 
     public static void uploadResume(String resume) throws IOException {
 
@@ -38,15 +46,11 @@ public class s3Operations {
 
     //use this method to create a new folder on our s3 bucket to store students resumes
     public static  JSONObject createFolder(Student student) {
-
+        System.out.println(bucketName);
+        System.out.println(Name);
         JSONObject ret=new JSONObject();
         try {
-            String bucketName = env.getProperty("uzo-s3-bucket");
-           String Name = env.getProperty("jsa.aws.access_key_id");
-            AWSCredentials credentials = new BasicAWSCredentials("${jsa.aws.access_key_id}", "${jsa.aws.secret_access_key}");
-            System.out.println(bucketName);
-            System.out.println(Name);
-            AmazonS3 s3client = new AmazonS3Client(credentials);
+
             // create meta-data for your folder and set content-length to 0
             ObjectMetadata metadata = new ObjectMetadata();
             metadata.setContentLength(0);
