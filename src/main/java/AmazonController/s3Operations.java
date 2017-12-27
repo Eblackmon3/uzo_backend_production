@@ -46,10 +46,11 @@ public class s3Operations {
 
     //use this method to create a new folder on our s3 bucket to store students resumes
     public static  JSONObject createFolder(Student student) {
-        System.out.println(bucketName);
         JSONObject ret=new JSONObject();
+        for (Bucket bucket : s3client.listBuckets()) {
+            System.out.println(" - " + bucket.getName());
+        }
         try {
-
             // create meta-data for your folder and set content-length to 0
             ObjectMetadata metadata = new ObjectMetadata();
             metadata.setContentLength(0);
@@ -57,7 +58,7 @@ public class s3Operations {
             InputStream emptyContent = new ByteArrayInputStream(new byte[0]);
             // create a PutObjectRequest passing the folder name suffixed by /
             PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName,
-                    "" + student.getStudent_id(), emptyContent, metadata);
+                    "" + student.getStudent_id()+"/", emptyContent, metadata);
             // send request to S3 to create folder
             PutObjectResult result = s3client.putObject(putObjectRequest);
             ret.put("Student:" + student.getStudent_id(), "Folder created");
