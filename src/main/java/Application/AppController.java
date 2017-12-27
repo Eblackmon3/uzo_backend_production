@@ -323,6 +323,14 @@ public class AppController {
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+     /*
+        example url: https://uzo-web-app.herokuapp.com/create_student_resume_folder
+        header:
+            {
+             "student_id":1
+            }
+
+     */
 
     @PostMapping(value = "/create_student_resume_folder")
     public String createStudentResumeFolder(@RequestBody Student student){
