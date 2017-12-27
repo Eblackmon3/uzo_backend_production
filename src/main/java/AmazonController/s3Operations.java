@@ -23,6 +23,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Configuration
@@ -66,8 +67,8 @@ public class s3Operations {
         return ret;
     }
 
-    public static JSONObject uploadFile(Student student){
-        String fileName =  student.getStudent_id()+"/Resume";
+    public static JSONObject uploadFile(int studentID, MultipartFile file){
+        String fileName =  studentID+"/Resume";
         JSONObject ret=new JSONObject();
         try {
             // create meta-data for your folder and set content-length to 0
@@ -77,15 +78,22 @@ public class s3Operations {
             InputStream emptyContent = new ByteArrayInputStream(new byte[0]);
             // create a PutObjectRequest passing the folder name suffixed by /
             PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName,
-                    new File(student.getResume_location()));
+                    multipartToFile(file));
             // send request to S3 to create folder
             PutObjectResult result = s3client.putObject(putObjectRequest);
-            ret.put("Student:" + student.getStudent_id(), "Resume added to Folder");
+            ret.put("Student:" + studentID, "Resume added to Folder");
             ret.put("Put result", result.toString());
         }catch(Exception e){
             e.printStackTrace();
         }
         return ret;
 
+    }
+
+    public static File multipartToFile(MultipartFile multipart) throws IllegalStateException, IOException
+    {
+        File convFile = new File( multipart.getOriginalFilename());
+        multipart.transferTo(convFile);
+        return convFile;
     }
 }

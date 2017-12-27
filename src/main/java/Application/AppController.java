@@ -23,6 +23,7 @@ import org.apache.commons.dbcp.DriverManagerConnectionFactory;
 import org.apache.commons.dbcp.PoolableConnectionFactory;
 import org.apache.commons.dbcp.PoolingDataSource;
 import org.apache.commons.pool.impl.GenericObjectPool;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.sql.DataSource;
 
@@ -340,7 +341,7 @@ public class AppController {
 
 
      /*
-        example url: https://uzo-web-app.herokuapp.com/create_student_resume_folder
+        example url: https://uzo-web-app.herokuapp.com/upload_student_resume
         header:
             {
              "student_id":1,
@@ -350,8 +351,8 @@ public class AppController {
      */
 
     @PostMapping(value = "/upload_student_resume")
-    public String uploadFile(@RequestBody Student student){
-        return s3Operations.uploadFile(student).toString();
+    public String uploadFile(@RequestParam("file") MultipartFile file, int studentId){
+        return s3Operations.uploadFile(studentId,file).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
