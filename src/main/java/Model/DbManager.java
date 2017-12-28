@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import static AmazonController.s3Operations.uploadFile;
 
 public class DbManager {
+    /*
+        e
+     */
 
     public JSONObject getStudentById(int id){
         ResultSet rsObj = null;
@@ -24,7 +27,7 @@ public class DbManager {
         String sql="select * from t_student_info where student_id=?";
         DbConn jdbcObj = new DbConn();
         String email="";String password="";String first="";String last="";
-        String university="";
+        String university=""; String resume_location="";
         boolean onCall=false;
         JSONObject studentObj= new JSONObject();
         try {
@@ -44,6 +47,7 @@ public class DbManager {
                 first=rs.getString("first_name");
                 last=rs.getString("last_name");
                 university=rs.getString("university");
+                resume_location=rs.getString("resume_location");
             }
             rs.close();
             pstmt.close();
@@ -53,6 +57,7 @@ public class DbManager {
             studentObj.put("first_name",first);
             studentObj.put("last_name", last);
             studentObj.put("university",university);
+            studentObj.put("resume_location",resume_location);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -388,6 +393,7 @@ public class DbManager {
         String first_name;
         String last_name;
         String university;
+        String resume_location;
         String sql2= "select * from t_student_info where student_id=?";
         String sql="select * from t_student_job_map where job_id =?";
         DbConn jdbcObj = new DbConn();
@@ -419,11 +425,13 @@ public class DbManager {
                     first_name=rs.getString("first_name");
                     last_name=rs.getString("last_name");
                     university=rs.getString("university");
+                    resume_location=rs.getString("resume_location");
                     selectedJobsStudent.put("student_id",student_id);
                     selectedJobsStudent.put("email",email);
                     selectedJobsStudent.put("first_name",first_name);
                     selectedJobsStudent.put("last_name",last_name);
                     selectedJobsStudent.put("university",university);
+                    selectedJobsStudent.put("resume_location",resume_location);
                     selectedStudents.put(selectedJobsStudent);
                     selectedJobsStudent=new JSONObject();
 
@@ -574,6 +582,7 @@ public class DbManager {
         String first_name;
         String last_name;
         String university;
+        String resume_location;
         String sql2= "select * from t_student_info where student_id=?";
         String sql="select * from t_job_on_call where job_id =?";
         DbConn jdbcObj = new DbConn();
@@ -604,12 +613,14 @@ public class DbManager {
                     first_name=rs.getString("first_name");
                     last_name=rs.getString("last_name");
                     university=rs.getString("university");
+                    resume_location=rs.getString("resume_location");
 
                     selectedJobsStudent.put("student_id",student_id);
                     selectedJobsStudent.put("email",email);
                     selectedJobsStudent.put("first_name",first_name);
                     selectedJobsStudent.put("last_name",last_name);
                     selectedJobsStudent.put("university",university);
+                    selectedJobsStudent.put("resume_location",resume_location);
                     selectedStudents.put(selectedJobsStudent);
                     selectedJobsStudent= new JSONObject();
 
@@ -645,6 +656,7 @@ public class DbManager {
         String first_name;
         String last_name;
         String university;
+        String resume_location;
         String sql2= "select * from t_student_info where student_id=?";
         String sql="select * from t_student_job_map where company_id =?";
         DbConn jdbcObj = new DbConn();
@@ -675,12 +687,14 @@ public class DbManager {
                     first_name=rs.getString("first_name");
                     last_name=rs.getString("last_name");
                     university=rs.getString("university");
+                    resume_location=rs.getString("resume_location");
 
                     selectedJobsStudent.put("student_id",student_id);
                     selectedJobsStudent.put("email",email);
                     selectedJobsStudent.put("first_name",first_name);
                     selectedJobsStudent.put("last_name",last_name);
                     selectedJobsStudent.put("university",university);
+                    selectedJobsStudent.put("resume_location",resume_location);
                     selectedStudents.put(selectedJobsStudent);
                     selectedJobsStudent=new JSONObject();
 
