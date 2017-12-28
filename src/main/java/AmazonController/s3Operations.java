@@ -88,8 +88,8 @@ public class s3Operations {
     public static File multipartToFile(MultipartFile multipart) throws IllegalStateException, IOException
     {
         File convFile = new File(multipart.getOriginalFilename());
-        System.out.println(convFile.length());
         multipart.transferTo(convFile);
+        System.out.println(convFile.length());
         return convFile;
     }
 }
