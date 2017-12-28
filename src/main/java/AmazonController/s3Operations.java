@@ -92,8 +92,10 @@ public class s3Operations {
             convFile = new File(file.getOriginalFilename());
             convFile.createNewFile();
             FileOutputStream fos = new FileOutputStream(convFile);
+            System.out.println(file.getBytes());
             fos.write(file.getBytes());
             fos.close();
+            System.out.println(convFile.length());
         }catch(Exception e){
             e.printStackTrace();
         }
