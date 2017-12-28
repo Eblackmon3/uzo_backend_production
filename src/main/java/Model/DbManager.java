@@ -26,9 +26,8 @@ public class DbManager {
         PreparedStatement pstmt = null;
         String sql="select * from t_student_info where student_id=?";
         DbConn jdbcObj = new DbConn();
-        String email="";String password="";String first="";String last="";
+        String email="";String first="";String last="";
         String university=""; String resume_location="";
-        boolean onCall=false;
         JSONObject studentObj= new JSONObject();
         try {
             //Connect to the database
@@ -43,7 +42,6 @@ public class DbManager {
             ResultSet rs= pstmt.executeQuery();
             while(rs.next()){
                 email=rs.getString("email");
-                password=rs.getString("password");
                 first=rs.getString("first_name");
                 last=rs.getString("last_name");
                 university=rs.getString("university");
@@ -53,7 +51,6 @@ public class DbManager {
             pstmt.close();
             conn.close();
             studentObj.put("email",email);
-            studentObj.put("password",password);
             studentObj.put("first_name",first);
             studentObj.put("last_name", last);
             studentObj.put("university",university);
@@ -106,7 +103,7 @@ public class DbManager {
         PreparedStatement pstmt = null;
         String sql="select * from t_company_info where company_id=?";
         DbConn jdbcObj = new DbConn();
-        String email="";String password="";String address="";String website_link="";
+        String email="";String address="";String website_link="";
         String company_name="";
         JSONObject companyObj= new JSONObject();
         try {
@@ -122,7 +119,6 @@ public class DbManager {
             ResultSet rs= pstmt.executeQuery();
             while(rs.next()){
                 email=rs.getString("email");
-                password=rs.getString("password");
                 address=rs.getString("address");
                 website_link=rs.getString("website_link");
                 company_name=rs.getString("company_name");
@@ -131,7 +127,6 @@ public class DbManager {
             pstmt.close();
             conn.close();
             companyObj.put("email",email);
-            companyObj.put("password",password);
             companyObj.put("company_name",company_name);
             companyObj.put("website_link", website_link);
             companyObj.put("address",address);
