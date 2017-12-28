@@ -87,7 +87,7 @@ public class s3Operations {
 
     public static File multipartToFile(MultipartFile multipart) throws IllegalStateException, IOException
     {
-        File convFile = new File(multipart.getName());
+        File convFile = new File("tmp/"+multipart.getName());
         multipart.transferTo(convFile);
         System.out.println(multipart.getSize());
         System.out.println(convFile.length());
