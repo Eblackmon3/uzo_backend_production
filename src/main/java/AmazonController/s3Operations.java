@@ -1,9 +1,6 @@
 package AmazonController;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 import Model.Student;
 import com.amazonaws.AmazonClientException;
@@ -88,14 +85,18 @@ public class s3Operations {
 
     }
 
-    public static File multipartToFile(MultipartFile multipart) throws IllegalStateException, IOException
+    public static File multipartToFile(MultipartFile file)
     {
-        File convFile = new File(multipart.getOriginalFilename());
-        multipart.transferTo(convFile);
-        System.out.println(multipart.getSize());
-        System.out.println(convFile.length());
-
-
+        File convFile=null;
+        try {
+            convFile = new File(file.getOriginalFilename());
+            convFile.createNewFile();
+            FileOutputStream fos = new FileOutputStream(convFile);
+            fos.write(file.getBytes());
+            fos.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return convFile;
     }
 }
