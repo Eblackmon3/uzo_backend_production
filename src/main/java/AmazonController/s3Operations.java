@@ -1,6 +1,7 @@
 package AmazonController;
 
 import java.io.*;
+import java.net.URL;
 
 import Model.Student;
 import com.amazonaws.AmazonClientException;
@@ -9,10 +10,7 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.model.Bucket;
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.PutObjectResult;
+import com.amazonaws.services.s3.model.*;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -64,6 +62,7 @@ public class s3Operations {
         return ret;
     }
 
+
     public static JSONObject uploadFile(int studentID, MultipartFile file){
         String fileName =  studentID+"/Resume";
         JSONObject ret=new JSONObject();
@@ -73,7 +72,7 @@ public class s3Operations {
             System.out.println(convFile.length());
             // create a PutObjectRequest passing the folder name suffixed by /
             PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName,
-                    convFile);
+                    convFile).withCannedAcl(CannedAccessControlList.PublicRead);
             // send request to S3 to create folder
             PutObjectResult result = s3client.putObject(putObjectRequest);
             ret.put("Student:" + studentID, "Resume added to Folder");
@@ -99,4 +98,6 @@ public class s3Operations {
         }
         return convFile;
     }
+
+
 }

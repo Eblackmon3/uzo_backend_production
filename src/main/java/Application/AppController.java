@@ -326,6 +326,7 @@ public class AppController {
 
      /*
         example url: https://uzo-web-app.herokuapp.com/create_student_resume_folder
+        DONT NEED TO USE THIS, JUST KEEPING IT JUST IN CASE BELOW METHOD CREATES FOLDER AS WELL
         header:
             {
              "student_id":1
@@ -342,17 +343,17 @@ public class AppController {
 
      /*
         example url: https://uzo-web-app.herokuapp.com/upload_student_resume
+        MUST SEND THIS AS A FORM DATA WITH THE BELOW AS
         header:
-            {
-             "student_id":1,
-             "resume_location":"/Users/ericblackmon/Documents/WinterTime.jpg"
-            }
+        file - file selected
+        student_id - <student id >
+
 
      */
 
     @PostMapping(value = "/upload_student_resume", consumes = "multipart/form-data")
-    public String uploadFile(@RequestParam("file") MultipartFile file, int studentId){
-        return s3Operations.uploadFile(studentId,file).toString();
+    public String uploadFile(@RequestParam("file") MultipartFile file, int student_id){
+        return s3Operations.uploadFile(student_id,file).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

@@ -957,4 +957,37 @@ public class DbManager {
         return  selectedStudentJob;
     }
 
+    public JSONObject uploadStudentResume(String resume_location, int student_id){
+        JSONObject updateUniversity= new JSONObject();
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="update t_student_info set resume_location=? where student_id=?";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, resume_location);
+            pstmt.setInt(2,student_id);
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            updateUniversity.put("Student:"+student_id, "resume updated");
+            updateUniversity.put("affected Rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+
+        }
+        return updateUniversity;
+
+    }
+
 }
