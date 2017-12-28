@@ -70,10 +70,10 @@ public class s3Operations {
         File convFile;
         try {
             convFile=multipartToFile(file);
-            System.out.println(convFile.getAbsolutePath());
+            System.out.println(convFile.length());
             // create a PutObjectRequest passing the folder name suffixed by /
             PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName,
-                    convFile.getAbsolutePath());
+                    convFile);
             // send request to S3 to create folder
             PutObjectResult result = s3client.putObject(putObjectRequest);
             ret.put("Student:" + studentID, "Resume added to Folder");
@@ -92,10 +92,8 @@ public class s3Operations {
             convFile = new File(file.getOriginalFilename());
             convFile.createNewFile();
             FileOutputStream fos = new FileOutputStream(convFile);
-            System.out.println(file.getBytes());
             fos.write(file.getBytes());
             fos.close();
-            System.out.println(convFile.length());
         }catch(Exception e){
             e.printStackTrace();
         }
