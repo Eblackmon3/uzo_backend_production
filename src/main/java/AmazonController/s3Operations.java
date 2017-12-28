@@ -76,7 +76,7 @@ public class s3Operations {
             System.out.println(convFile.getAbsolutePath());
             // create a PutObjectRequest passing the folder name suffixed by /
             PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName,
-                    multipartToFile(file));
+                    convFile.getAbsolutePath());
             // send request to S3 to create folder
             PutObjectResult result = s3client.putObject(putObjectRequest);
             ret.put("Student:" + studentID, "Resume added to Folder");
