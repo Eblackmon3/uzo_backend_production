@@ -993,7 +993,7 @@ public class DbManager {
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            uploadeResume.put("Student:"+student_id, "resume updated");
+            uploadeResume.put("Student:"+student_id, "resume location:"+resume_location);
             uploadeResume.put("affected Rows",affectedRows);
 
         }catch(Exception e){
