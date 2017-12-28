@@ -352,8 +352,6 @@ public class AppController {
 
     @PostMapping(value = "/upload_student_resume", consumes = "multipart/form-data")
     public String uploadFile(@RequestParam("file") MultipartFile file, int studentId){
-        System.out.println(file.getSize());
-        System.out.println(studentId);
         return s3Operations.uploadFile(studentId,file).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }

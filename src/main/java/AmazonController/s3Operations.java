@@ -89,7 +89,7 @@ public class s3Operations {
     {
         File convFile = new File(multipart.getOriginalFilename());
         multipart.transferTo(convFile);
-        System.out.println(convFile.length());
+        System.out.println(multipart.getSize());
         return convFile;
     }
 }
