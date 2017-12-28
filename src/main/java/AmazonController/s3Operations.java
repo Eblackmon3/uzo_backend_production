@@ -70,7 +70,10 @@ public class s3Operations {
     public static JSONObject uploadFile(int studentID, MultipartFile file){
         String fileName =  studentID+"/Resume";
         JSONObject ret=new JSONObject();
+        File convFile= new File();
         try {
+            convFile=multipartToFile(file);
+            System.out.println(convFile.getAbsolutePath());
             // create a PutObjectRequest passing the folder name suffixed by /
             PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName,
                     multipartToFile(file));
@@ -87,7 +90,7 @@ public class s3Operations {
 
     public static File multipartToFile(MultipartFile multipart) throws IllegalStateException, IOException
     {
-        File convFile = new File("tmp/"+multipart.getName());
+        File convFile = new File(multipart.getOriginalFilename());
         multipart.transferTo(convFile);
         System.out.println(multipart.getSize());
         System.out.println(convFile.length());
