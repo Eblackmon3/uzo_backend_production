@@ -71,11 +71,6 @@ public class s3Operations {
         String fileName =  studentID+"/Resume";
         JSONObject ret=new JSONObject();
         try {
-            // create meta-data for your folder and set content-length to 0
-            ObjectMetadata metadata = new ObjectMetadata();
-            metadata.setContentLength(0);
-            // create empty content
-            InputStream emptyContent = new ByteArrayInputStream(new byte[0]);
             // create a PutObjectRequest passing the folder name suffixed by /
             PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName,
                     multipartToFile(file));
