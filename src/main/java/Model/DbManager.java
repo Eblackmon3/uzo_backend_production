@@ -1,15 +1,19 @@
 package Model;
 
 
+import AmazonController.s3Operations;
 import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonAnyFormatVisitor;
 import org.joda.time.DateTime;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.sql.DataSource;
 import java.awt.print.Book;
 import java.sql.*;
 import java.util.ArrayList;
+
+import static AmazonController.s3Operations.uploadFile;
 
 public class DbManager {
 
@@ -957,8 +961,9 @@ public class DbManager {
         return  selectedStudentJob;
     }
 
-    public JSONObject uploadStudentResume(String resume_location, int student_id){
-        JSONObject updateUniversity= new JSONObject();
+    public JSONObject uploadStudentResume(MultipartFile file, int student_id){
+        String resume_location=s3Operations.uploadFile(student_id,file);
+        JSONObject uploadeResume= new JSONObject();
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -979,14 +984,14 @@ public class DbManager {
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            updateUniversity.put("Student:"+student_id, "resume updated");
-            updateUniversity.put("affected Rows",affectedRows);
+            uploadeResume.put("Student:"+student_id, "resume updated");
+            uploadeResume.put("affected Rows",affectedRows);
 
         }catch(Exception e){
             e.printStackTrace();
 
         }
-        return updateUniversity;
+        return uploadeResume;
 
     }
 

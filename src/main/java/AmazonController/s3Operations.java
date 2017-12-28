@@ -62,10 +62,10 @@ public class s3Operations {
         return ret;
     }
 
-
-    public static JSONObject uploadFile(int studentID, MultipartFile file){
+    //https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/1/Resume
+    public static String uploadFile(int studentID, MultipartFile file){
         String fileName =  studentID+"/Resume";
-        JSONObject ret=new JSONObject();
+        String resume_location="https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/"+studentID+"/Resume";
         File convFile;
         try {
             convFile=multipartToFile(file);
@@ -75,12 +75,11 @@ public class s3Operations {
                     convFile).withCannedAcl(CannedAccessControlList.PublicRead);
             // send request to S3 to create folder
             PutObjectResult result = s3client.putObject(putObjectRequest);
-            ret.put("Student:" + studentID, "Resume added to Folder");
-            ret.put("Put result", result.toString());
+
         }catch(Exception e){
             e.printStackTrace();
         }
-        return ret;
+        return resume_location;
 
     }
 
