@@ -70,7 +70,7 @@ public class s3Operations {
     public static JSONObject uploadFile(int studentID, MultipartFile file){
         String fileName =  studentID+"/Resume";
         JSONObject ret=new JSONObject();
-        File convFile= new File();
+        File convFile;
         try {
             convFile=multipartToFile(file);
             System.out.println(convFile.getAbsolutePath());
