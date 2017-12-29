@@ -325,10 +325,10 @@ public class AppController {
     }
 
      /*
-        example url: https://uzo-web-app.herokuapp.com/get_job_by_id
+        example url: https://uzo-web-app.herokuapp.com/check_student_email
         header:
             {
-             "email":ericBlackmon52@yahoo.com
+             "email":ericblackmon52@yahoo.com
             }
 
      */
@@ -336,6 +336,22 @@ public class AppController {
     @PostMapping(value = "/check_student_email")
     public String checkStudentEmail(@RequestBody Student student){
         return manager.checkStudentEmail(student).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+     /*
+        example url: https://uzo-web-app.herokuapp.com/check_student_login
+        header:
+            {
+             "email":ericblackmon52@yahoo.com
+             "password": "281330800fB"
+            }
+
+     */
+
+    @PostMapping(value = "/check_student_login")
+    public String checkStudentPassword(@RequestBody Student student){
+        return manager.checkStudentPassword(student).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
