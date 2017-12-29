@@ -343,7 +343,7 @@ public class AppController {
         example url: https://uzo-web-app.herokuapp.com/check_student_login
         header:
             {
-             "email":ericblackmon52@yahoo.com
+             "email":"ericblackmon52@yahoo.com",
              "password": "281330800fB"
             }
 

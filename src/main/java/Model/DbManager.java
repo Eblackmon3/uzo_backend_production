@@ -1060,7 +1060,7 @@ public class DbManager {
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1,student.getEmail());
-            pstmt.setString(1,student.getPassword());
+            pstmt.setString(2,student.getPassword());
             ResultSet rs= pstmt.executeQuery();
             if(rs.next()){
                 studentObj.put("Student Email","Student login exist");
