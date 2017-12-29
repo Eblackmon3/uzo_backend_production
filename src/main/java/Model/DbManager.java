@@ -1004,4 +1004,47 @@ public class DbManager {
 
     }
 
+    public JSONObject checkStudentEmail( Student student){
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="select * from t_student_info where email=?";
+        DbConn jdbcObj = new DbConn();
+
+        JSONObject studentObj= new JSONObject();
+        try {
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,student.getEmail());
+            ResultSet rs= pstmt.executeQuery();
+            if(rs.next()){
+                studentObj.put("Student Email","Student email exist");
+
+            }else{
+                studentObj.put("Student Email","Student email does not exist ");
+
+            }
+            rs.close();
+            pstmt.close();
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return studentObj;
+
+    }
+/*
+    public JSONObject checkStudentPassword( Student student){
+
+    }
+    */
+
 }

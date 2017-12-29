@@ -325,6 +325,21 @@ public class AppController {
     }
 
      /*
+        example url: https://uzo-web-app.herokuapp.com/get_job_by_id
+        header:
+            {
+             "email":ericBlackmon52@yahoo.com
+            }
+
+     */
+
+    @PostMapping(value = "/check_student_email")
+    public String checkStudentEmail(@RequestBody Student student){
+        return manager.checkStudentEmail(student).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+     /*
         example url: https://uzo-web-app.herokuapp.com/create_student_resume_folder
         DONT NEED TO USE THIS, JUST KEEPING IT JUST IN CASE BELOW METHOD CREATES FOLDER AS WELL
         header:
