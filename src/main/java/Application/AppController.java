@@ -55,7 +55,7 @@ public class AppController {
          "first_name": "Stephen",
          "last_name":"Okala",
          "university":"Georgia Tech",
-         "phone_numnber"="571-344-9998"
+         "phone_numnber":"571-344-9998"
         }
      * used a string as to not process the JSONOBJECT on response
      */

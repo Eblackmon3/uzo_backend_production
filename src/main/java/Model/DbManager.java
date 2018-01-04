@@ -69,7 +69,7 @@ public class DbManager {
         Connection conn = null;
         PreparedStatement pstmt = null;
         String sql="insert into t_student_info(email, password, first_name, last_name, university," +
-                "phone_numnber) Values(?,?,?, ?,?,?);";
+                "phone_number) Values(?,?,?, ?,?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
@@ -86,7 +86,7 @@ public class DbManager {
             pstmt.setString(3,student.getFirst_name());
             pstmt.setString(4,student.getLast_name());
             pstmt.setString(5,student.getUniversity());
-            pstmt.setString(6,student.getPhone_numnber());
+            pstmt.setString(6,student.getPhone_number());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
