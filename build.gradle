@@ -81,6 +81,11 @@ dependencies {
     // https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk
     compile 'com.amazonaws:aws-java-sdk-s3'
 
+    // https://mvnrepository.com/artifact/com.braintreepayments.gateway/braintree-java
+    compile("com.braintreepayments.gateway:braintree-java:2.73.0")
+
+
+
 
 
 

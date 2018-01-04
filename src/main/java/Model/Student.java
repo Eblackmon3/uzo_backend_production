@@ -10,6 +10,7 @@ public class Student {
     private String university;
     private int total_rating;
     private int times_rated;
+    private String phone_numnber;
 
 
     public String getEmail() {
@@ -82,6 +83,14 @@ public class Student {
 
     public void setTotal_rating(int total_rating) {
         this.total_rating = total_rating;
+    }
+
+    public String getPhone_numnber() {
+        return phone_numnber;
+    }
+
+    public void setPhone_numnber(String phone_numnber) {
+        this.phone_numnber = phone_numnber;
     }
 
     @Override

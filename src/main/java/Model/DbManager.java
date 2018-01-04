@@ -68,7 +68,8 @@ public class DbManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_student_info(email, password, first_name, last_name) Values(?,?,?, ?);";
+        String sql="insert into t_student_info(email, password, first_name, last_name, university," +
+                "phone_numnber) Values(?,?,?, ?,?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
@@ -84,6 +85,8 @@ public class DbManager {
             pstmt.setString(2,student.getPassword());
             pstmt.setString(3,student.getFirst_name());
             pstmt.setString(4,student.getLast_name());
+            pstmt.setString(5,student.getUniversity());
+            pstmt.setString(6,student.getPhone_numnber());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
