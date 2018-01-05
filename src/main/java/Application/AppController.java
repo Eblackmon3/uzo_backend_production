@@ -59,7 +59,7 @@ public class AppController {
         }
      * used a string as to not process the JSONOBJECT on response
      */
-    @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com/")
     @PostMapping(value = "/insert_student")
     public String insertStudent(@RequestBody Student insertStudent){
         return manager.insertStudent(insertStudent).toString();
