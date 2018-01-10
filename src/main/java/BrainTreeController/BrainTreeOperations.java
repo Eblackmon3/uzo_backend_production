@@ -1,19 +1,113 @@
 package BrainTreeController;
 
 import Model.BrainTreeClient;
-import com.braintreegateway.BraintreeGateway;
-import com.braintreegateway.Environment;
+import Model.BrainTreeTransaction;
+import Model.TransactionClient;
+import com.braintreegateway.*;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonAnyFormatVisitor;
+import org.json.JSONObject;
+
+import java.math.BigDecimal;
 
 public class BrainTreeOperations {
 
-    public static String createBrainTreeGateway(BrainTreeClient client){
+    public static JSONObject generateClientToken(BrainTreeClient client){
+        JSONObject ret= new JSONObject();
         BraintreeGateway gateway = new BraintreeGateway(
                 Environment.SANDBOX,
                 client.getMerchant_id(),
                 client.getPublic_key(),
                 client.getPrivate_key()
         );
-        return gateway.clientToken().generate();
+        try {
+            ret.put("client_token", gateway.clientToken().generate());
+        }catch(Exception e){
+            e.printStackTrace();
+
+        }
+        return ret;
+    }
+
+
+    public static  BraintreeGateway createGateway(BrainTreeClient client){
+        BraintreeGateway gateway = new BraintreeGateway(
+                Environment.SANDBOX,
+                client.getMerchant_id(),
+                client.getPublic_key(),
+                client.getPrivate_key()
+        );
+        return gateway;
+    }
+
+    public static JSONObject createTransaction(TransactionClient client) {
+        JSONObject ret = new JSONObject();
+        BigDecimal decimalAmount = new BigDecimal("0");
+        try {
+            decimalAmount = new BigDecimal(client.getAmount());
+        } catch (NumberFormatException e) {
+            try {
+                e.printStackTrace();
+                return ret.put("Error", e.toString());
+            } catch (Exception f) {
+                f.printStackTrace();
+            }
+        }
+
+        TransactionRequest request = new TransactionRequest()
+                .amount(decimalAmount)
+                .paymentMethodNonce(client.getPayment_method_nonce())
+                .options()
+                .submitForSettlement(true)
+                .done();
+
+        Result<Transaction> result = BrainTreeOperations.createGateway(client).transaction().sale(request);
+try{
+        if (result.isSuccess()) {
+            Transaction transaction = result.getTarget();
+            ret.put("Transaction_id", transaction.getId());
+            return ret;
+        } else if (result.getTransaction() != null) {
+            Transaction transaction = result.getTarget();
+
+            ret.put("Transaction_id", transaction.getId());
+            return ret;
+        } else {
+            String errorString = "";
+            for (ValidationError error : result.getErrors().getAllDeepValidationErrors()) {
+                errorString += "Error: " + error.getCode() + ": " + error.getMessage() + "\n";
+            }
+            ret.put("Error", errorString);
+            return ret;
+        }
+    }catch(Exception e){
+        e.printStackTrace();
+        }
+        return ret;
+    }
+
+    public static JSONObject getTransaction(BrainTreeTransaction trans){
+        Transaction transaction;
+        CreditCard creditCard;
+        Customer customer;
+        JSONObject  transObj= new JSONObject();
+
+        try {
+            transaction =BrainTreeOperations.createGateway(trans).transaction().find(trans.getTransaction_id());
+            creditCard = transaction.getCreditCard();
+            customer = transaction.getCustomer();
+            transObj.put("transaction",transaction.toString());
+            transObj.put("credit_card",creditCard.toString());
+            transObj.put("customer",customer.toString());
+
+        } catch (Exception e) {
+            System.out.println("Exception: " + e);
+            try{
+                transObj.put("Error",e.toString());
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+        }
+        return transObj;
     }
 
 

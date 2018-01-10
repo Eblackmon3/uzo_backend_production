@@ -15,6 +15,18 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.util.Arrays;
+
+import com.braintreegateway.BraintreeGateway;
+import com.braintreegateway.Result;
+import com.braintreegateway.Transaction;
+import com.braintreegateway.Transaction.Status;
+import com.braintreegateway.TransactionRequest;
+import com.braintreegateway.CreditCard;
+import com.braintreegateway.Customer;
+import com.braintreegateway.ValidationError;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,6 +45,18 @@ import javax.sql.DataSource;
 @RestController
 public class AppController {
     DbManager manager= new DbManager();
+
+    private Status[] TRANSACTION_SUCCESS_STATUSES = new Status[] {
+            Transaction.Status.AUTHORIZED,
+            Transaction.Status.AUTHORIZING,
+            Transaction.Status.SETTLED,
+            Transaction.Status.SETTLEMENT_CONFIRMED,
+            Transaction.Status.SETTLEMENT_PENDING,
+            Transaction.Status.SETTLING,
+            Transaction.Status.SUBMITTED_FOR_SETTLEMENT
+    };
+
+
 
     @RequestMapping("/")
     public String index() {
@@ -402,7 +426,7 @@ public class AppController {
     }
 
 
-
+//SHOULD NEVER REALLY HAVE TO USE THIS
     /*
      example url: https://uzo-web-app.herokuapp.com/generate_client_token
      header:
@@ -416,7 +440,44 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/generate_client_token")
         public String generateClientToken(@RequestBody BrainTreeClient client) {
-            return  BrainTreeOperations.createBrainTreeGateway(client);
+            return  BrainTreeOperations.generateClientToken(client).toString();
         }
+
+
+        /*
+     example url: https://uzo-web-app.herokuapp.com/create_transaction
+     header:
+         {
+          "merchant_id":<apps merchant id>,
+          "public_key":<apps public_key>,
+          "private_key":<apps private key>
+          "amount":"44.44",
+          "payment_method_nonce",
+         }
+
+  */
+
+    @RequestMapping(value = "/create_transaction", method = RequestMethod.POST)
+    public String createTransaction(@RequestBody TransactionClient client) {
+        return BrainTreeOperations.createTransaction(client).toString();
+    }
+
+  /*
+     example url: https://uzo-web-app.herokuapp.com/get_transaction
+     header:
+         {
+          "merchant_id":<apps merchant id>,
+          "public_key":<apps public_key>,
+          "private_key":<apps private key>
+          "transaction_id":<transaction id>
+         }
+
+  */
+
+    @RequestMapping(value = "/get_transaction", method = RequestMethod.POST)
+    public String getTransaction(@RequestBody BrainTreeTransaction client) {
+        return BrainTreeOperations.getTransaction(client).toString();
+    }
+
 
 }

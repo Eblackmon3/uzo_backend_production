@@ -58,6 +58,11 @@ public class DbManager {
 
         } catch (Exception e) {
             e.printStackTrace();
+            try {
+                studentObj.put("Error", e.toString());
+            }catch(Exception f){
+                f.printStackTrace();
+            }
         }
 
         return studentObj;
@@ -95,6 +100,11 @@ public class DbManager {
 
         }catch(Exception e){
             e.printStackTrace();
+            try {
+                insertedStudent.put("Error", e.toString());
+            }catch(Exception f){
+                f.printStackTrace();
+            }
 
         }
         return insertedStudent;
