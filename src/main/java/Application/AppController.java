@@ -414,7 +414,7 @@ public class AppController {
   */
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/generate_client_token")
-        public String generateClientToken(BrainTreeClient client) {
+        public String generateClientToken(@RequestBody BrainTreeClient client) {
         System.out.println(client.getMerchant_id());
         BraintreeGateway gateway = new BraintreeGateway(
                 Environment.SANDBOX,
