@@ -2,6 +2,8 @@ package Application;
 
 import AmazonController.s3Operations;
 import Model.*;
+import com.braintreegateway.BraintreeGateway;
+import com.braintreegateway.Environment;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import org.json.JSONObject;
@@ -400,5 +402,26 @@ public class AppController {
 
 
 
+    /*
+     example url: https://uzo-web-app.herokuapp.com/generate_client_token
+     header:
+         {
+          "merchant_id":<apps merchant id>,
+          "public_key":<apps public_key>,
+          "private_key":<apps private key>
+         }
+
+  */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/generate_client_token")
+        public String handle(BrainTreeClient client) {
+        BraintreeGateway gateway = new BraintreeGateway(
+                Environment.SANDBOX,
+                client.getMerchant_id(),
+                client.getPublic_key(),
+                client.getPrivate_key()
+        );
+            return gateway.clientToken().generate();
+        }
 
 }
