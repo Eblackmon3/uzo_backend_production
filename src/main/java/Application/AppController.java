@@ -1,6 +1,7 @@
 package Application;
 
 import AmazonController.s3Operations;
+import BrainTreeController.BrainTreeOperations;
 import Model.*;
 import com.braintreegateway.BraintreeGateway;
 import com.braintreegateway.Environment;
@@ -415,14 +416,7 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/generate_client_token")
         public String generateClientToken(@RequestBody BrainTreeClient client) {
-        System.out.println(client.getMerchant_id());
-        BraintreeGateway gateway = new BraintreeGateway(
-                Environment.SANDBOX,
-                client.getMerchant_id(),
-                client.getPublic_key(),
-                client.getPrivate_key()
-        );
-            return gateway.clientToken().generate();
+            return  BrainTreeOperations.createBrainTreeGateway(client);
         }
 
 }
