@@ -1101,6 +1101,7 @@ public class DbManager {
         PreparedStatement pstmt = null;
         String tableName= "t_"+studentAvail.getDay().toLowerCase();
         String sql="insert into ?(?,student_id) Values(?,?);";
+        System.out.print(sql);
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
