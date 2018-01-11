@@ -1096,14 +1096,16 @@ public class DbManager {
 
     }
 
-    public JSONObject setStudentAvailability(StudentAvailabilitySlot studentAvail){
+    public JSONObject StudentAvailability(StudentAvailabilitySlot studentAvail){
         JSONObject insertedStudent= new JSONObject();
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
+
         String tableName= StringEscapeUtils.escapeJava("t_"+studentAvail.getDay().toLowerCase());
+        String sql= "select * from "+tableName+" where student_id=?";
         studentAvail.setTime("\""+StringEscapeUtils.escapeJava(studentAvail.getTime())+"\"");
-        String sql="insert into " +tableName+"("+studentAvail.getTime()+",student_id) Values(?,?);";
+        String sql2="insert into " +tableName+"("+studentAvail.getTime()+",student_id) Values(?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
@@ -1114,7 +1116,14 @@ public class DbManager {
             //check how many connections we have
             System.out.println(jdbcObj.printDbStatus());
             //can do normal DB operations here
-            pstmt = conn.prepareStatement(sql);
+            pstmt= conn.prepareStatement(sql);
+            pstmt.setInt(1,studentAvail.getStudent_id());
+            rsObj=pstmt.executeQuery();
+            if(rsObj.next()){
+                insertedStudent.put(""+studentAvail.getStudent_id(),"student already inserted please use update student");
+                return insertedStudent;
+            }
+            pstmt = conn.prepareStatement(sql2);
             pstmt.setBoolean(1,studentAvail.isAvailable());
             pstmt.setInt(2,studentAvail.getStudent_id());
             System.out.print(pstmt.toString());

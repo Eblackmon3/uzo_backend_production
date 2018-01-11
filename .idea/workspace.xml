@@ -81,8 +81,8 @@
       <file leaf-file-name="DbManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/DbManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="1104" column="88" lean-forward="false" selection-start-line="1104" selection-start-column="88" selection-end-line="1104" selection-end-column="88" />
+            <state relative-caret-position="266">
+              <caret line="1129" column="49" lean-forward="true" selection-start-line="1129" selection-start-column="49" selection-end-line="1129" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -106,6 +106,7 @@
       <find>on_call</find>
       <find>insert_s</find>
       <find>insert</find>
+      <find>result</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -1316,8 +1317,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/DbManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="1104" column="88" lean-forward="false" selection-start-line="1104" selection-start-column="88" selection-end-line="1104" selection-end-column="88" />
+        <state relative-caret-position="266">
+          <caret line="1129" column="49" lean-forward="true" selection-start-line="1129" selection-start-column="49" selection-end-line="1129" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
