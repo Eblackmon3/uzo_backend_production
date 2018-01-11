@@ -82,8 +82,7 @@ public class DbManager {
         try{
             if(student.getEmail()==null || student.getPassword()==null ||student.getFirst_name()==null ||
                     student.getLast_name()==null || student.getUniversity()==null){
-                throw new Exception("Please Email, Password, First Name, Last Name, and University must be entered " +
-                        "when inserting a student");
+                throw new Exception("Missing Parameter");
             }
             //Connect to the database
             DataSource dataSource = jdbcObj.setUpPool();
@@ -171,6 +170,11 @@ public class DbManager {
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
+
+                if(company.getEmail()==null|| company.getAddress()==null||company.getWebsite_link()==null
+                        || company.getCompany_name()==null||company.getPassword()==null){
+                    throw new Exception("Missing Parameter");
+                }
             //Connect to the database
             DataSource dataSource = jdbcObj.setUpPool();
             System.out.println(jdbcObj.printDbStatus());
