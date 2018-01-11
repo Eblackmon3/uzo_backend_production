@@ -249,7 +249,9 @@ public class DbManager {
         JSONObject insertedStudentJob= new JSONObject();
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_student_job_map(student_id,company_id, job_id) " +
+        ResultSet rs;
+        String sql="select * from t_student_job_map where student_id=? and company_id=? and job_id= ?";
+        String sql2="insert into t_student_job_map(student_id,company_id, job_id) " +
                 "Values(?,?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
@@ -261,7 +263,16 @@ public class DbManager {
             //check how many connections we have
             System.out.println(jdbcObj.printDbStatus());
             //can do normal DB operations here
-            pstmt = conn.prepareStatement(sql);
+            pstmt=conn.prepareStatement(sql);
+            pstmt.setInt(1, studJob.getStudent_id());
+            pstmt.setInt(2, studJob.getCompany_id());
+            pstmt.setInt(3,studJob.getJob_id());
+            rs= pstmt.executeQuery();
+            if(rs.next()) {
+                insertedStudentJob.put(studJob.getStudent_id() + "", "Already assigned to this job");
+                return insertedStudentJob;
+            }
+            pstmt = conn.prepareStatement(sql2);
             pstmt.setInt(1, studJob.getStudent_id());
             pstmt.setInt(2, studJob.getCompany_id());
             pstmt.setInt(3,studJob.getJob_id());
