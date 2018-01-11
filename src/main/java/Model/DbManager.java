@@ -11,7 +11,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.sql.DataSource;
 import java.awt.print.Book;
 import java.sql.*;
+import org.apache.commons.lang3.StringEscapeUtils;
 import java.util.ArrayList;
+
 
 import static AmazonController.s3Operations.uploadFile;
 
@@ -1099,8 +1101,9 @@ public class DbManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String tableName= "t_"+studentAvail.getDay().toLowerCase();
-        String sql="insert into " +tableName+"(?,student_id) Values(?,?);";
+        String tableName= StringEscapeUtils.escapeJava("t_"+studentAvail.getDay().toLowerCase());
+        studentAvail.setTime(StringEscapeUtils.escapeJava(studentAvail.getTime()));
+        String sql="insert into " +tableName+"("+studentAvail.getTime()+",student_id) Values(?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
@@ -1112,9 +1115,8 @@ public class DbManager {
             System.out.println(jdbcObj.printDbStatus());
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1,studentAvail.getTime());
-            pstmt.setBoolean(2,studentAvail.isAvailable());
-            pstmt.setInt(3,studentAvail.getStudent_id());
+            pstmt.setBoolean(1,studentAvail.isAvailable());
+            pstmt.setInt(2,studentAvail.getStudent_id());
             System.out.print(pstmt.toString());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
