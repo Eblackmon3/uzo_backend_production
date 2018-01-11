@@ -80,6 +80,11 @@ public class DbManager {
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
+            if(student.getEmail()==null || student.getPassword()==null ||student.getFirst_name()==null ||
+                    student.getLast_name()==null || student.getUniversity()==null){
+                throw new Exception("Please Email, Password, First Name, Last Name, and University must be entered " +
+                        "when inserting a student");
+            }
             //Connect to the database
             DataSource dataSource = jdbcObj.setUpPool();
             System.out.println(jdbcObj.printDbStatus());
@@ -381,6 +386,7 @@ public class DbManager {
                 pstmt.setInt(1, studentsJobs.get(i));
                 rs= pstmt.executeQuery();
                 while(rs.next()){
+
                     job_id=rs.getInt("job_id");
                     completed=rs.getBoolean("completed");
                     date=rs.getDate("date");
