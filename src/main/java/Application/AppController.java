@@ -479,5 +479,24 @@ public class AppController {
         return BrainTreeOperations.getTransaction(client).toString();
     }
 
+    /*
+       example url: https://uzo-web-app.herokuapp.com/set_student_availibility
+       header:
+           {
+            "student_id": 1,
+            "available": true,
+            "day":friday,
+            "time":"1330"
+           }
+
+    */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/set_student_availibility")
+    public String setStudentAvailibility(@RequestBody StudentAvailabilitySlot student){
+        return manager.setStudentAvailability(student).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+
 
 }
