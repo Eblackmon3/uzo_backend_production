@@ -1102,7 +1102,7 @@ public class DbManager {
         Connection conn = null;
         PreparedStatement pstmt = null;
         String tableName= StringEscapeUtils.escapeJava("t_"+studentAvail.getDay().toLowerCase());
-        studentAvail.setTime(""+StringEscapeUtils.escapeJava(studentAvail.getTime())+"");
+        studentAvail.setTime("\"+StringEscapeUtils.escapeJava(studentAvail.getTime())+\"");
         String sql="insert into " +tableName+"("+studentAvail.getTime()+",student_id) Values(?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
