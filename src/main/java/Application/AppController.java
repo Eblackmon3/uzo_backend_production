@@ -509,7 +509,7 @@ public class AppController {
 
   */
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
-    @PostMapping(value = "/set_student_availibility")
+    @PostMapping(value = "/update_student_availibility")
     public String updateStudentAvailibility(@RequestBody StudentAvailabilitySlot student){
         return manager.updateStudentAvailability(student).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();

@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ca00f792-2095-41e1-97e7-deb110df0c1a" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/Application/AppController.java" afterPath="$PROJECT_DIR$/src/main/java/Application/AppController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DbManager.java" afterPath="$PROJECT_DIR$/src/main/java/Model/DbManager.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -35,8 +34,8 @@
       <file leaf-file-name="AppController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="510" column="50" lean-forward="true" selection-start-line="510" selection-start-column="50" selection-end-line="510" selection-end-column="50" />
+            <state relative-caret-position="285">
+              <caret line="518" column="0" lean-forward="true" selection-start-line="518" selection-start-column="0" selection-end-line="518" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -1321,8 +1320,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="510" column="50" lean-forward="true" selection-start-line="510" selection-start-column="50" selection-end-line="510" selection-end-column="50" />
+        <state relative-caret-position="285">
+          <caret line="518" column="0" lean-forward="true" selection-start-line="518" selection-start-column="0" selection-end-line="518" selection-end-column="0" />
           <folding />
         </state>
       </provider>
