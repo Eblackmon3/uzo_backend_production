@@ -218,7 +218,7 @@ public class DbManager {
         int affectedRows=0;
         try{
             if(jobInsert.getDate()==null || jobInsert.getRate()==null || jobInsert.getDress_code()==null
-            ||  jobInsert.getJob_title()==null){
+            ||  jobInsert.getJob_title()==null|| jobInsert.getCompany_id()==0){
                 throw new Exception("Missing Parameter");
             }
 
@@ -270,6 +270,9 @@ public class DbManager {
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
+            if (studJob.getCompany_id()==0||studJob.getJob_id()==0 || studJob.getStudent_id()==0){
+                throw new Exception("Missing Parameter");
+            }
             //Connect to the database
             DataSource dataSource = jdbcObj.setUpPool();
             System.out.println(jdbcObj.printDbStatus());
