@@ -101,8 +101,8 @@
       <file leaf-file-name="DbManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/DbManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="422" column="36" lean-forward="false" selection-start-line="422" selection-start-column="36" selection-end-line="422" selection-end-column="36" />
+            <state relative-caret-position="271">
+              <caret line="420" column="66" lean-forward="false" selection-start-line="420" selection-start-column="66" selection-end-line="420" selection-end-column="66" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1344,8 +1344,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/DbManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="422" column="36" lean-forward="false" selection-start-line="422" selection-start-column="36" selection-end-line="422" selection-end-column="36" />
+        <state relative-caret-position="271">
+          <caret line="420" column="66" lean-forward="false" selection-start-line="420" selection-start-column="66" selection-end-line="420" selection-end-column="66" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

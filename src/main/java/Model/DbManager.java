@@ -418,6 +418,7 @@ public class DbManager {
             e.printStackTrace();
             try{
                 selectedStudentJob.put("Error", e.toString());
+                System.out.println(selectedStudentJob.toString());
                 selectedJobs= new JSONArray();
                 selectedJobs.put(selectedStudentJob);
                 return selectedJobs;
