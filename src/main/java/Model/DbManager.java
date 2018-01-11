@@ -88,10 +88,10 @@ public class DbManager {
             System.out.println(jdbcObj.printDbStatus());
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, student.getEmail());
+            pstmt.setString(1, student.getEmail().toLowerCase());
             pstmt.setString(2,student.getPassword());
-            pstmt.setString(3,student.getFirst_name());
-            pstmt.setString(4,student.getLast_name());
+            pstmt.setString(3,student.getFirst_name().toLowerCase());
+            pstmt.setString(4,student.getLast_name().toLowerCase());
             pstmt.setString(5,student.getUniversity());
             pstmt.setString(6,student.getPhone_number());
             affectedRows = pstmt.executeUpdate();
@@ -147,7 +147,11 @@ public class DbManager {
             companyObj.put("address",address);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            try {
+                companyObj.put("Error", e.toString());
+            }catch(Exception f){
+                f.printStackTrace();
+            }
         }
 
         return companyObj;
@@ -170,10 +174,10 @@ public class DbManager {
             System.out.println(jdbcObj.printDbStatus());
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, company.getEmail());
-            pstmt.setString(2,company.getAddress());
-            pstmt.setString(3,company.getWebsite_link());
-            pstmt.setString(4,company.getCompany_name());
+            pstmt.setString(1, company.getEmail().toLowerCase());
+            pstmt.setString(2,company.getAddress().toLowerCase());
+            pstmt.setString(3,company.getWebsite_link().toLowerCase());
+            pstmt.setString(4,company.getCompany_name().toLowerCase());
             pstmt.setString(5,company.getPassword());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
@@ -183,6 +187,11 @@ public class DbManager {
 
         }catch(Exception e){
             e.printStackTrace();
+            try {
+                insertedStudent.put("Error", e.toString());
+            }catch(Exception f){
+                f.printStackTrace();
+            }
 
         }
         return insertedStudent;
@@ -209,11 +218,11 @@ public class DbManager {
             pstmt = conn.prepareStatement(sql);
             pstmt.setBoolean(1, jobInsert.isCompleted());
             pstmt.setDate(2, Date.valueOf(jobInsert.getDate()));
-            pstmt.setString(3,jobInsert.getRate());
-            pstmt.setString(4,jobInsert.getDress_code());
+            pstmt.setString(3,jobInsert.getRate().toLowerCase());
+            pstmt.setString(4,jobInsert.getDress_code().toLowerCase());
             pstmt.setDouble(5,jobInsert.getDuration());
             pstmt.setBoolean(6, jobInsert.isOpen());
-            pstmt.setString(7,jobInsert.getJob_title());
+            pstmt.setString(7,jobInsert.getJob_title().toLowerCase());
             pstmt.setInt(8,jobInsert.getTime());
             pstmt.setInt(9,jobInsert.getCompany_id());
             affectedRows = pstmt.executeUpdate();
@@ -224,6 +233,11 @@ public class DbManager {
 
         }catch(Exception e){
             e.printStackTrace();
+            try {
+                insertedJob.put("Error", e.toString());
+            }catch (Exception f){
+                f.printStackTrace();
+            }
 
         }
         return insertedJob;
@@ -259,6 +273,11 @@ public class DbManager {
 
         }catch(Exception e){
             e.printStackTrace();
+            try{
+                insertedStudentJob.put("Error",e.toString());
+            }catch(Exception f){
+                f.printStackTrace();
+            }
 
         }
         return insertedStudentJob;
@@ -295,6 +314,12 @@ public class DbManager {
 
         }catch(Exception e){
             e.printStackTrace();
+            try{
+                deletedStudentJob.put("Error",e.toString());
+
+            }catch(Exception f){
+                f.printStackTrace();
+            }
 
         }
         return deletedStudentJob;
@@ -380,6 +405,14 @@ public class DbManager {
 
         }catch(Exception e){
             e.printStackTrace();
+            try{
+                selectedStudentJob.put("Error", e.toString());
+                selectedJobs= new JSONArray();
+                selectedJobs.put(selectedStudentJob);
+
+            }catch(Exception f){
+                f.printStackTrace();
+            }
 
         }
         return selectedJobs;
@@ -454,6 +487,14 @@ public class DbManager {
 
         }catch(Exception e){
             e.printStackTrace();
+            try{
+                selectedJobsStudent.put("Error", e.toString());
+                selectedStudents=new JSONArray();
+                selectedStudents.put(selectedJobsStudent);
+
+            }catch(Exception f){
+                f.printStackTrace();
+            }
 
         }
         return selectedStudents;
@@ -486,6 +527,12 @@ public class DbManager {
 
         }catch(Exception e){
             e.printStackTrace();
+            try{
+                insertedOncall.put("Error", e.toString());
+
+            }catch(Exception f){
+                f.printStackTrace();
+            }
 
         }
         return insertedOncall;
@@ -570,6 +617,14 @@ public class DbManager {
 
         }catch(Exception e){
             e.printStackTrace();
+            try{
+                selectedJobs= new JSONArray();
+                selectedStudentJob.put("Error", e.toString());
+                selectedJobs.put(selectedStudentJob);
+
+            }catch(Exception f){
+                f.printStackTrace();
+            }
 
         }
         return selectedJobs;
@@ -643,6 +698,13 @@ public class DbManager {
 
         }catch(Exception e){
             e.printStackTrace();
+            try{
+                selectedStudents= new JSONArray();
+                selectedJobsStudent.put("Error", e.toString());
+
+            }catch(Exception f){
+                f.printStackTrace();
+            }
 
         }
         return selectedStudents;
@@ -717,6 +779,14 @@ public class DbManager {
 
         }catch(Exception e){
             e.printStackTrace();
+            try{
+                selectedStudents= new JSONArray();
+                selectedJobsStudent.put("Error", e.toString());
+                selectedStudents.put(selectedJobsStudent);
+
+            }catch(Exception f){
+                f.printStackTrace();
+            }
 
         }
         return selectedStudents;
@@ -753,6 +823,12 @@ public class DbManager {
 
         }catch(Exception e){
             e.printStackTrace();
+            try{
+                updateUniversity.put("Error", e.toString());
+
+            }catch(Exception f){
+                f.printStackTrace();
+            }
 
         }
         return updateUniversity;
@@ -798,6 +874,12 @@ public class DbManager {
 
         }catch(Exception e){
             e.printStackTrace();
+            try{
+                updateUniversity.put("Error", e.toString());
+
+            }catch(Exception f){
+                f.printStackTrace();
+            }
 
         }
         return updateUniversity;
@@ -871,6 +953,12 @@ public class DbManager {
 
         }catch(Exception e){
             e.printStackTrace();
+            try{
+                insertedCaptain.put("Error", e.toString());
+
+            }catch(Exception f){
+                f.printStackTrace();
+            }
 
         }
         return insertedCaptain;
@@ -904,9 +992,14 @@ public class DbManager {
 
         }catch(Exception e){
             e.printStackTrace();
+            try{
+                insertedCaptain.put("Error", e.toString());
 
-        }
-        return insertedCaptain;
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+
+        }return insertedCaptain;
 
     }
 
@@ -978,6 +1071,11 @@ public class DbManager {
 
         }catch( Exception e){
             e.printStackTrace();
+            try {
+                selectedStudentJob.put("Error", e.toString());
+            }catch( Exception f){
+                f.printStackTrace();
+            }
 
         }
 
@@ -1013,6 +1111,13 @@ public class DbManager {
 
         }catch(Exception e){
             e.printStackTrace();
+            try{
+                uploadeResume.put("Error", e.toString());
+
+            }catch(Exception f){
+                f.printStackTrace();
+
+            }
 
         }
         return uploadeResume;
@@ -1051,6 +1156,12 @@ public class DbManager {
 
         } catch (Exception e) {
             e.printStackTrace();
+            try{
+                studentObj.put("Error", e.toString());
+
+            }catch(Exception f){
+                f.printStackTrace();
+            }
         }
 
         return studentObj;
@@ -1090,6 +1201,12 @@ public class DbManager {
 
         } catch (Exception e) {
             e.printStackTrace();
+            try{
+                studentObj.put("Error", e.toString());
+
+            }catch(Exception f){
+                f.printStackTrace();
+            }
         }
 
         return studentObj;
@@ -1182,6 +1299,11 @@ public class DbManager {
 
         }catch(Exception e){
             e.printStackTrace();
+            try {
+                insertedStudent.put("Error", e.toString());
+            }catch(Exception f){
+                f.printStackTrace();
+            }
 
         }
         return insertedStudent;
