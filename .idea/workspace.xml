@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ca00f792-2095-41e1-97e7-deb110df0c1a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/Application/AppController.java" afterPath="$PROJECT_DIR$/src/main/java/Application/AppController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DbManager.java" afterPath="$PROJECT_DIR$/src/main/java/Model/DbManager.java" />
-    </list>
+    <list default="true" id="ca00f792-2095-41e1-97e7-deb110df0c1a" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -32,10 +29,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AppController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AppController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
+            <state relative-caret-position="224">
               <caret line="495" column="48" lean-forward="false" selection-start-line="495" selection-start-column="48" selection-end-line="495" selection-end-column="48" />
               <folding />
             </state>
@@ -55,7 +52,7 @@
       <file leaf-file-name="StudentAvailabilitySlot.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/StudentAvailabilitySlot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-28">
+            <state relative-caret-position="-258">
               <caret line="0" column="14" lean-forward="true" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
               <folding>
                 <element signature="e#197#198#0" expanded="true" />
@@ -79,11 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DbManager.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DbManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/DbManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="1098" column="47" lean-forward="false" selection-start-line="1098" selection-start-column="22" selection-end-line="1098" selection-end-column="47" />
+            <state relative-caret-position="-115">
+              <caret line="1103" column="0" lean-forward="true" selection-start-line="1103" selection-start-column="0" selection-end-line="1103" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1284,9 +1281,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="495" column="48" lean-forward="false" selection-start-line="495" selection-start-column="48" selection-end-line="495" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/StudentAvailabilitySlot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-28">
+        <state relative-caret-position="-258">
           <caret line="0" column="14" lean-forward="true" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
           <folding>
             <element signature="e#197#198#0" expanded="true" />
@@ -1311,19 +1316,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/DbManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="1098" column="47" lean-forward="false" selection-start-line="1098" selection-start-column="22" selection-end-line="1098" selection-end-column="47" />
+        <state relative-caret-position="-115">
+          <caret line="1103" column="0" lean-forward="true" selection-start-line="1103" selection-start-column="0" selection-end-line="1103" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="495" column="48" lean-forward="false" selection-start-line="495" selection-start-column="48" selection-end-line="495" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
