@@ -1100,7 +1100,7 @@ public class DbManager {
         Connection conn = null;
         PreparedStatement pstmt = null;
         String tableName= "t_"+studentAvail.getDay().toLowerCase();
-        String sql="insert into ?(?,student_id) Values(?,?);";
+        String sql="insert into " +tableName+"(?,student_id) Values(?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
@@ -1112,10 +1112,9 @@ public class DbManager {
             System.out.println(jdbcObj.printDbStatus());
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, tableName);
-            pstmt.setString(2,studentAvail.getTime());
-            pstmt.setBoolean(3,studentAvail.isAvailable());
-            pstmt.setInt(4,studentAvail.getStudent_id());
+            pstmt.setString(1,studentAvail.getTime());
+            pstmt.setBoolean(2,studentAvail.isAvailable());
+            pstmt.setInt(3,studentAvail.getStudent_id());
             System.out.print(pstmt.toString());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
