@@ -497,6 +497,25 @@ public class AppController {
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    /*
+     example url: https://uzo-web-app.herokuapp.com/set_student_availibility
+     header:
+         {
+          "student_id": 1,
+          "available": true,
+          "day":friday,
+          "time":"1330"
+         }
+
+  */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/set_student_availibility")
+    public String updateStudentAvailibility(@RequestBody StudentAvailabilitySlot student){
+        return manager.updateStudentAvailability(student).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+
 
 
 }

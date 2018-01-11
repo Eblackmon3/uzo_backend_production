@@ -1148,4 +1148,42 @@ public class DbManager {
     }
 
 
+    public JSONObject updateStudentAvailability(StudentAvailabilitySlot studentAvail){
+        JSONObject insertedStudent= new JSONObject();
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        String tableName= StringEscapeUtils.escapeJava("t_"+studentAvail.getDay().toLowerCase());
+        studentAvail.setTime("\""+StringEscapeUtils.escapeJava(studentAvail.getTime())+"\"");
+        //﻿﻿update t_friday set "0000"=true where student_id =1;
+        String sql2="update  " +tableName+" set "+studentAvail.getTime()+"=? where student_id=?";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql2);
+            pstmt.setBoolean(1,studentAvail.isAvailable());
+            pstmt.setInt(2,studentAvail.getStudent_id());
+            System.out.print(pstmt.toString());
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            insertedStudent.put(""+studentAvail.getStudent_id(),"Availability set for:"+studentAvail.getDay()
+                    +" at "+studentAvail.getTime() );
+
+            insertedStudent.put("affected Rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+
+        }
+        return insertedStudent;
+    }
 }
