@@ -1096,7 +1096,7 @@ public class DbManager {
 
     }
 
-    public JSONObject StudentAvailability(StudentAvailabilitySlot studentAvail){
+    public JSONObject insertStudentAvailability(StudentAvailabilitySlot studentAvail){
         JSONObject insertedStudent= new JSONObject();
         ResultSet rsObj = null;
         Connection conn = null;
@@ -1120,7 +1120,7 @@ public class DbManager {
             pstmt.setInt(1,studentAvail.getStudent_id());
             rsObj=pstmt.executeQuery();
             if(rsObj.next()){
-                insertedStudent.put(""+studentAvail.getStudent_id(),"student already inserted please use update student");
+                insertedStudent.put(""+studentAvail.getStudent_id(),"student already inserted please use updat_student_availability");
                 return insertedStudent;
             }
             pstmt = conn.prepareStatement(sql2);
