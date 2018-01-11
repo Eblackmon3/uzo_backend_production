@@ -217,6 +217,11 @@ public class DbManager {
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
+            if(jobInsert.getDate()==null || jobInsert.getRate()==null || jobInsert.getDress_code()==null
+            ||  jobInsert.getJob_title()==null){
+                throw new Exception("Missing Parameter");
+            }
+
             //Connect to the database
             DataSource dataSource = jdbcObj.setUpPool();
             System.out.println(jdbcObj.printDbStatus());
