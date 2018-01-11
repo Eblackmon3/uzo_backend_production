@@ -269,7 +269,7 @@ public class DbManager {
             pstmt.setInt(3,studJob.getJob_id());
             rs= pstmt.executeQuery();
             if(rs.next()) {
-                insertedStudentJob.put(studJob.getStudent_id() + "", "Already assigned to this job");
+                insertedStudentJob.put("Student id:"+studJob.getStudent_id(), "Already assigned to this job");
                 return insertedStudentJob;
             }
             pstmt = conn.prepareStatement(sql2);
@@ -420,6 +420,7 @@ public class DbManager {
                 selectedStudentJob.put("Error", e.toString());
                 selectedJobs= new JSONArray();
                 selectedJobs.put(selectedStudentJob);
+                return selectedJobs;
 
             }catch(Exception f){
                 f.printStackTrace();
