@@ -1214,6 +1214,9 @@ public class DbManager {
 
         JSONObject studentObj= new JSONObject();
         try {
+            if(student.getEmail()==null){
+                throw new Exception("Missing Parameter");
+            }
             //Connect to the database
             DataSource dataSource = jdbcObj.setUpPool();
             System.out.println(jdbcObj.printDbStatus());
@@ -1258,6 +1261,9 @@ public class DbManager {
 
         JSONObject studentObj= new JSONObject();
         try {
+            if(student.getStudent_id()==0|| student.getEmail()==null){
+                throw new Exception("Missing Parameter");
+            }
             //Connect to the database
             DataSource dataSource = jdbcObj.setUpPool();
             System.out.println(jdbcObj.printDbStatus());
