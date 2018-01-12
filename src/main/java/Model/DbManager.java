@@ -750,6 +750,7 @@ public class DbManager {
             try{
                 selectedStudents= new JSONArray();
                 selectedJobsStudent.put("Error", e.toString());
+                selectedStudents.put(selectedJobsStudent);
 
             }catch(Exception f){
                 f.printStackTrace();
