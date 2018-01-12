@@ -859,7 +859,7 @@ public class DbManager {
         int affectedRows=0;
         try{
 
-            if(student.getStudent_id()==0){
+            if(student.getStudent_id()==0 ||student.getUniversity()==null){
                 throw new Exception("Missing Parameter");
             }
             //Connect to the database
