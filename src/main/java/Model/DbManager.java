@@ -1306,16 +1306,16 @@ public class DbManager {
         Connection conn = null;
         PreparedStatement pstmt = null;
 
+        try{
+            if(studentAvail.getStudent_id()==0||studentAvail.getDay()==null||studentAvail.getTime()==null){
+                throw new Exception( "Missing Parameters");
+            }
         String tableName= StringEscapeUtils.escapeJava("t_"+studentAvail.getDay().toLowerCase());
         String sql= "select * from "+tableName+" where student_id=?";
         studentAvail.setTime("\""+StringEscapeUtils.escapeJava(studentAvail.getTime())+"\"");
         String sql2="insert into " +tableName+"("+studentAvail.getTime()+",student_id) Values(?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
-        try{
-             if(studentAvail.getStudent_id()==0||studentAvail.getDay()==null||studentAvail.getTime()==null){
-                 throw new Exception( "Missing Parameters");
-             }
             //Connect to the database
             DataSource dataSource = jdbcObj.setUpPool();
             System.out.println(jdbcObj.printDbStatus());
@@ -1327,7 +1327,7 @@ public class DbManager {
             pstmt.setInt(1,studentAvail.getStudent_id());
             rsObj=pstmt.executeQuery();
             if(rsObj.next()){
-                insertedStudent.put(""+studentAvail.getStudent_id(),"student already inserted please use updat_student_availability");
+                insertedStudent.put(""+studentAvail.getStudent_id(),"student already inserted please use update_student_availability");
                 return insertedStudent;
             }
             pstmt = conn.prepareStatement(sql2);
@@ -1360,17 +1360,16 @@ public class DbManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-
+        try{
+            if(studentAvail.getStudent_id()==0||studentAvail.getDay()==null||studentAvail.getTime()==null){
+                throw new Exception( "Missing Parameters");
+            }
         String tableName= StringEscapeUtils.escapeJava("t_"+studentAvail.getDay().toLowerCase());
         studentAvail.setTime("\""+StringEscapeUtils.escapeJava(studentAvail.getTime())+"\"");
         //﻿﻿update t_friday set "0000"=true where student_id =1;
         String sql2="update  " +tableName+" set "+studentAvail.getTime()+"=? where student_id=?";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
-        try{
-            if(studentAvail.getStudent_id()==0||studentAvail.getDay()==null||studentAvail.getTime()==null){
-                throw new Exception( "Missing Parameters");
-            }
             //Connect to the database
             DataSource dataSource = jdbcObj.setUpPool();
             System.out.println(jdbcObj.printDbStatus());
