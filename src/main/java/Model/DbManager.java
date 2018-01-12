@@ -604,6 +604,9 @@ public class DbManager {
         String sql="select * from t_job_on_call where student_id =?";
         DbConn jdbcObj = new DbConn();
         try{
+            if(student.getStudent_id()==0){
+                throw new Exception("Missing Parameter");
+            }
             //Connect to the database
             DataSource dataSource = jdbcObj.setUpPool();
             System.out.println(jdbcObj.printDbStatus());
