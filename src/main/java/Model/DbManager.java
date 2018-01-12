@@ -983,6 +983,11 @@ public class DbManager {
 
         } catch (Exception e) {
             e.printStackTrace();
+            try {
+                studentObj.put("Error", e.toString());
+            }catch(Exception f){
+                f.printStackTrace();
+            }
         }
 
         return studentObj;
@@ -998,6 +1003,9 @@ public class DbManager {
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
+            if(studentJob.getJob_id()==0||studentJob.getStudent_id()==0){
+                throw new Exception("Missing Parameter");
+            }
             //Connect to the database
             DataSource dataSource = jdbcObj.setUpPool();
             System.out.println(jdbcObj.printDbStatus());
