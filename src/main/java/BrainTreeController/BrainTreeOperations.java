@@ -7,6 +7,7 @@ import com.braintreegateway.*;
 import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonAnyFormatVisitor;
 import org.json.JSONObject;
 
+import javax.naming.NamingException;
 import java.math.BigDecimal;
 
 public class BrainTreeOperations {
@@ -42,9 +43,15 @@ public class BrainTreeOperations {
     public static JSONObject createTransaction(TransactionClient client) {
         JSONObject ret = new JSONObject();
         BigDecimal decimalAmount = new BigDecimal("0");
+
         try {
             decimalAmount = new BigDecimal(client.getAmount());
-        } catch (NumberFormatException e) {
+            if(client.getMerchant_id()==null||client.getPrivate_key()==null|| client.getPublic_key()==null|| client.getAmount()==null||
+                    client.getPayment_method_nonce()==null){
+                throw new Exception("Missing Parameter");
+
+            }
+        } catch (Exception e) {
             try {
                 e.printStackTrace();
                 return ret.put("Error", e.toString());
@@ -92,6 +99,11 @@ try{
         JSONObject  transObj= new JSONObject();
 
         try {
+            if(trans.getMerchant_id()==null||trans.getPrivate_key()==null|| trans.getPublic_key()==null||
+                    trans.getTransaction_id()==null){
+                throw new Exception("Missing Parameter");
+
+            }
             transaction =BrainTreeOperations.createGateway(trans).transaction().find(trans.getTransaction_id());
             creditCard = transaction.getCreditCard();
             customer = transaction.getCustomer();

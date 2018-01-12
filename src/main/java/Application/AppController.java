@@ -420,7 +420,7 @@ public class AppController {
      */
      @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/upload_student_resume", consumes = "multipart/form-data")
-    public String uploadFile(@RequestParam("file") MultipartFile file, int student_id){
+    public String uploadFile(@RequestParam("file") MultipartFile file,  int student_id){
         return manager.uploadStudentResume(file,student_id).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
