@@ -478,6 +478,9 @@ public class DbManager {
         String sql="select * from t_student_job_map where job_id =?";
         DbConn jdbcObj = new DbConn();
         try{
+            if(job.getJob_id()==0){
+                throw new Exception("Missing Parameter");
+            }
             //Connect to the database
             DataSource dataSource = jdbcObj.setUpPool();
             System.out.println(jdbcObj.printDbStatus());
