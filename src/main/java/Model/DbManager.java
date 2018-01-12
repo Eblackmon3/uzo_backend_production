@@ -958,6 +958,9 @@ public class DbManager {
         double averageRating;
         JSONObject studentObj= new JSONObject();
         try {
+            if(student.getStudent_id()==0){
+                throw new Exception("Missing Parameter");
+            }
             //Connect to the database
             DataSource dataSource = jdbcObj.setUpPool();
             System.out.println(jdbcObj.printDbStatus());
