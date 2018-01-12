@@ -1045,6 +1045,9 @@ public class DbManager {
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
+            if(studentJob.getJob_id()==0||studentJob.getStudent_id()==0){
+                throw new Exception("Missing Parameter");
+            }
             //Connect to the database
             DataSource dataSource = jdbcObj.setUpPool();
             System.out.println(jdbcObj.printDbStatus());
@@ -1096,6 +1099,9 @@ public class DbManager {
         DbConn jdbcObj = new DbConn();
         String sql= "select * from t_job_info where job_id=?";
         try {
+            if(job.getJob_id()==0){
+                throw new Exception("Missing Parameter");
+            }
             //Connect to the database
             DataSource dataSource = jdbcObj.setUpPool();
             System.out.println(jdbcObj.printDbStatus());
