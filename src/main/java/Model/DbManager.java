@@ -1427,7 +1427,7 @@ public class DbManager {
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            insertedStudent.put(insertedStudent.toString(),"Inserted");
+            insertedStudent.put(interestedStudent.toString(),"Inserted");
             insertedStudent.put("affected Rows",affectedRows);
 
         }catch(Exception e){
@@ -1442,4 +1442,47 @@ public class DbManager {
         }
         return insertedStudent;
     }
+
+
+    public JSONObject removeInterestedStudent(InterestedStudent interestedStudent){
+        JSONObject deletedInterestedStudent= new JSONObject();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="delete from t_interested_students_jobs where student_id =? and job_id =?";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            if(interestedStudent.getStudent_id()==0|| interestedStudent.getJob_id()==0){
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, interestedStudent.getStudent_id());
+            pstmt.setInt(2,interestedStudent.getJob_id());
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            deletedInterestedStudent.put(interestedStudent.toString(),"deleted");
+            deletedInterestedStudent.put("affected Rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+            try{
+                deletedInterestedStudent.put("Error",e.toString());
+
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+
+        }
+        return deletedInterestedStudent;
+
+    }
+
 }

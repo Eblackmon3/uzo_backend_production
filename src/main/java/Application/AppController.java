@@ -533,6 +533,24 @@ public class AppController {
     }
 
 
+    /* example url: https://uzo-web-app.herokuapp.com/delete_interested_student
+     * example json:
+     * {
+         "student_id": 1,
+         "job_id":1
+        }
+     */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/delete_interested_student")
+    public String deleteInterestedStudent(@RequestBody InterestedStudent interestedStudent){
+        return manager.removeInterestedStudent(interestedStudent).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+
+
+
+
 
 
 }
