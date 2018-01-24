@@ -1493,7 +1493,7 @@ public class DbManager {
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
-            if(interestedStudent.getStudent_id()==0|| interestedStudent.getJob_id()==0){
+            if(interestedStudent.getJob_id()==0){
                 throw new Exception("Missing Parameter");
             }
             //Connect to the database
