@@ -517,7 +517,7 @@ public class AppController {
 
 
     /*
-      example url: https://uzo-web-app.herokuapp.com/insert_on_call_student
+      example url: https://uzo-web-app.herokuapp.com/insert_interested_student
       header:
           {
            "student_id": 1,
@@ -526,7 +526,7 @@ public class AppController {
 
    */
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
-    @PostMapping(value = "/insert_on_call_student")
+    @PostMapping(value = "/insert_interested_student")
     public String insertInterestedStudents(@RequestBody InterestedStudent interestedStudent){
         return manager.insertInterestedStudent(interestedStudent).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
