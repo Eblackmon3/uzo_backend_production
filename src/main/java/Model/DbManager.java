@@ -1504,8 +1504,7 @@ public class DbManager {
             System.out.println(jdbcObj.printDbStatus());
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, interestedStudent.getStudent_id());
-            pstmt.setInt(2,interestedStudent.getJob_id());
+            pstmt.setInt(1,interestedStudent.getJob_id());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
