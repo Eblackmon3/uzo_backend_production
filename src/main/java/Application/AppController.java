@@ -561,6 +561,20 @@ public class AppController {
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    /*
+    *example url:https://uzo-web-app.herokuapp.com/get_jobs_interested_students_by_id
+    * example header:
+    * {
+        "job_id": 1
+       }
+    */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/get_jobs_interested_students_by_id")
+    public String getJobsInterestedtList(@RequestBody Job job) {
+        return manager.getJobInterestedList(job).toString();
+    }
+
+
 
 
 
