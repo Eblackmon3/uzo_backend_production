@@ -1407,7 +1407,7 @@ public class DbManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_interested_student_jobs(student_id, job_id) Values(?,?);";
+        String sql="insert into t_interested_students_jobs(student_id, job_id) Values(?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
