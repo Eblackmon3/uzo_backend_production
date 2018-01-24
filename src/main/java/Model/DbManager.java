@@ -1400,4 +1400,46 @@ public class DbManager {
         }
         return insertedStudent;
     }
+
+
+    public JSONObject insertInterestedStudent(InterestedStudent interestedStudent){
+        JSONObject insertedStudent= new JSONObject();
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="insert into t_interested_student(student_id, job_id) Values(?,?);";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            if(interestedStudent.getJob_id()==0|| interestedStudent.getStudent_id()==0){
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, interestedStudent.getStudent_id());
+            pstmt.setInt(2, interestedStudent.getJob_id());
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            insertedStudent.put(insertedStudent.toString(),"Inserted");
+            insertedStudent.put("affected Rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+            try{
+                insertedStudent.put("Error", e.toString());
+
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+
+        }
+        return insertedStudent;
+    }
 }
