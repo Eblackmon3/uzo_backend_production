@@ -6,6 +6,8 @@ public class CompanyRep {
     private String position_details;
     private String found_uzo;
     private String uzo_help;
+    private String first_name;
+    private String last_name;
 
     public int getCompany_id() {
         return company_id;
@@ -47,6 +49,22 @@ public class CompanyRep {
 
     public void setPosition_details(String position_details) {
         this.position_details = position_details;
+    }
+
+    public String getFirst_name() {
+        return first_name;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 
     @Override

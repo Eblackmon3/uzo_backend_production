@@ -108,6 +108,27 @@ public class AppController {
     }
 
     /*
+     * api call example https://uzo-web-app.herokuapp.com/insert_company_rep
+     * headers
+     * {
+          "company_id": 6,
+         "position":"CEO,
+         "position_details": "get that cheddar",
+         "found_uzo":"your mom",
+         "uzo_help": "expand business,
+         "last_name":"Blackmon",
+         "first_name":"Eric"
+        }
+     * used a string as to not process the JSONOBJECT on response
+     */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/insert_company_rep")
+    public String insertCompanyRep(@RequestBody CompanyRep insertCompanyRep){
+        return manager.insertCompanyRep(insertCompanyRep).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    /*
      * api call example https://uzo-web-app.herokuapp.com/insert_job
      * header
      * {

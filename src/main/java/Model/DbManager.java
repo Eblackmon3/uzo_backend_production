@@ -231,13 +231,14 @@ public class DbManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_company_reps(company_id,\"position\", position_details,found_uzo,uzo_help) Values(?,?,?,?,?);";
+        String sql="insert into t_company_reps(company_id,\"position\", position_details,found_uzo,uzo_help, first_name" +
+                ",last_name) Values(?,?,?,?,?,?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
 
             if(rep.getCompany_id() ==0|| rep.getFound_uzo()==null||rep.getPosition()==null
-                    || rep.getUzo_help()==null){
+                    || rep.getUzo_help()==null|| rep.getFirst_name()==null || rep.getLast_name()==null){
                 throw new Exception("Missing Parameter");
             }
             //Connect to the database
@@ -253,6 +254,8 @@ public class DbManager {
             pstmt.setString(3,rep.getPosition_details().toLowerCase());
             pstmt.setString(4,rep.getFound_uzo().toLowerCase());
             pstmt.setString(5,rep.getUzo_help());
+            pstmt.setString(6,rep.getFirst_name().toLowerCase());
+            pstmt.setString(7,rep.getLast_name());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
