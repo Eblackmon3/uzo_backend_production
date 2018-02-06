@@ -22,7 +22,7 @@ public class DbManager {
         e
      */
 
-    public JSONObject getStudentById(int id){
+    public JSONObject getStudentById(Student student){
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
