@@ -1678,7 +1678,7 @@ public class DbManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into \uFEFFt_student_job_preferences(student_id, uzo_reason, lift_ability,mobility,) Values(?,?,?,?);";
+        String sql="insert into t_student_job_preferences(student_id, uzo_reason, lift_ability,mobility) Values(?,?,?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
