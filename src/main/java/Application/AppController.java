@@ -566,7 +566,7 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/insert_student_preferences")
     public String setStudentPreferences(@RequestBody StudentJobPreference pref){
-        return manager.insertStudent(pref).toString();
+        return manager.setStudentJobPreference(pref).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
