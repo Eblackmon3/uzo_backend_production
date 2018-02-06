@@ -35,8 +35,8 @@ public class AppController {
 
     /*
      * api call example https://uzo-web-app.herokuapp.com/get_student_by_id
-     * {
-     *  "student_id" :1
+      {
+       "student_id" :1
      * }
      */
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
@@ -571,7 +571,18 @@ public class AppController {
     }
 
 
-
+    /*
+       * api call example https://uzo-web-app.herokuapp.com/get_student_job_preferences
+        {
+         "student_id" :50
+       * }
+       */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value="/get_student_job_preferences")
+    public String getStudentPreference(@RequestBody StudentJobPreference student){
+        JSONObject result= manager.getStudentJobPreference(student);
+        return result.toString();
+    }
 
 
 }

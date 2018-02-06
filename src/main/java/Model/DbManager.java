@@ -1718,4 +1718,54 @@ public class DbManager {
 
     }
 
+    public JSONObject getStudentJobPreference(StudentJobPreference student){
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="select * from t_student_job_preferences where student_id=?";
+        DbConn jdbcObj = new DbConn();
+        String uzo_reason=""; boolean lift_ability=false ;String mobility="";
+        JSONObject studentObj= new JSONObject();
+        try {
+            if(student.getStudent_id()==0){
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations heremobility
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,student.getStudent_id());
+            ResultSet rs= pstmt.executeQuery();
+            while(rs.next()){
+                uzo_reason=rs.getString("uzo_reason");
+                lift_ability=rs.getBoolean("lift_ability");
+                mobility=rs.getString("mobility");
+
+            }
+            rs.close();
+            pstmt.close();
+            conn.close();
+            studentObj.put("uzo_reason",uzo_reason);
+            studentObj.put("lift_ability",lift_ability);
+            studentObj.put("mobility", mobility);
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                studentObj.put("Error", e.toString());
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+        }
+
+        return studentObj;
+
+    }
+
 }
