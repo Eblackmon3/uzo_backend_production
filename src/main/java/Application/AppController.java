@@ -74,7 +74,7 @@ public class AppController {
     public @ResponseBody String getStudentById(Student student){
         JSONObject result= manager.getStudentById(student.getStudent_id());
         System.out.println(result.toString());
-        return student.toString();
+        return result.toString();
     }
 
     /*
