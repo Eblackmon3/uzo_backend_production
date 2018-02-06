@@ -1938,7 +1938,7 @@ public class DbManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="select * from t_student_work_ability where student_id=?";
+        String sql="select * from t_student_work_history where student_id=?";
         DbConn jdbcObj = new DbConn();
         String work_reference_1= ""; String work_reference_2=""; String work_reference_3= "";
         boolean crime=false; String hear_uzo=""; String resume_location="";
