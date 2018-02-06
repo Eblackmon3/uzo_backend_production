@@ -72,7 +72,7 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value="/get_student_by_id")
     public String getStudentById(@RequestBody Student student){
-        JSONObject result= manager.getStudentById(student.getStudent_id());
+        JSONObject result= manager.getStudentById(student);
         return result.toString();
     }
 
