@@ -86,8 +86,22 @@ public class AppController {
         return manager.getCompanyById(getCompany).toString();
     }
 
+    /*
+     * api call example https://uzo-web-app.herokuapp.com/get_company_rep
+     {
+      "company_id":6
+     }
+     * used a string as to not process the JSONOBJECT on response
+     */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value="/get_company_rep")
+    public @ResponseBody String getCompanyRep(@RequestBody CompanyRep getCompanyRep){
+        return manager.getCompanyRep(getCompanyRep).toString();
+    }
 
-      /*
+
+
+    /*
      * api call example https://uzo-web-app.herokuapp.com/insert_company
      * headers
      * {

@@ -226,6 +226,64 @@ public class DbManager {
         return insertedStudent;
     }
 
+    public JSONObject getCompanyRep(CompanyRep company){
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="select * from t_company_reps where company_id=?";
+        DbConn jdbcObj = new DbConn();
+        String position="";
+        String position_details="";
+        String found_uzo="";
+        String uzo_help="";
+        String first_name="";
+        String last_name="";
+        JSONObject companyObj= new JSONObject();
+        try {
+            if(company.getCompany_id()==0){
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, company.getCompany_id());
+            ResultSet rs= pstmt.executeQuery();
+            while(rs.next()){
+                position=rs.getString("\"position\"");
+                position_details=rs.getString("position_details");
+                found_uzo=rs.getString("found_uzo");
+                uzo_help=rs.getString("uzo_help");
+                first_name=rs.getString("first_name");
+                last_name=rs.getString("last_name");
+            }
+            rs.close();
+            pstmt.close();
+            conn.close();
+            companyObj.put("position",position);
+            companyObj.put("position_details",position_details);
+            companyObj.put("found_uzo", found_uzo);
+            companyObj.put("uzo_help",uzo_help);
+            companyObj.put("first_name",first_name);
+            companyObj.put("last_name",last_name);
+
+
+
+        } catch (Exception e) {
+            try {
+                companyObj.put("Error", e.toString());
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+        }
+
+        return companyObj;
+    }
+
     public JSONObject insertCompanyRep(CompanyRep rep){
         JSONObject insertedStudent= new JSONObject();
         ResultSet rsObj = null;
