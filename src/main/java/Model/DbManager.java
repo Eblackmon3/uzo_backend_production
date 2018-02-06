@@ -226,6 +226,51 @@ public class DbManager {
         return insertedStudent;
     }
 
+    public JSONObject insertCompanyRep(CompanyRep rep){
+        JSONObject insertedStudent= new JSONObject();
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="insert into t_company_reps(company_id,\"position\", position_details,found_uzo,uzo_help) Values(?,?,?,?,?);";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+
+            if(rep.getCompany_id() ==0|| rep.getFound_uzo()==null||rep.getPosition()==null
+                    || rep.getUzo_help()==null){
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, rep.getCompany_id());
+            pstmt.setString(2,rep.getPosition().toLowerCase());
+            pstmt.setString(3,rep.getPosition_details().toLowerCase());
+            pstmt.setString(4,rep.getFound_uzo().toLowerCase());
+            pstmt.setString(5,rep.getUzo_help());
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            insertedStudent.put(rep.toString(),"Inserted");
+            insertedStudent.put("affected Rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+            try {
+                insertedStudent.put("Error", e.toString());
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+
+        }
+        return insertedStudent;
+    }
+
 
     public JSONObject insertJob(JobInsert jobInsert){
         JSONObject insertedJob= new JSONObject();
