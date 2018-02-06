@@ -25,7 +25,7 @@ public class DbManager {
         DbConn jdbcObj = new DbConn();
         String email="";String first="";String last="";
         String university=""; String phone_number=""; String address="";
-        String date_of_birth= ""; String major=""; String year="";
+        String date_of_birth= ""; String major=""; int year=0;
         JSONObject studentObj= new JSONObject();
         try {
             if(student.getStudent_id()==0){
@@ -50,7 +50,7 @@ public class DbManager {
                 address=rs.getString("address");
                 date_of_birth=rs.getString("date_of_birth");
                 major=rs.getString("major");
-                year= rs.getString("year");
+                year= rs.getInt("year");
             }
             rs.close();
             pstmt.close();
@@ -98,7 +98,7 @@ public class DbManager {
              */
             if(student.getEmail()==null || student.getPassword()==null ||student.getFirst_name()==null ||
                     student.getLast_name()==null || student.getUniversity()==null || student.getDate_of_birth()==null
-                    ||student.getAddress()==null|| student.getMajor()==null ||student.getYear()==null){
+                    ||student.getAddress()==null|| student.getMajor()==null ||student.getYear()==0){
                 throw new Exception("Missing Parameter");
             }
             //Connect to the database
@@ -118,7 +118,7 @@ public class DbManager {
             pstmt.setString(7,student.getAddress().toLowerCase());
             pstmt.setString(8,student.getDate_of_birth().toLowerCase());
             pstmt.setString(9,student.getMajor());
-            pstmt.setString(10,student.getYear());
+            pstmt.setInt(10,student.getYear());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
@@ -500,7 +500,7 @@ public class DbManager {
         String last_name;
         String university;
         String phone_number=""; String address="";
-        String date_of_birth= ""; String major=""; String year="";
+        String date_of_birth= ""; String major=""; int year=0;
         String sql2= "select * from t_student_info where student_id=?";
         String sql="select * from t_student_job_map where job_id =?";
         DbConn jdbcObj = new DbConn();
@@ -539,7 +539,7 @@ public class DbManager {
                     address=rs.getString("address");
                     date_of_birth=rs.getString("date_of_birth");
                     major=rs.getString("major");
-                    year= rs.getString("year");
+                    year= rs.getInt("year");
                     selectedJobsStudent.put("student_id",student_id);
                     selectedJobsStudent.put("email",email);
                     selectedJobsStudent.put("first_name",first_name);
@@ -731,7 +731,7 @@ public class DbManager {
         String last_name;
         String university;
         String phone_number=""; String address="";
-        String date_of_birth= ""; String major=""; String year="";
+        String date_of_birth= ""; String major=""; int year=0;
         String sql2= "select * from t_student_info where student_id=?";
         String sql="select * from t_job_on_call where job_id =?";
         DbConn jdbcObj = new DbConn();
@@ -769,7 +769,7 @@ public class DbManager {
                     address=rs.getString("address");
                     date_of_birth=rs.getString("date_of_birth");
                     major=rs.getString("major");
-                    year= rs.getString("year");
+                    year= rs.getInt("year");
 
                     selectedJobsStudent.put("student_id",student_id);
                     selectedJobsStudent.put("email",email);
@@ -827,7 +827,7 @@ public class DbManager {
         String last_name;
         String university;
         String phone_number=""; String address="";
-        String date_of_birth= ""; String major=""; String year="";
+        String date_of_birth= ""; String major=""; int year=0;
         String sql2= "select * from t_student_info where student_id=?";
         String sql="select * from t_student_job_map where company_id =?";
         DbConn jdbcObj = new DbConn();
@@ -865,7 +865,7 @@ public class DbManager {
                     address=rs.getString("address");
                     date_of_birth=rs.getString("date_of_birth");
                     major=rs.getString("major");
-                    year= rs.getString("year");
+                    year= rs.getInt("year");
 
                     selectedJobsStudent.put("student_id",student_id);
                     selectedJobsStudent.put("email",email);
@@ -1603,7 +1603,7 @@ public class DbManager {
         String last_name;
         String university;
         String phone_number=""; String address="";
-        String date_of_birth= ""; String major=""; String year="";
+        String date_of_birth= ""; String major=""; int year=0;
         String sql2= "select * from t_student_info where student_id=?";
         String sql="select * from t_interested_students_jobs where job_id =?";
         DbConn jdbcObj = new DbConn();
@@ -1642,7 +1642,7 @@ public class DbManager {
                     address=rs.getString("address");
                     date_of_birth=rs.getString("date_of_birth");
                     major=rs.getString("major");
-                    year= rs.getString("year");
+                    year= rs.getInt("year");
                     selectedJobsStudent.put("student_id",student_id);
                     selectedJobsStudent.put("email",email);
                     selectedJobsStudent.put("first_name",first_name);

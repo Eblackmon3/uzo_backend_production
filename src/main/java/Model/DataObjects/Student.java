@@ -13,7 +13,7 @@ public class Student {
     private String address;
     private String date_of_birth;
     private String major;
-    private String year;
+    private int year;
 
 
     public String getEmail() {
@@ -100,7 +100,7 @@ public class Student {
         return major;
     }
 
-    public String getYear() {
+    public int getYear() {
         return year;
     }
 
@@ -116,7 +116,7 @@ public class Student {
         this.major = major;
     }
 
-    public void setYear(String year) {
+    public void setYear(int year) {
         this.year = year;
     }
 

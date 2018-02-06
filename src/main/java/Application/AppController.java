@@ -55,7 +55,11 @@ public class AppController {
          "first_name": "Stephen",
          "last_name":"Okala",
          "university":"Georgia Tech",
-         "phone_numnber":"571-344-9998"
+         "phone_numnber":"571-344-9998",
+          "address": "13464 gray valley ct",
+         "date_of_birth":"1/27/1993",
+         "major":" "Computer Science",
+         "year":"1"
         }
      * used a string as to not process the JSONOBJECT on response
      */
