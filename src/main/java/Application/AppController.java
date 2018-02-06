@@ -100,11 +100,11 @@ public class AppController {
 
 
     /*
-     * api call example https://uzo-web-app.herokuapp.com/get_company_by_id?companyid=001
+     * api call example https://uzo-web-app.herokuapp.com/get_company_by_id/
      * used a string as to not process the JSONOBJECT on response
      */
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
-    @RequestMapping(value="get_company_by_id")
+    @PostMapping(value="/get_company_by_id")
     public @ResponseBody String getCompanyById(@RequestBody Company getCompany){
         return manager.getCompanyById(getCompany).toString();
     }
