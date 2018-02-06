@@ -1774,7 +1774,7 @@ public class DbManager {
         Connection conn = null;
         PreparedStatement pstmt = null;
         String sql = "insert into t_student_work_ability(student_id, bar, cashier,cleaning,data_entry,desk_assistant" +
-                ",﻿driving_delivery,﻿event_security,﻿setup_breakdown,﻿food_service,﻿moving) Values(?,?,?,?,?  ,?, " +
+                ",driving_delivery,event_security,setup_breakdown,food_service,moving) Values(?,?,?,?,?  ,?," +
                 "?,?,?,?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows = 0;
