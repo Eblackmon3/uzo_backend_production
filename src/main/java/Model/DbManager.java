@@ -40,7 +40,7 @@ public class DbManager {
             System.out.println(jdbcObj.printDbStatus());
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1,id);
+            pstmt.setInt(1,student.getStudent_id());
             ResultSet rs= pstmt.executeQuery();
             while(rs.next()){
                 email=rs.getString("email");
