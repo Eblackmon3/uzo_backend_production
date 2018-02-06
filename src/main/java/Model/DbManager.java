@@ -88,14 +88,6 @@ public class DbManager {
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
-
-            /*
-                private String phone_number;
-    private String address;
-    private String date_of_birth;
-    private String major;
-    private String year;
-             */
             if(student.getEmail()==null || student.getPassword()==null ||student.getFirst_name()==null ||
                     student.getLast_name()==null || student.getUniversity()==null || student.getDate_of_birth()==null
                     ||student.getAddress()==null|| student.getMajor()==null ||student.getYear()==0){
@@ -1679,6 +1671,51 @@ public class DbManager {
 
         }
         return selectedStudents;
+    }
+
+    public JSONObject setStudentJobPreference(StudentJobPreference studentJobPreference){
+        JSONObject insertedStudent= new JSONObject();
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="insert into \uFEFFt_student_job_preferences(student_id, uzo_reason, lift_ability,mobility,) Values(?,?,?,?);";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            if(studentJobPreference.getStudent_id()==0 || studentJobPreference.getMobility()==null |
+                    studentJobPreference.getUzo_reason()==null){
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, studentJobPreference.getStudent_id());
+            pstmt.setString(2,studentJobPreference.getUzo_reason());
+            pstmt.setBoolean(3,studentJobPreference.isLift_ability());
+            pstmt.setString(4,studentJobPreference.getMobility().toLowerCase());
+
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            insertedStudent.put(studentJobPreference.toString(),"Inserted");
+            insertedStudent.put("affected Rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+            try {
+                insertedStudent.put("Error", e.toString());
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+
+        }
+        return insertedStudent;
+
     }
 
 }

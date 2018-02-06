@@ -551,8 +551,24 @@ public class AppController {
         return manager.getJobInterestedList(job).toString();
     }
 
+    /*
+    * api call example https://uzo-web-app.herokuapp.com/insert_student_preferences
+    * headers
+    * {
+        "student_id": 50,
+        "uzo_reason": "For the racks",
+        "lift_ability": true",
+        "mobility":"Bike",
 
-
+       }
+    * used a string as to not process the JSONOBJECT on response
+    */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/insert_student_preferences")
+    public String setStudentPreferences(@RequestBody StudentJobPreference pref){
+        return manager.insertStudent(pref).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 
 
 

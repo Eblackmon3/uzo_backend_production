@@ -123,7 +123,7 @@ public class Student {
     @Override
     public String toString() {
         return "Student Email: "+ email+ " Student Name:"+ first_name+
-                " "+ last_name+ "Student id "+ student_id;
+                " "+ last_name+ " Student id "+ student_id;
     }
 
     @Override
