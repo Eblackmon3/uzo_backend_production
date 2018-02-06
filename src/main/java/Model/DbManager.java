@@ -24,7 +24,8 @@ public class DbManager {
         String sql="select * from t_student_info where student_id=?";
         DbConn jdbcObj = new DbConn();
         String email="";String first="";String last="";
-        String university=""; String resume_location=""; String phone_number="";
+        String university=""; String phone_number=""; String address="";
+        String date_of_birth= ""; String major=""; String year="";
         JSONObject studentObj= new JSONObject();
         try {
             if(student.getStudent_id()==0){
@@ -45,8 +46,11 @@ public class DbManager {
                 first=rs.getString("first_name");
                 last=rs.getString("last_name");
                 university=rs.getString("university");
-                resume_location=rs.getString("resume_location");
                 phone_number= rs.getString("phone_number");
+                address=rs.getString("address");
+                date_of_birth=rs.getString("date_of_birth");
+                major=rs.getString("major");
+                year= rs.getString("year");
             }
             rs.close();
             pstmt.close();
@@ -55,8 +59,11 @@ public class DbManager {
             studentObj.put("first_name",first);
             studentObj.put("last_name", last);
             studentObj.put("university",university);
-            studentObj.put("resume_location",resume_location);
             studentObj.put("phone_number",phone_number);
+            studentObj.put("address",address);
+            studentObj.put("date_of_birth", date_of_birth);
+            studentObj.put("major",major);
+            studentObj.put("year",year);
 
 
         } catch (Exception e) {
@@ -77,12 +84,21 @@ public class DbManager {
         Connection conn = null;
         PreparedStatement pstmt = null;
         String sql="insert into t_student_info(email, password, first_name, last_name, university," +
-                "phone_number) Values(?,?,?, ?,?,?);";
+                "phone_number, address, date_of_birth, major, year) Values(?,?,?, ?,?,?, ?,?,?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
+
+            /*
+                private String phone_number;
+    private String address;
+    private String date_of_birth;
+    private String major;
+    private String year;
+             */
             if(student.getEmail()==null || student.getPassword()==null ||student.getFirst_name()==null ||
-                    student.getLast_name()==null || student.getUniversity()==null){
+                    student.getLast_name()==null || student.getUniversity()==null || student.getDate_of_birth()==null
+                    ||student.getAddress()==null|| student.getMajor()==null ||student.getYear()==null){
                 throw new Exception("Missing Parameter");
             }
             //Connect to the database
@@ -99,6 +115,10 @@ public class DbManager {
             pstmt.setString(4,student.getLast_name().toLowerCase());
             pstmt.setString(5,student.getUniversity());
             pstmt.setString(6,student.getPhone_number());
+            pstmt.setString(7,student.getAddress().toLowerCase());
+            pstmt.setString(8,student.getDate_of_birth().toLowerCase());
+            pstmt.setString(9,student.getMajor());
+            pstmt.setString(10,student.getYear());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
@@ -479,7 +499,8 @@ public class DbManager {
         String first_name;
         String last_name;
         String university;
-        String resume_location;
+        String phone_number=""; String address="";
+        String date_of_birth= ""; String major=""; String year="";
         String sql2= "select * from t_student_info where student_id=?";
         String sql="select * from t_student_job_map where job_id =?";
         DbConn jdbcObj = new DbConn();
@@ -514,13 +535,21 @@ public class DbManager {
                     first_name=rs.getString("first_name");
                     last_name=rs.getString("last_name");
                     university=rs.getString("university");
-                    resume_location=rs.getString("resume_location");
+                    phone_number= rs.getString("phone_number");
+                    address=rs.getString("address");
+                    date_of_birth=rs.getString("date_of_birth");
+                    major=rs.getString("major");
+                    year= rs.getString("year");
                     selectedJobsStudent.put("student_id",student_id);
                     selectedJobsStudent.put("email",email);
                     selectedJobsStudent.put("first_name",first_name);
                     selectedJobsStudent.put("last_name",last_name);
                     selectedJobsStudent.put("university",university);
-                    selectedJobsStudent.put("resume_location",resume_location);
+                    selectedJobsStudent.put("phone_number",phone_number);
+                    selectedJobsStudent.put("address",address);
+                    selectedJobsStudent.put("date_of_birth",date_of_birth);
+                    selectedJobsStudent.put("major",major);
+                    selectedJobsStudent.put("year",year);
                     selectedStudents.put(selectedJobsStudent);
                     selectedJobsStudent=new JSONObject();
 
@@ -701,7 +730,8 @@ public class DbManager {
         String first_name;
         String last_name;
         String university;
-        String resume_location;
+        String phone_number=""; String address="";
+        String date_of_birth= ""; String major=""; String year="";
         String sql2= "select * from t_student_info where student_id=?";
         String sql="select * from t_job_on_call where job_id =?";
         DbConn jdbcObj = new DbConn();
@@ -735,14 +765,23 @@ public class DbManager {
                     first_name=rs.getString("first_name");
                     last_name=rs.getString("last_name");
                     university=rs.getString("university");
-                    resume_location=rs.getString("resume_location");
+                    phone_number= rs.getString("phone_number");
+                    address=rs.getString("address");
+                    date_of_birth=rs.getString("date_of_birth");
+                    major=rs.getString("major");
+                    year= rs.getString("year");
 
                     selectedJobsStudent.put("student_id",student_id);
                     selectedJobsStudent.put("email",email);
                     selectedJobsStudent.put("first_name",first_name);
                     selectedJobsStudent.put("last_name",last_name);
                     selectedJobsStudent.put("university",university);
-                    selectedJobsStudent.put("resume_location",resume_location);
+                    selectedJobsStudent.put("phone_number",phone_number);
+                    selectedJobsStudent.put("address",address);
+                    selectedJobsStudent.put("date_of_birth",date_of_birth);
+                    selectedJobsStudent.put("major",major);
+                    selectedJobsStudent.put("year",year);
+
                     selectedStudents.put(selectedJobsStudent);
                     selectedJobsStudent= new JSONObject();
 
@@ -787,7 +826,8 @@ public class DbManager {
         String first_name;
         String last_name;
         String university;
-        String resume_location;
+        String phone_number=""; String address="";
+        String date_of_birth= ""; String major=""; String year="";
         String sql2= "select * from t_student_info where student_id=?";
         String sql="select * from t_student_job_map where company_id =?";
         DbConn jdbcObj = new DbConn();
@@ -821,14 +861,22 @@ public class DbManager {
                     first_name=rs.getString("first_name");
                     last_name=rs.getString("last_name");
                     university=rs.getString("university");
-                    resume_location=rs.getString("resume_location");
+                    phone_number= rs.getString("phone_number");
+                    address=rs.getString("address");
+                    date_of_birth=rs.getString("date_of_birth");
+                    major=rs.getString("major");
+                    year= rs.getString("year");
 
                     selectedJobsStudent.put("student_id",student_id);
                     selectedJobsStudent.put("email",email);
                     selectedJobsStudent.put("first_name",first_name);
                     selectedJobsStudent.put("last_name",last_name);
                     selectedJobsStudent.put("university",university);
-                    selectedJobsStudent.put("resume_location",resume_location);
+                    selectedJobsStudent.put("phone_number",phone_number);
+                    selectedJobsStudent.put("address",address);
+                    selectedJobsStudent.put("date_of_birth",date_of_birth);
+                    selectedJobsStudent.put("major",major);
+                    selectedJobsStudent.put("year",year);
                     selectedStudents.put(selectedJobsStudent);
                     selectedJobsStudent=new JSONObject();
 
@@ -1178,7 +1226,7 @@ public class DbManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="update t_student_info set resume_location=? where student_id=?";
+        String sql="update t_student_work_history set resume_location=? where student_id=?";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
@@ -1554,7 +1602,8 @@ public class DbManager {
         String first_name;
         String last_name;
         String university;
-        String resume_location;
+        String phone_number=""; String address="";
+        String date_of_birth= ""; String major=""; String year="";
         String sql2= "select * from t_student_info where student_id=?";
         String sql="select * from t_interested_students_jobs where job_id =?";
         DbConn jdbcObj = new DbConn();
@@ -1589,13 +1638,21 @@ public class DbManager {
                     first_name=rs.getString("first_name");
                     last_name=rs.getString("last_name");
                     university=rs.getString("university");
-                    resume_location=rs.getString("resume_location");
+                    phone_number= rs.getString("phone_number");
+                    address=rs.getString("address");
+                    date_of_birth=rs.getString("date_of_birth");
+                    major=rs.getString("major");
+                    year= rs.getString("year");
                     selectedJobsStudent.put("student_id",student_id);
                     selectedJobsStudent.put("email",email);
                     selectedJobsStudent.put("first_name",first_name);
                     selectedJobsStudent.put("last_name",last_name);
                     selectedJobsStudent.put("university",university);
-                    selectedJobsStudent.put("resume_location",resume_location);
+                    selectedJobsStudent.put("phone_number",phone_number);
+                    selectedJobsStudent.put("address",address);
+                    selectedJobsStudent.put("date_of_birth",date_of_birth);
+                    selectedJobsStudent.put("major",major);
+                    selectedJobsStudent.put("year",year);
                     selectedStudents.put(selectedJobsStudent);
                     selectedJobsStudent=new JSONObject();
 

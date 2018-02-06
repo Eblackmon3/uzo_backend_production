@@ -5,12 +5,15 @@ public class Student {
     private String email;
     private String password;
     private String first_name;
-    private String resume_location;
     private String last_name;
     private String university;
     private int total_rating;
     private int times_rated;
     private String phone_number;
+    private String address;
+    private String date_of_birth;
+    private String major;
+    private String year;
 
 
     public String getEmail() {
@@ -53,14 +56,6 @@ public class Student {
         this.first_name = first_name;
     }
 
-    public String getResume_location() {
-        return resume_location;
-    }
-
-    public void setResume_location(String resume_location) {
-        this.resume_location = resume_location;
-    }
-
     public String getUniversity() {
         return university;
     }
@@ -91,6 +86,38 @@ public class Student {
 
     public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getDate_of_birth() {
+        return date_of_birth;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setDate_of_birth(String date_of_birth) {
+        this.date_of_birth = date_of_birth;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
     }
 
     @Override
