@@ -64,13 +64,16 @@ public class AppController {
     }
 
     /*
-     * api call example https://uzo-web-app.herokuapp.com/get_student_by_id?studentid=002
+     * api call example https://uzo-web-app.herokuapp.com/get_student_by_id
+     * {
+     *  "student_id"= 1
+     * }
      */
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value="get_student_by_id")
-    public @ResponseBody String getStudentById(int  studentid){
-        JSONObject student= manager.getStudentById(studentid);
-        System.out.println(student.toString());
+    public @ResponseBody String getStudentById(Student student){
+        JSONObject result= manager.getStudentById(student.getStudent_id());
+        System.out.println(result.toString());
         return student.toString();
     }
 
