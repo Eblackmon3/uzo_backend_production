@@ -1,19 +1,13 @@
 package Model.DataObjects;
 
-import java.sql.Date;
-import java.sql.Time;
+public class JobInsert {
 
-
-public class Job {
-    private int job_id;
     private boolean completed;
-    private Date date;
+    private String date;
     private String rate;
     private String dress_code;
     private double duration;
     private boolean open;
-    private Time clock_out;
-    private Time clock_in;
     private String job_title;
     private int company_id;
     private int time;
@@ -21,13 +15,12 @@ public class Job {
     private int coCaptain_id;
     private String description;
 
-
-    public int getJob_id() {
-        return job_id;
+    public int getCompany_id() {
+        return company_id;
     }
 
-    public void setJob_id(int job_id) {
-        this.job_id = job_id;
+    public void setCompany_id(int company_id) {
+        this.company_id = company_id;
     }
 
     public String getJob_title() {
@@ -46,11 +39,11 @@ public class Job {
         this.completed = completed;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -84,30 +77,6 @@ public class Job {
 
     public void setOpen(boolean open) {
         this.open = open;
-    }
-
-    public Time getClock_in() {
-        return clock_in;
-    }
-
-    public void setClock_in(Time clock_in) {
-        this.clock_in = clock_in;
-    }
-
-    public Time getClock_out() {
-        return clock_out;
-    }
-
-    public void setClock_out(Time clock_out) {
-        this.clock_out = clock_out;
-    }
-
-    public void setCompany_id(int company_id) {
-        this.company_id = company_id;
-    }
-
-    public int getCompany_id() {
-        return company_id;
     }
 
     public int getTime() {
@@ -144,9 +113,8 @@ public class Job {
 
     @Override
     public boolean equals(Object obj) {
-        Job job2= (Job) obj;
-
-        if(job2.getJob_id()==job_id){
+        JobInsert job=(JobInsert)obj;
+        if(job.getJob_title().equals(job_title)&&job.getCompany_id()==company_id){
             return true;
         }
         return false;
@@ -154,6 +122,7 @@ public class Job {
 
     @Override
     public String toString() {
-        return "Job Title:"+ job_title+ " Job ID: "+ job_id;
+        return "Job Title:"+ job_title;
     }
 }
+

@@ -182,13 +182,13 @@ public class DbManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_company_info(email, address, website_link,company_name, password) Values(?,?,?, ?, ?);";
+        String sql="insert into t_company_info(email, address, website_link,company_name, password, description) Values(?,?,?, ?, ?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
 
                 if(company.getEmail()==null|| company.getAddress()==null||company.getWebsite_link()==null
-                        || company.getCompany_name()==null||company.getPassword()==null){
+                        || company.getCompany_name()==null||company.getPassword()==null ||company.getDescription()==null){
                     throw new Exception("Missing Parameter");
                 }
             //Connect to the database
@@ -204,6 +204,7 @@ public class DbManager {
             pstmt.setString(3,company.getWebsite_link().toLowerCase());
             pstmt.setString(4,company.getCompany_name().toLowerCase());
             pstmt.setString(5,company.getPassword());
+            pstmt.setString(6, company.getDescription());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
@@ -223,18 +224,18 @@ public class DbManager {
     }
 
 
-    public JSONObject insertJob(Company.JobInsert jobInsert){
+    public JSONObject insertJob(JobInsert jobInsert){
         JSONObject insertedJob= new JSONObject();
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_job_info(completed, date,rate,dress_code,duration,open,job_title, time, company_id) " +
-                "Values(?,?, ?, ?,?,?,?,?,?);";
+        String sql="insert into t_job_info(completed, date,rate,dress_code,duration,open,job_title, time, company_id, description) " +
+                "Values(?,?, ?, ?,?,?,?,?,?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
             if(jobInsert.getDate()==null || jobInsert.getRate()==null || jobInsert.getDress_code()==null
-            ||  jobInsert.getJob_title()==null|| jobInsert.getCompany_id()==0){
+            ||  jobInsert.getJob_title()==null|| jobInsert.getCompany_id()==0 || jobInsert.getDescription()==null){
                 throw new Exception("Missing Parameter");
             }
 
@@ -255,6 +256,7 @@ public class DbManager {
             pstmt.setString(7,jobInsert.getJob_title().toLowerCase());
             pstmt.setInt(8,jobInsert.getTime());
             pstmt.setInt(9,jobInsert.getCompany_id());
+            pstmt.setString(10,jobInsert.getDescription());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
@@ -394,6 +396,7 @@ public class DbManager {
         String job_title;
         int time;
         int company_id;
+        String description;
         String sql2= "select * from t_job_info where job_id=?";
         String sql="select * from t_student_job_map where student_id =?";
         DbConn jdbcObj = new DbConn();
@@ -434,6 +437,7 @@ public class DbManager {
                     job_title= rs.getString("job_title");
                     company_id=rs.getInt("company_id");
                     time=rs.getInt("time");
+                    description=rs.getString("description");
                     selectedStudentJob.put("job_id",job_id);
                     selectedStudentJob.put("completed",completed);
                     selectedStudentJob.put("date",date);
@@ -446,6 +450,7 @@ public class DbManager {
                     selectedStudentJob.put("job_title", job_title);
                     selectedStudentJob.put("company_id",company_id);
                     selectedStudentJob.put("time", time);
+                    selectedStudentJob.put("description", description);
                     selectedJobs.put(selectedStudentJob);
                     selectedStudentJob=new JSONObject();
                 }
@@ -628,6 +633,7 @@ public class DbManager {
         String job_title;
         int time;
         int company_id;
+        String description;
         String sql2= "select * from t_job_info where job_id=?";
         String sql="select * from t_job_on_call where student_id =?";
         DbConn jdbcObj = new DbConn();
@@ -667,6 +673,7 @@ public class DbManager {
                     job_title= rs.getString("job_title");
                     company_id=rs.getInt("company_id");
                     time=rs.getInt("time");
+                    description= rs.getString("description");
                     selectedStudentJob.put("job_id",job_id);
                     selectedStudentJob.put("completed",completed);
                     selectedStudentJob.put("date",date);
@@ -678,6 +685,7 @@ public class DbManager {
                     selectedStudentJob.put("clock_in", clock_in);
                     selectedStudentJob.put("job_title", job_title);
                     selectedStudentJob.put("company_id",company_id);
+                    selectedStudentJob.put("description",description);
                     selectedStudentJob.put("time", time);
                     selectedJobs.put(selectedStudentJob);
                     selectedStudentJob= new JSONObject();
@@ -1147,6 +1155,7 @@ public class DbManager {
         int company_id;
         int captain;
         int co_captain;
+        String description;
         DbConn jdbcObj = new DbConn();
         String sql= "select * from t_job_info where job_id=?";
         try {
@@ -1179,6 +1188,7 @@ public class DbManager {
                 time=rs.getInt("time");
                 captain=rs.getInt("captain");
                 co_captain=rs.getInt("co_captain");
+                description= rs.getString("description");
                 selectedStudentJob.put("job_id",job_id);
                 selectedStudentJob.put("completed",completed);
                 selectedStudentJob.put("date",date);
@@ -1193,6 +1203,7 @@ public class DbManager {
                 selectedStudentJob.put("time", time);
                 selectedStudentJob.put("captain", captain);
                 selectedStudentJob.put("co_captain",co_captain);
+                selectedStudentJob.put("description",description);
             }
             pstmt.close();
             conn.close();

@@ -95,7 +95,8 @@ public class AppController {
          "address": "2700 gray valley court houston tx",
          "website_link": "uzo.com",
          "company_name": "UZO",
-         "password":"281330800fB"
+         "password":"281330800fB",
+         "description": "chillen"
         }
      * used a string as to not process the JSONOBJECT on response
      */
@@ -118,12 +119,13 @@ public class AppController {
          "open": true,
          "job_title": "Janitor",
          "time":2300,
-         "company_id":1
+         "company_id":1,
+         "description":"chillen"
 }
      */
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/insert_job")
-    public String insertJob(@RequestBody Company.JobInsert insertJob){
+    public String insertJob(@RequestBody JobInsert insertJob){
         return manager.insertJob(insertJob).toString();
     }
 
