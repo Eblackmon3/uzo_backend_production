@@ -609,5 +609,19 @@ public class AppController {
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    /*
+    * api call example https://uzo-web-app.herokuapp.com/get_student_work_ability
+     {
+      "student_id" :50
+     }
+    */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value="/get_student_work_ability")
+    public String getStudentPreference(@RequestBody StudentWorkAbility student){
+        JSONObject result= manager.getStudentWorkAbility(student);
+        return result.toString();
+    }
+
+
 
 }
