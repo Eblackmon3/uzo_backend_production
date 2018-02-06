@@ -105,10 +105,8 @@ public class AppController {
      */
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @RequestMapping(value="get_company_by_id")
-    public @ResponseBody String getCompanyById(@RequestParam("companyid") int  companyid){
-        JSONObject company= manager.getCompanyById(companyid);
-        System.out.println(company.toString());
-        return company.toString();
+    public @ResponseBody String getCompanyById(@RequestBody Company getCompany){
+        return manager.getCompanyById(getCompany).toString();
     }
 
 

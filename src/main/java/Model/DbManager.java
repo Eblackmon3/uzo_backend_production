@@ -32,6 +32,9 @@ public class DbManager {
         String university=""; String resume_location=""; String phone_number="";
         JSONObject studentObj= new JSONObject();
         try {
+            if(student.getStudent_id()==0){
+                throw new Exception("Missing Parameter");
+            }
             //Connect to the database
             DataSource dataSource = jdbcObj.setUpPool();
             System.out.println(jdbcObj.printDbStatus());
@@ -119,7 +122,7 @@ public class DbManager {
         return insertedStudent;
     }
 
-    public JSONObject getCompanyById(int id){
+    public JSONObject getCompanyById(Company company){
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -129,6 +132,9 @@ public class DbManager {
         String company_name="";
         JSONObject companyObj= new JSONObject();
         try {
+            if(company.getCompany_id()==0){
+                throw new Exception("Missing Parameter");
+            }
             //Connect to the database
             DataSource dataSource = jdbcObj.setUpPool();
             System.out.println(jdbcObj.printDbStatus());
@@ -137,7 +143,7 @@ public class DbManager {
             System.out.println(jdbcObj.printDbStatus());
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1,id);
+            pstmt.setInt(1, company.getCompany_id());
             ResultSet rs= pstmt.executeQuery();
             while(rs.next()){
                 email=rs.getString("email");
