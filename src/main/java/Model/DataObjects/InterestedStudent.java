@@ -1,6 +1,6 @@
-package Model;
+package Model.DataObjects;
 
-public class JobOnCall {
+public class InterestedStudent {
     private int student_id;
     private int job_id;
 
@@ -22,6 +22,8 @@ public class JobOnCall {
 
     @Override
     public String toString() {
-       return "Student:"+student_id+" is on call for job:"+job_id;
+        return "Student:"+student_id+" is interested in job:"+job_id;
     }
+
+
 }

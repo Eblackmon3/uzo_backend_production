@@ -1,4 +1,4 @@
-package Model;
+package Model.DataObjects;
 
 public class StudentAvailabilitySlot {
     private String day;

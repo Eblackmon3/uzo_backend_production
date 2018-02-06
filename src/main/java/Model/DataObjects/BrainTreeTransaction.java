@@ -1,5 +1,6 @@
-package Model;
+package Model.DataObjects;
 
+import Model.BrainTreeClient;
 import com.braintreegateway.CreditCard;
 import com.braintreegateway.Customer;
 import com.braintreegateway.Transaction;

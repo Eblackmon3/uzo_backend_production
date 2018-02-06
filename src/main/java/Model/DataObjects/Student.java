@@ -1,4 +1,4 @@
-package Model;
+package Model.DataObjects;
 
 public class Student {
     private int student_id;

@@ -1,11 +1,8 @@
 package AmazonController;
 
 import java.io.*;
-import java.net.URL;
 
-import Model.Student;
-import com.amazonaws.AmazonClientException;
-import com.amazonaws.AmazonServiceException;
+import Model.DataObjects.Student;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
@@ -13,11 +10,9 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.*;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 

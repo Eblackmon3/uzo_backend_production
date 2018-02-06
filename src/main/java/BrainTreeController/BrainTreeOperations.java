@@ -1,13 +1,11 @@
 package BrainTreeController;
 
 import Model.BrainTreeClient;
-import Model.BrainTreeTransaction;
+import Model.DataObjects.BrainTreeTransaction;
 import Model.TransactionClient;
 import com.braintreegateway.*;
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonAnyFormatVisitor;
 import org.json.JSONObject;
 
-import javax.naming.NamingException;
 import java.math.BigDecimal;
 
 public class BrainTreeOperations {

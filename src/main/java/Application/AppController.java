@@ -3,44 +3,14 @@ package Application;
 import AmazonController.s3Operations;
 import BrainTreeController.BrainTreeOperations;
 import Model.*;
-import com.braintreegateway.BraintreeGateway;
-import com.braintreegateway.Environment;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import Model.DataObjects.*;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.ErrorAttributes;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
-import java.util.Arrays;
-
-import com.braintreegateway.BraintreeGateway;
-import com.braintreegateway.Result;
 import com.braintreegateway.Transaction;
 import com.braintreegateway.Transaction.Status;
-import com.braintreegateway.TransactionRequest;
-import com.braintreegateway.CreditCard;
-import com.braintreegateway.Customer;
-import com.braintreegateway.ValidationError;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
-import javax.sql.DataSource;
-
-import org.apache.commons.dbcp.ConnectionFactory;
-import org.apache.commons.dbcp.DriverManagerConnectionFactory;
-import org.apache.commons.dbcp.PoolableConnectionFactory;
-import org.apache.commons.dbcp.PoolingDataSource;
-import org.apache.commons.pool.impl.GenericObjectPool;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.sql.DataSource;
 
 @RestController
 public class AppController {
@@ -66,7 +36,7 @@ public class AppController {
     /*
      * api call example https://uzo-web-app.herokuapp.com/get_student_by_id
      * {
-     *  "student_id"= 1
+     *  "student_id" :1
      * }
      */
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
@@ -100,7 +70,10 @@ public class AppController {
 
 
     /*
-     * api call example https://uzo-web-app.herokuapp.com/get_company_by_id/
+     * api call example https://uzo-web-app.herokuapp.com/get_company_by_id
+     * {
+     * company_id:22
+     * }
      * used a string as to not process the JSONOBJECT on response
      */
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
@@ -146,7 +119,7 @@ public class AppController {
      */
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/insert_job")
-    public String insertJob(@RequestBody JobInsert insertJob){
+    public String insertJob(@RequestBody Company.JobInsert insertJob){
         return manager.insertJob(insertJob).toString();
     }
 

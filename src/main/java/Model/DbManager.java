@@ -2,20 +2,15 @@ package Model;
 
 
 import AmazonController.s3Operations;
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonAnyFormatVisitor;
-import org.joda.time.DateTime;
+import Model.DataObjects.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.sql.DataSource;
-import java.awt.print.Book;
 import java.sql.*;
 import org.apache.commons.lang3.StringEscapeUtils;
 import java.util.ArrayList;
-
-
-import static AmazonController.s3Operations.uploadFile;
 
 public class DbManager {
     /*
@@ -216,7 +211,7 @@ public class DbManager {
     }
 
 
-    public JSONObject insertJob(JobInsert jobInsert){
+    public JSONObject insertJob(Company.JobInsert jobInsert){
         JSONObject insertedJob= new JSONObject();
         ResultSet rsObj = null;
         Connection conn = null;
@@ -303,6 +298,7 @@ public class DbManager {
             pstmt.setInt(2, studJob.getCompany_id());
             pstmt.setInt(3,studJob.getJob_id());
             affectedRows = pstmt.executeUpdate();
+            rs.close();
             pstmt.close();
             conn.close();
             insertedStudentJob.put(studJob.toString(),"Inserted");
@@ -842,6 +838,7 @@ public class DbManager {
 
             pstmt.close();
             conn.close();
+            rs.close();
 
         }catch(Exception e){
             e.printStackTrace();
@@ -942,6 +939,7 @@ public class DbManager {
 
             pstmt.close();
             conn.close();
+            rs.close();
             updateUniversity.put("Student:"+student.getStudent_id(), "Rating updated");
             updateUniversity.put("affected Rows",affectedRows);
 
@@ -1158,6 +1156,7 @@ public class DbManager {
             }
             pstmt.close();
             conn.close();
+            rs.close();
 
         }catch( Exception e){
             e.printStackTrace();
@@ -1606,6 +1605,8 @@ public class DbManager {
 
             pstmt.close();
             conn.close();
+            rs.close();
+
 
 
         }catch(Exception e){
