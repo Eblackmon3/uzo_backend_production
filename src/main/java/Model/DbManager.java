@@ -1932,4 +1932,61 @@ public class DbManager {
         return insertedStudent;
     }
 
+
+
+    public JSONObject getStudentWorkHistory(StudentWorkHistory studentWorkHistory) {
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="select * from t_student_work_ability where student_id=?";
+        DbConn jdbcObj = new DbConn();
+        String work_reference_1= ""; String work_reference_2=""; String work_reference_3= "";
+        boolean crime=false; String hear_uzo=""; String resume_location="";
+
+        JSONObject studentObj= new JSONObject();
+        try {
+            if(studentWorkHistory.getStudent_id()==0){
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,studentWorkHistory.getStudent_id());
+            ResultSet rs= pstmt.executeQuery();
+            while(rs.next()){
+                work_reference_1=rs.getString("work_reference_1");
+                work_reference_2=rs.getString("work_reference_2");
+                work_reference_3=rs.getString("work_reference_3");
+                crime=rs.getBoolean("crime");
+                hear_uzo=rs.getString("hear_uzo");
+                resume_location=rs.getString("resume_location");
+            }
+            rs.close();
+            pstmt.close();
+            conn.close();
+            studentObj.put("work_reference_1",work_reference_1);
+            studentObj.put("work_reference_2",work_reference_2);
+            studentObj.put("work_reference_3", work_reference_3);
+            studentObj.put("crime",crime);
+            studentObj.put("hear_uzo",hear_uzo);
+            studentObj.put("resume_location",resume_location);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                studentObj.put("Error", e.toString());
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+        }
+
+        return studentObj;
     }
+
+}

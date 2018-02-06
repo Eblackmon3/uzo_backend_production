@@ -643,6 +643,20 @@ public class AppController {
     }
 
 
+    /*
+    * api call example https://uzo-web-app.herokuapp.com/get_student_work_history
+     {
+      "student_id" :50
+     }
+    */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value="/get_student_work_history")
+    public String getStudentPreference(@RequestBody StudentWorkHistory student){
+        JSONObject result= manager.getStudentWorkHistory(student);
+        return result.toString();
+    }
+
+
 
 
 }
