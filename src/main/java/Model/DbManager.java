@@ -135,7 +135,7 @@ public class DbManager {
         PreparedStatement pstmt = null;
         String sql="select * from t_company_info where company_id=?";
         DbConn jdbcObj = new DbConn();
-        String email="";String address="";String website_link="";
+        String email="";String address="";String website_link=""; String description="";
         String company_name="";
         JSONObject companyObj= new JSONObject();
         try {
@@ -157,6 +157,7 @@ public class DbManager {
                 address=rs.getString("address");
                 website_link=rs.getString("website_link");
                 company_name=rs.getString("company_name");
+                description=rs.getString("description");
             }
             rs.close();
             pstmt.close();
@@ -165,6 +166,8 @@ public class DbManager {
             companyObj.put("company_name",company_name);
             companyObj.put("website_link", website_link);
             companyObj.put("address",address);
+            companyObj.put("description",description);
+
 
         } catch (Exception e) {
             try {

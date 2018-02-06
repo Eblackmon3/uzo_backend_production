@@ -75,9 +75,9 @@ public class AppController {
 
     /*
      * api call example https://uzo-web-app.herokuapp.com/get_company_by_id
-     * {
-     * company_id:22
-     * }
+     {
+      company_id:22
+     }
      * used a string as to not process the JSONOBJECT on response
      */
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
