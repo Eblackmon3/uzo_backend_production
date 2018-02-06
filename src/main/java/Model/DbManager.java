@@ -254,7 +254,7 @@ public class DbManager {
             pstmt.setInt(1, company.getCompany_id());
             ResultSet rs= pstmt.executeQuery();
             while(rs.next()){
-                position=rs.getString("\"position\"");
+                position=rs.getString("position");
                 position_details=rs.getString("position_details");
                 found_uzo=rs.getString("found_uzo");
                 uzo_help=rs.getString("uzo_help");
