@@ -29,7 +29,7 @@ public class DbManager {
         String sql="select * from t_student_info where student_id=?";
         DbConn jdbcObj = new DbConn();
         String email="";String first="";String last="";
-        String university=""; String resume_location="";
+        String university=""; String resume_location=""; String phone_number="";
         JSONObject studentObj= new JSONObject();
         try {
             //Connect to the database
@@ -48,6 +48,7 @@ public class DbManager {
                 last=rs.getString("last_name");
                 university=rs.getString("university");
                 resume_location=rs.getString("resume_location");
+                phone_number= rs.getString("phone_number");
             }
             rs.close();
             pstmt.close();
@@ -57,6 +58,8 @@ public class DbManager {
             studentObj.put("last_name", last);
             studentObj.put("university",university);
             studentObj.put("resume_location",resume_location);
+            studentObj.put("phone_number",phone_number);
+
 
         } catch (Exception e) {
             e.printStackTrace();
