@@ -1821,4 +1821,68 @@ public class DbManager {
         return insertedStudent;
     }
 
+    public JSONObject getStudentWorkAbility(StudentWorkAbility studentWorkAbility) {
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="select * from t_student_info where student_id=?";
+        DbConn jdbcObj = new DbConn();
+        boolean bar= false; boolean cashier=false; boolean cleaning=false;
+        boolean data_entry=false; boolean desk_assistant=false; boolean driving_delivery=false;
+        boolean event_security=false; boolean setup_breakdown=false; boolean food_service=false;
+        boolean moving=false;
+        JSONObject studentObj= new JSONObject();
+        try {
+            if(studentWorkAbility.getStudent_id()==0){
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,studentWorkAbility.getStudent_id());
+            ResultSet rs= pstmt.executeQuery();
+            while(rs.next()){
+                bar=rs.getBoolean("bar");
+                cashier=rs.getBoolean("cashier");
+                cleaning=rs.getBoolean("cleaning");
+                data_entry=rs.getBoolean("data_entry");
+                desk_assistant= rs.getBoolean("desk_assistant");
+                driving_delivery=rs.getBoolean("driving_delivery");
+                event_security=rs.getBoolean("event_security");
+                setup_breakdown=rs.getBoolean("setup_breakdown");
+                food_service= rs.getBoolean("food_service");
+                food_service= rs.getBoolean("moving");
+            }
+            rs.close();
+            pstmt.close();
+            conn.close();
+            studentObj.put("bar",bar);
+            studentObj.put("cashier",cashier);
+            studentObj.put("cleaning", cleaning);
+            studentObj.put("data_entry",data_entry);
+            studentObj.put("desk_assistant",desk_assistant);
+            studentObj.put("driving_delivery",driving_delivery);
+            studentObj.put("event_security", event_security);
+            studentObj.put("setup_breakdown",setup_breakdown);
+            studentObj.put("moving",moving);
+            studentObj.put("food_service",food_service);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                studentObj.put("Error", e.toString());
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+        }
+
+        return studentObj;
+    }
+
     }
