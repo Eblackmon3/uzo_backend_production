@@ -1825,7 +1825,7 @@ public class DbManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="select * from t_student_info where student_id=?";
+        String sql="select * from t_student_work_ability where student_id=?";
         DbConn jdbcObj = new DbConn();
         boolean bar= false; boolean cashier=false; boolean cleaning=false;
         boolean data_entry=false; boolean desk_assistant=false; boolean driving_delivery=false;
