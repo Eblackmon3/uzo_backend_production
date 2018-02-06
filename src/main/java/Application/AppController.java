@@ -622,6 +622,27 @@ public class AppController {
         return result.toString();
     }
 
+    /*
+  * api call example https://uzo-web-app.herokuapp.com/insert_student_work_history
+  * headers
+  * {
+     "﻿student_id": 50,
+    "work_reference_1": "Bob Jones",
+    "work_reference_2": "Bob Jones",
+    work_reference_3 :"Bob Jones",
+    "crime": true,
+    "hear_uzo": "word of mouf"
+     }
+  * used a string as to not process the JSONOBJECT on response
+  */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/insert_student_work_history")
+    public String setStudentWorkHistory(@RequestBody StudentWorkHistory workHistory){
+        return manager.insertStudentWorkHistory(workHistory).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+
 
 
 }

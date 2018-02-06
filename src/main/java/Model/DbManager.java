@@ -1885,4 +1885,51 @@ public class DbManager {
         return studentObj;
     }
 
+    public JSONObject insertStudentWorkHistory(StudentWorkHistory studentWorkHistory) {
+        JSONObject insertedStudent = new JSONObject();
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "insert into t_student_work_history(student_id, work_reference_1, work_reference_2,work_reference_3,crime,hear_uzo) Values(?,?,?,?,?,?);";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows = 0;
+        try {
+            if (studentWorkHistory.getStudent_id() == 0 || studentWorkHistory.getWork_reference_1()==null ||
+                    studentWorkHistory.getWork_reference_2()==null) {
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, studentWorkHistory.getStudent_id());
+            pstmt.setString(2, studentWorkHistory.getWork_reference_1());
+            pstmt.setString(3, studentWorkHistory.getWork_reference_2());
+            pstmt.setString(4, studentWorkHistory.getWork_reference_3());
+            pstmt.setBoolean(5, studentWorkHistory.isCrime());
+            pstmt.setString(6,studentWorkHistory.getHear_uzo());
+
+
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            insertedStudent.put(studentWorkHistory.toString(), "Inserted");
+            insertedStudent.put("affected Rows", affectedRows);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                insertedStudent.put("Error", e.toString());
+            } catch (Exception f) {
+                f.printStackTrace();
+            }
+
+        }
+        return insertedStudent;
+    }
+
     }
