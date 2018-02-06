@@ -575,13 +575,38 @@ public class AppController {
        * api call example https://uzo-web-app.herokuapp.com/get_student_job_preferences
         {
          "student_id" :50
-       * }
+        }
        */
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value="/get_student_job_preferences")
     public String getStudentPreference(@RequestBody StudentJobPreference student){
         JSONObject result= manager.getStudentJobPreference(student);
         return result.toString();
+    }
+
+    /*
+   * api call example https://uzo-web-app.herokuapp.com/insert_student_work_ability
+   * headers
+   * {
+      student_id: 50,
+        bar:true,
+       cashier:true,
+       cleaning:true,
+       data_entry:true,
+       desk_assistant:true,
+        driving_delivery:true,
+       event_security:true,
+       setup_breakdown:true,
+       food_service:true,
+        moving:true
+      }
+   * used a string as to not process the JSONOBJECT on response
+   */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/insert_student_work_ability")
+    public String setStudentWorkAbility(@RequestBody StudentWorkAbility workAbility){
+        return manager.insertStudentWorkAbility(workAbility).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 

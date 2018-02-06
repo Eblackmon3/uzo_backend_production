@@ -1768,4 +1768,57 @@ public class DbManager {
 
     }
 
-}
+    public JSONObject insertStudentWorkAbility(StudentWorkAbility studentWorkAbility) {
+        JSONObject insertedStudent = new JSONObject();
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql = "insert into t_student_work_ability(student_id, bar, cashier,cleaning,﻿data_entry, ﻿desk_assistant" +
+                ",﻿driving_delivery,﻿event_security,﻿setup_breakdown,﻿food_service,﻿moving) Values(?,?,?,?,?  ,?, " +
+                "?,?,?,?,?);";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows = 0;
+        try {
+            if (studentWorkAbility.getStudent_id() == 0) {
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, studentWorkAbility.getStudent_id());
+            pstmt.setBoolean(2, studentWorkAbility.isBar());
+            pstmt.setBoolean(3, studentWorkAbility.isCashier());
+            pstmt.setBoolean(4, studentWorkAbility.isCleaning());
+            pstmt.setBoolean(5, studentWorkAbility.isData_entry());
+            pstmt.setBoolean(6, studentWorkAbility.isDesk_assistant());
+            pstmt.setBoolean(7, studentWorkAbility.isDriving_delivery());
+            pstmt.setBoolean(8, studentWorkAbility.isEvent_security());
+            pstmt.setBoolean(9, studentWorkAbility.isSetup_breakdown());
+            pstmt.setBoolean(10, studentWorkAbility.isFood_service());
+            pstmt.setBoolean(11, studentWorkAbility.isMoving());
+
+
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            insertedStudent.put(studentWorkAbility.toString(), "Inserted");
+            insertedStudent.put("affected Rows", affectedRows);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                insertedStudent.put("Error", e.toString());
+            } catch (Exception f) {
+                f.printStackTrace();
+            }
+
+        }
+        return insertedStudent;
+    }
+
+    }
