@@ -437,6 +437,7 @@ public class DbManager {
 
             pstmt.close();
             conn.close();
+            rs.close();
 
         }catch(Exception e){
             e.printStackTrace();
@@ -524,6 +525,7 @@ public class DbManager {
 
             pstmt.close();
             conn.close();
+            rs.close();
 
         }catch(Exception e){
             e.printStackTrace();
@@ -660,6 +662,7 @@ public class DbManager {
 
             pstmt.close();
             conn.close();
+            rs.close();
 
         }catch(Exception e){
             e.printStackTrace();
@@ -744,6 +747,7 @@ public class DbManager {
 
             pstmt.close();
             conn.close();
+            rs.close();
 
         }catch(Exception e){
             e.printStackTrace();
@@ -1593,6 +1597,7 @@ public class DbManager {
 
             pstmt.close();
             conn.close();
+
 
         }catch(Exception e){
             e.printStackTrace();
