@@ -2158,7 +2158,7 @@ public class DbManager {
         return updateUniversity;
     }
 
-    public JSONObject uploadCompanyResource(MultipartFile file, int company_id){
+    public JSONObject updateCompanyResource(MultipartFile file, int company_id){
         String reesource_location=s3Operations.uploadCompanyFile(company_id,file);
         JSONObject uploadeResource= new JSONObject();
         ResultSet rsObj = null;
