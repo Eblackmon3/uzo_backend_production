@@ -428,23 +428,6 @@ public class AppController {
     }
 
      /*
-        example url: https://uzo-web-app.herokuapp.com/create_student_resume_folder
-        DONT NEED TO USE THIS, JUST KEEPING IT JUST IN CASE BELOW METHOD CREATES FOLDER AS WELL
-        header:
-            {
-             "student_id":1
-            }
-
-     */
-     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
-    @PostMapping(value = "/create_student_resume_folder")
-    public String createStudentResumeFolder(@RequestBody Student student){
-        return s3Operations.createFolder(student).toString();
-        //return ResponseEntity.status(HttpStatus.CREATED).build();
-    }
-
-
-     /*
         example url: https://uzo-web-app.herokuapp.com/upload_student_resource
         MUST SEND THIS AS A FORM DATA WITH THE BELOW AS
         header:
@@ -477,20 +460,21 @@ public class AppController {
     }
 
     /*
-       example url: https://uzo-web-app.herokuapp.com/upload_student_resume
-       MUST SEND THIS AS A FORM DATA WITH THE BELOW AS
-       header:
-       file - file selected
-       student_id - <student id >
+    example url: https://uzo-web-app.herokuapp.com/upload_job_resource
+    MUST SEND THIS AS A FORM DATA WITH THE BELOW AS
+    header:
+    file - file selected
+    company_id - <student id >
 
 
-    */
+ */
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
-    @PostMapping(value = "/update_company_resource", consumes = "multipart/form-data")
-    public String updateCompanyFile(@RequestParam("file") MultipartFile file,  int company_id){
-        return manager.updateCompanyResource(file,company_id).toString();
+    @PostMapping(value = "/upload_job_resource", consumes = "multipart/form-data")
+    public String uploadJobFile(@RequestParam("file") MultipartFile file,  int job_id){
+        return manager.insertJobResource(file,job_id).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
 
 
 
