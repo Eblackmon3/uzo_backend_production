@@ -1332,7 +1332,7 @@ public class DbManager {
         return  selectedStudentJob;
     }
 
-    public JSONObject uploadStudentResume(MultipartFile file, int student_id){
+    public JSONObject uploadStudentFile(MultipartFile file, int student_id){
         String resume_location=s3Operations.uploadStudentFile(student_id,file);
         JSONObject uploadeResume= new JSONObject();
         ResultSet rsObj = null;
@@ -2159,7 +2159,7 @@ public class DbManager {
     }
 
     public JSONObject uploadCompanyResource(MultipartFile file, int company_id){
-        String resume_location=s3Operations.uploadCompanyFile(company_id,file);
+        String reesource_location=s3Operations.uploadCompanyFile(company_id,file);
         JSONObject uploadeResource= new JSONObject();
         ResultSet rsObj = null;
         Connection conn = null;
@@ -2180,12 +2180,12 @@ public class DbManager {
             System.out.println(jdbcObj.printDbStatus());
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, resume_location);
+            pstmt.setString(1, reesource_location);
             pstmt.setInt(2,company_id);
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            uploadeResource.put("Company:"+company_id +" resource updated", "resource location:"+resume_location);
+            uploadeResource.put("Company:"+company_id +" resource updated", "resource location:"+reesource_location);
             uploadeResource.put("affected Rows",affectedRows);
 
         }catch(Exception e){
@@ -2205,7 +2205,7 @@ public class DbManager {
 
 
     public JSONObject insertCompanyResource(MultipartFile file, int company_id){
-        String resume_location=s3Operations.uploadCompanyFile(company_id,file);
+        String reesource_location=s3Operations.uploadCompanyFile(company_id,file);
         JSONObject uploadeResource= new JSONObject();
         ResultSet rsObj = null;
         Connection conn = null;
@@ -2226,12 +2226,12 @@ public class DbManager {
             System.out.println(jdbcObj.printDbStatus());
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, resume_location);
+            pstmt.setString(1, reesource_location);
             pstmt.setInt(2,company_id);
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            uploadeResource.put("Company:"+company_id +" resource updated", "resource location:"+resume_location);
+            uploadeResource.put("Company:"+company_id +" resource updated", "resource location:"+reesource_location);
             uploadeResource.put("affected Rows",affectedRows);
 
         }catch(Exception e){

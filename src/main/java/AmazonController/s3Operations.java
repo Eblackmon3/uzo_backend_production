@@ -59,8 +59,8 @@ public class s3Operations {
 
     //https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/1/Resume
     public static String uploadStudentFile(int studentID, MultipartFile file){
-        String fileName =  "studentfolder/"+studentID+"/Resume";
-        String resume_location="https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/studentfolder/"+studentID+"/Resume";
+        String fileName =  "studentfolder/"+studentID+"/"+file.getName();
+        String resume_location="https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/studentfolder/"+studentID+"/"+file.getName();
         File convFile;
         try {
             convFile=multipartToFile(file);
@@ -80,8 +80,8 @@ public class s3Operations {
 
     //https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/1/Resume
     public static String uploadCompanyFile(int company_id, MultipartFile file){
-        String fileName =  "companyfolder/"+company_id+"/Resume";
-        String resource_location="https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/studentfolder/"+company_id+"/Resume";
+        String fileName =  "companyfolder/"+company_id+"/"+file.getName();
+        String resource_location="https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/companyfolder/"+company_id+"/"+file.getName();
         File convFile;
         try {
             convFile=multipartToFile(file);
@@ -101,8 +101,8 @@ public class s3Operations {
 
     //https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/1/Resume
     public static String uploadJobFile(int job_id, MultipartFile file){
-        String fileName =  "companyfolder/"+job_id+"/Resume";
-        String resource_location="https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/studentfolder/"+job_id+"/Resume";
+        String fileName =  "jobfolder/"+job_id+"/"+file.getName();
+        String resource_location="https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/jobfolder/"+job_id+"/"+file.getName();
         File convFile;
         try {
             convFile=multipartToFile(file);
