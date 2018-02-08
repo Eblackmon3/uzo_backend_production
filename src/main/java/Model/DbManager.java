@@ -2134,12 +2134,11 @@ public class DbManager {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, rep.getPosition());
             pstmt.setString(2,rep.getPosition_details());
-            pstmt.setString(3, rep.getPosition_details());
-            pstmt.setString(4,rep.getFound_uzo());
-            pstmt.setString(5, rep.getUzo_help());
-            pstmt.setString(6,rep.getFirst_name());
-            pstmt.setString(7, rep.getLast_name());
-            pstmt.setInt(8,rep.getCompany_id());
+            pstmt.setString(3,rep.getFound_uzo());
+            pstmt.setString(4, rep.getUzo_help());
+            pstmt.setString(5,rep.getFirst_name());
+            pstmt.setString(6, rep.getLast_name());
+            pstmt.setInt(7,rep.getCompany_id());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
