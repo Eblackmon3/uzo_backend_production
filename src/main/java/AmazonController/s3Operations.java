@@ -59,7 +59,7 @@ public class s3Operations {
 
     //https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/1/Resume
     public static String uploadStudentFile(int studentID, MultipartFile file){
-        String fileName =  "studentfolder/"+studentID+"/"+file.getName();
+        String fileName =  "studentfolder/"+studentID+"/"+file.getOriginalFilename();
         String resume_location="https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/studentfolder/"+studentID+"/"+file.getOriginalFilename();
         File convFile;
         try {
@@ -80,7 +80,7 @@ public class s3Operations {
 
     //https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/1/Resume
     public static String uploadCompanyFile(int company_id, MultipartFile file){
-        String fileName =  "companyfolder/"+company_id+"/"+file.getName();
+        String fileName =  "companyfolder/"+company_id+"/"+file.getOriginalFilename();
         String resource_location="https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/companyfolder/"+company_id+"/"+file.getOriginalFilename();
         File convFile;
         try {
@@ -101,7 +101,7 @@ public class s3Operations {
 
     //https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/1/Resume
     public static String uploadJobFile(int job_id, MultipartFile file){
-        String fileName =  "jobfolder/"+job_id+"/"+file.getName();
+        String fileName =  "jobfolder/"+job_id+"/"+file.getOriginalFilename();
         String resource_location="https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/jobfolder/"+job_id+"/"+file.getOriginalFilename();
         File convFile;
         try {
