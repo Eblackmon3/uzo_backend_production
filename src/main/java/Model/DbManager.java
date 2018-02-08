@@ -2280,6 +2280,7 @@ public class DbManager {
             pstmt.setInt(1, company.getCompany_id());
             rs = pstmt.executeQuery();
             while (rs.next()) {
+                resource=new JSONObject();
                 resource_location = rs.getString("resource_location");
                 resource.put(rs.getString("file_name"), resource_location);
                 company_resources.put(resource);
