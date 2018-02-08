@@ -2165,7 +2165,7 @@ public class DbManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_company_resources(resource_location,company_id, resource_location) Values(?,?,?)";
+        String sql="insert into t_company_resources(resource_location,company_id, file_name) Values(?,?,?)";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
