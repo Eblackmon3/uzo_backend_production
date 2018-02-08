@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ca00f792-2095-41e1-97e7-deb110df0c1a" name="Default" comment="" />
+    <list default="true" id="ca00f792-2095-41e1-97e7-deb110df0c1a" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DbManager.java" afterPath="$PROJECT_DIR$/src/main/java/Model/DbManager.java" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -35,8 +37,8 @@
       <file leaf-file-name="DbManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/DbManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-132">
-              <caret line="335" column="30" lean-forward="false" selection-start-line="335" selection-start-column="22" selection-end-line="335" selection-end-column="30" />
+            <state relative-caret-position="258">
+              <caret line="2224" column="48" lean-forward="true" selection-start-line="2224" selection-start-column="48" selection-end-line="2224" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1533,8 +1535,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/DbManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-132">
-          <caret line="335" column="30" lean-forward="false" selection-start-line="335" selection-start-column="22" selection-end-line="335" selection-end-column="30" />
+        <state relative-caret-position="258">
+          <caret line="2224" column="48" lean-forward="true" selection-start-line="2224" selection-start-column="48" selection-end-line="2224" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -2226,8 +2226,8 @@ public class DbManager {
             System.out.println(jdbcObj.printDbStatus());
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, company_id);
-            pstmt.setString(2,reesource_location);
+            pstmt.setString(1, reesource_location);
+            pstmt.setInt(2,company_id);
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
