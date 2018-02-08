@@ -1333,7 +1333,7 @@ public class DbManager {
     }
 
     public JSONObject uploadStudentResume(MultipartFile file, int student_id){
-        String resume_location=s3Operations.uploadFile(student_id,file);
+        String resume_location=s3Operations.uploadStudentFile(student_id,file);
         JSONObject uploadeResume= new JSONObject();
         ResultSet rsObj = null;
         Connection conn = null;
