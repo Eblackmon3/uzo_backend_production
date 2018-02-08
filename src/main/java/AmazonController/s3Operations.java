@@ -78,6 +78,48 @@ public class s3Operations {
 
     }
 
+    //https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/1/Resume
+    public static String uploadCompanyFile(int company_id, MultipartFile file){
+        String fileName =  "companyfolder/"+company_id+"/Resume";
+        String resource_location="https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/studentfolder/"+company_id+"/Resume";
+        File convFile;
+        try {
+            convFile=multipartToFile(file);
+            System.out.println(convFile.length());
+            // create a PutObjectRequest passing the folder name suffixed by /
+            PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName,
+                    convFile).withCannedAcl(CannedAccessControlList.PublicRead);
+            // send request to S3 to create folder
+            PutObjectResult result = s3client.putObject(putObjectRequest);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return resource_location;
+
+    }
+
+    //https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/1/Resume
+    public static String uploadJobFile(int job_id, MultipartFile file){
+        String fileName =  "companyfolder/"+job_id+"/Resume";
+        String resource_location="https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/studentfolder/"+job_id+"/Resume";
+        File convFile;
+        try {
+            convFile=multipartToFile(file);
+            System.out.println(convFile.length());
+            // create a PutObjectRequest passing the folder name suffixed by /
+            PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName,
+                    convFile).withCannedAcl(CannedAccessControlList.PublicRead);
+            // send request to S3 to create folder
+            PutObjectResult result = s3client.putObject(putObjectRequest);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return resource_location;
+
+    }
+
     public static File multipartToFile(MultipartFile file)
     {
         File convFile=null;

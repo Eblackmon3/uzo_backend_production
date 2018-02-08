@@ -2158,4 +2158,95 @@ public class DbManager {
         return updateUniversity;
     }
 
+    public JSONObject uploadCompanyResource(MultipartFile file, int company_id){
+        String resume_location=s3Operations.uploadCompanyFile(company_id,file);
+        JSONObject uploadeResource= new JSONObject();
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="update t_company_resource set resource_location=? where company_id=?";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            if(file==null||company_id==0|| file.isEmpty()){
+                throw new Exception("Missing Parameter");
+
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, resume_location);
+            pstmt.setInt(2,company_id);
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            uploadeResource.put("Company:"+company_id +" resource updated", "resource location:"+resume_location);
+            uploadeResource.put("affected Rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+            try{
+                uploadeResource.put("Error", e.toString());
+
+            }catch(Exception f){
+                f.printStackTrace();
+
+            }
+
+        }
+        return uploadeResource;
+
+    }
+
+
+    public JSONObject insertCompanyResource(MultipartFile file, int company_id){
+        String resume_location=s3Operations.uploadCompanyFile(company_id,file);
+        JSONObject uploadeResource= new JSONObject();
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="insert into t_company_resource(company_id, resource_location) Values(?,?)";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            if(file==null||company_id==0|| file.isEmpty()){
+                throw new Exception("Missing Parameter");
+
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, resume_location);
+            pstmt.setInt(2,company_id);
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            uploadeResource.put("Company:"+company_id +" resource updated", "resource location:"+resume_location);
+            uploadeResource.put("affected Rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+            try{
+                uploadeResource.put("Error", e.toString());
+
+            }catch(Exception f){
+                f.printStackTrace();
+
+            }
+
+        }
+        return uploadeResource;
+
+    }
+
 }
