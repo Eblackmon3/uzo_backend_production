@@ -2281,7 +2281,7 @@ public class DbManager {
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 resource_location = rs.getString("resource_location");
-                resource.put("Resource", resource_location);
+                resource.put(rs.getString("file_name"), resource_location);
                 company_resources.put(resource);
             }
             pstmt.close();
