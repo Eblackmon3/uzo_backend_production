@@ -59,7 +59,7 @@ public class s3Operations {
 
     //https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/1/Resume
     public static String uploadStudentFile(int studentID, MultipartFile file){
-        String fileName =  "/studentfolder/"+studentID+"/Resume";
+        String fileName =  "studentfolder/"+studentID+"/Resume";
         String resume_location="https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/studentfolder/"+studentID+"/Resume";
         File convFile;
         try {
