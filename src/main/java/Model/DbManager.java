@@ -2165,7 +2165,7 @@ public class DbManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_company_resources(resource_location,company_id) Values(?,?)";
+        String sql="insert into t_company_resources(resource_location,company_id, resource_location) Values(?,?,?)";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
@@ -2183,6 +2183,7 @@ public class DbManager {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, reesource_location);
             pstmt.setInt(2,company_id);
+            pstmt.setString(3, file.getOriginalFilename());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
@@ -2211,7 +2212,7 @@ public class DbManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_job_resources(resource_location,job_id) Values(?,?)";
+        String sql="insert into t_job_resources(resource_location,job_id, file_name) Values(?,?,?)";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
@@ -2229,6 +2230,7 @@ public class DbManager {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, reesource_location);
             pstmt.setInt(2,job_id);
+            pstmt.setString(3, file.getOriginalFilename());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
