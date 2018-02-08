@@ -2210,7 +2210,7 @@ public class DbManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_company_resources(company_id, resource_location) Values(?,?)";
+        String sql="insert into t_company_resources(resource_location,company_id) Values(?,?)";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
@@ -2226,8 +2226,8 @@ public class DbManager {
             System.out.println(jdbcObj.printDbStatus());
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, reesource_location);
-            pstmt.setInt(2,company_id);
+            pstmt.setInt(1, company_id);
+            pstmt.setString(2,reesource_location);
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
