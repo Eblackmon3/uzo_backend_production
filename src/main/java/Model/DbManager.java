@@ -2206,7 +2206,7 @@ public class DbManager {
 
 
     public JSONObject insertJobResource(MultipartFile file, int job_id){
-        String reesource_location=s3Operations.uploadCompanyFile(job_id,file);
+        String reesource_location=s3Operations.uploadJobFile(job_id,file);
         JSONObject uploadeResource= new JSONObject();
         ResultSet rsObj = null;
         Connection conn = null;

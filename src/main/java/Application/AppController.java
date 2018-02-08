@@ -448,7 +448,7 @@ public class AppController {
        MUST SEND THIS AS A FORM DATA WITH THE BELOW AS
        header:
        file - file selected
-       company_id - <student id >
+       company_id - <job id >
 
 
     */
@@ -464,7 +464,7 @@ public class AppController {
     MUST SEND THIS AS A FORM DATA WITH THE BELOW AS
     header:
     file - file selected
-    company_id - <student id >
+    job_id - <job id >
 
 
  */
