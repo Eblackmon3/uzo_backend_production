@@ -2210,7 +2210,7 @@ public class DbManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_company_resource(company_id, resource_location) Values(?,?)";
+        String sql="insert into t_company_resources(company_id, resource_location) Values(?,?)";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
