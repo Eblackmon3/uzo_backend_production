@@ -25,8 +25,8 @@
       <file leaf-file-name="AppController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="469" column="3" lean-forward="true" selection-start-line="469" selection-start-column="3" selection-end-line="469" selection-end-column="3" />
+            <state relative-caret-position="177">
+              <caret line="481" column="6" lean-forward="true" selection-start-line="481" selection-start-column="6" selection-end-line="481" selection-end-column="6" />
               <folding>
                 <element signature="e#5987#5988#0" expanded="true" />
                 <element signature="e#6049#6050#0" expanded="true" />
@@ -38,8 +38,8 @@
       <file leaf-file-name="DbManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/DbManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="2210" column="31" lean-forward="true" selection-start-line="2210" selection-start-column="31" selection-end-line="2210" selection-end-column="31" />
+            <state relative-caret-position="236">
+              <caret line="2281" column="60" lean-forward="true" selection-start-line="2281" selection-start-column="60" selection-end-line="2281" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -53,56 +53,6 @@
             <state relative-caret-position="30">
               <caret line="2" column="27" lean-forward="false" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CompanyManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="27" lean-forward="false" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JobManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/JobManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="s3Operations.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/AmazonController/s3Operations.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-864">
-              <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CompanyResource.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataObjects/CompanyResource.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
-              <folding>
-                <element signature="e#190#191#0" expanded="true" />
-                <element signature="e#248#249#0" expanded="true" />
-                <element signature="e#292#293#0" expanded="true" />
-                <element signature="e#332#333#0" expanded="true" />
-                <element signature="e#381#382#0" expanded="true" />
-                <element signature="e#425#426#0" expanded="true" />
-                <element signature="e#492#493#0" expanded="true" />
-                <element signature="e#538#539#0" expanded="true" />
-                <element signature="e#609#610#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -166,6 +116,8 @@
       <find>Upload</find>
       <find>InsertCompan</find>
       <find>updatecompanyRes</find>
+      <find>JsonArray</find>
+      <find>getCompany</find>
       <find>UploadS</find>
     </findStrings>
     <replaceStrings>
@@ -1510,14 +1462,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/StudentManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="27" lean-forward="false" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -1536,16 +1480,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/AmazonController/s3Operations.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-864">
+        <state relative-caret-position="-571">
           <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/StudentManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="27" lean-forward="false" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="469" column="3" lean-forward="true" selection-start-line="469" selection-start-column="3" selection-end-line="469" selection-end-column="3" />
+        <state relative-caret-position="177">
+          <caret line="481" column="6" lean-forward="true" selection-start-line="481" selection-start-column="6" selection-end-line="481" selection-end-column="6" />
           <folding>
             <element signature="e#5987#5988#0" expanded="true" />
             <element signature="e#6049#6050#0" expanded="true" />
@@ -1555,8 +1507,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/DbManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="2210" column="31" lean-forward="true" selection-start-line="2210" selection-start-column="31" selection-end-line="2210" selection-end-column="31" />
+        <state relative-caret-position="236">
+          <caret line="2281" column="60" lean-forward="true" selection-start-line="2281" selection-start-column="60" selection-end-line="2281" selection-end-column="60" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

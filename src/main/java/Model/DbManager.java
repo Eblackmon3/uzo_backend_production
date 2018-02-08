@@ -2250,5 +2250,57 @@ public class DbManager {
 
     }
 
+    public JSONArray getCompanysResources(Company company) {
+        //One of the students that are associated with a job
+        JSONObject resource = new JSONObject();
+        //the list of selected students
+        JSONArray company_resources = new JSONArray();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs;
+
+        //holder for the student IDs that are associated witht he job
+        String resource_location = "";
+        String sql = "select * from t_company_resources where company_id =?";
+        DbConn jdbcObj = new DbConn();
+        try {
+            if (company.getCompany_id() == 0) {
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, company.getCompany_id());
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                resource_location = rs.getString("resource_location");
+                resource.put("Resource", resource_location);
+                company_resources.put(resource);
+            }
+            pstmt.close();
+            conn.close();
+            rs.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                company_resources = new JSONArray();
+                resource.put("Error", e.toString());
+                company_resources.put(resource);
+
+            } catch (Exception f) {
+            }
+
+        }
+        return company_resources;
+    }
+
+
+
 
 }
