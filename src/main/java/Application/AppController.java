@@ -476,8 +476,25 @@ public class AppController {
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    /*
+       example url: https://uzo-web-app.herokuapp.com/upload_student_resume
+       MUST SEND THIS AS A FORM DATA WITH THE BELOW AS
+       header:
+       file - file selected
+       student_id - <student id >
 
-//SHOULD NEVER REALLY HAVE TO USE THIS
+
+    */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/update_student_resume", consumes = "multipart/form-data")
+    public String updateCompanyFile(@RequestParam("file") MultipartFile file,  int company_id){
+        return manager.updateCompanyResource(file,company_id).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+
+
+    //SHOULD NEVER REALLY HAVE TO USE THIS
     /*
      example url: https://uzo-web-app.herokuapp.com/generate_client_token
      header:
