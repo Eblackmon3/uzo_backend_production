@@ -490,6 +490,21 @@ public class AppController {
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    /*
+api call example https://uzo-web-app.herokuapp.com/get_job_resources
+  {
+   "job_id" :50
+ }
+
+
+*/
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/get_job_resources")
+    public String getJobResource(@RequestBody Job job){
+        return manager.getJobsResources(job).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
 
 
 
