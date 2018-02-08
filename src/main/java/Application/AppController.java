@@ -478,13 +478,13 @@ public class AppController {
     /*
     api call example https://uzo-web-app.herokuapp.com/get_companys_resources
       {
-       "student_id" :1
+       "company_id" :50
      }
 
 
 */
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
-    @PostMapping(value = "/get_companys_resources", consumes = "multipart/form-data")
+    @PostMapping(value = "/get_companys_resources")
     public String getCompanysResources(@RequestBody Company company){
         return manager.getCompanysResources(company).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
