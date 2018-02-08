@@ -2109,4 +2109,54 @@ public class DbManager {
         return studentObj;
     }
 
+
+    public JSONObject updateCompanyRep(CompanyRep rep){
+        JSONObject updateUniversity= new JSONObject();
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="update t_company_reps set position=?, position_details=?, found_uzo=?, " +
+                "uzo_help=?, first_name=?, last_name=? where company_id=?;";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            if(rep.getCompany_id() ==0|| rep.getFound_uzo()==null||rep.getPosition()==null
+                    || rep.getUzo_help()==null|| rep.getFirst_name()==null || rep.getLast_name()==null){
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, rep.getPosition());
+            pstmt.setString(2,rep.getPosition_details());
+            pstmt.setString(3, rep.getPosition_details());
+            pstmt.setString(4,rep.getFound_uzo());
+            pstmt.setString(5, rep.getUzo_help());
+            pstmt.setString(6,rep.getFirst_name());
+            pstmt.setString(7, rep.getLast_name());
+            pstmt.setInt(8,rep.getCompany_id());
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            updateUniversity.put("Company ID:"+rep.getCompany_id(), "Company rep updated");
+            updateUniversity.put("affected Rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+            try{
+                updateUniversity.put("Error", e.toString());
+
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+
+        }
+        return updateUniversity;
+    }
+
 }
