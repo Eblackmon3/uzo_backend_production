@@ -102,6 +102,9 @@ public class AppController {
         JSONObject obj= new JSONObject();
         int everythingNull=1;
         StudentManager manager= new StudentManager();
+        if(insertStudent.getStudent_id()==0) {
+            return "{ \"Error\":\"Missing Parameter\"}";
+        }
         if(insertStudent.getEmail()!=null){
             manager.updateStudent(insertStudent.getEmail(),"email",insertStudent.getStudent_id() ).toString();
             everythingNull=0;
