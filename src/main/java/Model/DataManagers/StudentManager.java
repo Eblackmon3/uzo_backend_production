@@ -152,7 +152,11 @@ public class StudentManager {
             System.out.println(jdbcObj.printDbStatus());
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, studentData);
+            if(category.equals("year")) {
+                pstmt.setInt(1, Integer.parseInt(studentData));
+            }else{
+                pstmt.setString(1, studentData);
+            }
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
