@@ -100,42 +100,57 @@ public class AppController {
     @PostMapping(value = "/update_student_info")
     public String updateStudentInfo(@RequestBody Student insertStudent){
         JSONObject obj= new JSONObject();
+        int everythingNull=1;
         StudentManager manager= new StudentManager();
         if(insertStudent.getEmail()!=null){
-            return manager.updateStudent(insertStudent.getEmail(),"email",insertStudent.getStudent_id() ).toString();
+            manager.updateStudent(insertStudent.getEmail(),"email",insertStudent.getStudent_id() ).toString();
+            everythingNull=0;
 
         }if(insertStudent.getPassword()!=null){
-            return manager.updateStudent(insertStudent.getPassword(),"password", insertStudent.getStudent_id()).toString();
+            manager.updateStudent(insertStudent.getPassword(),"password", insertStudent.getStudent_id()).toString();
+            everythingNull=0;
 
         }if(insertStudent.getFirst_name()!=null){
-            return manager.updateStudent(insertStudent.getFirst_name(),"first_name", insertStudent.getStudent_id()).toString();
+            manager.updateStudent(insertStudent.getFirst_name(),"first_name", insertStudent.getStudent_id()).toString();
+            everythingNull=0;
 
         }if(insertStudent.getLast_name()!=null){
-            return manager.updateStudent(insertStudent.getLast_name(),"last_name", insertStudent.getStudent_id()).toString();
+            manager.updateStudent(insertStudent.getLast_name(),"last_name", insertStudent.getStudent_id()).toString();
+            everythingNull=0;
 
         }if(insertStudent.getUniversity()!=null){
-            return manager.updateStudent(insertStudent.getUniversity(),"university", insertStudent.getStudent_id()).toString();
+            manager.updateStudent(insertStudent.getUniversity(),"university", insertStudent.getStudent_id()).toString();
+            everythingNull=0;
 
         }if(insertStudent.getPhone_number()!=null){
-            return manager.updateStudent(insertStudent.getPhone_number(), "phone_numnber", insertStudent.getStudent_id()).toString();
+            manager.updateStudent(insertStudent.getPhone_number(), "phone_numnber", insertStudent.getStudent_id()).toString();
+            everythingNull=0;
 
         }if(insertStudent.getAddress()!=null){
-            return manager.updateStudent(insertStudent.getAddress(),"address", insertStudent.getStudent_id()).toString();
+            manager.updateStudent(insertStudent.getAddress(),"address", insertStudent.getStudent_id()).toString();
+            everythingNull=0;
 
         }if(insertStudent.getDate_of_birth()!=null){
-            return manager.updateStudent(insertStudent.getDate_of_birth(), "date_of_birth", insertStudent.getStudent_id()).toString();
+            manager.updateStudent(insertStudent.getDate_of_birth(), "date_of_birth", insertStudent.getStudent_id()).toString();
+            everythingNull=0;
 
         }if(insertStudent.getMajor()!=null){
-            return manager.updateStudent(insertStudent.getMajor(), "major", insertStudent.getStudent_id()).toString();
+            manager.updateStudent(insertStudent.getMajor(), "major", insertStudent.getStudent_id()).toString();
+            everythingNull=0;
 
         }if(insertStudent.getYear()!=0){
-            return manager.updateStudent(insertStudent.getYear()+"","year",insertStudent.getStudent_id()).toString();
+            manager.updateStudent(insertStudent.getYear()+"","year",insertStudent.getStudent_id()).toString();
+            everythingNull=0;
 
         }if(insertStudent.getDescription()!=null){
-            return manager.updateStudent(insertStudent.getDescription(),"description",insertStudent.getStudent_id()).toString();
+           manager.updateStudent(insertStudent.getDescription(),"description",insertStudent.getStudent_id()).toString();
+            everythingNull=0;
 
+        }if(everythingNull==1) {
+            return "{ \"Error\":\"No student detail specified\"}";
+        }else{
+            return "{ \"" + insertStudent.getStudent_id()+" Updated\":\"affected Rows:1\"}";
         }
-        return "{ \"Error\":\"No student detail specified\"}";
 
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
