@@ -3,6 +3,9 @@ package Application;
 import AmazonController.s3Operations;
 import BrainTreeController.BrainTreeOperations;
 import Model.*;
+import Model.DataManagers.CompanyManager;
+import Model.DataManagers.JobManager;
+import Model.DataManagers.StudentManager;
 import Model.DataObjects.*;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 public class AppController {
-    DbManager manager= new DbManager();
+
 
     private Status[] TRANSACTION_SUCCESS_STATUSES = new Status[] {
             Transaction.Status.AUTHORIZED,
@@ -42,6 +45,7 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value="/get_student_by_id")
     public String getStudentById(@RequestBody Student student){
+        StudentManager manager= new StudentManager();
         JSONObject result= manager.getStudentById(student);
         return result.toString();
     }
@@ -66,6 +70,7 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/insert_student")
     public String insertStudent(@RequestBody Student insertStudent){
+        StudentManager manager= new StudentManager();
         return manager.insertStudent(insertStudent).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -83,6 +88,7 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value="/get_company_by_id")
     public @ResponseBody String getCompanyById(@RequestBody Company getCompany){
+        CompanyManager manager= new CompanyManager();
         return manager.getCompanyById(getCompany).toString();
     }
 
@@ -96,6 +102,7 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value="/get_company_rep")
     public @ResponseBody String getCompanyRep(@RequestBody CompanyRep getCompanyRep){
+        CompanyManager manager= new CompanyManager();
         return manager.getCompanyRep(getCompanyRep).toString();
     }
 
@@ -116,6 +123,7 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/update_company_rep")
     public String updateCompanyRep(@RequestBody CompanyRep companyRep){
+        CompanyManager manager= new CompanyManager();
         return manager.updateCompanyRep(companyRep).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -138,6 +146,7 @@ public class AppController {
       @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/insert_company")
     public String insertCompany(@RequestBody Company insertCompany){
+          CompanyManager manager= new CompanyManager();
         return manager.insertCompany(insertCompany).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -159,6 +168,7 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/insert_company_rep")
     public String insertCompanyRep(@RequestBody CompanyRep insertCompanyRep){
+        CompanyManager manager= new CompanyManager();
         return manager.insertCompanyRep(insertCompanyRep).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -182,6 +192,7 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/insert_job")
     public String insertJob(@RequestBody JobInsert insertJob){
+        JobManager manager= new JobManager();
         return manager.insertJob(insertJob).toString();
     }
 
@@ -197,6 +208,7 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/assign_student_job")
     public String assignStudentJob(@RequestBody StudentJob studentJob){
+        StudentManager manager= new StudentManager();
         return manager.assignStudentJob(studentJob).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -211,6 +223,7 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/delete_student_job")
     public String deleteStudentJob(@RequestBody StudentJob studentJob){
+        StudentManager manager= new StudentManager();
         return manager.removeStudentJob(studentJob).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -226,6 +239,7 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/get_students_jobs_by_id")
     public String getStudentJobList(@RequestBody Student student){
+        StudentManager manager= new StudentManager();
         return manager.getStudentJobList(student).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -239,6 +253,7 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/get_jobs_students_by_id")
     public String getJobStudentList(@RequestBody Job job) {
+        JobManager manager= new JobManager();
         return manager.getJobStudentList(job).toString();
     }
 
@@ -254,6 +269,7 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/insert_on_call_student")
     public String insertOnCallStudent(@RequestBody JobOnCall onCall){
+        StudentManager manager= new StudentManager();
         return manager.insertStudentOnCall(onCall).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -270,6 +286,7 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/get_students_on_call_jobs_by_id")
     public String getSudentsOncallJobs(@RequestBody Student student){
+        StudentManager manager= new StudentManager();
         return manager.getSudentsOncallJobs(student).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -284,6 +301,7 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/get_jobs_on_call_students_by_id")
     public String getJobOnCallStudents(@RequestBody Job job) {
+        JobManager manager= new JobManager();
         return manager.getJobsOnCallStudents(job).toString();
     }
 
@@ -297,6 +315,7 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/get_companys_past_students_by_id")
     public String getStudentsByCompany(@RequestBody Company company) {
+        CompanyManager manager= new CompanyManager();
         return manager.getStudentsByCompany(company).toString();
     }
 
@@ -313,6 +332,7 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/update_student_university")
     public String updateStudentUniversity(@RequestBody Student student){
+        StudentManager manager= new StudentManager();
         return manager.updateStudentUniversity(student).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -330,6 +350,7 @@ public class AppController {
      @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/update_student_rating")
     public String updateStudentRating(@RequestBody Student student){
+         StudentManager manager= new StudentManager();
         return manager.addRating(student).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -345,6 +366,7 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/get_student_rating")
     public String getStudentAvgRating(@RequestBody Student student){
+        StudentManager manager= new StudentManager();
         return manager.getStudentAvgRating(student).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -361,6 +383,7 @@ public class AppController {
      @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/insert_job_captain")
     public String insertJobCaptain(@RequestBody StudentJob studentJob){
+         JobManager manager= new JobManager();
         return manager.insertJobCaptain(studentJob).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -377,6 +400,7 @@ public class AppController {
      @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/insert_job_co_captain")
     public String insertJobCoCaptain(@RequestBody StudentJob studentJob){
+         JobManager manager= new JobManager();
         return manager.insertJobCoCaptain(studentJob).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -392,6 +416,7 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/get_job_by_id")
     public String getJobById(@RequestBody Job job){
+        JobManager manager= new JobManager();
         return manager.getJobById(job).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -407,6 +432,7 @@ public class AppController {
      @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/check_student_email")
     public String checkStudentEmail(@RequestBody Student student){
+         StudentManager manager= new StudentManager();
         return manager.checkStudentEmail(student).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -423,6 +449,7 @@ public class AppController {
      @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/check_student_login")
     public String checkStudentPassword(@RequestBody Student student){
+         StudentManager manager= new StudentManager();
         return manager.checkStudentPassword(student).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -439,6 +466,7 @@ public class AppController {
      @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/upload_student_resource", consumes = "multipart/form-data")
     public String uploadStudentFile(@RequestParam("file") MultipartFile file,  int student_id){
+         StudentManager manager= new StudentManager();
         return manager.uploadStudentFile(file,student_id).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -455,6 +483,7 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/upload_company_resource", consumes = "multipart/form-data")
     public String uploadCompanyFile(@RequestParam("file") MultipartFile file,  int company_id){
+        CompanyManager manager= new CompanyManager();
         return manager.insertCompanyResource(file,company_id).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -471,6 +500,7 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/upload_job_resource", consumes = "multipart/form-data")
     public String uploadJobFile(@RequestParam("file") MultipartFile file,  int job_id){
+        JobManager manager= new JobManager();
         return manager.insertJobResource(file,job_id).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -486,6 +516,7 @@ public class AppController {
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/get_companys_resources")
     public String getCompanysResources(@RequestBody Company company){
+        CompanyManager manager= new CompanyManager();
         return manager.getCompanysResources(company).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -501,6 +532,7 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/get_job_resources")
     public String getJobResource(@RequestBody Job job){
+        JobManager manager= new JobManager();
         return manager.getJobsResources(job).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -576,6 +608,7 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/set_student_availibility")
     public String setStudentAvailibility(@RequestBody StudentAvailabilitySlot student){
+        StudentManager manager= new StudentManager();
         return manager.insertStudentAvailability(student).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -594,6 +627,7 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/update_student_availibility")
     public String updateStudentAvailibility(@RequestBody StudentAvailabilitySlot student){
+        StudentManager manager= new StudentManager();
         return manager.updateStudentAvailability(student).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -611,6 +645,7 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/insert_interested_student")
     public String insertInterestedStudents(@RequestBody InterestedStudent interestedStudent){
+        StudentManager manager= new StudentManager();
         return manager.insertInterestedStudent(interestedStudent).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -626,6 +661,7 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/delete_interested_student")
     public String deleteInterestedStudent(@RequestBody InterestedStudent interestedStudent){
+        StudentManager manager= new StudentManager();
         return manager.removeInterestedStudent(interestedStudent).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -640,6 +676,7 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/delete_jobs_interested_student")
     public String deleteJobsInterestedStudent(@RequestBody InterestedStudent interestedStudent){
+        JobManager manager= new JobManager();
         return manager.removeJobsInterestedStudent(interestedStudent).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -654,6 +691,7 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/get_jobs_interested_students_by_id")
     public String getJobsInterestedtList(@RequestBody Job job) {
+        JobManager manager= new JobManager();
         return manager.getJobInterestedList(job).toString();
     }
 
@@ -672,6 +710,7 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/insert_student_preferences")
     public String setStudentPreferences(@RequestBody StudentJobPreference pref){
+        StudentManager manager= new StudentManager();
         return manager.setStudentJobPreference(pref).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -686,6 +725,7 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value="/get_student_job_preferences")
     public String getStudentPreference(@RequestBody StudentJobPreference student){
+        StudentManager manager= new StudentManager();
         JSONObject result= manager.getStudentJobPreference(student);
         return result.toString();
     }
@@ -711,6 +751,7 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/insert_student_work_ability")
     public String setStudentWorkAbility(@RequestBody StudentWorkAbility workAbility){
+        StudentManager manager= new StudentManager();
         return manager.insertStudentWorkAbility(workAbility).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -724,6 +765,7 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value="/get_student_work_ability")
     public String getStudentPreference(@RequestBody StudentWorkAbility student){
+        StudentManager manager= new StudentManager();
         JSONObject result= manager.getStudentWorkAbility(student);
         return result.toString();
     }
@@ -744,6 +786,7 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/insert_student_work_history")
     public String setStudentWorkHistory(@RequestBody StudentWorkHistory workHistory){
+        StudentManager manager= new StudentManager();
         return manager.insertStudentWorkHistory(workHistory).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -758,6 +801,7 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value="/get_student_work_history")
     public String getStudentPreference(@RequestBody StudentWorkHistory student){
+        StudentManager manager= new StudentManager();
         JSONObject result= manager.getStudentWorkHistory(student);
         return result.toString();
     }
