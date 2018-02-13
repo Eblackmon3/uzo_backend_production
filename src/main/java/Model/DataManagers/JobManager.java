@@ -87,6 +87,7 @@ public class JobManager {
         String university;
         String phone_number=""; String address="";
         String date_of_birth= ""; String major=""; int year=0;
+        String description="";
         String sql2= "select * from t_student_info where student_id=?";
         String sql="select * from t_student_job_map where job_id =?";
         DbConn jdbcObj = new DbConn();
@@ -126,6 +127,7 @@ public class JobManager {
                     date_of_birth=rs.getString("date_of_birth");
                     major=rs.getString("major");
                     year= rs.getInt("year");
+                    description=rs.getString("description");
                     selectedJobsStudent.put("student_id",student_id);
                     selectedJobsStudent.put("email",email);
                     selectedJobsStudent.put("first_name",first_name);
@@ -136,6 +138,7 @@ public class JobManager {
                     selectedJobsStudent.put("date_of_birth",date_of_birth);
                     selectedJobsStudent.put("major",major);
                     selectedJobsStudent.put("year",year);
+                    selectedJobsStudent.put("description",description);
                     selectedStudents.put(selectedJobsStudent);
                     selectedJobsStudent=new JSONObject();
 
@@ -182,6 +185,7 @@ public class JobManager {
         String university;
         String phone_number=""; String address="";
         String date_of_birth= ""; String major=""; int year=0;
+        String description="";
         String sql2= "select * from t_student_info where student_id=?";
         String sql="select * from t_job_on_call where job_id =?";
         DbConn jdbcObj = new DbConn();
@@ -220,6 +224,7 @@ public class JobManager {
                     date_of_birth=rs.getString("date_of_birth");
                     major=rs.getString("major");
                     year= rs.getInt("year");
+                    description= rs.getString("description");
 
                     selectedJobsStudent.put("student_id",student_id);
                     selectedJobsStudent.put("email",email);
@@ -231,6 +236,7 @@ public class JobManager {
                     selectedJobsStudent.put("date_of_birth",date_of_birth);
                     selectedJobsStudent.put("major",major);
                     selectedJobsStudent.put("year",year);
+                    selectedJobsStudent.put("description",description);
 
                     selectedStudents.put(selectedJobsStudent);
                     selectedJobsStudent= new JSONObject();
@@ -489,6 +495,7 @@ public class JobManager {
         String university;
         String phone_number=""; String address="";
         String date_of_birth= ""; String major=""; int year=0;
+        String description="";
         String sql2= "select * from t_student_info where student_id=?";
         String sql="select * from t_interested_students_jobs where job_id =?";
         DbConn jdbcObj = new DbConn();
@@ -528,6 +535,7 @@ public class JobManager {
                     date_of_birth=rs.getString("date_of_birth");
                     major=rs.getString("major");
                     year= rs.getInt("year");
+                    description=rs.getString("description");
                     selectedJobsStudent.put("student_id",student_id);
                     selectedJobsStudent.put("email",email);
                     selectedJobsStudent.put("first_name",first_name);
@@ -538,6 +546,7 @@ public class JobManager {
                     selectedJobsStudent.put("date_of_birth",date_of_birth);
                     selectedJobsStudent.put("major",major);
                     selectedJobsStudent.put("year",year);
+                    selectedJobsStudent.put("description",description);
                     selectedStudents.put(selectedJobsStudent);
                     selectedJobsStudent=new JSONObject();
 

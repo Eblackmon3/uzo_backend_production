@@ -63,7 +63,8 @@ public class AppController {
           "address": "13464 gray valley ct",
          "date_of_birth":"1/27/1993",
          "major":" "Computer Science",
-         "year":"1"
+         "year":"1",
+         "description":"realest of the real"
         }
      * used a string as to not process the JSONOBJECT on response
      */
@@ -72,6 +73,68 @@ public class AppController {
     public String insertStudent(@RequestBody Student insertStudent){
         StudentManager manager= new StudentManager();
         return manager.insertStudent(insertStudent).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    /*
+  * api call example https://uzo-web-app.herokuapp.com/insert_student
+  * headers
+  * {
+      "email": "stephenoakala@gmail.com",
+      "password": "281330800fB",
+      "first_name": "Stephen",
+      "last_name":"Okala",
+      "university":"Georgia Tech",
+      "phone_numnber":"571-344-9998",
+       "address": "13464 gray valley ct",
+      "date_of_birth":"1/27/1993",
+      "major":" "Computer Science",
+      "year":1,
+      "description":"realest of the real"
+     }
+  * used a string as to not process the JSONOBJECT on response
+  */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/insert_student")
+    public String updateStudentInfo(@RequestBody Student insertStudent){
+        JSONObject obj= new JSONObject();
+        StudentManager manager= new StudentManager();
+        if(insertStudent.getEmail()!=null){
+            return manager.updateStudent(insertStudent.getEmail(),"email",insertStudent.getStudent_id() ).toString();
+
+        }if(insertStudent.getPassword()!=null){
+            return manager.updateStudent(insertStudent.getPassword(),"password", insertStudent.getStudent_id()).toString();
+
+        }if(insertStudent.getFirst_name()!=null){
+            return manager.updateStudent(insertStudent.getFirst_name(),"first_name", insertStudent.getStudent_id()).toString();
+
+        }if(insertStudent.getLast_name()!=null){
+            return manager.updateStudent(insertStudent.getLast_name(),"last_name", insertStudent.getStudent_id()).toString();
+
+        }if(insertStudent.getUniversity()!=null){
+            return manager.updateStudent(insertStudent.getUniversity(),"university", insertStudent.getStudent_id()).toString();
+
+        }if(insertStudent.getPhone_number()!=null){
+            return manager.updateStudent(insertStudent.getPhone_number(), "phone_numnber", insertStudent.getStudent_id()).toString();
+
+        }if(insertStudent.getAddress()!=null){
+            return manager.updateStudent(insertStudent.getAddress(),"address", insertStudent.getStudent_id()).toString();
+
+        }if(insertStudent.getDate_of_birth()!=null){
+            return manager.updateStudent(insertStudent.getDate_of_birth(), "date_of_birth", insertStudent.getStudent_id()).toString();
+
+        }if(insertStudent.getMajor()!=null){
+            return manager.updateStudent(insertStudent.getMajor(), "major", insertStudent.getStudent_id()).toString();
+
+        }if(insertStudent.getYear()!=0){
+            return manager.updateStudent(insertStudent.getYear()+"","year",insertStudent.getStudent_id()).toString();
+
+        }if(insertStudent.getDescription()!=null){
+            return manager.updateStudent(insertStudent.getDescription(),"description",insertStudent.getStudent_id()).toString();
+
+        }
+        return "{ \"Error\":\"No student detail specified\"}";
+
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

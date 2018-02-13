@@ -3,6 +3,7 @@ package Model.DataManagers;
 import AmazonController.s3Operations;
 import Model.DataObjects.*;
 import Model.DbConn;
+import com.sun.org.apache.xalan.internal.xsltc.compiler.util.Util;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -23,6 +24,7 @@ public class StudentManager {
         String email="";String first="";String last="";
         String university=""; String phone_number=""; String address="";
         String date_of_birth= ""; String major=""; int year=0;
+        String description="";
         JSONObject studentObj= new JSONObject();
         try {
             if(student.getStudent_id()==0){
@@ -48,6 +50,7 @@ public class StudentManager {
                 date_of_birth=rs.getString("date_of_birth");
                 major=rs.getString("major");
                 year= rs.getInt("year");
+                description=rs.getString("description");
             }
             rs.close();
             pstmt.close();
@@ -61,6 +64,7 @@ public class StudentManager {
             studentObj.put("date_of_birth", date_of_birth);
             studentObj.put("major",major);
             studentObj.put("year",year);
+            studentObj.put("description",description);
 
 
         } catch (Exception e) {
@@ -81,7 +85,7 @@ public class StudentManager {
         Connection conn = null;
         PreparedStatement pstmt = null;
         String sql="insert into t_student_info(email, password, first_name, last_name, university," +
-                "phone_number, address, date_of_birth, major, year) Values(?,?,?, ?,?,?, ?,?,?,?);";
+                "phone_number, address, date_of_birth, major, year, description) Values(?,?,?, ?,?,?, ?,?,?,?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
@@ -98,20 +102,58 @@ public class StudentManager {
             System.out.println(jdbcObj.printDbStatus());
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, student.getEmail().toLowerCase());
+            pstmt.setString(1, student.getEmail());
             pstmt.setString(2,student.getPassword());
-            pstmt.setString(3,student.getFirst_name().toLowerCase());
-            pstmt.setString(4,student.getLast_name().toLowerCase());
+            pstmt.setString(3,student.getFirst_name());
+            pstmt.setString(4,student.getLast_name());
             pstmt.setString(5,student.getUniversity());
             pstmt.setString(6,student.getPhone_number());
-            pstmt.setString(7,student.getAddress().toLowerCase());
-            pstmt.setString(8,student.getDate_of_birth().toLowerCase());
+            pstmt.setString(7,student.getAddress());
+            pstmt.setString(8,student.getDate_of_birth());
             pstmt.setString(9,student.getMajor());
             pstmt.setInt(10,student.getYear());
+            pstmt.setString(5,student.getDescription());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
             insertedStudent.put(student.toString(),"Inserted");
+            insertedStudent.put("affected Rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+            try {
+                insertedStudent.put("Error", e.toString());
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+
+        }
+        return insertedStudent;
+    }
+
+    public JSONObject updateStudent(String studentData, String category,int student_id){
+        JSONObject insertedStudent= new JSONObject();
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="update t_student_info set " + StringEscapeUtils.escapeJava(category)+ " =? where student_id= "+ student_id+";";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, studentData);
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            insertedStudent.put(student_id+"","updated");
             insertedStudent.put("affected Rows",affectedRows);
 
         }catch(Exception e){

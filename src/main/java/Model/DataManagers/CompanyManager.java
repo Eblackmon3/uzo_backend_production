@@ -195,11 +195,11 @@ public class CompanyManager {
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, rep.getCompany_id());
-            pstmt.setString(2,rep.getPosition().toLowerCase());
-            pstmt.setString(3,rep.getPosition_details().toLowerCase());
-            pstmt.setString(4,rep.getFound_uzo().toLowerCase());
+            pstmt.setString(2,rep.getPosition());
+            pstmt.setString(3,rep.getPosition_details());
+            pstmt.setString(4,rep.getFound_uzo());
             pstmt.setString(5,rep.getUzo_help());
-            pstmt.setString(6,rep.getFirst_name().toLowerCase());
+            pstmt.setString(6,rep.getFirst_name());
             pstmt.setString(7,rep.getLast_name());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
@@ -241,6 +241,7 @@ public class CompanyManager {
         String university;
         String phone_number=""; String address="";
         String date_of_birth= ""; String major=""; int year=0;
+        String description="";
         String sql2= "select * from t_student_info where student_id=?";
         String sql="select * from t_student_job_map where company_id =?";
         DbConn jdbcObj = new DbConn();
@@ -279,6 +280,7 @@ public class CompanyManager {
                     date_of_birth=rs.getString("date_of_birth");
                     major=rs.getString("major");
                     year= rs.getInt("year");
+                    description=rs.getString("description");
 
                     selectedJobsStudent.put("student_id",student_id);
                     selectedJobsStudent.put("email",email);
@@ -290,6 +292,7 @@ public class CompanyManager {
                     selectedJobsStudent.put("date_of_birth",date_of_birth);
                     selectedJobsStudent.put("major",major);
                     selectedJobsStudent.put("year",year);
+                    selectedJobsStudent.put("description",description);
                     selectedStudents.put(selectedJobsStudent);
                     selectedJobsStudent=new JSONObject();
 

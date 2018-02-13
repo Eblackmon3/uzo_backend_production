@@ -14,6 +14,7 @@ public class Student {
     private String date_of_birth;
     private String major;
     private int year;
+    private String description;
 
 
     public String getEmail() {
@@ -118,6 +119,14 @@ public class Student {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     @Override
