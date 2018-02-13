@@ -140,6 +140,9 @@ public class StudentManager {
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
+            if(student_id==0){
+                throw new Exception("Missing Parameter");
+            }
 
             //Connect to the database
             DataSource dataSource = jdbcObj.setUpPool();

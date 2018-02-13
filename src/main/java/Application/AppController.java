@@ -77,9 +77,11 @@ public class AppController {
     }
 
     /*
-  * api call example https://uzo-web-app.herokuapp.com/insert_student
+  * api call example https://uzo-web-app.herokuapp.com/update_student_info
+  * All of the paramters are optional
   * headers
   * {
+      "student_id"=1,
       "email": "stephenoakala@gmail.com",
       "password": "281330800fB",
       "first_name": "Stephen",
@@ -95,7 +97,7 @@ public class AppController {
   * used a string as to not process the JSONOBJECT on response
   */
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
-    @PostMapping(value = "/insert_student")
+    @PostMapping(value = "/update_student_info")
     public String updateStudentInfo(@RequestBody Student insertStudent){
         JSONObject obj= new JSONObject();
         StudentManager manager= new StudentManager();
