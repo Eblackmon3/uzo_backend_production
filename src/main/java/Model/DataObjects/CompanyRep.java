@@ -1,5 +1,6 @@
 package Model.DataObjects;
 
+
 public class CompanyRep {
     private int company_id;
     private String position;
