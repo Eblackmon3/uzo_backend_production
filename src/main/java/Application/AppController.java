@@ -1,7 +1,6 @@
 package Application;
 
 import AmazonController.s3Operations;
-import BrainTreeController.BrainTreeOperations;
 import Model.*;
 import Model.DataManagers.CompanyManager;
 import Model.DataManagers.JobManager;
@@ -10,8 +9,7 @@ import Model.DataObjects.*;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
-import com.braintreegateway.Transaction;
-import com.braintreegateway.Transaction.Status;
+
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,15 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class AppController {
 
 
-    private Status[] TRANSACTION_SUCCESS_STATUSES = new Status[] {
-            Transaction.Status.AUTHORIZED,
-            Transaction.Status.AUTHORIZING,
-            Transaction.Status.SETTLED,
-            Transaction.Status.SETTLEMENT_CONFIRMED,
-            Transaction.Status.SETTLEMENT_PENDING,
-            Transaction.Status.SETTLING,
-            Transaction.Status.SUBMITTED_FOR_SETTLEMENT
-    };
 
 
 
@@ -623,59 +612,6 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
 
 
 
-
-    //SHOULD NEVER REALLY HAVE TO USE THIS
-    /*
-     example url: https://uzo-web-app.herokuapp.com/generate_client_token
-     header:
-         {
-          "merchant_id":<apps merchant id>,
-          "public_key":<apps public_key>,
-          "private_key":<apps private key>
-         }
-
-  */
-    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
-    @PostMapping(value = "/generate_client_token")
-        public String generateClientToken(@RequestBody BrainTreeClient client) {
-            return  BrainTreeOperations.generateClientToken(client).toString();
-        }
-
-
-        /*
-     example url: https://uzo-web-app.herokuapp.com/create_transaction
-     header:
-         {
-          "merchant_id":<apps merchant id>,
-          "public_key":<apps public_key>,
-          "private_key":<apps private key>
-          "amount":"44.44",
-          "payment_method_nonce",
-         }
-
-  */
-
-    @RequestMapping(value = "/create_transaction", method = RequestMethod.POST)
-    public String createTransaction(@RequestBody TransactionClient client) {
-        return BrainTreeOperations.createTransaction(client).toString();
-    }
-
-  /*
-     example url: https://uzo-web-app.herokuapp.com/get_transaction
-     header:
-         {
-          "merchant_id":<apps merchant id>,
-          "public_key":<apps public_key>,
-          "private_key":<apps private key>
-          "transaction_id":<transaction id>
-         }
-
-  */
-
-    @RequestMapping(value = "/get_transaction", method = RequestMethod.POST)
-    public String getTransaction(@RequestBody BrainTreeTransaction client) {
-        return BrainTreeOperations.getTransaction(client).toString();
-    }
 
     /*
        example url: https://uzo-web-app.herokuapp.com/set_student_availibility

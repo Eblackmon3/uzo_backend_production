@@ -1,7 +1,5 @@
 package BrainTreeController;
 
-import Model.BrainTreeClient;
-import Model.DataObjects.BrainTreeTransaction;
 import Model.TransactionClient;
 import com.braintreegateway.*;
 import org.json.JSONObject;
