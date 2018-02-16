@@ -759,7 +759,7 @@ public class StudentManager {
 
     }
 
-    public JSONObject checkStudentPassword( Student student){
+    public JSONObject checkStudentLogin( Student student){
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -768,7 +768,7 @@ public class StudentManager {
 
         JSONObject studentObj= new JSONObject();
         try {
-            if(student.getStudent_id()==0|| student.getEmail()==null){
+            if(student.getPassword()==null|| student.getEmail()==null){
                 throw new Exception("Missing Parameter");
             }
             //Connect to the database
