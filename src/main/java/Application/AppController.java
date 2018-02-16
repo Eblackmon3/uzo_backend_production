@@ -522,7 +522,7 @@ public class AppController {
     @PostMapping(value = "/check_student_login")
     public String checkStudentPassword(@RequestBody Student student){
          StudentManager manager= new StudentManager();
-        return manager.checkStudentPassword(student).toString();
+        return manager.checkStudentLogin(student).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
