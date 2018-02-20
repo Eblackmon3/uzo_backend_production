@@ -111,7 +111,7 @@ public class StudentManager {
             pstmt.setString(8,student.getDate_of_birth());
             pstmt.setString(9,student.getMajor());
             pstmt.setInt(10,student.getYear());
-            pstmt.setString(5,student.getDescription());
+            pstmt.setString(11,student.getDescription());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();

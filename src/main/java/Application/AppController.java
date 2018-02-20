@@ -29,7 +29,7 @@ public class AppController {
      * api call example https://uzo-web-app.herokuapp.com/get_student_by_id
       {
        "student_id" :1
-     * }
+      }
      */
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value="/get_student_by_id")
