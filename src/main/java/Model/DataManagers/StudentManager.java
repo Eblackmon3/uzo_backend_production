@@ -783,7 +783,7 @@ public class StudentManager {
             pstmt.setString(2,student.getPassword());
             ResultSet rs= pstmt.executeQuery();
             if(rs.next()){
-                studentObj.put("Student Email","Student login exist");
+                studentObj.put("Student ID",rs.getInt("student_id"));
 
             }else{
                 studentObj.put("Student Email","Student login does not exist ");

@@ -3,6 +3,7 @@ package Model.DataManagers;
 import AmazonController.s3Operations;
 import Model.DataObjects.Company;
 import Model.DataObjects.CompanyRep;
+import Model.DataObjects.Student;
 import Model.DbConn;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -469,6 +470,56 @@ public class CompanyManager {
         }
         return company_resources;
     }
+
+
+    public JSONObject checkCompanyLogin( Student student){
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="select * from t_company_info where email=? and password=?";
+        DbConn jdbcObj = new DbConn();
+
+        JSONObject studentObj= new JSONObject();
+        try {
+            if(student.getPassword()==null|| student.getEmail()==null){
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,student.getEmail());
+            pstmt.setString(2,student.getPassword());
+            ResultSet rs= pstmt.executeQuery();
+            if(rs.next()){
+                studentObj.put("Company ID",rs.getInt("company_id"));
+
+            }else{
+                studentObj.put("Student Email","Student login does not exist ");
+
+            }
+            rs.close();
+            pstmt.close();
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            try{
+                studentObj.put("Error", e.toString());
+
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+        }
+
+        return studentObj;
+
+    }
+
 
 
 }
