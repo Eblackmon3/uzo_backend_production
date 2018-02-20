@@ -115,8 +115,7 @@ public class StudentManager {
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            insertedStudent.put(student.toString(),"Inserted");
-            insertedStudent.put("affected Rows",affectedRows);
+            insertedStudent.put("Student Inserted",affectedRows);
 
         }catch(Exception e){
             e.printStackTrace();
