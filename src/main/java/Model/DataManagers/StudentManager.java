@@ -783,10 +783,10 @@ public class StudentManager {
             pstmt.setString(2,student.getPassword());
             ResultSet rs= pstmt.executeQuery();
             if(rs.next()){
-                studentObj.put("Student ID",rs.getInt("student_id"));
+                studentObj.put("student_id",rs.getInt("student_id"));
 
             }else{
-                studentObj.put("Student ID","Does not exist");
+                studentObj.put("student_id","Does not exist");
 
             }
             rs.close();
