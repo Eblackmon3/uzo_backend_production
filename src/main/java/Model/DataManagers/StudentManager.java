@@ -786,7 +786,7 @@ public class StudentManager {
                 studentObj.put("Student ID",rs.getInt("student_id"));
 
             }else{
-                studentObj.put("Student Email","Student login does not exist ");
+                studentObj.put("Student ID","Does not exist");
 
             }
             rs.close();

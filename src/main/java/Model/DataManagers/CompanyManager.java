@@ -499,7 +499,7 @@ public class CompanyManager {
                 studentObj.put("Company ID",rs.getInt("company_id"));
 
             }else{
-                studentObj.put("Student Email","Student login does not exist ");
+                studentObj.put("Company ID","Does not exist");
 
             }
             rs.close();
