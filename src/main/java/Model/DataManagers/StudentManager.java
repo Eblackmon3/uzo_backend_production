@@ -6,6 +6,8 @@ import Model.DbConn;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.sql.DataSource;
@@ -13,6 +15,9 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class StudentManager {
+
+    @Autowired
+    JdbcTemplate jdbcTemplate;
 
     public JSONObject getStudentById(Student student){
         ResultSet rsObj = null;
@@ -794,6 +799,9 @@ public class StudentManager {
             rs.close();
             pstmt.close();
             conn.close();
+            jdbcObj.closePool();
+
+
 
         } catch (Exception e) {
             e.printStackTrace();

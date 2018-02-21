@@ -71,4 +71,11 @@ public class DbConn {
         return ("Max.: " + getConnectionPool().getMaxActive() + "; Active: " + getConnectionPool().getNumActive() + "; Idle: " + getConnectionPool().getNumIdle());
     }
 
+    //This will be used to close the gpool
+    public void closePool()throws Exception{
+        if(gPool!=null){
+            gPool.close();
+        }
+    }
+
 }
