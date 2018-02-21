@@ -67,7 +67,7 @@ public class Company {
 
     @Override
     public String toString() {
-        return "Company Email: " + " Company Name: " + company_name + " Company Website" + website_link;
+        return "Company Email: " + email+ " Company Name: " + company_name + " Company Website" + website_link;
     }
 
     @Override

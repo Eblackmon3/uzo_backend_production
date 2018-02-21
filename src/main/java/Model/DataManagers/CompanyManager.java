@@ -205,7 +205,7 @@ public class CompanyManager {
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            insertedStudent.put(rep.toString(),"Inserted");
+            insertedStudent.put("Company Rep" +rep.toString(),"Inserted");
             insertedStudent.put("affected Rows",affectedRows);
 
         }catch(Exception e){

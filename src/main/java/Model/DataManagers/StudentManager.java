@@ -73,6 +73,8 @@ public class StudentManager {
             }catch(Exception f){
                 f.printStackTrace();
             }
+        }finally {
+
         }
 
         return studentObj;
@@ -158,7 +160,7 @@ public class StudentManager {
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            insertedStudent.put(student_id+"","updated");
+            insertedStudent.put("Student id:"+ student_id+"","updated");
             insertedStudent.put("affected Rows",affectedRows);
 
         }catch(Exception e){
@@ -762,6 +764,7 @@ public class StudentManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
+        ResultSet rs=null;
         String sql="select * from t_student_info where email=? and password=?";
         DbConn jdbcObj = new DbConn();
 
@@ -780,7 +783,7 @@ public class StudentManager {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1,student.getEmail());
             pstmt.setString(2,student.getPassword());
-            ResultSet rs= pstmt.executeQuery();
+            rs= pstmt.executeQuery();
             if(rs.next()){
                 studentObj.put("student_id",rs.getInt("student_id"));
 
@@ -800,6 +803,29 @@ public class StudentManager {
             }catch(Exception f){
                 f.printStackTrace();
             }
+        }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+
         }
 
         return studentObj;
