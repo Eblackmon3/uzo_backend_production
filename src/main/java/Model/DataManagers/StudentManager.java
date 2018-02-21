@@ -30,6 +30,7 @@ public class StudentManager {
         String date_of_birth= ""; String major=""; int year=0;
         String description="";
         JSONObject studentObj= new JSONObject();
+        ResultSet rs=null;
         try {
             if(student.getStudent_id()==0){
                 throw new Exception("Missing Parameter");
@@ -43,7 +44,7 @@ public class StudentManager {
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1,student.getStudent_id());
-            ResultSet rs= pstmt.executeQuery();
+            rs= pstmt.executeQuery();
             while(rs.next()){
                 email=rs.getString("email");
                 first=rs.getString("first_name");
@@ -80,6 +81,13 @@ public class StudentManager {
                 f.printStackTrace();
             }
         }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
             if(pstmt!=null){
                 try {
                     pstmt.close();
@@ -867,6 +875,7 @@ public class StudentManager {
         DbConn jdbcObj = new DbConn();
         int total_rating=1;
         int times_rated=1;
+        ResultSet rs=null;
         double averageRating;
         JSONObject studentObj= new JSONObject();
         try {
@@ -882,7 +891,7 @@ public class StudentManager {
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1,student.getStudent_id());
-            ResultSet rs= pstmt.executeQuery();
+            rs= pstmt.executeQuery();
             while(rs.next()){
                 total_rating=rs.getInt("total_rating");
                 times_rated=rs.getInt("times_rated");
@@ -902,6 +911,13 @@ public class StudentManager {
                 f.printStackTrace();
             }
         }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
             if(pstmt!=null){
                 try {
                     pstmt.close();
@@ -1001,6 +1017,7 @@ public class StudentManager {
         PreparedStatement pstmt = null;
         String sql="select * from t_student_info where email=?";
         DbConn jdbcObj = new DbConn();
+        ResultSet rs= null;
 
         JSONObject studentObj= new JSONObject();
         try {
@@ -1016,7 +1033,7 @@ public class StudentManager {
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1,student.getEmail());
-            ResultSet rs= pstmt.executeQuery();
+            rs= pstmt.executeQuery();
             if(rs.next()){
                 studentObj.put("Student Email","Student email exist");
 
@@ -1038,6 +1055,13 @@ public class StudentManager {
                 f.printStackTrace();
             }
         }finally{
+            if(rs!=null){
+                try {
+                   rs.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
             if(pstmt!=null){
                 try {
                     pstmt.close();
@@ -1326,6 +1350,26 @@ public class StudentManager {
                 f.printStackTrace();
             }
 
+        }finally{
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
         return insertedStudent;
     }
@@ -1468,6 +1512,7 @@ public class StudentManager {
         DbConn jdbcObj = new DbConn();
         String uzo_reason=""; boolean lift_ability=false ;String mobility="";
         JSONObject studentObj= new JSONObject();
+        ResultSet rs= null;
         try {
             if(student.getStudent_id()==0){
                 throw new Exception("Missing Parameter");
@@ -1481,7 +1526,7 @@ public class StudentManager {
             //can do normal DB operations heremobility
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1,student.getStudent_id());
-            ResultSet rs= pstmt.executeQuery();
+            rs= pstmt.executeQuery();
             while(rs.next()){
                 uzo_reason=rs.getString("uzo_reason");
                 lift_ability=rs.getBoolean("lift_ability");
@@ -1506,6 +1551,13 @@ public class StudentManager {
                 f.printStackTrace();
             }
         }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
             if(pstmt!=null){
                 try {
                     pstmt.close();
@@ -1609,6 +1661,7 @@ public class StudentManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
+        ResultSet rs= null;
         String sql="select * from t_student_work_ability where student_id=?";
         DbConn jdbcObj = new DbConn();
         boolean bar= false; boolean cashier=false; boolean cleaning=false;
@@ -1629,7 +1682,7 @@ public class StudentManager {
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1,studentWorkAbility.getStudent_id());
-            ResultSet rs= pstmt.executeQuery();
+            rs= pstmt.executeQuery();
             while(rs.next()){
                 bar=rs.getBoolean("bar");
                 cashier=rs.getBoolean("cashier");
@@ -1666,6 +1719,13 @@ public class StudentManager {
                 f.printStackTrace();
             }
         }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
             if(pstmt!=null){
                 try {
                     pstmt.close();
@@ -1768,6 +1828,7 @@ public class StudentManager {
         DbConn jdbcObj = new DbConn();
         String work_reference_1= ""; String work_reference_2=""; String work_reference_3= "";
         boolean crime=false; String hear_uzo=""; String resume_location="";
+        ResultSet rs= null;
 
         JSONObject studentObj= new JSONObject();
         try {
@@ -1783,7 +1844,7 @@ public class StudentManager {
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1,studentWorkHistory.getStudent_id());
-            ResultSet rs= pstmt.executeQuery();
+            rs= pstmt.executeQuery();
             while(rs.next()){
                 work_reference_1=rs.getString("work_reference_1");
                 work_reference_2=rs.getString("work_reference_2");
@@ -1812,6 +1873,13 @@ public class StudentManager {
                 f.printStackTrace();
             }
         }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
             if(pstmt!=null){
                 try {
                     pstmt.close();
