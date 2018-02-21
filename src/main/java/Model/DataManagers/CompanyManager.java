@@ -63,6 +63,26 @@ public class CompanyManager {
             }catch(Exception f){
                 f.printStackTrace();
             }
+        }finally{
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
 
         return companyObj;
@@ -108,6 +128,26 @@ public class CompanyManager {
                 insertedStudent.put("Error", e.toString());
             }catch(Exception f){
                 f.printStackTrace();
+            }
+
+        }finally{
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
             }
 
         }
@@ -167,6 +207,26 @@ public class CompanyManager {
             }catch(Exception f){
                 f.printStackTrace();
             }
+        }finally{
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
 
         return companyObj;
@@ -216,6 +276,26 @@ public class CompanyManager {
                 f.printStackTrace();
             }
 
+        }finally{
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
         return insertedStudent;
     }
@@ -230,7 +310,7 @@ public class CompanyManager {
         JSONArray selectedStudents= new JSONArray();
         Connection conn = null;
         PreparedStatement pstmt = null;
-        ResultSet rs;
+        ResultSet rs=null;
         //the student IDs for th associated job
         ArrayList<Integer> jobsStudents= new ArrayList<>();
         //holder for the student IDs that are associated witht he job
@@ -316,6 +396,33 @@ public class CompanyManager {
                 f.printStackTrace();
             }
 
+        }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
         return selectedStudents;
 
@@ -368,6 +475,26 @@ public class CompanyManager {
                 f.printStackTrace();
             }
 
+        }finally{
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
         return updateUniversity;
     }
@@ -414,6 +541,26 @@ public class CompanyManager {
 
             }
 
+        }finally{
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
         return uploadeResource;
 
@@ -427,7 +574,7 @@ public class CompanyManager {
         JSONArray company_resources = new JSONArray();
         Connection conn = null;
         PreparedStatement pstmt = null;
-        ResultSet rs;
+        ResultSet rs=null;
 
         //holder for the student IDs that are associated witht he job
         String resource_location = "";
@@ -465,6 +612,33 @@ public class CompanyManager {
                 company_resources.put(resource);
 
             } catch (Exception f) {
+            }
+
+        }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
             }
 
         }
@@ -514,6 +688,26 @@ public class CompanyManager {
             }catch(Exception f){
                 f.printStackTrace();
             }
+        }finally{
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
 
         return studentObj;

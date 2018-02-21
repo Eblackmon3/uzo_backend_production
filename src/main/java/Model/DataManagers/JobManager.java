@@ -63,6 +63,26 @@ public class JobManager {
                 f.printStackTrace();
             }
 
+        }finally{
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
         return insertedJob;
 
@@ -75,7 +95,7 @@ public class JobManager {
         JSONArray selectedStudents= new JSONArray();
         Connection conn = null;
         PreparedStatement pstmt = null;
-        ResultSet rs;
+        ResultSet rs=null;
         //the student IDs for th associated job
         ArrayList<Integer> jobsStudents= new ArrayList<>();
         //holder for the student IDs that are associated witht he job
@@ -161,6 +181,33 @@ public class JobManager {
                 f.printStackTrace();
             }
 
+        }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
         return selectedStudents;
     }
@@ -173,7 +220,7 @@ public class JobManager {
         JSONArray selectedStudents= new JSONArray();
         Connection conn = null;
         PreparedStatement pstmt = null;
-        ResultSet rs;
+        ResultSet rs=null;
         //the student IDs for th associated job
         ArrayList<Integer> jobsStudents= new ArrayList<>();
         //holder for the student IDs that are associated witht he job
@@ -260,6 +307,33 @@ public class JobManager {
                 f.printStackTrace();
             }
 
+        }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
         return selectedStudents;
 
@@ -301,6 +375,26 @@ public class JobManager {
 
             }catch(Exception f){
                 f.printStackTrace();
+            }
+
+        }finally{
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
             }
 
         }
@@ -353,7 +447,7 @@ public class JobManager {
         JSONObject selectedStudentJob= new JSONObject();
         Connection conn = null;
         PreparedStatement pstmt = null;
-        ResultSet rs;
+        ResultSet rs=null;
         int job_id;
         boolean completed;
         Date date;
@@ -430,6 +524,33 @@ public class JobManager {
                 f.printStackTrace();
             }
 
+        }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
 
 
@@ -471,6 +592,26 @@ public class JobManager {
                 f.printStackTrace();
             }
 
+        }finally{
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
         return deletedInterestedStudent;
 
@@ -483,7 +624,7 @@ public class JobManager {
         JSONArray selectedStudents= new JSONArray();
         Connection conn = null;
         PreparedStatement pstmt = null;
-        ResultSet rs;
+        ResultSet rs=null;
         //the student IDs for th associated job
         ArrayList<Integer> jobsStudents= new ArrayList<>();
         //holder for the student IDs that are associated witht he job
@@ -571,6 +712,33 @@ public class JobManager {
                 f.printStackTrace();
             }
 
+        }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
         return selectedStudents;
     }
@@ -617,6 +785,26 @@ public class JobManager {
 
             }
 
+        }finally{
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
         return uploadeResource;
 
@@ -629,7 +817,7 @@ public class JobManager {
         JSONArray company_resources = new JSONArray();
         Connection conn = null;
         PreparedStatement pstmt = null;
-        ResultSet rs;
+        ResultSet rs=null;
 
         //holder for the student IDs that are associated witht he job
         String resource_location = "";
@@ -667,6 +855,33 @@ public class JobManager {
                 company_resources.put(resource);
 
             } catch (Exception f) {
+            }
+
+        }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
             }
 
         }
