@@ -16,8 +16,7 @@ import java.util.ArrayList;
 
 public class StudentManager {
 
-    @Autowired
-    JdbcTemplate jdbcTemplate;
+
 
     public JSONObject getStudentById(Student student){
         ResultSet rsObj = null;
@@ -111,6 +110,97 @@ public class StudentManager {
 
         return studentObj;
     }
+
+
+    public JSONObject getLastInsertedStudent(){
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="select max(student_id) from t_student_info";
+        DbConn jdbcObj = new DbConn();
+        String email="";String first="";String last="";
+        String university=""; String phone_number=""; String address="";
+        String date_of_birth= ""; String major=""; int year=0;
+        String description="";
+        JSONObject studentObj= new JSONObject();
+        ResultSet rs=null;
+        try {
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            rs= pstmt.executeQuery();
+            while(rs.next()){
+                email=rs.getString("email");
+                first=rs.getString("first_name");
+                last=rs.getString("last_name");
+                university=rs.getString("university");
+                phone_number= rs.getString("phone_number");
+                address=rs.getString("address");
+                date_of_birth=rs.getString("date_of_birth");
+                major=rs.getString("major");
+                year= rs.getInt("year");
+                description=rs.getString("description");
+            }
+            rs.close();
+            pstmt.close();
+            conn.close();
+            jdbcObj.closePool();
+            studentObj.put("email",email);
+            studentObj.put("first_name",first);
+            studentObj.put("last_name", last);
+            studentObj.put("university",university);
+            studentObj.put("phone_number",phone_number);
+            studentObj.put("address",address);
+            studentObj.put("date_of_birth", date_of_birth);
+            studentObj.put("major",major);
+            studentObj.put("year",year);
+            studentObj.put("description",description);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                studentObj.put("Result", e.toString());
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+        }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+        return studentObj;
+    }
+
 
     public JSONObject insertStudent(Student student){
         JSONObject insertedStudent= new JSONObject();

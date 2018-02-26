@@ -38,6 +38,19 @@ public class  AppController {
         JSONObject result= manager.getStudentById(student);
         return result.toString();
     }
+    /*
+     * api call example https://uzo-web-app.herokuapp.com/get_last_inserted_student
+
+     */
+
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value="/get_last_inserted_student")
+    public String getLastInsertedStudent(@RequestBody Student student){
+        StudentManager manager= new StudentManager();
+        JSONObject result= manager.getLastInsertedStudent();
+        return result.toString();
+    }
+
 
     /*
      * api call example https://uzo-web-app.herokuapp.com/insert_student
@@ -540,6 +553,23 @@ public class  AppController {
     public String uploadStudentResume(@RequestParam("file") MultipartFile file,  int student_id){
          StudentManager manager= new StudentManager();
         return manager.uploadStudentResume(file,student_id).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    /*
+      example url: https://uzo-web-app.herokuapp.com/upload_student_resource
+      MUST SEND THIS AS A FORM DATA WITH THE BELOW AS
+      header:
+      file - file selected
+      company_id - <job id >
+
+
+   */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/upload_student_resource", consumes = "multipart/form-data")
+    public String uploadStudentFile(@RequestParam("file") MultipartFile file,  int student_id){
+        StudentManager manager= new StudentManager();
+        return manager.uploadStudentResource(file,student_id).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
