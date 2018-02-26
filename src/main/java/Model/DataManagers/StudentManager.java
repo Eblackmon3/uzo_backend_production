@@ -131,13 +131,13 @@ public class StudentManager {
             pstmt = conn.prepareStatement(sql);
             rs= pstmt.executeQuery();
             while(rs.next()){
-                student_id= rs.getInt("student_id");
+                student_id= rs.getInt("max");
             }
             rs.close();
             pstmt.close();
             conn.close();
             jdbcObj.closePool();
-            studentObj.put("max",student_id);
+            studentObj.put("student_id",student_id);
 
 
         } catch (Exception e) {
