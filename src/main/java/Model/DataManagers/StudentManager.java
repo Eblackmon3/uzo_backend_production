@@ -7,7 +7,6 @@ import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.sql.DataSource;
@@ -118,10 +117,6 @@ public class StudentManager {
         PreparedStatement pstmt = null;
         String sql="select max(student_id) from t_student_info";
         DbConn jdbcObj = new DbConn();
-        String email="";String first="";String last="";
-        String university=""; String phone_number=""; String address="";
-        String date_of_birth= ""; String major=""; int year=0;
-        String description="";
         int student_id=0;
         JSONObject studentObj= new JSONObject();
         ResultSet rs=null;
@@ -136,32 +131,12 @@ public class StudentManager {
             pstmt = conn.prepareStatement(sql);
             rs= pstmt.executeQuery();
             while(rs.next()){
-                email=rs.getString("email");
-                first=rs.getString("first_name");
-                last=rs.getString("last_name");
-                university=rs.getString("university");
-                phone_number= rs.getString("phone_number");
-                address=rs.getString("address");
-                date_of_birth=rs.getString("date_of_birth");
-                major=rs.getString("major");
-                year= rs.getInt("year");
-                description=rs.getString("description");
                 student_id= rs.getInt("student_id");
             }
             rs.close();
             pstmt.close();
             conn.close();
             jdbcObj.closePool();
-            studentObj.put("email",email);
-            studentObj.put("first_name",first);
-            studentObj.put("last_name", last);
-            studentObj.put("university",university);
-            studentObj.put("phone_number",phone_number);
-            studentObj.put("address",address);
-            studentObj.put("date_of_birth", date_of_birth);
-            studentObj.put("major",major);
-            studentObj.put("year",year);
-            studentObj.put("description",description);
             studentObj.put("student_id",student_id);
 
 
