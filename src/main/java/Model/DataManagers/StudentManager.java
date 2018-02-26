@@ -137,7 +137,7 @@ public class StudentManager {
             pstmt.close();
             conn.close();
             jdbcObj.closePool();
-            studentObj.put("student_id",student_id);
+            studentObj.put("max",student_id);
 
 
         } catch (Exception e) {
