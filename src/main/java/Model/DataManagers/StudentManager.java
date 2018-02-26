@@ -76,7 +76,7 @@ public class StudentManager {
         } catch (Exception e) {
             e.printStackTrace();
             try {
-                studentObj.put("Error", e.toString());
+                studentObj.put("Result", e.toString());
             }catch(Exception f){
                 f.printStackTrace();
             }
@@ -150,12 +150,12 @@ public class StudentManager {
             pstmt.close();
             conn.close();
             jdbcObj.closePool();
-            insertedStudent.put("Student Inserted",affectedRows);
+            insertedStudent.put("Result",affectedRows);
 
         }catch(Exception e){
             e.printStackTrace();
             try {
-                insertedStudent.put("Error", e.toString());
+                insertedStudent.put("Result", e.toString());
             }catch(Exception f){
                 f.printStackTrace();
             }
@@ -214,13 +214,12 @@ public class StudentManager {
             pstmt.close();
             conn.close();
             jdbcObj.closePool();
-            insertedStudent.put("Student id:"+ student_id+"","updated");
-            insertedStudent.put("affected Rows",affectedRows);
+            insertedStudent.put("Result",affectedRows);
 
         }catch(Exception e){
             e.printStackTrace();
             try {
-                insertedStudent.put("Error", e.toString());
+                insertedStudent.put("Result", e.toString());
             }catch(Exception f){
                 f.printStackTrace();
             }
@@ -289,13 +288,12 @@ public class StudentManager {
             pstmt.close();
             conn.close();
             jdbcObj.closePool();
-            insertedStudentJob.put(studJob.toString(),"Inserted");
-            insertedStudentJob.put("affected Rows",affectedRows);
+            insertedStudentJob.put("Result",affectedRows);
 
         }catch(Exception e){
             e.printStackTrace();
             try{
-                insertedStudentJob.put("Error",e.toString());
+                insertedStudentJob.put("Result",e.toString());
             }catch(Exception f){
                 f.printStackTrace();
             }
@@ -361,13 +359,12 @@ public class StudentManager {
             pstmt.close();
             conn.close();
             jdbcObj.closePool();
-            deletedStudentJob.put(studJob.toString(),"deleted");
-            deletedStudentJob.put("affected Rows",affectedRows);
+            deletedStudentJob.put("Result",affectedRows);
 
         }catch(Exception e){
             e.printStackTrace();
             try{
-                deletedStudentJob.put("Error",e.toString());
+                deletedStudentJob.put("Result",e.toString());
 
             }catch(Exception f){
                 f.printStackTrace();
@@ -486,7 +483,7 @@ public class StudentManager {
         }catch(Exception e){
             e.printStackTrace();
             try{
-                selectedStudentJob.put("Error", e.toString());
+                selectedStudentJob.put("Result", e.toString());
                 System.out.println(selectedStudentJob.toString());
                 selectedJobs= new JSONArray();
                 selectedJobs.put(selectedStudentJob);
@@ -554,13 +551,12 @@ public class StudentManager {
             pstmt.close();
             conn.close();
             jdbcObj.closePool();
-            insertedOncall.put(onCall.toString(),"Inserted");
-            insertedOncall.put("affected Rows",affectedRows);
+            insertedOncall.put("Result",affectedRows);
 
         }catch(Exception e){
             e.printStackTrace();
             try{
-                insertedOncall.put("Error", e.toString());
+                insertedOncall.put("Result", e.toString());
 
             }catch(Exception f){
                 f.printStackTrace();
@@ -678,7 +674,7 @@ public class StudentManager {
             e.printStackTrace();
             try{
                 selectedJobs= new JSONArray();
-                selectedStudentJob.put("Error", e.toString());
+                selectedStudentJob.put("Result", e.toString());
                 selectedJobs.put(selectedStudentJob);
 
             }catch(Exception f){
@@ -745,13 +741,12 @@ public class StudentManager {
             pstmt.close();
             conn.close();
             jdbcObj.closePool();
-            updateUniversity.put("Student:"+student.getStudent_id()+" "+student.getUniversity(), "University Updated");
-            updateUniversity.put("affected Rows",affectedRows);
+            updateUniversity.put("Result",affectedRows);
 
         }catch(Exception e){
             e.printStackTrace();
             try{
-                updateUniversity.put("Error", e.toString());
+                updateUniversity.put("Result", e.toString());
 
             }catch(Exception f){
                 f.printStackTrace();
@@ -822,13 +817,12 @@ public class StudentManager {
             pstmt.close();
             conn.close();
             jdbcObj.closePool();
-            updateUniversity.put("Student:"+student.getStudent_id(), "Rating updated");
-            updateUniversity.put("affected Rows",affectedRows);
+            updateUniversity.put("Result",affectedRows);
 
         }catch(Exception e){
             e.printStackTrace();
             try{
-                updateUniversity.put("Error", e.toString());
+                updateUniversity.put("Result", e.toString());
 
             }catch(Exception f){
                 f.printStackTrace();
@@ -906,7 +900,7 @@ public class StudentManager {
         } catch (Exception e) {
             e.printStackTrace();
             try {
-                studentObj.put("Error", e.toString());
+                studentObj.put("Result", e.toString());
             }catch(Exception f){
                 f.printStackTrace();
             }
@@ -945,7 +939,7 @@ public class StudentManager {
 
 
 
-    public JSONObject uploadStudentFile(MultipartFile file, int student_id){
+    public JSONObject uploadStudentResume(MultipartFile file, int student_id){
         String resume_location= s3Operations.uploadStudentFile(student_id,file);
         JSONObject uploadeResume= new JSONObject();
         ResultSet rsObj = null;
@@ -973,13 +967,12 @@ public class StudentManager {
             pstmt.close();
             conn.close();
             jdbcObj.closePool();
-            uploadeResume.put("Student:"+student_id, "resume location:"+resume_location);
-            uploadeResume.put("affected Rows",affectedRows);
+            uploadeResume.put("Result",affectedRows);
 
         }catch(Exception e){
             e.printStackTrace();
             try{
-                uploadeResume.put("Error", e.toString());
+                uploadeResume.put("Result", e.toString());
 
             }catch(Exception f){
                 f.printStackTrace();
@@ -1011,6 +1004,70 @@ public class StudentManager {
 
     }
 
+    public JSONObject uploadStudentResource(MultipartFile file, int student_id){
+        String reesource_location= s3Operations.uploadCompanyFile(student_id,file);
+        JSONObject uploadeResource= new JSONObject();
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="insert into t_student_resources(resource_location,student_id, file_name) Values(?,?,?)";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            if(file==null||student_id==0|| file.isEmpty()){
+                throw new Exception("Missing Parameter");
+
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, reesource_location);
+            pstmt.setInt(2,student_id);
+            pstmt.setString(3, file.getOriginalFilename());
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            uploadeResource.put("Result",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+            try{
+                uploadeResource.put("Result", e.toString());
+
+            }catch(Exception f){
+                f.printStackTrace();
+
+            }
+
+        }finally{
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+        return uploadeResource;
+    }
+
     public JSONObject checkStudentEmail( Student student){
         ResultSet rsObj = null;
         Connection conn = null;
@@ -1035,10 +1092,10 @@ public class StudentManager {
             pstmt.setString(1,student.getEmail());
             rs= pstmt.executeQuery();
             if(rs.next()){
-                studentObj.put("Student Email","Student email exist");
+                studentObj.put("student_email","Student email exist");
 
             }else{
-                studentObj.put("Student Email","Student email does not exist ");
+                studentObj.put("student_email","Student email does not exist ");
 
             }
             rs.close();
@@ -1049,7 +1106,7 @@ public class StudentManager {
         } catch (Exception e) {
             e.printStackTrace();
             try{
-                studentObj.put("Error", e.toString());
+                studentObj.put("Result", e.toString());
 
             }catch(Exception f){
                 f.printStackTrace();
@@ -1128,7 +1185,7 @@ public class StudentManager {
         } catch (Exception e) {
             e.printStackTrace();
             try{
-                studentObj.put("Error", e.toString());
+                studentObj.put("Result", e.toString());
 
             }catch(Exception f){
                 f.printStackTrace();
@@ -1205,15 +1262,12 @@ public class StudentManager {
             pstmt.close();
             conn.close();
             jdbcObj.closePool();
-            insertedStudent.put(""+studentAvail.getStudent_id(),"Availability set for:"+studentAvail.getDay()
-                    +" at "+studentAvail.getTime() );
-
-            insertedStudent.put("affected Rows",affectedRows);
+            insertedStudent.put("Result",affectedRows);
 
         }catch(Exception e){
             e.printStackTrace();
             try {
-                insertedStudent.put("Error", e.toString());
+                insertedStudent.put("Result", e.toString());
             }catch(Exception f){
                 f.printStackTrace();
             }
@@ -1274,15 +1328,12 @@ public class StudentManager {
             pstmt.close();
             conn.close();
             jdbcObj.closePool();
-            insertedStudent.put(""+studentAvail.getStudent_id(),"Availability set for:"+studentAvail.getDay()
-                    +" at "+studentAvail.getTime() );
-
-            insertedStudent.put("affected Rows",affectedRows);
+            insertedStudent.put("Result",affectedRows);
 
         }catch(Exception e){
             e.printStackTrace();
             try {
-                insertedStudent.put("Error", e.toString());
+                insertedStudent.put("Result", e.toString());
             }catch(Exception f){
                 f.printStackTrace();
             }
@@ -1338,13 +1389,12 @@ public class StudentManager {
             pstmt.close();
             conn.close();
             jdbcObj.closePool();
-            insertedStudent.put(interestedStudent.toString(),"Inserted");
-            insertedStudent.put("affected Rows",affectedRows);
+            insertedStudent.put("Result",affectedRows);
 
         }catch(Exception e){
             e.printStackTrace();
             try{
-                insertedStudent.put("Error", e.toString());
+                insertedStudent.put("Result", e.toString());
 
             }catch(Exception f){
                 f.printStackTrace();
@@ -1400,13 +1450,12 @@ public class StudentManager {
             pstmt.close();
             conn.close();
             jdbcObj.closePool();
-            deletedInterestedStudent.put(interestedStudent.toString(),"deleted");
-            deletedInterestedStudent.put("affected Rows",affectedRows);
+            deletedInterestedStudent.put("Result",affectedRows);
 
         }catch(Exception e){
             e.printStackTrace();
             try{
-                deletedInterestedStudent.put("Error",e.toString());
+                deletedInterestedStudent.put("Result",e.toString());
 
             }catch(Exception f){
                 f.printStackTrace();
@@ -1468,13 +1517,12 @@ public class StudentManager {
             pstmt.close();
             conn.close();
             jdbcObj.closePool();
-            insertedStudent.put(studentJobPreference.toString(),"Inserted");
-            insertedStudent.put("affected Rows",affectedRows);
+            insertedStudent.put("Result",affectedRows);
 
         }catch(Exception e){
             e.printStackTrace();
             try {
-                insertedStudent.put("Error", e.toString());
+                insertedStudent.put("Result", e.toString());
             }catch(Exception f){
                 f.printStackTrace();
             }
@@ -1546,7 +1594,7 @@ public class StudentManager {
         } catch (Exception e) {
             e.printStackTrace();
             try {
-                studentObj.put("Error", e.toString());
+                studentObj.put("Result", e.toString());
             }catch(Exception f){
                 f.printStackTrace();
             }
@@ -1622,13 +1670,12 @@ public class StudentManager {
             pstmt.close();
             conn.close();
             jdbcObj.closePool();
-            insertedStudent.put(studentWorkAbility.toString(), "Inserted");
-            insertedStudent.put("affected Rows", affectedRows);
+            insertedStudent.put("Result", affectedRows);
 
         } catch (Exception e) {
             e.printStackTrace();
             try {
-                insertedStudent.put("Error", e.toString());
+                insertedStudent.put("Result", e.toString());
             } catch (Exception f) {
                 f.printStackTrace();
             }
@@ -1714,7 +1761,7 @@ public class StudentManager {
         } catch (Exception e) {
             e.printStackTrace();
             try {
-                studentObj.put("Error", e.toString());
+                studentObj.put("Result", e.toString());
             }catch(Exception f){
                 f.printStackTrace();
             }
@@ -1783,13 +1830,12 @@ public class StudentManager {
             pstmt.close();
             conn.close();
             jdbcObj.closePool();
-            insertedStudent.put(studentWorkHistory.toString(), "Inserted");
-            insertedStudent.put("affected Rows", affectedRows);
+            insertedStudent.put("Result", affectedRows);
 
         } catch (Exception e) {
             e.printStackTrace();
             try {
-                insertedStudent.put("Error", e.toString());
+                insertedStudent.put("Result", e.toString());
             } catch (Exception f) {
                 f.printStackTrace();
             }
@@ -1868,7 +1914,7 @@ public class StudentManager {
         } catch (Exception e) {
             e.printStackTrace();
             try {
-                studentObj.put("Error", e.toString());
+                studentObj.put("Result", e.toString());
             }catch(Exception f){
                 f.printStackTrace();
             }

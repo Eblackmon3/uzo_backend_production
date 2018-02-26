@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-public class AppController {
+public class  AppController {
 
 
 
@@ -527,7 +527,7 @@ public class AppController {
     }
 
      /*
-        example url: https://uzo-web-app.herokuapp.com/upload_student_resource
+        example url: https://uzo-web-app.herokuapp.com/upload_student_resume
         MUST SEND THIS AS A FORM DATA WITH THE BELOW AS
         header:
         file - file selected
@@ -536,10 +536,10 @@ public class AppController {
 
      */
      @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
-    @PostMapping(value = "/upload_student_resource", consumes = "multipart/form-data")
-    public String uploadStudentFile(@RequestParam("file") MultipartFile file,  int student_id){
+    @PostMapping(value = "/upload_student_resume", consumes = "multipart/form-data")
+    public String uploadStudentResume(@RequestParam("file") MultipartFile file,  int student_id){
          StudentManager manager= new StudentManager();
-        return manager.uploadStudentFile(file,student_id).toString();
+        return manager.uploadStudentResume(file,student_id).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
