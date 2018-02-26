@@ -122,6 +122,7 @@ public class StudentManager {
         String university=""; String phone_number=""; String address="";
         String date_of_birth= ""; String major=""; int year=0;
         String description="";
+        int student_id=0;
         JSONObject studentObj= new JSONObject();
         ResultSet rs=null;
         try {
@@ -145,6 +146,7 @@ public class StudentManager {
                 major=rs.getString("major");
                 year= rs.getInt("year");
                 description=rs.getString("description");
+                student_id= rs.getInt("student_id");
             }
             rs.close();
             pstmt.close();
@@ -160,6 +162,7 @@ public class StudentManager {
             studentObj.put("major",major);
             studentObj.put("year",year);
             studentObj.put("description",description);
+            studentObj.put("student_id",student_id);
 
 
         } catch (Exception e) {
