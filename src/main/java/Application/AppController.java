@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+
 @RestController
 public class  AppController {
 
@@ -44,7 +46,7 @@ public class  AppController {
      */
 
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
-    @PostMapping(value="/get_last_inserted_student")
+    @RequestMapping(value="/get_last_inserted_student",method = GET)
     public String getLastInsertedStudent(@RequestBody Student student){
         StudentManager manager= new StudentManager();
         JSONObject result= manager.getLastInsertedStudent();
