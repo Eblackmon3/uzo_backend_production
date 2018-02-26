@@ -46,8 +46,8 @@ public class  AppController {
      */
 
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
-    @RequestMapping(value="/get_last_inserted_student",method = GET)
-    public String getLastInsertedStudent(@RequestBody Student student){
+    @GetMapping("/get_last_inserted_student")
+    public String getLastInsertedStudent(){
         StudentManager manager= new StudentManager();
         JSONObject result= manager.getLastInsertedStudent();
         return result.toString();
