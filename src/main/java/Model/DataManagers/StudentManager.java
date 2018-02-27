@@ -193,7 +193,7 @@ public class StudentManager {
         Connection conn = null;
         PreparedStatement pstmt = null;
         String sql="insert into t_student_info(email, password, first_name, last_name, university," +
-                "phone_number, date_of_birth, major, year, description, state, street, city, apt) Values(?,?,?, ?,?,?, ?,?,?,?,?, ?, ? ,?);";
+                "phone_number, date_of_birth, major, year, description, state, street, city, apt) Values(?,?,?, ?,?,?, ?,?,?,?,?, ?, ? ,?) RETURNING student_id;";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
@@ -226,10 +226,15 @@ public class StudentManager {
             pstmt.setString(13,student.getCity());
             pstmt.setString(14,student.getApt());
             affectedRows = pstmt.executeUpdate();
+            ResultSet lastStudent= pstmt.getResultSet();
+            int student_id=0;
+            while(lastStudent.next()){
+                student_id= lastStudent.getInt("student_id");
+            }
             pstmt.close();
             conn.close();
             jdbcObj.closePool();
-            insertedStudent.put("Result",affectedRows);
+            insertedStudent.put("student_id",student_id);
 
         }catch(Exception e){
             e.printStackTrace();
