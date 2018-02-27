@@ -769,9 +769,10 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     * {
         "student_id": 50,
         "uzo_reason": "For the racks",
-        "lift_ability": true",
-        "mobility":"Bike",
-
+        "lift_ability": true,
+        "car":true,
+        "bike":bike,
+        "train":train
        }
     * used a string as to not process the JSONOBJECT on response
     */

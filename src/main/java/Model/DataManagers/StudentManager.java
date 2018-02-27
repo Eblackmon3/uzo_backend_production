@@ -1571,12 +1571,11 @@ public class StudentManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_student_job_preferences(student_id, uzo_reason, lift_ability,mobility) Values(?,?,?,?);";
+        String sql="insert into t_student_job_preferences(student_id, uzo_reason, lift_ability,car, bike, walk) Values(?,?,?,?,?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
-            if(studentJobPreference.getStudent_id()==0 || studentJobPreference.getMobility()==null |
-                    studentJobPreference.getUzo_reason()==null){
+            if(studentJobPreference.getStudent_id()==0 || studentJobPreference.getUzo_reason()==null){
                 throw new Exception("Missing Parameter");
             }
             //Connect to the database
@@ -1590,7 +1589,9 @@ public class StudentManager {
             pstmt.setInt(1, studentJobPreference.getStudent_id());
             pstmt.setString(2,studentJobPreference.getUzo_reason());
             pstmt.setBoolean(3,studentJobPreference.isLift_ability());
-            pstmt.setString(4,studentJobPreference.getMobility().toLowerCase());
+            pstmt.setBoolean(4,studentJobPreference.getBike());
+            pstmt.setBoolean(5,studentJobPreference.getCar());
+            pstmt.setBoolean(6,studentJobPreference.getWalk());
 
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
@@ -1637,7 +1638,8 @@ public class StudentManager {
         PreparedStatement pstmt = null;
         String sql="select * from t_student_job_preferences where student_id=?";
         DbConn jdbcObj = new DbConn();
-        String uzo_reason=""; boolean lift_ability=false ;String mobility="";
+        String uzo_reason=""; boolean lift_ability=false ;Boolean car=false;
+        Boolean walk=false; Boolean bike=false;
         JSONObject studentObj= new JSONObject();
         ResultSet rs= null;
         try {
@@ -1657,7 +1659,9 @@ public class StudentManager {
             while(rs.next()){
                 uzo_reason=rs.getString("uzo_reason");
                 lift_ability=rs.getBoolean("lift_ability");
-                mobility=rs.getString("mobility");
+                car=rs.getBoolean("car");
+                bike=rs.getBoolean("bike");
+                walk=rs.getBoolean("walk");
 
             }
             rs.close();
@@ -1666,7 +1670,9 @@ public class StudentManager {
             jdbcObj.closePool();
             studentObj.put("uzo_reason",uzo_reason);
             studentObj.put("lift_ability",lift_ability);
-            studentObj.put("mobility", mobility);
+            studentObj.put("car", car);
+            studentObj.put("walk", walk);
+            studentObj.put("bike", bike);
 
 
 
