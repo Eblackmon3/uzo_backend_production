@@ -23,8 +23,8 @@ public class CompanyManager {
         PreparedStatement pstmt = null;
         String sql="select * from t_company_info where company_id=?";
         DbConn jdbcObj = new DbConn();
-        String email="";String address="";String website_link=""; String description="";
-        String company_name="";
+        String email="";String state="";String website_link=""; String description="";
+        String company_name=""; String street=""; String city=""; String zip_code="";
         JSONObject companyObj= new JSONObject();
         try {
             if(company.getCompany_id()==0){
@@ -42,7 +42,10 @@ public class CompanyManager {
             ResultSet rs= pstmt.executeQuery();
             while(rs.next()){
                 email=rs.getString("email");
-                address=rs.getString("address");
+                state=rs.getString("state");
+                street=rs.getString("street");
+                city=rs.getString("city");
+                zip_code=rs.getString("zip_code");
                 website_link=rs.getString("website_link");
                 company_name=rs.getString("company_name");
                 description=rs.getString("description");
@@ -53,7 +56,10 @@ public class CompanyManager {
             companyObj.put("email",email);
             companyObj.put("company_name",company_name);
             companyObj.put("website_link", website_link);
-            companyObj.put("address",address);
+            companyObj.put("state",state);
+            companyObj.put("street",street);
+            companyObj.put("city",city);
+            companyObj.put("zip_code",zip_code);
             companyObj.put("description",description);
 
 
@@ -93,13 +99,14 @@ public class CompanyManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_company_info(email, address, website_link,company_name, password, description) Values(?,?,?, ?, ?,?);";
+        String sql="insert into t_company_info(email,website_link,company_name, password, description, state, street, city, zip_code) Values(?,?,?,  ?, ?,?,  ?,?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
 
-            if(company.getEmail()==null|| company.getAddress()==null||company.getWebsite_link()==null
-                    || company.getCompany_name()==null||company.getPassword()==null ||company.getDescription()==null){
+            if(company.getEmail()==null|| company.getCity()==null||company.getWebsite_link()==null
+                    || company.getCompany_name()==null||company.getPassword()==null ||company.getDescription()==null
+                    ||company.getState()==null || company.getStreet()==null || company.getZip_code()==null){
                 throw new Exception("Missing Parameter");
             }
             //Connect to the database
@@ -110,12 +117,15 @@ public class CompanyManager {
             System.out.println(jdbcObj.printDbStatus());
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, company.getEmail().toLowerCase());
-            pstmt.setString(2,company.getAddress().toLowerCase());
-            pstmt.setString(3,company.getWebsite_link().toLowerCase());
-            pstmt.setString(4,company.getCompany_name().toLowerCase());
-            pstmt.setString(5,company.getPassword());
-            pstmt.setString(6, company.getDescription());
+            pstmt.setString(1, company.getEmail());
+            pstmt.setString(2,company.getWebsite_link());
+            pstmt.setString(3,company.getCompany_name());
+            pstmt.setString(4,company.getPassword());
+            pstmt.setString(5, company.getDescription());
+            pstmt.setString(6,company.getState());
+            pstmt.setString(7,company.getStreet());
+            pstmt.setString(8,company.getCity());
+            pstmt.setString(9, company.getZip_code());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
@@ -320,7 +330,7 @@ public class CompanyManager {
         String first_name;
         String last_name;
         String university;
-        String phone_number=""; String address="";
+        String phone_number=""; String state=""; String city=""; String street=""; String apt="";
         String date_of_birth= ""; String major=""; int year=0;
         String description="";
         String sql2= "select * from t_student_info where student_id=?";
@@ -357,7 +367,10 @@ public class CompanyManager {
                     last_name=rs.getString("last_name");
                     university=rs.getString("university");
                     phone_number= rs.getString("phone_number");
-                    address=rs.getString("address");
+                    state=rs.getString("state");
+                    street=rs.getString("street");
+                    city=rs.getString("city");
+                    apt=rs.getString("apt");
                     date_of_birth=rs.getString("date_of_birth");
                     major=rs.getString("major");
                     year= rs.getInt("year");
@@ -369,7 +382,10 @@ public class CompanyManager {
                     selectedJobsStudent.put("last_name",last_name);
                     selectedJobsStudent.put("university",university);
                     selectedJobsStudent.put("phone_number",phone_number);
-                    selectedJobsStudent.put("address",address);
+                    selectedJobsStudent.put("state",state);
+                    selectedJobsStudent.put("street",street);
+                    selectedJobsStudent.put("city",city);
+                    selectedJobsStudent.put("apt",apt);
                     selectedJobsStudent.put("date_of_birth",date_of_birth);
                     selectedJobsStudent.put("major",major);
                     selectedJobsStudent.put("year",year);

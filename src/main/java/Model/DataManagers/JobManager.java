@@ -105,7 +105,7 @@ public class JobManager {
         String first_name;
         String last_name;
         String university;
-        String phone_number=""; String address="";
+        String phone_number=""; String state="";  String street="";  String city ="";  String apt="";
         String date_of_birth= ""; String major=""; int year=0;
         String description="";
         String sql2= "select * from t_student_info where student_id=?";
@@ -143,7 +143,10 @@ public class JobManager {
                     last_name=rs.getString("last_name");
                     university=rs.getString("university");
                     phone_number= rs.getString("phone_number");
-                    address=rs.getString("address");
+                    state=rs.getString("state");
+                    street=rs.getString("street");
+                    city=rs.getString("city");
+                    apt=rs.getString("apt");
                     date_of_birth=rs.getString("date_of_birth");
                     major=rs.getString("major");
                     year= rs.getInt("year");
@@ -154,7 +157,10 @@ public class JobManager {
                     selectedJobsStudent.put("last_name",last_name);
                     selectedJobsStudent.put("university",university);
                     selectedJobsStudent.put("phone_number",phone_number);
-                    selectedJobsStudent.put("address",address);
+                    selectedJobsStudent.put("street",street);
+                    selectedJobsStudent.put("state",state);
+                    selectedJobsStudent.put("city",city);
+                    selectedJobsStudent.put("apt",apt);
                     selectedJobsStudent.put("date_of_birth",date_of_birth);
                     selectedJobsStudent.put("major",major);
                     selectedJobsStudent.put("year",year);
@@ -230,7 +236,7 @@ public class JobManager {
         String first_name;
         String last_name;
         String university;
-        String phone_number=""; String address="";
+        String phone_number=""; String street="";String state=""; String city=""; String apt="";
         String date_of_birth= ""; String major=""; int year=0;
         String description="";
         String sql2= "select * from t_student_info where student_id=?";
@@ -267,7 +273,10 @@ public class JobManager {
                     last_name=rs.getString("last_name");
                     university=rs.getString("university");
                     phone_number= rs.getString("phone_number");
-                    address=rs.getString("address");
+                    state=rs.getString("state");
+                    street=rs.getString("street");
+                    city=rs.getString("city");
+                    apt=rs.getString("apt");
                     date_of_birth=rs.getString("date_of_birth");
                     major=rs.getString("major");
                     year= rs.getInt("year");
@@ -279,7 +288,10 @@ public class JobManager {
                     selectedJobsStudent.put("last_name",last_name);
                     selectedJobsStudent.put("university",university);
                     selectedJobsStudent.put("phone_number",phone_number);
-                    selectedJobsStudent.put("address",address);
+                    selectedJobsStudent.put("street",street);
+                    selectedJobsStudent.put("state",state);
+                    selectedJobsStudent.put("city",city);
+                    selectedJobsStudent.put("apt",apt);
                     selectedJobsStudent.put("date_of_birth",date_of_birth);
                     selectedJobsStudent.put("major",major);
                     selectedJobsStudent.put("year",year);
@@ -634,7 +646,7 @@ public class JobManager {
         String first_name;
         String last_name;
         String university;
-        String phone_number=""; String address="";
+        String phone_number=""; String state=""; String street=""; String city=""; String apt="";
         String date_of_birth= ""; String major=""; int year=0;
         String description="";
         String sql2= "select * from t_student_info where student_id=?";
@@ -672,7 +684,10 @@ public class JobManager {
                     last_name=rs.getString("last_name");
                     university=rs.getString("university");
                     phone_number= rs.getString("phone_number");
-                    address=rs.getString("address");
+                    street=rs.getString("street");
+                    state=rs.getString("state");
+                    city=rs.getString("city");
+                    apt=rs.getString("apt");
                     date_of_birth=rs.getString("date_of_birth");
                     major=rs.getString("major");
                     year= rs.getInt("year");
@@ -683,7 +698,10 @@ public class JobManager {
                     selectedJobsStudent.put("last_name",last_name);
                     selectedJobsStudent.put("university",university);
                     selectedJobsStudent.put("phone_number",phone_number);
-                    selectedJobsStudent.put("address",address);
+                    selectedJobsStudent.put("state",state);
+                    selectedJobsStudent.put("street",street);
+                    selectedJobsStudent.put("city",city);
+                    selectedJobsStudent.put("apt",apt);
                     selectedJobsStudent.put("date_of_birth",date_of_birth);
                     selectedJobsStudent.put("major",major);
                     selectedJobsStudent.put("year",year);

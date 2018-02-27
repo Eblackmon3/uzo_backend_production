@@ -64,7 +64,10 @@ public class  AppController {
          "last_name":"Okala",
          "university":"Georgia Tech",
          "phone_numnber":"571-344-9998",
-          "address": "13464 gray valley ct",
+          "state": "VA",
+          "street": "hood avenue",
+          "city": "Chantilly",
+          "apt": "115",
          "date_of_birth":"1/27/1993",
          "major":" "Computer Science",
          "year":"1",
@@ -92,7 +95,10 @@ public class  AppController {
       "last_name":"Okala",
       "university":"Georgia Tech",
       "phone_numnber":"571-344-9998",
-       "address": "13464 gray valley ct",
+       "state": "Va",
+       "city": "Chantilly",
+       "street": "hood street","state": "Va",
+       "apt": "116",
       "date_of_birth":"1/27/1993",
       "major":" "Computer Science",
       "year":1,
@@ -133,8 +139,16 @@ public class  AppController {
             manager.updateStudent(insertStudent.getPhone_number(), "phone_numnber", insertStudent.getStudent_id()).toString();
             everythingNull=0;
 
-        }if(insertStudent.getAddress()!=null){
-            manager.updateStudent(insertStudent.getAddress(),"address", insertStudent.getStudent_id()).toString();
+        }if(insertStudent.getStreet()!=null){
+            manager.updateStudent(insertStudent.getStreet(),"street", insertStudent.getStudent_id()).toString();
+            everythingNull=0;
+
+        }if(insertStudent.getState()!=null){
+            manager.updateStudent(insertStudent.getState(),"state", insertStudent.getStudent_id()).toString();
+            everythingNull=0;
+
+        }if(insertStudent.getApt()!=null){
+            manager.updateStudent(insertStudent.getApt(),"apt", insertStudent.getStudent_id()).toString();
             everythingNull=0;
 
         }if(insertStudent.getDate_of_birth()!=null){
@@ -222,7 +236,10 @@ public class  AppController {
      * headers
      * {
          "email": "eric.blackmon@uzo.com",
-         "address": "2700 gray valley court houston tx",
+         "city": "Chantilly",
+         "street": "street",
+         "zip_code": "30763",
+         "ctate": "Va",
          "website_link": "uzo.com",
          "company_name": "UZO",
          "password":"281330800fB",
@@ -563,7 +580,7 @@ public class  AppController {
       MUST SEND THIS AS A FORM DATA WITH THE BELOW AS
       header:
       file - file selected
-      company_id - <job id >
+      student_id - <student_id >
 
 
    */

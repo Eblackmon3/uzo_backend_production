@@ -10,7 +10,10 @@ public class Student {
     private int total_rating;
     private int times_rated;
     private String phone_number;
-    private String address;
+    private String state;
+    private String city;
+    private String street;
+    private String apt;
     private String date_of_birth;
     private String major;
     private int year;
@@ -89,8 +92,28 @@ public class Student {
         this.phone_number = phone_number;
     }
 
-    public String getAddress() {
-        return address;
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public String getCity() {
+        return city;
     }
 
     public String getDate_of_birth() {
@@ -105,8 +128,12 @@ public class Student {
         return year;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public String getApt() {
+        return apt;
+    }
+
+    public void setApt(String apt) {
+        this.apt = apt;
     }
 
     public void setDate_of_birth(String date_of_birth) {

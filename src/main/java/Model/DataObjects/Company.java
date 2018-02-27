@@ -3,8 +3,13 @@ package Model.DataObjects;
 public class Company {
     private int company_id;
     private String email;
-    private String address;
+    private String state;
+    private String city;
+
+    private String street;
+    private String zip_code;
     private String website_link;
+
     private String company_name;
     private String password;
     private String description;
@@ -25,12 +30,36 @@ public class Company {
         this.company_id = company_id;
     }
 
-    public String getAddress() {
-        return address;
+    public String getCity() {
+        return city;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public String getState() {
+        return state;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getZip_code() {
+        return zip_code;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setZip_code(String zip_code) {
+        this.zip_code = zip_code;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
     }
 
     public void setWebsite_link(String website_link) {
