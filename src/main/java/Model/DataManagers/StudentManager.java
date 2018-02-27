@@ -1571,7 +1571,7 @@ public class StudentManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_student_job_preferences(student_id, uzo_reason, lift_ability,car, bike, walk) Values(?,?,?,?,?,?);";
+        String sql="insert into t_student_job_preferences(student_id, uzo_reason, lift_ability,car, bike, bus) Values(?,?,?,?,?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
@@ -1591,7 +1591,7 @@ public class StudentManager {
             pstmt.setBoolean(3,studentJobPreference.isLift_ability());
             pstmt.setBoolean(4,studentJobPreference.getBike());
             pstmt.setBoolean(5,studentJobPreference.getCar());
-            pstmt.setBoolean(6,studentJobPreference.getWalk());
+            pstmt.setBoolean(6,studentJobPreference.getBus());
 
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
@@ -1639,7 +1639,7 @@ public class StudentManager {
         String sql="select * from t_student_job_preferences where student_id=?";
         DbConn jdbcObj = new DbConn();
         String uzo_reason=""; boolean lift_ability=false ;Boolean car=false;
-        Boolean walk=false; Boolean bike=false;
+        Boolean bus=false; Boolean bike=false;
         JSONObject studentObj= new JSONObject();
         ResultSet rs= null;
         try {
@@ -1661,7 +1661,7 @@ public class StudentManager {
                 lift_ability=rs.getBoolean("lift_ability");
                 car=rs.getBoolean("car");
                 bike=rs.getBoolean("bike");
-                walk=rs.getBoolean("walk");
+                bus=rs.getBoolean("bus");
 
             }
             rs.close();
@@ -1671,8 +1671,8 @@ public class StudentManager {
             studentObj.put("uzo_reason",uzo_reason);
             studentObj.put("lift_ability",lift_ability);
             studentObj.put("car", car);
-            studentObj.put("walk", walk);
             studentObj.put("bike", bike);
+            studentObj.put("bus", bus);
 
 
 

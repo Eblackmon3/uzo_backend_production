@@ -772,7 +772,7 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
         "lift_ability": true,
         "car":true,
         "bike":bike,
-        "train":train
+        "bus":bus
        }
     * used a string as to not process the JSONOBJECT on response
     */

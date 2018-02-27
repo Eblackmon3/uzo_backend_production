@@ -6,7 +6,7 @@ public class StudentJobPreference {
     private String uzo_reason;
     private boolean lift_ability;
     private Boolean car;
-    private Boolean walk;
+    private Boolean bus;
     private Boolean bike;
 
     public void setStudent_id(int student_id) {
@@ -37,8 +37,8 @@ public class StudentJobPreference {
         return car;
     }
 
-    public Boolean getWalk() {
-        return walk;
+    public Boolean getBus() {
+        return bus;
     }
 
     public void setBike(Boolean bike) {
@@ -49,8 +49,8 @@ public class StudentJobPreference {
         this.car = car;
     }
 
-    public void setWalk(Boolean walk) {
-        this.walk = walk;
+    public void setBus(Boolean bus) {
+        this.bus = bus;
     }
 
     public void setUzo_reason(String uzo_reason) {
