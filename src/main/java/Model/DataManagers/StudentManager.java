@@ -225,7 +225,8 @@ public class StudentManager {
             pstmt.setString(12,student.getStreet());
             pstmt.setString(13,student.getCity());
             pstmt.setString(14,student.getApt());
-            affectedRows = pstmt.executeUpdate();
+            boolean didItWork;
+            didItWork = pstmt.execute();
             ResultSet lastStudent= pstmt.getResultSet();
             int student_id=0;
             while(lastStudent.next()){
