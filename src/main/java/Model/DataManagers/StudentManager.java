@@ -1084,7 +1084,7 @@ public class StudentManager {
     }
 
     public JSONObject uploadStudentResource(MultipartFile file, int student_id){
-        String reesource_location= s3Operations.uploadCompanyFile(student_id,file);
+        String reesource_location= s3Operations.uploadStudentFile(student_id,file);
         JSONObject uploadeResource= new JSONObject();
         ResultSet rsObj = null;
         Connection conn = null;
