@@ -191,6 +191,7 @@ public class StudentManager {
         JSONObject insertedStudent= new JSONObject();
         ResultSet rsObj = null;
         Connection conn = null;
+        ResultSet lastStudent=null;
         PreparedStatement pstmt = null;
         String sql="insert into t_student_info(email, password, first_name, last_name, university," +
                 "phone_number, date_of_birth, major, year, description, state, street, city, apt) Values(?,?,?, ?,?,?, ?,?,?,?,?, ?, ? ,?) RETURNING student_id;";
@@ -227,12 +228,13 @@ public class StudentManager {
             pstmt.setString(14,student.getApt());
             boolean didItWork;
             didItWork = pstmt.execute();
-            ResultSet lastStudent= pstmt.getResultSet();
+            lastStudent= pstmt.getResultSet();
             int student_id=0;
             while(lastStudent.next()){
                 student_id= lastStudent.getInt("student_id");
             }
             pstmt.close();
+            lastStudent.close();
             conn.close();
             jdbcObj.closePool();
             insertedStudent.put("student_id",student_id);
@@ -246,6 +248,13 @@ public class StudentManager {
             }
 
         }finally{
+            if(lastStudent!=null){
+                try {
+                    lastStudent.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
             if(pstmt!=null){
                 try {
                     pstmt.close();
