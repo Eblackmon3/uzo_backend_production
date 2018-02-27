@@ -70,7 +70,7 @@ public class  AppController {
           "apt": "115",
          "date_of_birth":"1/27/1993",
          "major":" "Computer Science",
-         "year":"1",
+         "year":1,
          "description":"realest of the real"
         }
      * used a string as to not process the JSONOBJECT on response
@@ -239,7 +239,7 @@ public class  AppController {
          "city": "Chantilly",
          "street": "street",
          "zip_code": "30763",
-         "ctate": "Va",
+         "state": "Va",
          "website_link": "uzo.com",
          "company_name": "UZO",
          "password":"281330800fB",
