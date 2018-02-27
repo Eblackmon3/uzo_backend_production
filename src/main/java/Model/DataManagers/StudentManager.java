@@ -189,7 +189,6 @@ public class StudentManager {
 
     public JSONObject insertStudent(Student student){
         JSONObject insertedStudent= new JSONObject();
-        ResultSet lastStudent= null;
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -228,12 +227,11 @@ public class StudentManager {
             pstmt.setString(14,student.getApt());
             boolean didItWork;
             didItWork = pstmt.execute();
-            lastStudent= pstmt.getResultSet();
+            ResultSet lastStudent= pstmt.getResultSet();
             int student_id=0;
             while(lastStudent.next()){
                 student_id= lastStudent.getInt("student_id");
             }
-            rsObj.close();
             pstmt.close();
             conn.close();
             jdbcObj.closePool();
@@ -248,13 +246,6 @@ public class StudentManager {
             }
 
         }finally{
-            if(lastStudent!=null){
-                try {
-                    lastStudent.close();
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-            }
             if(pstmt!=null){
                 try {
                     pstmt.close();
