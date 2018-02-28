@@ -18,6 +18,7 @@ public class Student {
     private String major;
     private int year;
     private String description;
+    private String zipcode;
 
 
     public String getEmail() {
@@ -134,6 +135,14 @@ public class Student {
 
     public void setApt(String apt) {
         this.apt = apt;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public String getZipcode() {
+        return zipcode;
     }
 
     public void setDate_of_birth(String date_of_birth) {

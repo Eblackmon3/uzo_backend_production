@@ -25,7 +25,7 @@ public class StudentManager {
         DbConn jdbcObj = new DbConn();
         String email="";String first="";String last="";
         String university=""; String phone_number=""; String state="";
-        String street=""; String city=""; String apt="";
+        String street=""; String city=""; String apt=""; String zipcode="";
         String date_of_birth= ""; String major=""; int year=0;
         String description="";
         JSONObject studentObj= new JSONObject();
@@ -58,6 +58,7 @@ public class StudentManager {
                 major=rs.getString("major");
                 year= rs.getInt("year");
                 description=rs.getString("description");
+                zipcode= rs.getString("zipcode");
             }
             rs.close();
             pstmt.close();
@@ -76,6 +77,8 @@ public class StudentManager {
             studentObj.put("major",major);
             studentObj.put("year",year);
             studentObj.put("description",description);
+            studentObj.put("zipcode",zipcode);
+
 
 
         } catch (Exception e) {
@@ -194,14 +197,14 @@ public class StudentManager {
         ResultSet lastStudent=null;
         PreparedStatement pstmt = null;
         String sql="insert into t_student_info(email, password, first_name, last_name, university," +
-                "phone_number, date_of_birth, major, year, description, state, street, city, apt) Values(?,?,?, ?,?,?, ?,?,?,?,?, ?, ? ,?) RETURNING student_id;";
+                "phone_number, date_of_birth, major, year, description, state, street, city, apt, zipcode) Values(?,?,?, ?,?,?, ?,?,?, ?,?, ?,  ? ,?, ?) RETURNING student_id;";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
             if(student.getEmail()==null || student.getPassword()==null ||student.getFirst_name()==null ||
                     student.getLast_name()==null || student.getUniversity()==null || student.getDate_of_birth()==null
                     ||student.getState()==null|| student.getMajor()==null ||student.getYear()==0
-                    ||student.getCity()==null || student.getStreet()==null){
+                    ||student.getCity()==null || student.getStreet()==null || student.getZipcode()==null){
                 throw new Exception("Missing Parameter");
             }
             //Connect to the database
@@ -226,6 +229,7 @@ public class StudentManager {
             pstmt.setString(12,student.getStreet());
             pstmt.setString(13,student.getCity());
             pstmt.setString(14,student.getApt());
+            pstmt.setString(15,student.getZipcode());
             boolean didItWork;
             didItWork = pstmt.execute();
             lastStudent= pstmt.getResultSet();
