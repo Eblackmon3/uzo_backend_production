@@ -63,7 +63,7 @@ public class  AppController {
          "first_name": "Stephen",
          "last_name":"Okala",
          "university":"Georgia Tech",
-         "phone_numnber":"571-344-9998",
+         "phone_number":"571-344-9998",
           "state": "VA",
           "street": "hood avenue",
           "city": "Chantilly",
@@ -87,23 +87,23 @@ public class  AppController {
   * api call example https://uzo-web-app.herokuapp.com/update_student_info
   * All of the paramters are optional
   * headers
-  * {
-      "student_id"=1,
-      "email": "stephenoakala@gmail.com",
-      "password": "281330800fB",
-      "first_name": "Stephen",
-      "last_name":"Okala",
-      "university":"Georgia Tech",
-      "phone_numnber":"571-344-9998",
-       "state": "Va",
-       "city": "Chantilly",
-       "street": "hood street","state": "Va",
-       "apt": "116",
-      "date_of_birth":"1/27/1993",
-      "major":" "Computer Science",
-      "year":1,
-      "description":"realest of the real"
-     }
+  *   {
+         "email": "stephenoakala@gmail.com",
+         "password": "281330800fB",
+         "first_name": "Stephen",
+         "last_name":"Okala",
+         "university":"Georgia Tech",
+         "phone_numnber":"571-344-9998",
+          "state": "VA",
+          "street": "hood avenue",
+          "city": "Chantilly",
+          "apt": "115",
+          "zipcode":"30326",
+         "date_of_birth":"1/27/1993",
+         "major": "Computer Science",
+         "year":1,
+         "description":"realest of the real"
+        }
   * used a string as to not process the JSONOBJECT on response
   */
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
@@ -165,6 +165,10 @@ public class  AppController {
 
         }if(insertStudent.getDescription()!=null){
            manager.updateStudent(insertStudent.getDescription(),"description",insertStudent.getStudent_id()).toString();
+            everythingNull=0;
+
+        }if(insertStudent.getZipcode()!=null){
+            manager.updateStudent(insertStudent.getZipcode(),"zipcode",insertStudent.getStudent_id()).toString();
             everythingNull=0;
 
         }if(everythingNull==1) {
