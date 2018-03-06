@@ -132,7 +132,7 @@ public class CompanyManager {
             did_it_work = pstmt.execute();
             rs=pstmt.getResultSet();
             while(rs.next()){
-                company_id= rs.getInt(company_id);
+                company_id= rs.getInt("company_id");
             }
             rs.close();
             pstmt.close();
