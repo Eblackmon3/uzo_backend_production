@@ -572,7 +572,7 @@ public class  AppController {
 
      */
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
-    @PostMapping(value = "/check_student_login")
+    @PostMapping(value = "/check_company_login")
     public String checkCompanyLogin(@RequestBody Company company){
         CompanyManager manager= new CompanyManager();
         return manager.checkCompanyLogin(company).toString();

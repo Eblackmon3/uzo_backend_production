@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="629d3e88-3c46-4a87-8eb9-4b9e62a72580" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/Application/AppController.java" afterPath="$PROJECT_DIR$/src/main/java/Application/AppController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java" afterPath="$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DataManagers/StudentManager.java" afterPath="$PROJECT_DIR$/src/main/java/Model/DataManagers/StudentManager.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -23,21 +21,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AppController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AppController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="565" column="74" lean-forward="false" selection-start-line="565" selection-start-column="74" selection-end-line="565" selection-end-column="74" />
+            <state relative-caret-position="118">
+              <caret line="576" column="53" lean-forward="true" selection-start-line="576" selection-start-column="53" selection-end-line="576" selection-end-column="53" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CompanyManager.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CompanyManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="678" column="0" lean-forward="false" selection-start-line="678" selection-start-column="0" selection-end-line="678" selection-end-column="0" />
+            <state relative-caret-position="-541">
+              <caret line="671" column="33" lean-forward="true" selection-start-line="671" selection-start-column="33" selection-end-line="671" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -76,8 +74,8 @@
       <find>insert</find>
       <find>insertCompany</find>
       <find>checkStud</find>
-      <find>checkS</find>
       <find>getC</find>
+      <find>checkS</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -837,18 +835,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="678" column="0" lean-forward="false" selection-start-line="678" selection-start-column="0" selection-end-line="678" selection-end-column="0" />
+        <state relative-caret-position="118">
+          <caret line="576" column="53" lean-forward="true" selection-start-line="576" selection-start-column="53" selection-end-line="576" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="565" column="74" lean-forward="false" selection-start-line="565" selection-start-column="74" selection-end-line="565" selection-end-column="74" />
+        <state relative-caret-position="-541">
+          <caret line="671" column="33" lean-forward="true" selection-start-line="671" selection-start-column="33" selection-end-line="671" selection-end-column="33" />
           <folding />
         </state>
       </provider>
