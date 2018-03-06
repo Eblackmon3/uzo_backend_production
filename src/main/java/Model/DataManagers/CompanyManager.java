@@ -677,17 +677,18 @@ public class CompanyManager {
         return company_resources;
     }
 
-
-    public JSONObject checkCompanyLogin( Student student){
+    public JSONObject checkCompanyLogin( Company company){
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="select * from t_company_info where email=? and password=?";
+        ResultSet rs=null;
+        String sql="select * from t_company_info where email=? and password=?;";
         DbConn jdbcObj = new DbConn();
-
-        JSONObject studentObj= new JSONObject();
+        String email="";String state="";String website_link=""; String description="";
+        String company_name=""; String street=""; String city=""; String zip_code="";
+        JSONObject companyObj= new JSONObject();
         try {
-            if(student.getPassword()==null|| student.getEmail()==null){
+            if(company.getPassword()==null|| company.getEmail()==null){
                 throw new Exception("Missing Parameter");
             }
             //Connect to the database
@@ -698,29 +699,56 @@ public class CompanyManager {
             System.out.println(jdbcObj.printDbStatus());
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1,student.getEmail());
-            pstmt.setString(2,student.getPassword());
-            ResultSet rs= pstmt.executeQuery();
+            pstmt.setString(1,company.getEmail());
+            pstmt.setString(2,company.getPassword());
+            rs= pstmt.executeQuery();
             if(rs.next()){
-                studentObj.put("Company ID",rs.getInt("company_id"));
+                email=rs.getString("email");
+                state=rs.getString("state");
+                street=rs.getString("street");
+                city=rs.getString("city");
+                zip_code=rs.getString("zip_code");
+                website_link=rs.getString("website_link");
+                company_name=rs.getString("company_name");
+                description=rs.getString("description");
+                companyObj.put("email",email);
+                companyObj.put("company_name",company_name);
+                companyObj.put("website_link", website_link);
+                companyObj.put("state",state);
+                companyObj.put("street",street);
+                companyObj.put("city",city);
+                companyObj.put("zip_code",zip_code);
+                companyObj.put("description",description);
+
+
 
             }else{
-                studentObj.put("Company ID","Does not exist");
+                companyObj.put("company_login","Does not exist");
 
             }
             rs.close();
             pstmt.close();
             conn.close();
+            jdbcObj.closePool();
+
+
 
         } catch (Exception e) {
             e.printStackTrace();
             try{
-                studentObj.put("Error", e.toString());
+                companyObj.put("Result", e.toString());
 
             }catch(Exception f){
                 f.printStackTrace();
             }
         }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
             if(pstmt!=null){
                 try {
                     pstmt.close();
@@ -742,9 +770,10 @@ public class CompanyManager {
 
         }
 
-        return studentObj;
+        return companyObj;
 
     }
+
 
 
 

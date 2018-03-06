@@ -1286,7 +1286,7 @@ public class StudentManager {
 
 
             }else{
-                studentObj.put("student_id","Does not exist");
+                studentObj.put("student_login","Does not exist");
 
             }
             rs.close();

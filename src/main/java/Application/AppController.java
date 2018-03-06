@@ -562,6 +562,23 @@ public class  AppController {
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    /*
+        example url: https://uzo-web-app.herokuapp.com/check_company_login
+        header:
+            {
+             "email":"ericblackmon52@yahoo.com",
+             "password": "281330800fB"
+            }
+
+     */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/check_student_login")
+    public String checkCompanyLogin(@RequestBody Company company){
+        CompanyManager manager= new CompanyManager();
+        return manager.checkCompanyLogin(company).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
      /*
         example url: https://uzo-web-app.herokuapp.com/upload_student_resume
         MUST SEND THIS AS A FORM DATA WITH THE BELOW AS
