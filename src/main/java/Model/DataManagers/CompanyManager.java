@@ -96,12 +96,15 @@ public class CompanyManager {
 
     public JSONObject insertCompany(Company company){
         JSONObject insertedStudent= new JSONObject();
+        ResultSet rs=null;
         ResultSet rsObj = null;
         Connection conn = null;
+        int company_id=0;
         PreparedStatement pstmt = null;
-        String sql="insert into t_company_info(email,website_link,company_name, password, description, state, street, city, zip_code) Values(?,?,?,  ?, ?,?,  ?,?,?);";
+        String sql="insert into t_company_info(email,website_link,company_name, password, description, state, street, city, zip_code) Values(?,?,?,  ?, ?,?,  ?,?,?)" +
+                "RETURNING company_id;";
         DbConn jdbcObj = new DbConn();
-        int affectedRows=0;
+        boolean did_it_work=false;
         try{
 
             if(company.getEmail()==null|| company.getCity()==null||company.getWebsite_link()==null
@@ -126,11 +129,15 @@ public class CompanyManager {
             pstmt.setString(7,company.getStreet());
             pstmt.setString(8,company.getCity());
             pstmt.setString(9, company.getZip_code());
-            affectedRows = pstmt.executeUpdate();
+            did_it_work = pstmt.execute();
+            rs=pstmt.getResultSet();
+            while(rs.next()){
+                company_id= rs.getInt(company_id);
+            }
+            rs.close();
             pstmt.close();
             conn.close();
-            insertedStudent.put(company.toString(),"Inserted");
-            insertedStudent.put("affected Rows",affectedRows);
+            insertedStudent.put("company_id",company_id);
 
         }catch(Exception e){
             e.printStackTrace();
@@ -141,6 +148,13 @@ public class CompanyManager {
             }
 
         }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
             if(pstmt!=null){
                 try {
                     pstmt.close();
