@@ -1247,7 +1247,7 @@ public class StudentManager {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs=null;
-        String sql="select * from t_student_info where email=? and password=?";
+        String sql="select * from t_student_info where email=? and password=? RETURNING student_id;";
         DbConn jdbcObj = new DbConn();
 
         JSONObject studentObj= new JSONObject();
