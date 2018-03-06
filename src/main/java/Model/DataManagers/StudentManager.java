@@ -1268,6 +1268,22 @@ public class StudentManager {
             rs= pstmt.executeQuery();
             if(rs.next()){
                 studentObj.put("student_id",rs.getInt("student_id"));
+                studentObj.put("email",rs.getString("email"));
+                studentObj.put("first_name",rs.getString("first"));
+                studentObj.put("last_name", rs.getString("last"));
+                studentObj.put("university",rs.getString("university"));
+                studentObj.put("phone_number",rs.getString("phone_number"));
+                studentObj.put("state",rs.getString("state"));
+                studentObj.put("street",rs.getString("street"));
+                studentObj.put("city", rs.getString("city"));
+                studentObj.put("apt",rs.getString("apt"));
+                studentObj.put("date_of_birth", rs.getString("date_of_birth"));
+
+                studentObj.put("major",rs.getString("major"));
+                studentObj.put("year",rs.getString("year"));
+                studentObj.put("description",rs.getString("description"));
+                studentObj.put("zipcode",rs.getString("zipcode"));
+
 
             }else{
                 studentObj.put("student_id","Does not exist");
