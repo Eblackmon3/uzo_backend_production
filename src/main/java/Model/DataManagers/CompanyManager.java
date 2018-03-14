@@ -65,7 +65,7 @@ public class CompanyManager {
 
         } catch (Exception e) {
             try {
-                companyObj.put("Error", e.toString());
+                companyObj.put("error", e.toString());
             }catch(Exception f){
                 f.printStackTrace();
             }
@@ -142,7 +142,7 @@ public class CompanyManager {
         }catch(Exception e){
             e.printStackTrace();
             try {
-                insertedStudent.put("Error", e.toString());
+                insertedStudent.put("error", e.toString());
             }catch(Exception f){
                 f.printStackTrace();
             }
@@ -289,13 +289,12 @@ public class CompanyManager {
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            insertedStudent.put("Company Rep" +rep.toString(),"Inserted");
-            insertedStudent.put("affected Rows",affectedRows);
+            insertedStudent.put("affected_rows",affectedRows);
 
         }catch(Exception e){
             e.printStackTrace();
             try {
-                insertedStudent.put("Error", e.toString());
+                insertedStudent.put("error", e.toString());
             }catch(Exception f){
                 f.printStackTrace();
             }
@@ -421,7 +420,7 @@ public class CompanyManager {
             e.printStackTrace();
             try{
                 selectedStudents= new JSONArray();
-                selectedJobsStudent.put("Error", e.toString());
+                selectedJobsStudent.put("error", e.toString());
                 selectedStudents.put(selectedJobsStudent);
 
             }catch(Exception f){
@@ -495,13 +494,12 @@ public class CompanyManager {
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            updateUniversity.put("Company ID:"+rep.getCompany_id(), "Company rep updated");
-            updateUniversity.put("affected Rows",affectedRows);
+            updateUniversity.put("affected_rows",affectedRows);
 
         }catch(Exception e){
             e.printStackTrace();
             try{
-                updateUniversity.put("Error", e.toString());
+                updateUniversity.put("error", e.toString());
 
             }catch(Exception f){
                 f.printStackTrace();
@@ -560,13 +558,12 @@ public class CompanyManager {
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            uploadeResource.put("Company:"+company_id +" resource updated", "resource location:"+reesource_location);
-            uploadeResource.put("affected Rows",affectedRows);
+            uploadeResource.put("affected_rows",affectedRows);
 
         }catch(Exception e){
             e.printStackTrace();
             try{
-                uploadeResource.put("Error", e.toString());
+                uploadeResource.put("error", e.toString());
 
             }catch(Exception f){
                 f.printStackTrace();
@@ -640,7 +637,7 @@ public class CompanyManager {
             e.printStackTrace();
             try {
                 company_resources = new JSONArray();
-                resource.put("Error", e.toString());
+                resource.put("error", e.toString());
                 company_resources.put(resource);
 
             } catch (Exception f) {
@@ -736,7 +733,7 @@ public class CompanyManager {
         } catch (Exception e) {
             e.printStackTrace();
             try{
-                companyObj.put("Result", e.toString());
+                companyObj.put("error", e.toString());
 
             }catch(Exception f){
                 f.printStackTrace();

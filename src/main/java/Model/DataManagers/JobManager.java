@@ -52,13 +52,12 @@ public class JobManager {
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            insertedJob.put(jobInsert.toString(),"Inserted");
-            insertedJob.put("affected Rows",affectedRows);
+            insertedJob.put("affected_rows",affectedRows);
 
         }catch(Exception e){
             e.printStackTrace();
             try {
-                insertedJob.put("Error", e.toString());
+                insertedJob.put("error", e.toString());
             }catch (Exception f){
                 f.printStackTrace();
             }
@@ -181,7 +180,7 @@ public class JobManager {
         }catch(Exception e){
             e.printStackTrace();
             try{
-                selectedJobsStudent.put("Error", e.toString());
+                selectedJobsStudent.put("error", e.toString());
                 selectedStudents=new JSONArray();
                 selectedStudents.put(selectedJobsStudent);
 
@@ -316,7 +315,7 @@ public class JobManager {
             e.printStackTrace();
             try{
                 selectedStudents= new JSONArray();
-                selectedJobsStudent.put("Error", e.toString());
+                selectedJobsStudent.put("error", e.toString());
                 selectedStudents.put(selectedJobsStudent);
 
             }catch(Exception f){
@@ -381,13 +380,12 @@ public class JobManager {
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            insertedCaptain.put("Student Captain:"+studentJob.getStudent_id(),"Inserted");
-            insertedCaptain.put("affected Rows",affectedRows);
+            insertedCaptain.put("affected_rows",affectedRows);
 
         }catch(Exception e){
             e.printStackTrace();
             try{
-                insertedCaptain.put("Error", e.toString());
+                insertedCaptain.put("error", e.toString());
 
             }catch(Exception f){
                 f.printStackTrace();
@@ -443,13 +441,12 @@ public class JobManager {
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            insertedCaptain.put("Student CoCaptain:"+studentJob.getStudent_id(),"Inserted");
-            insertedCaptain.put("affected Rows",affectedRows);
+            insertedCaptain.put("affected_rows",affectedRows);
 
         }catch(Exception e){
             e.printStackTrace();
             try{
-                insertedCaptain.put("Error", e.toString());
+                insertedCaptain.put("error", e.toString());
 
             }catch(Exception f){
                 f.printStackTrace();
@@ -535,7 +532,7 @@ public class JobManager {
         }catch( Exception e){
             e.printStackTrace();
             try {
-                selectedStudentJob.put("Error", e.toString());
+                selectedStudentJob.put("error", e.toString());
             }catch( Exception f){
                 f.printStackTrace();
             }
@@ -596,13 +593,12 @@ public class JobManager {
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            deletedInterestedStudent.put(interestedStudent.toString(),"deleted");
-            deletedInterestedStudent.put("affected Rows",affectedRows);
+            deletedInterestedStudent.put("affected_rows",affectedRows);
 
         }catch(Exception e){
             e.printStackTrace();
             try{
-                deletedInterestedStudent.put("Error",e.toString());
+                deletedInterestedStudent.put("error",e.toString());
 
             }catch(Exception f){
                 f.printStackTrace();
@@ -728,7 +724,7 @@ public class JobManager {
         }catch(Exception e){
             e.printStackTrace();
             try{
-                selectedJobsStudent.put("Error", e.toString());
+                selectedJobsStudent.put("error", e.toString());
                 selectedStudents=new JSONArray();
                 selectedStudents.put(selectedJobsStudent);
 
@@ -796,13 +792,12 @@ public class JobManager {
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
-            uploadeResource.put("Job:"+job_id +" resource updated", "resource location:"+reesource_location);
-            uploadeResource.put("affected Rows",affectedRows);
+            uploadeResource.put("affected_rows",affectedRows);
 
         }catch(Exception e){
             e.printStackTrace();
             try{
-                uploadeResource.put("Error", e.toString());
+                uploadeResource.put("error", e.toString());
 
             }catch(Exception f){
                 f.printStackTrace();
@@ -875,7 +870,7 @@ public class JobManager {
             e.printStackTrace();
             try {
                 company_resources = new JSONArray();
-                resource.put("Error", e.toString());
+                resource.put("error", e.toString());
                 company_resources.put(resource);
 
             } catch (Exception f) {
