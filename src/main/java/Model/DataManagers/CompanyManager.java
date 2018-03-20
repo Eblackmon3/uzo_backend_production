@@ -733,7 +733,7 @@ public class CompanyManager {
         } catch (Exception e) {
             e.printStackTrace();
             try{
-                companyObj.put("error", e.toString());
+                companyObj.put("Result", e.toString());
 
             }catch(Exception f){
                 f.printStackTrace();
