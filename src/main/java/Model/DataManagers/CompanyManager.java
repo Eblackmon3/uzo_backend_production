@@ -190,6 +190,7 @@ public class CompanyManager {
         String uzo_help="";
         String first_name="";
         String last_name="";
+        String phone_number="";
         JSONObject companyObj= new JSONObject();
         try {
             if(company.getCompany_id()==0){
@@ -212,6 +213,7 @@ public class CompanyManager {
                 uzo_help=rs.getString("uzo_help");
                 first_name=rs.getString("first_name");
                 last_name=rs.getString("last_name");
+                last_name=rs.getString("phone_number");
             }
             rs.close();
             pstmt.close();
@@ -222,6 +224,7 @@ public class CompanyManager {
             companyObj.put("uzo_help",uzo_help);
             companyObj.put("first_name",first_name);
             companyObj.put("last_name",last_name);
+            companyObj.put("phone_number",phone_number);
 
 
 
@@ -262,13 +265,13 @@ public class CompanyManager {
         Connection conn = null;
         PreparedStatement pstmt = null;
         String sql="insert into t_company_reps(company_id,\"position\", position_details,found_uzo,uzo_help, first_name" +
-                ",last_name) Values(?,?,?,?,?,?,?);";
+                ",last_name, phone_number) Values(?,?,?,?,?,?,?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
 
             if(rep.getCompany_id() ==0|| rep.getFound_uzo()==null||rep.getPosition()==null
-                    || rep.getUzo_help()==null|| rep.getFirst_name()==null || rep.getLast_name()==null){
+                    || rep.getUzo_help()==null|| rep.getFirst_name()==null || rep.getLast_name()==null || rep.getPhone_number()==null){
                 throw new Exception("Missing Parameter");
             }
             //Connect to the database
@@ -286,6 +289,7 @@ public class CompanyManager {
             pstmt.setString(5,rep.getUzo_help());
             pstmt.setString(6,rep.getFirst_name());
             pstmt.setString(7,rep.getLast_name());
+            pstmt.setString(8,rep.getPhone_number());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
@@ -468,7 +472,7 @@ public class CompanyManager {
         Connection conn = null;
         PreparedStatement pstmt = null;
         String sql="update t_company_reps set position=?, position_details=?, found_uzo=?, " +
-                "uzo_help=?, first_name=?, last_name=? where company_id=?;";
+                "uzo_help=?, first_name=?, last_name=?, phone_number=? where company_id=?;";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
@@ -490,7 +494,8 @@ public class CompanyManager {
             pstmt.setString(4, rep.getUzo_help());
             pstmt.setString(5,rep.getFirst_name());
             pstmt.setString(6, rep.getLast_name());
-            pstmt.setInt(7,rep.getCompany_id());
+            pstmt.setString(7, rep.getPhone_number());
+            pstmt.setInt(8,rep.getCompany_id());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();

@@ -9,6 +9,15 @@ public class CompanyRep {
     private String uzo_help;
     private String first_name;
     private String last_name;
+    private String phone_number;
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
+    public String getPhone_number() {
+        return phone_number;
+    }
 
     public int getCompany_id() {
         return company_id;
