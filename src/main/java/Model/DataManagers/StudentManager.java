@@ -770,6 +770,130 @@ public class StudentManager {
     }
 
 
+
+    public JSONArray getStudentEventList(Student student){
+        JSONObject selectedStudentEvents= new JSONObject();
+        JSONArray selectedEvents= new JSONArray();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs=null;
+        ArrayList<Integer> studentsEvents= new ArrayList<>();
+        ArrayList<Boolean> studentsComplete= new ArrayList<>();
+        int event_id;
+        int studentEventID;
+        boolean completed;
+        Date date;
+        String dress_code;
+        double duration;
+        boolean open;
+        String event_title;
+        int time;
+        int company_id;
+        String description;
+        String sql2= "select * from t_event_info where event_id=?";
+        String sql="select * from t_student_event_map where student_id =?";
+        DbConn jdbcObj = new DbConn();
+        try{
+            if(student.getStudent_id()==0){
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, student.getStudent_id());
+            rs= pstmt.executeQuery();
+            while(rs.next()){
+                studentEventID=rs.getInt("event_id");
+                completed=rs.getBoolean("completed");
+                studentsEvents.add(studentEventID);
+                studentsComplete.add(completed);
+            }
+
+            pstmt = conn.prepareStatement(sql2);
+            for(int i=0;i<studentsEvents.size();i++){
+                pstmt.setInt(1, studentsEvents.get(i));
+                completed= studentsComplete.get(i);
+                rs= pstmt.executeQuery();
+                while(rs.next()){
+                    event_id=rs.getInt("event_id");
+                    date=rs.getDate("date");
+                    dress_code= rs.getString("dress_code");
+                    duration = rs.getDouble("duration");
+                    open= rs.getBoolean("open");
+                    event_title= rs.getString("event_title");
+                    company_id=rs.getInt("company_id");
+                    time=rs.getInt("time");
+                    description=rs.getString("description");
+                    selectedStudentEvents.put("event_id",event_id);
+                    selectedStudentEvents.put("completed",completed);
+                    selectedStudentEvents.put("date",date);
+                    selectedStudentEvents.put("dress_code",dress_code);
+                    selectedStudentEvents.put("duration",duration);
+                    selectedStudentEvents.put("open", open);;
+                    selectedStudentEvents.put("event_title", event_title);
+                    selectedStudentEvents.put("company_id",company_id);
+                    selectedStudentEvents.put("time", time);
+                    selectedStudentEvents.put("description", description);
+                    selectedEvents.put(selectedStudentEvents);
+                    selectedStudentEvents=new JSONObject();
+                }
+
+            }
+            rs.close();
+            pstmt.close();
+            conn.close();
+            jdbcObj.closePool();
+
+        }catch(Exception e){
+            e.printStackTrace();
+            try{
+                selectedStudentEvents.put("error", e.toString());
+                System.out.println(selectedStudentEvents.toString());
+                selectedEvents= new JSONArray();
+                selectedEvents.put(selectedStudentEvents);
+                return selectedEvents;
+
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+
+        }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+        return selectedEvents;
+    }
+
+
     public JSONObject insertStudentOnCall(JobOnCall onCall){
         JSONObject insertedOncall= new JSONObject();
         ResultSet rsObj = null;

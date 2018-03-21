@@ -971,7 +971,7 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
      * example json:
      * {
          "student_id": 1,
-         "job_id":1
+         "event_id":1
         }
      */
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
@@ -979,6 +979,22 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     public String unregisterStudent(@RequestBody StudentEvent studentEvent){
         StudentManager manager= new StudentManager();
         return manager.unregisterStudentEvent(studentEvent).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    /*
+   * example url:https://uzo-web-app.herokuapp.com/get_students_events_by_id
+   * example header:
+   * {
+       "student_id": 1
+      }
+   *
+   */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/get_students_events_by_id")
+    public String getStudentEventsList(@RequestBody Student student){
+        StudentManager manager= new StudentManager();
+        return manager.getStudentEventList(student).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
