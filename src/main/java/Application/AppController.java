@@ -967,6 +967,21 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    /* example url: https://uzo-web-app.herokuapp.com/unregister_student_from_event
+     * example json:
+     * {
+         "student_id": 1,
+         "job_id":1
+        }
+     */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/unregister_student_from_event")
+    public String unregisterStudent(@RequestBody StudentEvent studentEvent){
+        StudentManager manager= new StudentManager();
+        return manager.unregisterStudentEvent(studentEvent).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
 
 
 

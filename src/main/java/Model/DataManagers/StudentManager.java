@@ -577,6 +577,69 @@ public class StudentManager {
 
     }
 
+
+    public JSONObject unregisterStudentEvent(StudentEvent studEvent){
+        JSONObject deletedStudentJob= new JSONObject();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="delete from t_student_event_map where student_id =? and event_id =?";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            if(studEvent.getStudent_id()==0|| studEvent.getEvent_id()==0){
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, studEvent.getStudent_id());
+            pstmt.setInt(2,studEvent.getEvent_id());
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            jdbcObj.closePool();
+            deletedStudentJob.put("affected_rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+            try{
+                deletedStudentJob.put("error",e.toString());
+
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+
+        }finally{
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+        return deletedStudentJob;
+
+    }
+
+
     public JSONArray getStudentJobList(Student student){
         JSONObject selectedStudentJob= new JSONObject();
         JSONArray selectedJobs= new JSONArray();
