@@ -950,6 +950,24 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     }
 
 
+    /*
+     * Example url: https://uzo-web-app.herokuapp.com/register_student_for_event
+     * example json
+     * {
+         "student_id": 1,
+         "company_id": 19,
+         "event_id":1
+        }
+     */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/register_student_for_event")
+    public String registerStudentEvent(@RequestBody StudentEvent studentEvent){
+        StudentManager manager= new StudentManager();
+        return manager.registerStudentEvent(studentEvent).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+
 
 
 }

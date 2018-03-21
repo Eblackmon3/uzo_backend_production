@@ -347,6 +347,90 @@ public class StudentManager {
     }
 
 
+    public JSONObject registerStudentEvent(StudentEvent studEvent){
+        JSONObject insertedStudentJob= new JSONObject();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs=null;
+        String sql="select * from t_student_event_map where student_id=? and company_id=? and event_id= ?";
+        String sql2="insert into t_student_job_map(student_id,company_id, job_id) " +
+                "Values(?,?,?);";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            if (studEvent.getCompany_id()==0||studEvent.getEvent_id()==0 || studEvent.getStudent_id()==0){
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt=conn.prepareStatement(sql);
+            pstmt.setInt(1, studEvent.getStudent_id());
+            pstmt.setInt(2, studEvent.getCompany_id());
+            pstmt.setInt(3,studEvent.getEvent_id());
+            rs= pstmt.executeQuery();
+            if(rs.next()) {
+                insertedStudentJob.put("result", "Already assigned to this job");
+                return insertedStudentJob;
+            }
+            pstmt = conn.prepareStatement(sql2);
+            pstmt.setInt(1, studEvent.getStudent_id());
+            pstmt.setInt(2, studEvent.getCompany_id());
+            pstmt.setInt(3,studEvent.getEvent_id());
+            affectedRows = pstmt.executeUpdate();
+            rs.close();
+            pstmt.close();
+            conn.close();
+            jdbcObj.closePool();
+            insertedStudentJob.put("affected_rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+            try{
+                insertedStudentJob.put("error",e.toString());
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+
+        }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+        return insertedStudentJob;
+
+
+
+    }
+
+
     public JSONObject assignStudentJob(StudentJob studJob){
         JSONObject insertedStudentJob= new JSONObject();
         Connection conn = null;
@@ -374,7 +458,7 @@ public class StudentManager {
             pstmt.setInt(3,studJob.getJob_id());
             rs= pstmt.executeQuery();
             if(rs.next()) {
-                insertedStudentJob.put("Student id:"+studJob.getStudent_id(), "Already assigned to this job");
+                insertedStudentJob.put("result", "Already assigned to this job");
                 return insertedStudentJob;
             }
             pstmt = conn.prepareStatement(sql2);
