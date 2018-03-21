@@ -13,7 +13,6 @@
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-web:1.5.9.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-jetty:1.5.9.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-actuator:1.5.9.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.jsoup:jsoup:1.11.2" level="project" />
     <orderEntry type="library" name="Gradle: com.twilio.sdk:twilio:7.11.0" level="project" />
     <orderEntry type="library" name="Gradle: org.postgresql:postgresql:42.1.1" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.commons:commons-dbcp2:2.1.1" level="project" />

@@ -3,6 +3,7 @@ package Application;
 import AmazonController.s3Operations;
 import Model.*;
 import Model.DataManagers.CompanyManager;
+import Model.DataManagers.EventManager;
 import Model.DataManagers.JobManager;
 import Model.DataManagers.StudentManager;
 import Model.DataObjects.*;
@@ -894,6 +895,28 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
         StudentManager manager= new StudentManager();
         JSONObject result= manager.getStudentWorkHistory(student);
         return result.toString();
+    }
+
+
+    /*
+ * api call example https://uzo-web-app.herokuapp.com/insert_event
+ * header
+ * {
+     "date": "2018-06-15",
+     "dress_code": "Formal",
+     "duration":2.5,
+     "open": true,
+     "event_title": "Janitor",
+     "time":2300,
+     "company_id":1,
+     "description":"chillen"
+}
+ */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/insert_event")
+    public String insertEvent(@RequestBody Event insertEvent){
+        EventManager manager= new EventManager();
+        return manager.insertEvent(insertEvent).toString();
     }
 
 
