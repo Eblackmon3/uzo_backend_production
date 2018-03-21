@@ -919,6 +919,36 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
         return manager.insertEvent(insertEvent).toString();
     }
 
+    /*
+ *example url:https://uzo-web-app.herokuapp.com/get_events_students_by_id
+ * example header:
+ * {
+     "event_id": 1
+    }
+ */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/get_events_students_by_id")
+    public String getEventStudentList(@RequestBody Event event) {
+        EventManager manager= new EventManager();
+        return manager.getEventStudentList(event).toString();
+    }
+
+    /*
+      example url: https://uzo-web-app.herokuapp.com/get_event_by_id
+      header:
+          {
+           "event_id":1
+          }
+
+   */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/get_event_by_id")
+    public String getEventById(@RequestBody Event event){
+        EventManager manager= new EventManager();
+        return manager.getEventById(event).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
 
 
 
