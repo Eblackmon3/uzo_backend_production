@@ -353,7 +353,7 @@ public class StudentManager {
         PreparedStatement pstmt = null;
         ResultSet rs=null;
         String sql="select * from t_student_event_map where student_id=? and company_id=? and event_id= ?";
-        String sql2="insert into t_student_job_map(student_id,company_id, job_id) " +
+        String sql2="insert into t_student_event_map(student_id,company_id, job_id) " +
                 "Values(?,?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
