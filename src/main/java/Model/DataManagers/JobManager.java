@@ -1085,8 +1085,9 @@ public class JobManager {
     }
 
 
-    public JSONObject getJobStatus(StudentJob job){
+    public JSONArray getJobStatus(StudentJob job){
         JSONObject selectedStudentJob= new JSONObject();
+        JSONArray jobStatuses= new JSONArray();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs=null;
@@ -1136,6 +1137,8 @@ public class JobManager {
                 selectedStudentJob.put("clock_in",clock_in);
                 selectedStudentJob.put("clock_out",clock_out);
                 selectedStudentJob.put("completed", completed);
+                jobStatuses.put(selectedStudentJob);
+                selectedStudentJob= new JSONObject();
             }
             pstmt.close();
             conn.close();
@@ -1145,6 +1148,7 @@ public class JobManager {
             e.printStackTrace();
             try {
                 selectedStudentJob.put("error", e.toString());
+                jobStatuses.put(selectedStudentJob);
             }catch( Exception f){
                 f.printStackTrace();
             }
@@ -1179,7 +1183,7 @@ public class JobManager {
         }
 
 
-        return  selectedStudentJob;
+        return  jobStatuses;
     }
 
 
