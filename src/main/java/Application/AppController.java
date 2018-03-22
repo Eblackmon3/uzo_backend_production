@@ -286,7 +286,6 @@ public class  AppController {
      * api call example https://uzo-web-app.herokuapp.com/insert_job
      * header
      * {
-         "completed": false,
          "date": "2018-06-15",
          "rate": "40/hr",
          "dress_code": "Formal",

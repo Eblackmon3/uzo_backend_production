@@ -21,8 +21,8 @@ public class JobManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_job_info(completed, date,rate,dress_code,duration,open,job_title, time, company_id, description) " +
-                "Values(?,?, ?, ?,?,?,?,?,?,?);";
+        String sql="insert into t_job_info(date,rate,dress_code,duration,open,job_title, time, company_id, description) " +
+                "Values(?, ?, ?,?,?,?,?,?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
@@ -39,16 +39,15 @@ public class JobManager {
             System.out.println(jdbcObj.printDbStatus());
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
-            pstmt.setBoolean(1, jobInsert.isCompleted());
-            pstmt.setDate(2, Date.valueOf(jobInsert.getDate()));
-            pstmt.setString(3,jobInsert.getRate().toLowerCase());
-            pstmt.setString(4,jobInsert.getDress_code().toLowerCase());
-            pstmt.setDouble(5,jobInsert.getDuration());
-            pstmt.setBoolean(6, jobInsert.isOpen());
-            pstmt.setString(7,jobInsert.getJob_title().toLowerCase());
-            pstmt.setInt(8,jobInsert.getTime());
-            pstmt.setInt(9,jobInsert.getCompany_id());
-            pstmt.setString(10,jobInsert.getDescription());
+            pstmt.setDate(1, Date.valueOf(jobInsert.getDate()));
+            pstmt.setString(2,jobInsert.getRate().toLowerCase());
+            pstmt.setString(3,jobInsert.getDress_code().toLowerCase());
+            pstmt.setDouble(4,jobInsert.getDuration());
+            pstmt.setBoolean(5, jobInsert.isOpen());
+            pstmt.setString(6,jobInsert.getJob_title().toLowerCase());
+            pstmt.setInt(7,jobInsert.getTime());
+            pstmt.setInt(8,jobInsert.getCompany_id());
+            pstmt.setString(9,jobInsert.getDescription());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();

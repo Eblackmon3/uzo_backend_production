@@ -6,14 +6,12 @@ import java.sql.Time;
 
 public class Job {
     private int job_id;
-    private boolean completed;
+
     private Date date;
     private String rate;
     private String dress_code;
     private double duration;
     private boolean open;
-    private Time clock_out;
-    private Time clock_in;
     private String job_title;
     private int company_id;
     private int time;
@@ -36,14 +34,6 @@ public class Job {
 
     public void setJob_title(String job_title) {
         this.job_title = job_title;
-    }
-
-    public boolean isCompleted() {
-        return completed;
-    }
-
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
     }
 
     public Date getDate() {
@@ -86,21 +76,7 @@ public class Job {
         this.open = open;
     }
 
-    public Time getClock_in() {
-        return clock_in;
-    }
 
-    public void setClock_in(Time clock_in) {
-        this.clock_in = clock_in;
-    }
-
-    public Time getClock_out() {
-        return clock_out;
-    }
-
-    public void setClock_out(Time clock_out) {
-        this.clock_out = clock_out;
-    }
 
     public void setCompany_id(int company_id) {
         this.company_id = company_id;
