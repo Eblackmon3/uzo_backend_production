@@ -812,6 +812,7 @@ public class CompanyManager {
 
         } catch (Exception e) {
             try {
+                currJob= new JSONObject();
                 currJob.put("error", e.toString());
                 jobs.put(currJob);
             }catch(Exception f){
@@ -879,6 +880,7 @@ public class CompanyManager {
 
         } catch (Exception e) {
             try {
+                currJob= new JSONObject();
                 currJob.put("error", e.toString());
                 jobs.put(currJob);
             }catch(Exception f){

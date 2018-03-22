@@ -1025,6 +1025,54 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
         return manager.getCompanysCurrentJobsById(company).toString();
     }
 
+    /*
+  *example url:https://uzo-web-app.herokuapp.com/set_completed_job
+  * example header:
+  * {
+     company_id": 1
+     "student_id" : 1,
+     "completed" : true
+     }
+  */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/set_completed_job")
+    public String setStudentCompleted(@RequestBody StudentJob student) {
+        JobManager manager= new JobManager();
+        return manager.setStudentCompleted(student).toString();
+    }
+
+    /*
+  *example url:https://uzo-web-app.herokuapp.com/clockin_student
+  * example header:
+  * {
+     company_id": 1
+     "student_id" : 1,
+     "clock_in" : 1230
+     }
+  */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/clockin_student")
+    public String clockinStudent(@RequestBody StudentJob student) {
+        JobManager manager= new JobManager();
+        return manager.clockinStudent(student).toString();
+    }
+
+    /*
+          *example url:https://uzo-web-app.herokuapp.com/clockout_student
+          * example header:
+          * {
+             company_id": 1
+             "student_id" : 1,
+             "clock_out" : 1230
+             }
+  */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/clockout_student")
+    public String clockoutStudents(@RequestBody StudentJob student) {
+        JobManager manager= new JobManager();
+        return manager.clockoutStudent(student).toString();
+    }
+
 
 
 

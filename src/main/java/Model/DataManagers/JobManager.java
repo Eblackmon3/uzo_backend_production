@@ -897,6 +897,193 @@ public class JobManager {
         return company_resources;
     }
 
+    public JSONObject clockinStudent(StudentJob studentJob){
+        JSONObject insertedCaptain= new JSONObject();
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="update t_student_job_map set clock_in= ? where job_id=? and student_id=?;";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            if(studentJob.getJob_id()==0||studentJob.getStudent_id()==0){
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, studentJob.getClock_in());
+            pstmt.setInt(2, studentJob.getJob_id());
+            pstmt.setInt(3, studentJob.getClock_in());
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            insertedCaptain.put("affected_rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+            try{
+                insertedCaptain.put("error", e.toString());
+
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+
+        }finally{
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+        return insertedCaptain;
+
+    }
+
+
+    public JSONObject clockoutStudent(StudentJob studentJob){
+        JSONObject insertedCaptain= new JSONObject();
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="update t_student_job_map set clock_out= ? where job_id=? and student_id=?;";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            if(studentJob.getJob_id()==0||studentJob.getStudent_id()==0){
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, studentJob.getClock_out());
+            pstmt.setInt(2, studentJob.getJob_id());
+            pstmt.setInt(3, studentJob.getStudent_id());
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            insertedCaptain.put("affected_rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+            try{
+                insertedCaptain.put("error", e.toString());
+
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+
+        }finally{
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+        return insertedCaptain;
+
+    }
+
+    public JSONObject setStudentCompleted(StudentJob studentJob){
+        JSONObject insertedCaptain= new JSONObject();
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="update t_student_job_map set completed= ? where job_id=? and student_id=?;";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            if(studentJob.getJob_id()==0||studentJob.getStudent_id()==0){
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setBoolean(1, studentJob.isCompleted());
+            pstmt.setInt(2, studentJob.getJob_id());
+            pstmt.setInt(3, studentJob.getStudent_id());
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            insertedCaptain.put("affected_rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+            try{
+                insertedCaptain.put("error", e.toString());
+
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+
+        }finally{
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+        return insertedCaptain;
+
+    }
+
 
 
 }
