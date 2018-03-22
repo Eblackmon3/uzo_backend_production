@@ -919,7 +919,7 @@ public class JobManager {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, studentJob.getClock_in());
             pstmt.setInt(2, studentJob.getJob_id());
-            pstmt.setInt(3, studentJob.getClock_in());
+            pstmt.setInt(3, studentJob.getStudent_id());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();

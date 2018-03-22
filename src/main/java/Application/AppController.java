@@ -1030,7 +1030,7 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
   * example header:
   * {
      company_id": 1
-     "student_id" : 1,
+     "job_id" : 1,
      "completed" : true
      }
   */
@@ -1046,7 +1046,7 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
   * example header:
   * {
      company_id": 1
-     "student_id" : 1,
+     "job_id" : 1,
      "clock_in" : 1230
      }
   */
@@ -1062,7 +1062,7 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
           * example header:
           * {
              company_id": 1
-             "student_id" : 1,
+             "job_id" : 1,
              "clock_out" : 1230
              }
   */
