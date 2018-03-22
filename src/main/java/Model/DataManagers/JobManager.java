@@ -1110,9 +1110,6 @@ public class JobManager {
             }else if(job.getCompany_id()!=0){
                 sql= "select * from t_student_job_map where company_id=?";
             }else{
-                throw new Exception("Missing Parameter");
-            }
-            if(job.getJob_id()==0){
                 throw new Exception("student_id, job_id, or company_id must be included");
             }
             //Connect to the database
