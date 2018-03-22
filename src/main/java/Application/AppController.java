@@ -997,6 +997,19 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    /*
+    *example url:https://uzo-web-app.herokuapp.com/get_companys_completed_jobs
+    * example header:
+    * {
+       company_id": 1
+       }
+    */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/get_companys_completed_jobs")
+    public String getCompanysCompletedJobsById(@RequestBody Company company) {
+        CompanyManager manager= new CompanyManager();
+        return manager.getCompanysCompletedJobsById(company).toString();
+    }
 
 
 
