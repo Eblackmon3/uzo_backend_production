@@ -649,7 +649,7 @@ public class StudentManager {
         ArrayList<Integer> studentsJobs= new ArrayList<>();
         int job_id;
         int studentJobID;
-        Date date;
+        String date;
         String rate;
         String dress_code;
         double duration;
@@ -687,7 +687,7 @@ public class StudentManager {
                 while(rs.next()){
 
                     job_id=rs.getInt("job_id");
-                    date=rs.getDate("date");
+                    date=rs.getString("date");
                     rate=rs.getString("rate");
                     dress_code= rs.getString("dress_code");
                     duration = rs.getDouble("duration");
@@ -773,7 +773,7 @@ public class StudentManager {
         int event_id;
         int studentEventID;
         boolean completed;
-        Date date;
+        String date;
         String dress_code;
         double duration;
         boolean open;
@@ -812,7 +812,7 @@ public class StudentManager {
                 rs= pstmt.executeQuery();
                 while(rs.next()){
                     event_id=rs.getInt("event_id");
-                    date=rs.getDate("date");
+                    date=rs.getString("date");
                     dress_code= rs.getString("dress_code");
                     duration = rs.getDouble("duration");
                     open= rs.getBoolean("open");
@@ -954,7 +954,7 @@ public class StudentManager {
         ArrayList<Integer> studentsJobs= new ArrayList<>();
         int job_id;
         int studentJobID;
-        Date date;
+        String date;
         String rate;
         String dress_code;
         double duration;
@@ -991,7 +991,7 @@ public class StudentManager {
                 rs= pstmt.executeQuery();
                 while(rs.next()){
                     job_id=rs.getInt("job_id");
-                    date=rs.getDate("date");
+                    date=rs.getString("date");
                     rate=rs.getString("rate");
                     dress_code= rs.getString("dress_code");
                     duration = rs.getDouble("duration");

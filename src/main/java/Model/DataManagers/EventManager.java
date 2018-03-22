@@ -41,7 +41,7 @@ public class EventManager {
             pstmt.setDouble(3, event.getDuration());
             pstmt.setBoolean(4, event.isOpen());
             pstmt.setString(5, event.getEvent_title());
-            pstmt.setDate(6, Date.valueOf(event.getDate()));
+            pstmt.setString(6, event.getDate());
             pstmt.setInt(7, event.getTime());
             pstmt.setString(8, event.getDescription());
 
@@ -252,7 +252,7 @@ public class EventManager {
             rs= pstmt.executeQuery();
             while(rs.next()){
                 event_id=rs.getInt("event_id");
-                date=rs.getDate("date").toString();
+                date=rs.getString("date");
                 dress_code= rs.getString("dress_code");
                 duration = rs.getDouble("duration");
                 open= rs.getBoolean("open");

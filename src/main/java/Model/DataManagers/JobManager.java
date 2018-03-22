@@ -39,7 +39,7 @@ public class JobManager {
             System.out.println(jdbcObj.printDbStatus());
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
-            pstmt.setDate(1, Date.valueOf(jobInsert.getDate()));
+            pstmt.setString(1, jobInsert.getDate());
             pstmt.setString(2,jobInsert.getRate().toLowerCase());
             pstmt.setString(3,jobInsert.getDress_code().toLowerCase());
             pstmt.setDouble(4,jobInsert.getDuration());
@@ -461,7 +461,7 @@ public class JobManager {
         PreparedStatement pstmt = null;
         ResultSet rs=null;
         int job_id;
-        Date date;
+        String date;
         String rate;
         String dress_code;
         double duration;
@@ -491,7 +491,7 @@ public class JobManager {
             rs= pstmt.executeQuery();
             while(rs.next()){
                 job_id=rs.getInt("job_id");
-                date=rs.getDate("date");
+                date=rs.getString("date");
                 rate=rs.getString("rate");
                 dress_code= rs.getString("dress_code");
                 duration = rs.getDouble("duration");
