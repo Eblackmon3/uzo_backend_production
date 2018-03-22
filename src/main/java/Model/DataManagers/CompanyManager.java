@@ -801,8 +801,9 @@ public class CompanyManager {
             pstmt.setInt(1, company.getCompany_id());
             ResultSet rs= pstmt.executeQuery();
             while(rs.next()){
-                currJob.put("job"+1, rs.getString("job_id"));
+                currJob.put("job_id", rs.getString("job_id"));
                 jobs.put(currJob);
+                currJob= new JSONObject();
             }
             rs.close();
             pstmt.close();
@@ -867,8 +868,9 @@ public class CompanyManager {
             pstmt.setInt(1, company.getCompany_id());
             ResultSet rs= pstmt.executeQuery();
             while(rs.next()){
-                currJob.put("job"+1, rs.getString("job_id"));
+                currJob.put("job_id", rs.getString("job_id"));
                 jobs.put(currJob);
+                currJob= new JSONObject();
             }
             rs.close();
             pstmt.close();

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="629d3e88-3c46-4a87-8eb9-4b9e62a72580" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/Application/AppController.java" afterPath="$PROJECT_DIR$/src/main/java/Application/AppController.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java" afterPath="$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -22,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AppController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AppController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="1029" column="0" lean-forward="true" selection-start-line="1029" selection-start-column="0" selection-end-line="1029" selection-end-column="0" />
+            <state relative-caret-position="184">
+              <caret line="1021" column="52" lean-forward="false" selection-start-line="1021" selection-start-column="27" selection-end-line="1021" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -54,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CompanyManager.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CompanyManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="854" column="13" lean-forward="true" selection-start-line="854" selection-start-column="13" selection-end-line="854" selection-end-column="13" />
+            <state relative-caret-position="167">
+              <caret line="805" column="42" lean-forward="false" selection-start-line="805" selection-start-column="42" selection-end-line="805" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -85,7 +84,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>update</find>
       <find>login</find>
       <find>checkStudentLogin</find>
       <find>CheckstudentL</find>
@@ -111,10 +109,11 @@
       <find>getJobById</find>
       <find>getStudentJobList</find>
       <find>insertJob</find>
-      <find>assign</find>
-      <find>compa</find>
       <find>assig</find>
       <find>job</find>
+      <find>compa</find>
+      <find>assign</find>
+      <find>jsona</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -600,8 +599,8 @@
         <option value="$PROJECT_DIR$/src/main/java/Model/DataObjects/Job.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/DataManagers/JobManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/DataManagers/StudentManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/Application/AppController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java" />
       </list>
     </option>
   </component>
@@ -1134,14 +1133,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/StudentManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="444" column="14" lean-forward="false" selection-start-line="444" selection-start-column="14" selection-end-line="444" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/JobManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
@@ -1152,18 +1143,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="854" column="13" lean-forward="true" selection-start-line="854" selection-start-column="13" selection-end-line="854" selection-end-column="13" />
+        <state relative-caret-position="184">
+          <caret line="1021" column="52" lean-forward="false" selection-start-line="1021" selection-start-column="27" selection-end-line="1021" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/StudentManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="1029" column="0" lean-forward="true" selection-start-line="1029" selection-start-column="0" selection-end-line="1029" selection-end-column="0" />
+        <state relative-caret-position="288">
+          <caret line="444" column="14" lean-forward="false" selection-start-line="444" selection-start-column="14" selection-end-line="444" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="805" column="42" lean-forward="false" selection-start-line="805" selection-start-column="42" selection-end-line="805" selection-end-column="42" />
           <folding />
         </state>
       </provider>
