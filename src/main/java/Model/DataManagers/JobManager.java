@@ -496,7 +496,6 @@ public class JobManager {
                 dress_code= rs.getString("dress_code");
                 duration = rs.getDouble("duration");
                 open= rs.getBoolean("open");
-
                 job_title= rs.getString("job_title");
                 company_id=rs.getInt("company_id");
                 time=rs.getInt("time");
