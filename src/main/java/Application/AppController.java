@@ -1073,6 +1073,28 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
         return manager.clockoutStudent(student).toString();
     }
 
+    /*
+         *example url:https://uzo-web-app.herokuapp.com/clockout_student
+         * example header:
+         * {
+            "company_id": 1
+            }
+
+            {
+            "job_id": 1
+            }
+
+            {
+            "student_id": 1
+            }
+ */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/clockout_student")
+    public String getJobStatus(@RequestBody StudentJob student) {
+        JobManager manager= new JobManager();
+        return manager.getJobStatus(student).toString();
+    }
+
 
 
 

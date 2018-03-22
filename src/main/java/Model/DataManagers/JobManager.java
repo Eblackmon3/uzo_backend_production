@@ -906,7 +906,7 @@ public class JobManager {
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
-            if(studentJob.getJob_id()==0||studentJob.getStudent_id()==0){
+            if(studentJob.getJob_id()==0||studentJob.getStudent_id()==0 || studentJob.getClock_in()<0){
                 throw new Exception("Missing Parameter");
             }
             //Connect to the database
@@ -969,7 +969,7 @@ public class JobManager {
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
-            if(studentJob.getJob_id()==0||studentJob.getStudent_id()==0){
+            if(studentJob.getJob_id()==0||studentJob.getStudent_id()==0 || studentJob.getClock_out()<0){
                 throw new Exception("Missing Parameter");
             }
             //Connect to the database
@@ -1082,6 +1082,107 @@ public class JobManager {
         }
         return insertedCaptain;
 
+    }
+
+
+    public JSONObject getJobStatus(StudentJob job){
+        JSONObject selectedStudentJob= new JSONObject();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs=null;
+        int student_id=0;
+        int company_id=0;
+        int job_id=0;
+        int clock_in=0;
+        int clock_out=0;
+        boolean completed=false;
+        DbConn jdbcObj = new DbConn();
+
+
+        try {
+
+            String sql= "";
+            if(job.getStudent_id()!=0){
+                sql= "select * from t_student_job_map where student_id=?";
+            }else if(job.getJob_id()!=0){
+                sql= "select * from t_student_job_map where job_id=?";
+
+            }else if(job.getCompany_id()!=0){
+                sql= "select * from t_student_job_map where company_id=?";
+            }else{
+                throw new Exception("Missing Parameter");
+            }
+            if(job.getJob_id()==0){
+                throw new Exception("student_id, job_id, or company_id must be included");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, job.getJob_id());
+            rs= pstmt.executeQuery();
+            while(rs.next()){
+                job_id=rs.getInt("job_id");
+                student_id=rs.getInt("student_id");
+                company_id=rs.getInt("company_id");
+                clock_in= rs.getInt("clock_in");
+                clock_out = rs.getInt("clock_out");
+                completed= rs.getBoolean("completed");
+                selectedStudentJob.put("job_id",job_id);
+                selectedStudentJob.put("student_id",student_id);
+                selectedStudentJob.put("company_id",company_id);
+                selectedStudentJob.put("clock_in",clock_in);
+                selectedStudentJob.put("clock_out",clock_out);
+                selectedStudentJob.put("completed", completed);
+            }
+            pstmt.close();
+            conn.close();
+            rs.close();
+
+        }catch( Exception e){
+            e.printStackTrace();
+            try {
+                selectedStudentJob.put("error", e.toString());
+            }catch( Exception f){
+                f.printStackTrace();
+            }
+
+        }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+
+        return  selectedStudentJob;
     }
 
 
