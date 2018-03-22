@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="629d3e88-3c46-4a87-8eb9-4b9e62a72580" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/Application/AppController.java" afterPath="$PROJECT_DIR$/src/main/java/Application/AppController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DataManagers/JobManager.java" afterPath="$PROJECT_DIR$/src/main/java/Model/DataManagers/JobManager.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -25,8 +24,8 @@
       <file leaf-file-name="AppController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="1096" column="0" lean-forward="true" selection-start-line="1096" selection-start-column="0" selection-end-line="1096" selection-end-column="0" />
+            <state relative-caret-position="77">
+              <caret line="1076" column="70" lean-forward="false" selection-start-line="1076" selection-start-column="70" selection-end-line="1076" selection-end-column="70" />
               <folding />
             </state>
           </provider>
@@ -1189,8 +1188,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="1096" column="0" lean-forward="true" selection-start-line="1096" selection-start-column="0" selection-end-line="1096" selection-end-column="0" />
+        <state relative-caret-position="77">
+          <caret line="1076" column="70" lean-forward="false" selection-start-line="1076" selection-start-column="70" selection-end-line="1076" selection-end-column="70" />
           <folding />
         </state>
       </provider>

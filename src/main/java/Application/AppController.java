@@ -1074,7 +1074,7 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     }
 
     /*
-         *example url:https://uzo-web-app.herokuapp.com/clockout_student
+         *example url:https://uzo-web-app.herokuapp.com/get_job_status
          * example header:
          * {
             "company_id": 1
@@ -1089,7 +1089,7 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
             }
  */
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
-    @PostMapping(value = "/clockout_student")
+    @PostMapping(value = "/get_job_status")
     public String getJobStatus(@RequestBody StudentJob student) {
         JobManager manager= new JobManager();
         return manager.getJobStatus(student).toString();
