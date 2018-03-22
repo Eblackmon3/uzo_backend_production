@@ -461,14 +461,11 @@ public class JobManager {
         PreparedStatement pstmt = null;
         ResultSet rs=null;
         int job_id;
-        boolean completed;
         Date date;
         String rate;
         String dress_code;
         double duration;
         boolean open;
-        Time clock_out;
-        Time clock_in;
         String job_title;
         int time;
         int company_id;
@@ -494,14 +491,12 @@ public class JobManager {
             rs= pstmt.executeQuery();
             while(rs.next()){
                 job_id=rs.getInt("job_id");
-                completed=rs.getBoolean("completed");
                 date=rs.getDate("date");
                 rate=rs.getString("rate");
                 dress_code= rs.getString("dress_code");
                 duration = rs.getDouble("duration");
                 open= rs.getBoolean("open");
-                clock_out= rs.getTime("clock_out");
-                clock_in=rs.getTime("clock_in");
+
                 job_title= rs.getString("job_title");
                 company_id=rs.getInt("company_id");
                 time=rs.getInt("time");
@@ -509,14 +504,11 @@ public class JobManager {
                 co_captain=rs.getInt("co_captain");
                 description= rs.getString("description");
                 selectedStudentJob.put("job_id",job_id);
-                selectedStudentJob.put("completed",completed);
                 selectedStudentJob.put("date",date);
                 selectedStudentJob.put("rate",rate);
                 selectedStudentJob.put("dress_code",dress_code);
                 selectedStudentJob.put("duration",duration);
                 selectedStudentJob.put("open", open);
-                selectedStudentJob.put("clock_out", clock_out);
-                selectedStudentJob.put("clock_in", clock_in);
                 selectedStudentJob.put("job_title", job_title);
                 selectedStudentJob.put("company_id",company_id);
                 selectedStudentJob.put("time", time);
