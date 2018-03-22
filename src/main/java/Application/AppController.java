@@ -1011,6 +1011,21 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
         return manager.getCompanysCompletedJobsById(company).toString();
     }
 
+    /*
+   *example url:https://uzo-web-app.herokuapp.com/get_companys_current_jobs
+   * example header:
+   * {
+      company_id": 1
+      }
+   */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/get_companys_current_jobs")
+    public String getCompanysCurrentJobsById(@RequestBody Company company) {
+        CompanyManager manager= new CompanyManager();
+        return manager.getCompanysCurrentJobsById(company).toString();
+    }
+
+
 
 
 }

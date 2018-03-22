@@ -843,6 +843,73 @@ public class CompanyManager {
 
 
 
+    public JSONArray getCompanysCurrentJobsById(Company company){
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="select * from t_student_job_map where company_id=? and completed=false";
+        int job=1;
+        DbConn jdbcObj = new DbConn();
+        JSONObject currJob= new JSONObject();
+        JSONArray jobs= new JSONArray();
+        try {
+            if(company.getCompany_id()==0){
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, company.getCompany_id());
+            ResultSet rs= pstmt.executeQuery();
+            while(rs.next()){
+                currJob.put("job"+1, rs.getString("job_id"));
+                jobs.put(currJob);
+            }
+            rs.close();
+            pstmt.close();
+            conn.close();
+
+
+        } catch (Exception e) {
+            try {
+                currJob.put("error", e.toString());
+                jobs.put(currJob);
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+        }finally{
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+        return jobs;
+    }
+
+
+
+
 
 
 }
