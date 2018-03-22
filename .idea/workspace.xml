@@ -24,7 +24,7 @@
       <file leaf-file-name="AppController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
+            <state relative-caret-position="107">
               <caret line="1086" column="12" lean-forward="false" selection-start-line="1086" selection-start-column="12" selection-end-line="1088" selection-end-column="13" />
               <folding />
             </state>
@@ -34,8 +34,8 @@
       <file leaf-file-name="JobManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/JobManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="1150" column="52" lean-forward="false" selection-start-line="1150" selection-start-column="52" selection-end-line="1150" selection-end-column="52" />
+            <state relative-caret-position="439">
+              <caret line="1131" column="37" lean-forward="false" selection-start-line="1131" selection-start-column="37" selection-end-line="1131" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1178,7 +1178,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
+        <state relative-caret-position="107">
           <caret line="1086" column="12" lean-forward="false" selection-start-line="1086" selection-start-column="12" selection-end-line="1088" selection-end-column="13" />
           <folding />
         </state>
@@ -1186,8 +1186,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/JobManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="1150" column="52" lean-forward="false" selection-start-line="1150" selection-start-column="52" selection-end-line="1150" selection-end-column="52" />
+        <state relative-caret-position="439">
+          <caret line="1131" column="37" lean-forward="false" selection-start-line="1131" selection-start-column="37" selection-end-line="1131" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

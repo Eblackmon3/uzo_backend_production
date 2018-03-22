@@ -1096,20 +1096,22 @@ public class JobManager {
         int job_id=0;
         int clock_in=0;
         int clock_out=0;
+        int search=0;
         boolean completed=false;
         DbConn jdbcObj = new DbConn();
-
-
         try {
 
             String sql= "";
             if(job.getStudent_id()!=0){
                 sql= "select * from t_student_job_map where student_id=?";
+                search=job.getStudent_id();
             }else if(job.getJob_id()!=0){
                 sql= "select * from t_student_job_map where job_id=?";
+                search=job.getJob_id();
 
             }else if(job.getCompany_id()!=0){
                 sql= "select * from t_student_job_map where company_id=?";
+                search=job.getCompany_id();
             }else{
                 throw new Exception("student_id, job_id, or company_id must be included");
             }
@@ -1122,7 +1124,7 @@ public class JobManager {
             //can do normal DB operations here
 
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, job.getJob_id());
+            pstmt.setInt(1, search);
             rs= pstmt.executeQuery();
             while(rs.next()){
                 job_id=rs.getInt("job_id");
