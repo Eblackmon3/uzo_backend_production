@@ -252,7 +252,7 @@ public class  AppController {
         }
      * used a string as to not process the JSONOBJECT on response
      */
-      @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/insert_company")
     public String insertCompany(@RequestBody Company insertCompany){
           CompanyManager manager= new CompanyManager();
