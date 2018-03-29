@@ -721,6 +721,7 @@ public class CompanyManager {
                 companyObj.put("city",city);
                 companyObj.put("zip_code",zip_code);
                 companyObj.put("description",description);
+                companyObj.put("company_id", rs.getString("company_id"));
 
 
 
