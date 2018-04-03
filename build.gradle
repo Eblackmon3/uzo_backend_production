@@ -84,6 +84,10 @@ dependencies {
     // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.5'
 
+    // https://mvnrepository.com/artifact/com.stripe/stripe-java
+    compile group: 'com.stripe', name: 'stripe-java', version: '5.31.0'
+
+
 
 
 

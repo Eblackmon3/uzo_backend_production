@@ -7,6 +7,7 @@ import Model.DataManagers.EventManager;
 import Model.DataManagers.JobManager;
 import Model.DataManagers.StudentManager;
 import Model.DataObjects.*;
+import StripeController.StripeController;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
@@ -1093,6 +1094,20 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     public String getJobStatus(@RequestBody StudentJob student) {
         JobManager manager= new JobManager();
         return manager.getJobStatus(student).toString();
+    }
+
+
+    /*
+     * api call example https://uzo-web-app.herokuapp.com/get_stripe_key
+      {
+
+      }
+     */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value="/get_stripe_key")
+    public String getStripeKey(){
+        StripeController key= new StripeController();
+        return key.getKey().toString();
     }
 
 
