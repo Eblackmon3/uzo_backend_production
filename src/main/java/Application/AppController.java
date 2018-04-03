@@ -1099,12 +1099,10 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
 
     /*
      * api call example https://uzo-web-app.herokuapp.com/get_stripe_key
-      {
 
-      }
      */
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
-    @PostMapping(value="/get_stripe_key")
+    @RequestMapping(value="/get_stripe_key")
     public String getStripeKey(){
         StripeController key= new StripeController();
         return key.getKey().toString();

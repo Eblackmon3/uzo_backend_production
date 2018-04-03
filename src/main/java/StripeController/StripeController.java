@@ -16,6 +16,7 @@ public class StripeController {
 
     public JSONObject getKey(){
         JSONObject key= new JSONObject();
+        System.out.println(System.getenv("STRIPE_KEY"));
         try{
             key.put("key",System.getenv("STRIPE_KEY"));
         }catch(Exception e){
