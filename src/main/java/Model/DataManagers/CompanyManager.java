@@ -2,8 +2,8 @@ package Model.DataManagers;
 
 import AmazonController.s3Operations;
 import Model.DataObjects.Company;
+import Model.DataObjects.CompanyPaymentCard;
 import Model.DataObjects.CompanyRep;
-import Model.DataObjects.Student;
 import Model.DbConn;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -911,6 +911,81 @@ public class CompanyManager {
 
         return jobs;
     }
+
+
+
+    public JSONObject insertCompanyCard(CompanyPaymentCard company){
+        JSONObject insertedStudent= new JSONObject();
+        ResultSet rs=null;
+        int affectedRows=0;
+        ResultSet rsObj = null;
+        Connection conn = null;
+        int company_id=0;
+        PreparedStatement pstmt = null;
+        String sql="insert into t_company_info(company_id,company_token) Values(?,?)" +
+                "RETURNING company_id;";
+        DbConn jdbcObj = new DbConn();
+        boolean did_it_work=false;
+        try{
+
+            if(company.getCompany_id()==0|| company.getCompany_token()==null){
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, company.getCompany_id());
+            pstmt.setString(2,company.getCompany_token());
+            affectedRows = pstmt.executeUpdate();
+            rs.close();
+            pstmt.close();
+            conn.close();
+            insertedStudent.put("affected_rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+            try {
+                insertedStudent.put("error", e.toString());
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+
+        }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+        return insertedStudent;
+    }
+
 
 
 
