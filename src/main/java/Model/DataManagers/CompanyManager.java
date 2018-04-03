@@ -922,7 +922,7 @@ public class CompanyManager {
         Connection conn = null;
         int company_id=0;
         PreparedStatement pstmt = null;
-        String sql="insert into t_company_info(company_id,company_token) Values(?,?)" +
+        String sql="insert into t_company_payment_tokens(company_id,company_token) Values(?,?)" +
                 "RETURNING company_id;";
         DbConn jdbcObj = new DbConn();
         boolean did_it_work=false;
