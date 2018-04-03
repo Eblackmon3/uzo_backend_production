@@ -11,14 +11,14 @@ import org.springframework.context.annotation.PropertySource;
 public class StripeController {
 
     public StripeController(){
-        Stripe.apiKey=System.getenv("STRIPE_KEY");
+        Stripe.apiKey=System.getenv("STRIPE_SECRET");
     }
 
     public JSONObject getKey(){
         JSONObject key= new JSONObject();
-        System.out.println(System.getenv("STRIPE_KEY"));
+        System.out.println(System.getenv("STRIPE_SECRET"));
         try{
-            key.put("key",System.getenv("STRIPE_KEY"));
+            key.put("key",System.getenv("STRIPE_SECRET"));
         }catch(Exception e){
             e.printStackTrace();
         }
