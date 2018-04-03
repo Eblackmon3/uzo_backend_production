@@ -44,8 +44,8 @@
       <file leaf-file-name="CompanyManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="924" column="75" lean-forward="false" selection-start-line="924" selection-start-column="75" selection-end-line="924" selection-end-column="75" />
+            <state relative-caret-position="187">
+              <caret line="924" column="95" lean-forward="false" selection-start-line="924" selection-start-column="95" selection-end-line="924" selection-end-column="95" />
               <folding />
             </state>
           </provider>
@@ -117,7 +117,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getC</find>
       <find>upload</find>
       <find>email</find>
       <find>insert_c</find>
@@ -146,6 +145,7 @@
       <find>job</find>
       <find>getCom</find>
       <find>insertJob</find>
+      <find>executeUpdate</find>
       <find>insert</find>
     </findStrings>
   </component>
@@ -1239,14 +1239,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/JobManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-194">
-          <caret line="18" column="41" lean-forward="false" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataObjects/CompanyRep.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -1296,10 +1288,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/JobManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-194">
+          <caret line="18" column="41" lean-forward="false" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="924" column="75" lean-forward="false" selection-start-line="924" selection-start-column="75" selection-end-line="924" selection-end-column="75" />
+        <state relative-caret-position="187">
+          <caret line="924" column="95" lean-forward="false" selection-start-line="924" selection-start-column="95" selection-end-line="924" selection-end-column="95" />
           <folding />
         </state>
       </provider>

@@ -922,8 +922,7 @@ public class CompanyManager {
         Connection conn = null;
         int company_id=0;
         PreparedStatement pstmt = null;
-        String sql="insert into t_company_payment_tokens(company_id,payment_token) Values(?,?)" +
-                "RETURNING company_id;";
+        String sql="insert into t_company_payment_tokens(company_id,payment_token) Values(?,?)";
         DbConn jdbcObj = new DbConn();
         boolean did_it_work=false;
         try{
@@ -942,7 +941,6 @@ public class CompanyManager {
             pstmt.setInt(1, company.getCompany_id());
             pstmt.setString(2,company.getCompany_token());
             affectedRows = pstmt.executeUpdate();
-            rs.close();
             pstmt.close();
             conn.close();
             insertedStudent.put("affected_rows",affectedRows);
