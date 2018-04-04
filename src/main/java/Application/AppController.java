@@ -1113,7 +1113,7 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
        header:
            {
             "company_id": 1,
-            "company_token":"adsfasdf"
+            "token_id":"adsfasdf"
            }
 
     */

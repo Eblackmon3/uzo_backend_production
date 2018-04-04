@@ -37,6 +37,7 @@ public class StripeController {
         try {
             // Create a Customer:
             Map<String, Object> chargeParams = new HashMap<>();
+            System.out.println(card.getToken_id());
             chargeParams.put("source", card.getToken_id());
             Customer customer = Customer.create(chargeParams);
             return customer.getId();
