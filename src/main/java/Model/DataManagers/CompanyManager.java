@@ -929,7 +929,7 @@ public class CompanyManager {
 
         try{
 
-            if(company.getCompany_id()==0|| company.getCompany_token()==null){
+            if(company.getCompany_id()==0|| company.getToken_id()==null){
                 throw new Exception("Missing Parameter");
             }
             //Connect to the database
