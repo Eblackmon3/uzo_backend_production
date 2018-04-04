@@ -40,6 +40,7 @@ public class StripeController {
             System.out.println(card.getToken_id());
             chargeParams.put("source", card.getToken_id());
             Customer customer = Customer.create(chargeParams);
+            System.out.println(card.getToken_id());
             return customer.getId();
 
         }catch(Exception e ){
