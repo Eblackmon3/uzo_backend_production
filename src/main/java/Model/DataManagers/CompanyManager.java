@@ -5,6 +5,7 @@ import Model.DataObjects.Company;
 import Model.DataObjects.CompanyPaymentCard;
 import Model.DataObjects.CompanyRep;
 import Model.DbConn;
+import StripeController.StripeController;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,6 +15,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
+import static StripeController.StripeController.createCustomer;
 
 public class CompanyManager {
 
@@ -915,6 +918,7 @@ public class CompanyManager {
 
 
     public JSONObject insertCompanyCard(CompanyPaymentCard company){
+        String customer_token=StripeController.createCustomer(company);
         JSONObject insertedStudent= new JSONObject();
         ResultSet rs=null;
         int affectedRows=0;
@@ -937,7 +941,7 @@ public class CompanyManager {
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, company.getCompany_id());
-            pstmt.setString(2,company.getToken_id());
+            pstmt.setString(2,customer_token);
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();

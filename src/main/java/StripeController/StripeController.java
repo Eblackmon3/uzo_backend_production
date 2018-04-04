@@ -32,12 +32,12 @@ public class StripeController {
 
     }
 
-    public String createCustomer(CompanyPaymentCard card ){
+    public static String createCustomer(CompanyPaymentCard card ){
         Stripe.apiKey=System.getenv("STRIPE_SECRET");
         try {
             // Create a Customer:
             Map<String, Object> chargeParams = new HashMap<>();
-            //chargeParams.put("token", token);
+            chargeParams.put("source", card.getToken_id());
             Customer customer = Customer.create(chargeParams);
             return customer.getId();
 
