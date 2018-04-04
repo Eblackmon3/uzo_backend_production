@@ -918,13 +918,11 @@ public class CompanyManager {
         JSONObject insertedStudent= new JSONObject();
         ResultSet rs=null;
         int affectedRows=0;
-        ResultSet rsObj = null;
         Connection conn = null;
-        int company_id=0;
         PreparedStatement pstmt = null;
         String sql="insert into t_company_payment_tokens(company_id,payment_token) Values(?,?)";
         DbConn jdbcObj = new DbConn();
-        boolean did_it_work=false;
+
         try{
 
             if(company.getCompany_id()==0|| company.getCompany_token()==null){
@@ -939,7 +937,7 @@ public class CompanyManager {
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, company.getCompany_id());
-            pstmt.setString(2,company.getCompany_token());
+            pstmt.setString(2,company.getToken_id());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
