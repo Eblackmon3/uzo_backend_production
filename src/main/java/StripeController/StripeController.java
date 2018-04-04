@@ -15,16 +15,12 @@ import java.util.Map;
 @Configuration
 @PropertySource("classpath:application.properties")
 public class StripeController {
-
-    public StripeController(){
-        Stripe.apiKey=System.getenv("STRIPE_SECRET");
-    }
+    
 
     public JSONObject getKey(){
         JSONObject key= new JSONObject();
-        System.out.println(System.getenv("STRIPE_SECRET"));
         try{
-            key.put("key",System.getenv("STRIPE_SECRET"));
+            key.put("key",System.getenv("STRIPE_PUBLISH_KEY"));
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -33,7 +29,7 @@ public class StripeController {
     }
 
     public static String createCustomer(CompanyPaymentCard card ){
-        Stripe.apiKey=System.getenv("STRIPE_SECRET");
+        Stripe.apiKey=System.getenv("STRIPE_SECRET_KEY");
         try {
             // Create a Customer:
             Map<String, Object> chargeParams = new HashMap<>();
