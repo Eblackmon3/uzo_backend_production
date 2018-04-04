@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="629d3e88-3c46-4a87-8eb9-4b9e62a72580" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java" afterPath="$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/StripeController/StripeController.java" afterPath="$PROJECT_DIR$/src/main/java/StripeController/StripeController.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -25,8 +25,8 @@
       <file leaf-file-name="AppController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="1115" column="21" lean-forward="false" selection-start-line="1115" selection-start-column="21" selection-end-line="1115" selection-end-column="21" />
+            <state relative-caret-position="499">
+              <caret line="216" column="40" lean-forward="true" selection-start-line="216" selection-start-column="40" selection-end-line="216" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -35,8 +35,8 @@
       <file leaf-file-name="CompanyManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="932" column="57" lean-forward="true" selection-start-line="932" selection-start-column="57" selection-end-line="932" selection-end-column="57" />
+            <state relative-caret-position="350">
+              <caret line="53" column="53" lean-forward="false" selection-start-line="53" selection-start-column="42" selection-end-line="53" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -46,7 +46,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataObjects/CompanyPaymentCard.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-2">
-              <caret line="0" column="26" lean-forward="true" selection-start-line="0" selection-start-column="26" selection-end-line="0" selection-end-column="26" />
+              <caret line="0" column="24" lean-forward="false" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
               <folding>
                 <element signature="e#194#195#0" expanded="true" />
                 <element signature="e#238#239#0" expanded="true" />
@@ -64,8 +64,8 @@
       <file leaf-file-name="StripeController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/StripeController/StripeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+            <state relative-caret-position="413">
+              <caret line="45" column="76" lean-forward="true" selection-start-line="45" selection-start-column="76" selection-end-line="45" selection-end-column="76" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -84,8 +84,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>upload</find>
-      <find>email</find>
       <find>insert_c</find>
       <find>CompanyR</find>
       <find>insert_company_</find>
@@ -110,10 +108,12 @@
       <find>checkCompanyLogin</find>
       <find>removeJob</find>
       <find>job</find>
-      <find>getCom</find>
       <find>insert</find>
       <find>executeUpdate</find>
       <find>insertJob</find>
+      <find>getCompany</find>
+      <find>getCom</find>
+      <find>getCompanyBy</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -604,9 +604,9 @@
         <option value="$PROJECT_DIR$/src/main/java/AmazonController/s3Operations.java" />
         <option value="$PROJECT_DIR$/src/main/java/StripeController/stripeController.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/DataObjects/CompanyPaymentAccounts.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/DataObjects/CompanyPaymentCard.java" />
         <option value="$PROJECT_DIR$/src/main/java/Application/AppController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/StripeController/StripeController.java" />
       </list>
     </option>
@@ -1190,7 +1190,7 @@
         <state relative-caret-position="360">
           <caret line="24" column="3" lean-forward="true" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="62" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1227,18 +1227,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="932" column="57" lean-forward="true" selection-start-line="932" selection-start-column="57" selection-end-line="932" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="1115" column="21" lean-forward="false" selection-start-line="1115" selection-start-column="21" selection-end-line="1115" selection-end-column="21" />
+        <state relative-caret-position="499">
+          <caret line="216" column="40" lean-forward="true" selection-start-line="216" selection-start-column="40" selection-end-line="216" selection-end-column="40" />
           <folding />
         </state>
       </provider>
@@ -1246,7 +1238,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataObjects/CompanyPaymentCard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2">
-          <caret line="0" column="26" lean-forward="true" selection-start-line="0" selection-start-column="26" selection-end-line="0" selection-end-column="26" />
+          <caret line="0" column="24" lean-forward="false" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
           <folding>
             <element signature="e#194#195#0" expanded="true" />
             <element signature="e#238#239#0" expanded="true" />
@@ -1260,10 +1252,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="53" column="53" lean-forward="false" selection-start-line="53" selection-start-column="42" selection-end-line="53" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/StripeController/StripeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+        <state relative-caret-position="413">
+          <caret line="45" column="76" lean-forward="true" selection-start-line="45" selection-start-column="76" selection-end-line="45" selection-end-column="76" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
