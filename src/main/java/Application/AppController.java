@@ -296,6 +296,9 @@ public class  AppController {
          "time":2300,
          "company_id":1,
          "description":"chillen"
+         "important_quality": "idk",
+         "preferred_quality": "idk"
+
 }
      */
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
@@ -1122,6 +1125,22 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     public String insertCompanyCard(@RequestBody CompanyPaymentCard companyPaymentCard){
         CompanyManager manager= new CompanyManager();
         return manager.insertCompanyCard(companyPaymentCard).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    /*
+     * example url:https://uzo-web-app.herokuapp.com/get_company_job_list
+     * example header:
+     * {
+         "company_id": 1
+        }
+     *
+     */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/get_company_job_list")
+    public String getCompanyJobList(@RequestBody Company company){
+        CompanyManager manager= new CompanyManager();
+        return manager.getCompanyJobList(company).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

@@ -987,6 +987,129 @@ public class CompanyManager {
 
 
 
+    public JSONArray getCompanyJobList(Company company){
+        JSONObject selectedCompanyJob= new JSONObject();
+        JSONArray selectedJobs= new JSONArray();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs=null;
+        ArrayList<Integer> companyJobs= new ArrayList<>();
+        int job_id;
+        int studentJobID;
+        String date;
+        String rate;
+        String dress_code;
+        double duration;
+        boolean open;
+        String job_title;
+        int time;
+        int company_id;
+        String description;
+        String sql2= "select * from t_job_info where job_id=?";
+        String sql="select * from t_student_job_map where company_id =?";
+        DbConn jdbcObj = new DbConn();
+        try{
+            if(company.getCompany_id()==0){
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, company.getCompany_id());
+            rs= pstmt.executeQuery();
+            while(rs.next()){
+                studentJobID=rs.getInt("job_id");
+                companyJobs.add(studentJobID);
+            }
+
+            pstmt = conn.prepareStatement(sql2);
+            for(int i=0;i<companyJobs.size();i++){
+                pstmt.setInt(1, companyJobs.get(i));
+                rs= pstmt.executeQuery();
+                while(rs.next()){
+
+                    job_id=rs.getInt("job_id");
+                    date=rs.getString("date");
+                    rate=rs.getString("rate");
+                    dress_code= rs.getString("dress_code");
+                    duration = rs.getDouble("duration");
+                    open= rs.getBoolean("open");
+                    job_title= rs.getString("job_title");
+                    company_id=rs.getInt("company_id");
+                    time=rs.getInt("time");
+                    description=rs.getString("description");
+                    selectedCompanyJob.put("job_id",job_id);
+                    selectedCompanyJob.put("date",date);
+                    selectedCompanyJob.put("rate",rate);
+                    selectedCompanyJob.put("dress_code",dress_code);
+                    selectedCompanyJob.put("duration",duration);
+                    selectedCompanyJob.put("open", open);
+                    selectedCompanyJob.put("job_title", job_title);
+                    selectedCompanyJob.put("company_id",company_id);
+                    selectedCompanyJob.put("time", time);
+                    selectedCompanyJob.put("description", description);
+                    selectedCompanyJob.put("preferred_skills", rs.getString("preferred_skills"));
+                    selectedCompanyJob.put("important_quality", rs.getString("important_quality"));
+                    selectedJobs.put(selectedCompanyJob);
+                    selectedCompanyJob=new JSONObject();
+                }
+
+            }
+            rs.close();
+            pstmt.close();
+            conn.close();
+            jdbcObj.closePool();
+
+        }catch(Exception e){
+            e.printStackTrace();
+            try{
+                selectedCompanyJob.put("error", e.toString());
+                System.out.println(selectedCompanyJob.toString());
+                selectedJobs= new JSONArray();
+                selectedJobs.put(selectedCompanyJob);
+                return selectedJobs;
+
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+
+        }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+        return selectedJobs;
+    }
+
+
 
 
 

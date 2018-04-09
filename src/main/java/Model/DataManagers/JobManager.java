@@ -21,12 +21,12 @@ public class JobManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_job_info(date,rate,dress_code,duration,open,job_title, time, company_id, description) " +
-                "Values(?, ?, ?,?,?,?,?,?,?);";
+        String sql="insert into t_job_info(date,rate,dress_code,duration,open,job_title, time, company_id, description, important_quality, preferred_skills ) " +
+                "Values(?, ?, ?,?,?,?,?,?,?,?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
-            if(jobInsert.getDate()==null || jobInsert.getRate()==null || jobInsert.getDress_code()==null
+            if(jobInsert.getDate()==null || jobInsert.getRate()==null || jobInsert.getPreferred_skills()==null || jobInsert.getPreferred_skills()==null
                     ||  jobInsert.getJob_title()==null|| jobInsert.getCompany_id()==0 || jobInsert.getDescription()==null){
                 throw new Exception("Missing Parameter");
             }
@@ -48,6 +48,8 @@ public class JobManager {
             pstmt.setInt(7,jobInsert.getTime());
             pstmt.setInt(8,jobInsert.getCompany_id());
             pstmt.setString(9,jobInsert.getDescription());
+            pstmt.setString(10,jobInsert.getPreferred_skills());
+            pstmt.setString(11,jobInsert.getImportant_quality());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
@@ -514,6 +516,8 @@ public class JobManager {
                 selectedStudentJob.put("captain", captain);
                 selectedStudentJob.put("co_captain",co_captain);
                 selectedStudentJob.put("description",description);
+                selectedStudentJob.put("important_quality",rs.getString("important_quality"));
+                selectedStudentJob.put("preferred_skills",rs.getString("preferred_skills"));
             }
             pstmt.close();
             conn.close();

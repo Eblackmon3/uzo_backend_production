@@ -18,6 +18,8 @@ public class Job {
     private int captain_id;
     private int coCaptain_id;
     private String description;
+    private String preferred_skills;
+    private String important_quality;
 
 
     public int getJob_id() {
@@ -117,6 +119,24 @@ public class Job {
     public String getDescription() {
         return description;
     }
+
+    public String getImportant_quality() {
+        return important_quality;
+    }
+
+    public void setImportant_quality(String important_quality) {
+        this.important_quality = important_quality;
+    }
+
+    public String getPreferred_skills() {
+        return preferred_skills;
+    }
+
+    public void setPreferred_skills(String preferred_skills) {
+        this.preferred_skills = preferred_skills;
+    }
+
+
 
     @Override
     public boolean equals(Object obj) {

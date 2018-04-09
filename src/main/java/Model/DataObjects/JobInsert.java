@@ -14,6 +14,8 @@ public class JobInsert {
     private int captain_id;
     private int coCaptain_id;
     private String description;
+    private String preferred_skills;
+    private String important_quality;
 
     public int getCompany_id() {
         return company_id;
@@ -109,6 +111,22 @@ public class JobInsert {
 
     public String getDescription() {
         return description;
+    }
+
+    public void setImportant_quality(String important_quality) {
+        this.important_quality = important_quality;
+    }
+
+    public String getImportant_quality() {
+        return important_quality;
+    }
+
+    public void setPreferred_skills(String preferred_skills) {
+        this.preferred_skills = preferred_skills;
+    }
+
+    public String getPreferred_skills() {
+        return preferred_skills;
     }
 
     @Override
