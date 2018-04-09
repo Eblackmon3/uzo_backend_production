@@ -76,6 +76,7 @@ public class DbConn {
         if(gPool!=null){
             gPool.close();
         }
+
     }
 
 }

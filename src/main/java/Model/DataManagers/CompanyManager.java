@@ -1005,8 +1005,7 @@ public class CompanyManager {
         int time;
         int company_id;
         String description;
-        String sql2= "select * from t_job_info where job_id=?";
-        String sql="select * from t_student_job_map where company_id =?";
+        String sql="select * from t_job_info where company_id =?";
         DbConn jdbcObj = new DbConn();
         try{
             if(company.getCompany_id()==0){
@@ -1023,44 +1022,33 @@ public class CompanyManager {
             pstmt.setInt(1, company.getCompany_id());
             rs= pstmt.executeQuery();
             while(rs.next()){
-                studentJobID=rs.getInt("job_id");
-                companyJobs.add(studentJobID);
+                job_id=rs.getInt("job_id");
+                date=rs.getString("date");
+                rate=rs.getString("rate");
+                dress_code= rs.getString("dress_code");
+                duration = rs.getDouble("duration");
+                open= rs.getBoolean("open");
+                job_title= rs.getString("job_title");
+                company_id=rs.getInt("company_id");
+                time=rs.getInt("time");
+                description=rs.getString("description");
+                selectedCompanyJob.put("job_id",job_id);
+                selectedCompanyJob.put("date",date);
+                selectedCompanyJob.put("rate",rate);
+                selectedCompanyJob.put("dress_code",dress_code);
+                selectedCompanyJob.put("duration",duration);
+                selectedCompanyJob.put("open", open);
+                selectedCompanyJob.put("job_title", job_title);
+                selectedCompanyJob.put("company_id",company_id);
+                selectedCompanyJob.put("time", time);
+                selectedCompanyJob.put("description", description);
+                selectedCompanyJob.put("preferred_skills", rs.getString("preferred_skills"));
+                selectedCompanyJob.put("important_quality", rs.getString("important_quality"));
+                selectedCompanyJob.put("num_employees", rs.getString("num_employees"));
+                selectedJobs.put(selectedCompanyJob);
+                selectedCompanyJob=new JSONObject();
             }
-
-            pstmt = conn.prepareStatement(sql2);
-            for(int i=0;i<companyJobs.size();i++){
-                pstmt.setInt(1, companyJobs.get(i));
-                rs= pstmt.executeQuery();
-                while(rs.next()){
-
-                    job_id=rs.getInt("job_id");
-                    date=rs.getString("date");
-                    rate=rs.getString("rate");
-                    dress_code= rs.getString("dress_code");
-                    duration = rs.getDouble("duration");
-                    open= rs.getBoolean("open");
-                    job_title= rs.getString("job_title");
-                    company_id=rs.getInt("company_id");
-                    time=rs.getInt("time");
-                    description=rs.getString("description");
-                    selectedCompanyJob.put("job_id",job_id);
-                    selectedCompanyJob.put("date",date);
-                    selectedCompanyJob.put("rate",rate);
-                    selectedCompanyJob.put("dress_code",dress_code);
-                    selectedCompanyJob.put("duration",duration);
-                    selectedCompanyJob.put("open", open);
-                    selectedCompanyJob.put("job_title", job_title);
-                    selectedCompanyJob.put("company_id",company_id);
-                    selectedCompanyJob.put("time", time);
-                    selectedCompanyJob.put("description", description);
-                    selectedCompanyJob.put("preferred_skills", rs.getString("preferred_skills"));
-                    selectedCompanyJob.put("important_quality", rs.getString("important_quality"));
-                    selectedCompanyJob.put("num_employees", rs.getString("num_employees"));
-                    selectedJobs.put(selectedCompanyJob);
-                    selectedCompanyJob=new JSONObject();
-                }
-
-            }
+            
             rs.close();
             pstmt.close();
             conn.close();
