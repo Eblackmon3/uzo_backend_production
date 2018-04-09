@@ -655,7 +655,8 @@ public class StudentManager {
         double duration;
         boolean open;
         String job_title;
-        int time;
+        String start_time;
+        String end_time;
         int company_id;
         String description;
         String sql2= "select * from t_job_info where job_id=?";
@@ -694,7 +695,8 @@ public class StudentManager {
                     open= rs.getBoolean("open");
                     job_title= rs.getString("job_title");
                     company_id=rs.getInt("company_id");
-                    time=rs.getInt("time");
+                    start_time=rs.getString("start_time");
+                    end_time=rs.getString("end_time");
                     description=rs.getString("description");
                     selectedStudentJob.put("job_id",job_id);
                     selectedStudentJob.put("date",date);
@@ -704,7 +706,8 @@ public class StudentManager {
                     selectedStudentJob.put("open", open);
                     selectedStudentJob.put("job_title", job_title);
                     selectedStudentJob.put("company_id",company_id);
-                    selectedStudentJob.put("time", time);
+                    selectedStudentJob.put("start_time", start_time);
+                    selectedStudentJob.put("end_time", end_time);
                     selectedStudentJob.put("description", description);
                     selectedJobs.put(selectedStudentJob);
                     selectedStudentJob=new JSONObject();
@@ -960,7 +963,8 @@ public class StudentManager {
         double duration;
         boolean open;
         String job_title;
-        int time;
+        String start_time;
+        String end_time;
         int company_id;
         String description;
         String sql2= "select * from t_job_info where job_id=?";
@@ -998,7 +1002,8 @@ public class StudentManager {
                     open= rs.getBoolean("open");
                     job_title= rs.getString("job_title");
                     company_id=rs.getInt("company_id");
-                    time=rs.getInt("time");
+                    start_time=rs.getString("start_time");
+                    end_time=rs.getString("end_time");
                     description= rs.getString("description");
                     selectedStudentJob.put("job_id",job_id);
                     selectedStudentJob.put("date",date);
@@ -1009,7 +1014,8 @@ public class StudentManager {
                     selectedStudentJob.put("job_title", job_title);
                     selectedStudentJob.put("company_id",company_id);
                     selectedStudentJob.put("description",description);
-                    selectedStudentJob.put("time", time);
+                    selectedStudentJob.put("start_time", start_time);
+                    selectedStudentJob.put("end_time", end_time);
                     selectedJobs.put(selectedStudentJob);
                     selectedStudentJob= new JSONObject();
 

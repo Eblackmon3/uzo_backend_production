@@ -21,8 +21,8 @@ public class JobManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_job_info(date,rate,dress_code,duration,open,job_title, time, company_id, description, important_quality, preferred_skills, num_employees ) " +
-                "Values(?, ?, ?,?,?,?,?,?,?,?,?,?);";
+        String sql="insert into t_job_info(date,rate,dress_code,duration,open,job_title, start_time, company_id, description, important_quality, preferred_skills, num_employees, end_time ) " +
+                "Values(?, ?, ?,?,?,?,?,?,?,?,?,?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
@@ -45,12 +45,13 @@ public class JobManager {
             pstmt.setDouble(4,jobInsert.getDuration());
             pstmt.setBoolean(5, jobInsert.isOpen());
             pstmt.setString(6,jobInsert.getJob_title().toLowerCase());
-            pstmt.setInt(7,jobInsert.getTime());
+            pstmt.setString(7,jobInsert.getStart_time());
             pstmt.setInt(8,jobInsert.getCompany_id());
             pstmt.setString(9,jobInsert.getDescription());
             pstmt.setString(10,jobInsert.getPreferred_skills());
             pstmt.setString(11,jobInsert.getImportant_quality());
             pstmt.setInt(12,jobInsert.getNum_employees());
+            pstmt.setString(13, jobInsert.getEnd_time());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
@@ -470,7 +471,8 @@ public class JobManager {
         double duration;
         boolean open;
         String job_title;
-        int time;
+        String start_time;
+        String  end_time;
         int company_id;
         int captain;
         int co_captain;
@@ -501,7 +503,8 @@ public class JobManager {
                 open= rs.getBoolean("open");
                 job_title= rs.getString("job_title");
                 company_id=rs.getInt("company_id");
-                time=rs.getInt("time");
+                start_time=rs.getString("start_time");
+                end_time=rs.getString("end_time");
                 captain=rs.getInt("captain");
                 co_captain=rs.getInt("co_captain");
                 description= rs.getString("description");
@@ -513,7 +516,8 @@ public class JobManager {
                 selectedStudentJob.put("open", open);
                 selectedStudentJob.put("job_title", job_title);
                 selectedStudentJob.put("company_id",company_id);
-                selectedStudentJob.put("time", time);
+                selectedStudentJob.put("start_time", start_time);
+                selectedStudentJob.put("end_time", end_time);
                 selectedStudentJob.put("captain", captain);
                 selectedStudentJob.put("co_captain",co_captain);
                 selectedStudentJob.put("description",description);

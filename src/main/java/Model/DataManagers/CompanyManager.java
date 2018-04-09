@@ -1002,7 +1002,8 @@ public class CompanyManager {
         double duration;
         boolean open;
         String job_title;
-        int time;
+        String start_time;
+        String end_time;
         int company_id;
         String description;
         String sql="select * from t_job_info where company_id =?";
@@ -1030,7 +1031,8 @@ public class CompanyManager {
                 open= rs.getBoolean("open");
                 job_title= rs.getString("job_title");
                 company_id=rs.getInt("company_id");
-                time=rs.getInt("time");
+                start_time=rs.getString("start_time");
+                end_time=rs.getString("end_time");
                 description=rs.getString("description");
                 selectedCompanyJob.put("job_id",job_id);
                 selectedCompanyJob.put("date",date);
@@ -1040,7 +1042,8 @@ public class CompanyManager {
                 selectedCompanyJob.put("open", open);
                 selectedCompanyJob.put("job_title", job_title);
                 selectedCompanyJob.put("company_id",company_id);
-                selectedCompanyJob.put("time", time);
+                selectedCompanyJob.put("start_time", start_time);
+                selectedCompanyJob.put("end_time", end_time);
                 selectedCompanyJob.put("description", description);
                 selectedCompanyJob.put("preferred_skills", rs.getString("preferred_skills"));
                 selectedCompanyJob.put("important_quality", rs.getString("important_quality"));
@@ -1048,7 +1051,7 @@ public class CompanyManager {
                 selectedJobs.put(selectedCompanyJob);
                 selectedCompanyJob=new JSONObject();
             }
-            
+
             rs.close();
             pstmt.close();
             conn.close();
