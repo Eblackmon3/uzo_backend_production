@@ -21,8 +21,8 @@ public class JobManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_job_info(date,rate,dress_code,duration,open,job_title, time, company_id, description, important_quality, preferred_skills ) " +
-                "Values(?, ?, ?,?,?,?,?,?,?,?,?);";
+        String sql="insert into t_job_info(date,rate,dress_code,duration,open,job_title, time, company_id, description, important_quality, preferred_skills, num_employees ) " +
+                "Values(?, ?, ?,?,?,?,?,?,?,?,?,?);";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
@@ -50,6 +50,7 @@ public class JobManager {
             pstmt.setString(9,jobInsert.getDescription());
             pstmt.setString(10,jobInsert.getPreferred_skills());
             pstmt.setString(11,jobInsert.getImportant_quality());
+            pstmt.setInt(12,jobInsert.getNum_employees());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
@@ -518,6 +519,7 @@ public class JobManager {
                 selectedStudentJob.put("description",description);
                 selectedStudentJob.put("important_quality",rs.getString("important_quality"));
                 selectedStudentJob.put("preferred_skills",rs.getString("preferred_skills"));
+                selectedStudentJob.put("num_employees",rs.getInt("num_employees"));
             }
             pstmt.close();
             conn.close();

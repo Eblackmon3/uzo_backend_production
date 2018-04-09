@@ -20,6 +20,8 @@ public class Job {
     private String description;
     private String preferred_skills;
     private String important_quality;
+    private int num_employees;
+
 
 
     public int getJob_id() {
@@ -118,6 +120,14 @@ public class Job {
 
     public String getDescription() {
         return description;
+    }
+
+    public void setNum_employees(int num_employees) {
+        this.num_employees = num_employees;
+    }
+
+    public int getNum_employees() {
+        return num_employees;
     }
 
     public String getImportant_quality() {

@@ -16,6 +16,7 @@ public class JobInsert {
     private String description;
     private String preferred_skills;
     private String important_quality;
+    private int num_employees;
 
     public int getCompany_id() {
         return company_id;
@@ -111,6 +112,14 @@ public class JobInsert {
 
     public String getDescription() {
         return description;
+    }
+
+    public int getNum_employees() {
+        return num_employees;
+    }
+
+    public void setNum_employees(int num_employees) {
+        this.num_employees = num_employees;
     }
 
     public void setImportant_quality(String important_quality) {

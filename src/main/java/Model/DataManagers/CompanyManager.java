@@ -1055,6 +1055,7 @@ public class CompanyManager {
                     selectedCompanyJob.put("description", description);
                     selectedCompanyJob.put("preferred_skills", rs.getString("preferred_skills"));
                     selectedCompanyJob.put("important_quality", rs.getString("important_quality"));
+                    selectedCompanyJob.put("num_employees", rs.getString("num_employees"));
                     selectedJobs.put(selectedCompanyJob);
                     selectedCompanyJob=new JSONObject();
                 }

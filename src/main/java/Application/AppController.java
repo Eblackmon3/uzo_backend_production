@@ -297,7 +297,8 @@ public class  AppController {
          "company_id":1,
          "description":"chillen"
          "important_quality": "idk",
-         "preferred_quality": "idk"
+         "preferred_quality": "idk",
+         "num_employees": 7
 
 }
      */
