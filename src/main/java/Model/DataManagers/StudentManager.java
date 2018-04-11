@@ -2206,7 +2206,6 @@ public class StudentManager {
 
 
             affectedRows = pstmt.executeUpdate();
-            jdbcObj.returnConn(conn);
             pstmt.close();
             conn.close();
             jdbcObj.closePool();
@@ -2235,7 +2234,6 @@ public class StudentManager {
                     e.printStackTrace();
                 }
             }try {
-                jdbcObj.returnConn(conn);
                 jdbcObj.closePool();
             }catch (Exception e){
                 e.printStackTrace();
