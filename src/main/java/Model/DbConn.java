@@ -46,6 +46,7 @@ public class DbConn {
 
     private static GenericObjectPool gPool = null;
 
+
     @SuppressWarnings("unused")
     public DataSource setUpPool() throws Exception {
 
@@ -75,6 +76,13 @@ public class DbConn {
     public void closePool()throws Exception{
         if(gPool!=null){
             gPool.close();
+        }
+
+    }
+    //This will be used to close the gpool
+    public void returnConn(Connection conn)throws Exception{
+        if(gPool!=null){
+            gPool.returnObject(conn);
         }
 
     }

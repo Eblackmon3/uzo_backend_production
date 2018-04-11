@@ -190,7 +190,7 @@ public class JobManager {
                 }
 
             }
-
+            jdbcObj.returnConn(conn);
             pstmt.close();
             conn.close();
             rs.close();
@@ -228,6 +228,7 @@ public class JobManager {
                     e.printStackTrace();
                 }
             }try {
+                jdbcObj.returnConn(conn);
                 jdbcObj.closePool();
             }catch (Exception e){
                 e.printStackTrace();
