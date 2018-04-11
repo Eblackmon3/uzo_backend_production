@@ -18,11 +18,11 @@ public class JobManager {
 
     public JSONObject insertJob(JobInsert jobInsert){
         JSONObject insertedJob= new JSONObject();
-        ResultSet rsObj = null;
+        ResultSet lastJob = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
         String sql="insert into t_job_info(date,rate,dress_code,duration,open,job_title, start_time, company_id, description, important_quality, preferred_skills, num_employees, end_time ) " +
-                "Values(?, ?, ?,?,?,?,?,?,?,?,?,?,?);";
+                "Values(?, ?, ?,?,?,?,?,?,?,?,?,?,?) RETURNING job_id;";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
@@ -52,10 +52,18 @@ public class JobManager {
             pstmt.setString(11,jobInsert.getImportant_quality());
             pstmt.setInt(12,jobInsert.getNum_employees());
             pstmt.setString(13, jobInsert.getEnd_time());
-            affectedRows = pstmt.executeUpdate();
+            boolean didItWork;
+            didItWork = pstmt.execute();
+            lastJob= pstmt.getResultSet();
+            int job_id=0;
+            while(lastJob.next()){
+                job_id= lastJob.getInt("student_id");
+            }
             pstmt.close();
+            lastJob.close();
             conn.close();
-            insertedJob.put("affected_rows",affectedRows);
+            jdbcObj.closePool();
+            insertedJob.put("inserted_job",job_id);
 
         }catch(Exception e){
             e.printStackTrace();

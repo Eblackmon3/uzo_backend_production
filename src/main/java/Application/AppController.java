@@ -293,7 +293,8 @@ public class  AppController {
          "duration":2.5,
          "open": true,
          "job_title": "Janitor",
-         "time":2300,
+         "start_time":2300,
+         "end_time":2300,
          "company_id":1,
          "description":"chillen"
          "important_quality": "idk",
