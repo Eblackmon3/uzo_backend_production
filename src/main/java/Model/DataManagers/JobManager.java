@@ -57,7 +57,7 @@ public class JobManager {
             lastJob= pstmt.getResultSet();
             int job_id=0;
             while(lastJob.next()){
-                job_id= lastJob.getInt("student_id");
+                job_id= lastJob.getInt("job_id");
             }
             pstmt.close();
             lastJob.close();
