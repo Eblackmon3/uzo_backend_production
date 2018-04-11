@@ -18,7 +18,6 @@ public class StudentManager {
 
 
     public JSONObject getStudentById(Student student){
-        ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
         String sql="select * from t_student_info where student_id=?";
@@ -31,6 +30,7 @@ public class StudentManager {
         JSONObject studentObj= new JSONObject();
         ResultSet rs=null;
         try {
+
             if(student.getStudent_id()==0){
                 throw new Exception("Missing Parameter");
             }
