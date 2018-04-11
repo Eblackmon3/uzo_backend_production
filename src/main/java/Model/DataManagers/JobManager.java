@@ -74,6 +74,13 @@ public class JobManager {
             }
 
         }finally{
+            if(lastJob!=null){
+                try {
+                    lastJob.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
             if(pstmt!=null){
                 try {
                     pstmt.close();
