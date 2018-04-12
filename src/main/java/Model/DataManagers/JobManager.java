@@ -59,11 +59,11 @@ public class JobManager {
             while(lastJob.next()){
                 job_id= lastJob.getInt("job_id");
             }
+            insertedJob.put("inserted_job",job_id);
             pstmt.close();
             lastJob.close();
             conn.close();
             jdbcObj.closePool();
-            insertedJob.put("inserted_job",job_id);
 
         }catch(Exception e){
             e.printStackTrace();
@@ -733,8 +733,7 @@ public class JobManager {
             pstmt.close();
             conn.close();
             rs.close();
-
-
+            jdbcObj.closePool();
 
         }catch(Exception e){
             e.printStackTrace();

@@ -2278,16 +2278,16 @@ public class StudentManager {
                 hear_uzo=rs.getString("hear_uzo");
                 resume_location=rs.getString("resume_location");
             }
-            rs.close();
-            pstmt.close();
-            conn.close();
-            jdbcObj.closePool();
             studentObj.put("work_reference_1",work_reference_1);
             studentObj.put("work_reference_2",work_reference_2);
             studentObj.put("work_reference_3", work_reference_3);
             studentObj.put("crime",crime);
             studentObj.put("hear_uzo",hear_uzo);
             studentObj.put("resume_location",resume_location);
+            rs.close();
+            pstmt.close();
+            conn.close();
+            jdbcObj.closePool();
 
 
         } catch (Exception e) {
