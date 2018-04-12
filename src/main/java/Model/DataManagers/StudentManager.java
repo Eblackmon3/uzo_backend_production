@@ -2319,7 +2319,9 @@ public class StudentManager {
                     e.printStackTrace();
                 }
             }try {
-                jdbcObj.closePool();
+                if(jdbcObj!=null) {
+                    jdbcObj.closePool();
+                }
             }catch (Exception e){
                 e.printStackTrace();
             }

@@ -69,7 +69,8 @@ public class DbConn {
     // This Method Is Used To Print The Connection Pool Status
     public String printDbStatus() {
 
-        return ("Max.: " + getConnectionPool().getMaxActive() + "; Active: " + getConnectionPool().getNumActive() + "; Idle: " + getConnectionPool().getNumIdle());
+        return ("Max.: " + getConnectionPool().getMaxActive() + "; Active: " + getConnectionPool().getNumActive() + "; Idle: "
+                + getConnectionPool().getNumIdle());
     }
 
     //This will be used to close the gpool
