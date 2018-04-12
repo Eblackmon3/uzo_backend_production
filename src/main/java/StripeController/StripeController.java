@@ -61,12 +61,12 @@ public class StripeController {
         try {
             CompanyManager manager= new CompanyManager();
             company.setCompany_id(card.getCompany_id());
-            companyInfo= manager.getCompanyById(company);
+            companyInfo= manager.getCompanyToken(company);
             // Create a Customer:
             Map<String, Object> customerParams = new HashMap<>();
             customerParams.put("amount", card.getAmount());
             customerParams.put("currency", "usd");
-            customerParams.put("customer", card.getToken_id());
+            customerParams.put("customer", companyInfo.get("token"));
             Charge charge = Charge.create(customerParams);
             return charge.toJson();
 

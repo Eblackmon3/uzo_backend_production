@@ -1101,6 +1101,68 @@ public class CompanyManager {
         return selectedJobs;
     }
 
+    public JSONObject getCompanyToken(Company company){
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="select * from t_company_payment_tokens where company_id=?";
+        DbConn jdbcObj = new DbConn();
+        String token="";
+        JSONObject companyObj= new JSONObject();
+        try {
+            if(company.getCompany_id()==0){
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, company.getCompany_id());
+            ResultSet rs= pstmt.executeQuery();
+            while(rs.next()){
+                token=rs.getString("payment_token");
+            }
+            rs.close();
+            pstmt.close();
+            conn.close();
+            companyObj.put("token",token);
+
+
+        } catch (Exception e) {
+            try {
+                companyObj.put("error", e.toString());
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+        }finally{
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+        return companyObj;
+    }
+
 
 
 
