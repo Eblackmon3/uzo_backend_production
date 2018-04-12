@@ -930,7 +930,7 @@ public class JobManager {
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
-            if(studentJob.getJob_id()==0||studentJob.getStudent_id()==0 || studentJob.getClock_in()<0){
+            if(studentJob.getJob_id()==0||studentJob.getStudent_id()==0 || studentJob.getClock_in()==null){
                 throw new Exception("Missing Parameter");
             }
             //Connect to the database
@@ -941,7 +941,7 @@ public class JobManager {
             System.out.println(jdbcObj.printDbStatus());
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, studentJob.getClock_in());
+            pstmt.setString(1, studentJob.getClock_in());
             pstmt.setInt(2, studentJob.getJob_id());
             pstmt.setInt(3, studentJob.getStudent_id());
             affectedRows = pstmt.executeUpdate();
@@ -993,7 +993,7 @@ public class JobManager {
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
-            if(studentJob.getJob_id()==0||studentJob.getStudent_id()==0 || studentJob.getClock_out()<0){
+            if(studentJob.getJob_id()==0||studentJob.getStudent_id()==0 || studentJob.getClock_out()==null){
                 throw new Exception("Missing Parameter");
             }
             //Connect to the database
@@ -1004,7 +1004,7 @@ public class JobManager {
             System.out.println(jdbcObj.printDbStatus());
             //can do normal DB operations here
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, studentJob.getClock_out());
+            pstmt.setString(1, studentJob.getClock_out());
             pstmt.setInt(2, studentJob.getJob_id());
             pstmt.setInt(3, studentJob.getStudent_id());
             affectedRows = pstmt.executeUpdate();

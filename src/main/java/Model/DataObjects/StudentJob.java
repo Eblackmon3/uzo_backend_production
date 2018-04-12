@@ -4,8 +4,8 @@ public class StudentJob {
     private int student_id;
     private int company_id;
     private int job_id;
-    private int clock_in;
-    private int clock_out;
+    private String clock_in;
+    private String clock_out;
     private boolean completed;
 
     public int getJob_id() {
@@ -40,22 +40,21 @@ public class StudentJob {
         return completed;
     }
 
-    public int getClock_out() {
-        return clock_out;
-    }
-
-    public int getClock_in() {
-        return clock_in;
-    }
-
-    public void setClock_in(int clock_in) {
-        this.clock_in = clock_in;
-    }
-
-    public void setClock_out(int clock_out) {
+    public void setClock_out(String clock_out) {
         this.clock_out = clock_out;
     }
 
+    public void setClock_in(String clock_in) {
+        this.clock_in = clock_in;
+    }
+
+    public String getClock_in() {
+        return clock_in;
+    }
+
+    public String getClock_out() {
+        return clock_out;
+    }
 
     @Override
     public boolean equals(Object obj) {
