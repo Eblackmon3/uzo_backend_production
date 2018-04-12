@@ -1141,6 +1141,7 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/charge_company_card")
     public String chargeCompanyCard(@RequestBody CompanyCharge companyCharge){
+        companyCharge.setAmount((int)Math.round(ompanyCharge.getAmount()*100));
         return StripeController.chargeCustomer(companyCharge).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
