@@ -1129,6 +1129,21 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
         return manager.insertCompanyCard(companyPaymentCard).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+    /*
+      example url: https://uzo-web-app.herokuapp.com/insert_company_card
+      header:
+          {
+           "company_id": 1,
+           "token_id":"adsfasdf"
+          }
+
+   */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/insert_company_card")
+    public String chargeCompanyCard(@RequestBody CompanyCharge companyCharge){
+        return StripeController.chargeCustomer(companyCharge).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 
     /*
      * example url:https://uzo-web-app.herokuapp.com/get_company_job_list
