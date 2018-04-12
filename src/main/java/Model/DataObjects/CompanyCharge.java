@@ -22,7 +22,7 @@ public class CompanyCharge {
         this.token_id = token_id;
     }
 
-    public double getAmount() {
+    public int getAmount() {
         return amount;
     }
 
