@@ -56,13 +56,13 @@ public class StripeController {
 
     public static String chargeCustomer(CompanyCharge card ){
         Stripe.apiKey=System.getenv("STRIPE_SECRET_KEY");
-        System.out.println("Token ID: "+card.getCompany_id());
         JSONObject companyInfo= new JSONObject();
         Company company = new Company();
         try {
             CompanyManager manager= new CompanyManager();
             company.setCompany_id(card.getCompany_id());
             companyInfo= manager.getCompanyToken(company);
+            System.out.println("Token ID: "+companyInfo);
             // Create a Customer:
             Map<String, Object> customerParams = new HashMap<>();
             customerParams.put("amount", card.getAmount());
