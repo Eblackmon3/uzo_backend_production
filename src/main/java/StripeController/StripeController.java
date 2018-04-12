@@ -56,7 +56,7 @@ public class StripeController {
 
     public static String chargeCustomer(CompanyCharge card ){
         Stripe.apiKey=System.getenv("STRIPE_SECRET_KEY");
-        System.out.println("Token ID: "+card.getToken_id());
+        System.out.println("Token ID: "+card.getCompany_id());
         JSONObject companyInfo= new JSONObject();
         Company company = new Company();
         try {
