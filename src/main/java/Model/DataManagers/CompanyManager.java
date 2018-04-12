@@ -1110,7 +1110,7 @@ public class CompanyManager {
         String token="";
         JSONObject companyObj= new JSONObject();
         try {
-            if(company.getCompany_id()==0){
+            if(company.getCompany_id()==0 ){
                 throw new Exception("Missing Parameter");
             }
             //Connect to the database

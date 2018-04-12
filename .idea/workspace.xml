@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="629d3e88-3c46-4a87-8eb9-4b9e62a72580" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/Application/AppController.java" afterPath="$PROJECT_DIR$/src/main/java/Application/AppController.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java" afterPath="$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/StripeController/StripeController.java" afterPath="$PROJECT_DIR$/src/main/java/StripeController/StripeController.java" />
     </list>
@@ -36,8 +35,8 @@
       <file leaf-file-name="StripeController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/StripeController/StripeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="68" column="65" lean-forward="false" selection-start-line="68" selection-start-column="65" selection-end-line="68" selection-end-column="65" />
+            <state relative-caret-position="260">
+              <caret line="58" column="60" lean-forward="false" selection-start-line="58" selection-start-column="60" selection-end-line="58" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -56,8 +55,8 @@
       <file leaf-file-name="CompanyManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="1128" column="23" lean-forward="true" selection-start-line="1128" selection-start-column="23" selection-end-line="1128" selection-end-column="23" />
+            <state relative-caret-position="185">
+              <caret line="1112" column="42" lean-forward="false" selection-start-line="1112" selection-start-column="42" selection-end-line="1112" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -1327,22 +1326,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataObjects/CompanyPaymentCard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="33" column="5" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="33" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="1135" column="27" lean-forward="false" selection-start-line="1135" selection-start-column="27" selection-end-line="1135" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataObjects/CompanyCharge.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -1356,18 +1339,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="1135" column="27" lean-forward="false" selection-start-line="1135" selection-start-column="27" selection-end-line="1135" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="1128" column="23" lean-forward="true" selection-start-line="1128" selection-start-column="23" selection-end-line="1128" selection-end-column="23" />
+        <state relative-caret-position="185">
+          <caret line="1112" column="42" lean-forward="false" selection-start-line="1112" selection-start-column="42" selection-end-line="1112" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataObjects/CompanyPaymentCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="33" column="5" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="33" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/StripeController/StripeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="68" column="65" lean-forward="false" selection-start-line="68" selection-start-column="65" selection-end-line="68" selection-end-column="65" />
+        <state relative-caret-position="260">
+          <caret line="58" column="60" lean-forward="false" selection-start-line="58" selection-start-column="60" selection-end-line="58" selection-end-column="60" />
           <folding />
         </state>
       </provider>
