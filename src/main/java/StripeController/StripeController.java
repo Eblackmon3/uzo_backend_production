@@ -62,7 +62,7 @@ public class StripeController {
             CompanyManager manager= new CompanyManager();
             company.setCompany_id(card.getCompany_id());
             companyInfo= manager.getCompanyToken(company);
-            System.out.println("Token ID: "+companyInfo);
+            System.out.println("Token ID: "+card.getAmount());
             // Create a Customer:
             Map<String, Object> customerParams = new HashMap<>();
             customerParams.put("amount", card.getAmount());
