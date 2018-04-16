@@ -126,6 +126,7 @@ public class s3Operations {
     {
         File convFile=null;
         try {
+            System.out.println(file.getOriginalFilename());
             convFile = new File(file.getOriginalFilename());
             convFile.createNewFile();
             FileOutputStream fos = new FileOutputStream(convFile);
