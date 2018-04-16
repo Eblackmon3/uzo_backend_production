@@ -60,6 +60,7 @@ public class StripeController {
         Company company = new Company();
         try {
             CompanyManager manager= new CompanyManager();
+            System.out.println("Company ID: "+card.getCompany_id() + "Amount: "+ card.getAmount());
             company.setCompany_id(card.getCompany_id());
             companyInfo= manager.getCompanyToken(company);
             System.out.println("Token ID: "+Math.round(card.getAmount()*100));
