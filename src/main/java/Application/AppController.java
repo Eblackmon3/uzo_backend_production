@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.sound.midi.SysexMessage;
+
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
@@ -615,6 +617,7 @@ public class  AppController {
     @PostMapping(value = "/upload_student_resource", consumes = "multipart/form-data")
     public String uploadStudentFile(@RequestParam("file") MultipartFile file,  int student_id){
         StudentManager manager= new StudentManager();
+        System.out.println("Actually Uploaded");
         return manager.uploadStudentResource(file,student_id).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }

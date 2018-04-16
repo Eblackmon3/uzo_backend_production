@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="629d3e88-3c46-4a87-8eb9-4b9e62a72580" name="Default" comment="" />
+    <list default="true" id="629d3e88-3c46-4a87-8eb9-4b9e62a72580" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/Application/AppController.java" afterPath="$PROJECT_DIR$/src/main/java/Application/AppController.java" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -22,8 +24,8 @@
       <file leaf-file-name="AppController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="596" column="5" lean-forward="true" selection-start-line="596" selection-start-column="5" selection-end-line="596" selection-end-column="32" />
+            <state relative-caret-position="425">
+              <caret line="619" column="48" lean-forward="false" selection-start-line="619" selection-start-column="48" selection-end-line="619" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -603,8 +605,8 @@
         <option value="$PROJECT_DIR$/src/main/java/Model/DataObjects/CompanyPaymentCard.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/DataObjects/CompanyCharge.java" />
         <option value="$PROJECT_DIR$/src/main/java/StripeController/StripeController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Application/AppController.java" />
         <option value="$PROJECT_DIR$/src/main/java/AmazonController/s3Operations.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Application/AppController.java" />
       </list>
     </option>
   </component>
@@ -902,7 +904,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Application/AppController.java</url>
-          <line>299</line>
+          <line>301</line>
           <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
@@ -1349,8 +1351,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="596" column="5" lean-forward="true" selection-start-line="596" selection-start-column="5" selection-end-line="596" selection-end-column="32" />
+        <state relative-caret-position="425">
+          <caret line="619" column="48" lean-forward="false" selection-start-line="619" selection-start-column="48" selection-end-line="619" selection-end-column="48" />
           <folding />
         </state>
       </provider>
