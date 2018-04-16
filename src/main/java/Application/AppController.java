@@ -594,7 +594,7 @@ public class  AppController {
 
 
      */
-     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+     @CrossOrigin(origins = "*")
     @PostMapping(value = "/upload_student_resume", consumes = "multipart/form-data")
     public String uploadStudentResume(@RequestParam("file") MultipartFile file,  int student_id){
          StudentManager manager= new StudentManager();
@@ -611,7 +611,7 @@ public class  AppController {
 
 
    */
-    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @CrossOrigin(origins = "*")
     @PostMapping(value = "/upload_student_resource", consumes = "multipart/form-data")
     public String uploadStudentFile(@RequestParam("file") MultipartFile file,  int student_id){
         StudentManager manager= new StudentManager();
@@ -628,7 +628,7 @@ public class  AppController {
 
 
     */
-    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @CrossOrigin(origins = "*")
     @PostMapping(value = "/upload_company_resource", consumes = "multipart/form-data")
     public String uploadCompanyFile(@RequestParam("file") MultipartFile file,  int company_id){
         CompanyManager manager= new CompanyManager();
@@ -645,7 +645,7 @@ public class  AppController {
 
 
  */
-    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @CrossOrigin(origins = "*")
     @PostMapping(value = "/upload_job_resource", consumes = "multipart/form-data")
     public String uploadJobFile(@RequestParam("file") MultipartFile file,  int job_id){
         JobManager manager= new JobManager();
