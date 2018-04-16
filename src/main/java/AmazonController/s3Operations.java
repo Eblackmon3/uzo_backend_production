@@ -134,6 +134,7 @@ public class s3Operations {
         }catch(Exception e){
             e.printStackTrace();
         }
+        System.out.println(convFile);
         return convFile;
     }
 
