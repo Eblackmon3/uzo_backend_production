@@ -5,6 +5,7 @@ public class CompanyCharge {
     private int company_id;
     private String token_id;
     private double amount;
+    private int intAmount;
 
 
     public void setCompany_id(int company_id) {
@@ -27,10 +28,16 @@ public class CompanyCharge {
         return amount;
     }
 
-
-
-    public void setAmount(Double amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public int getIntAmount() {
+        return intAmount;
+    }
+
+    public void setIntAmount(int intAmout) {
+        this.intAmount = intAmout;
     }
 
     @Override
