@@ -66,7 +66,7 @@ public class StripeController {
             System.out.println("Token ID: "+Math.round(card.getAmount()*100));
             // Create a Customer:
             Map<String, Object> customerParams = new HashMap<>();
-            customerParams.put("amount", card.getAmount());
+            customerParams.put("amount", card.getIntAmount());
             customerParams.put("currency", "usd");
             customerParams.put("customer", companyInfo.get("token"));
             Charge charge = Charge.create(customerParams);
