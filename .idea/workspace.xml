@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="629d3e88-3c46-4a87-8eb9-4b9e62a72580" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/Application/AppController.java" afterPath="$PROJECT_DIR$/src/main/java/Application/AppController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DataObjects/CompanyCharge.java" afterPath="$PROJECT_DIR$/src/main/java/Model/DataObjects/CompanyCharge.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/StripeController/StripeController.java" afterPath="$PROJECT_DIR$/src/main/java/StripeController/StripeController.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -22,7 +21,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AppController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AppController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="231">
@@ -42,11 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StripeController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="StripeController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/StripeController/StripeController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="313">
-              <caret line="62" column="99" lean-forward="false" selection-start-line="62" selection-start-column="99" selection-end-line="62" selection-end-column="99" />
+              <caret line="62" column="100" lean-forward="false" selection-start-line="62" selection-start-column="100" selection-end-line="62" selection-end-column="100" />
               <folding />
             </state>
           </provider>
@@ -614,10 +613,10 @@
         <option value="$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/DataObjects/StudentJob.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/DataManagers/JobManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/StripeController/StripeController.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/DataObjects/CompanyPaymentCard.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/DataObjects/CompanyCharge.java" />
         <option value="$PROJECT_DIR$/src/main/java/Application/AppController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/StripeController/StripeController.java" />
       </list>
     </option>
   </component>
@@ -1353,14 +1352,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/StripeController/StripeController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="62" column="99" lean-forward="false" selection-start-line="62" selection-start-column="99" selection-end-line="62" selection-end-column="99" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataObjects/CompanyPaymentCard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -1390,6 +1381,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="1146" column="5" lean-forward="true" selection-start-line="1146" selection-start-column="5" selection-end-line="1146" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/StripeController/StripeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="62" column="100" lean-forward="false" selection-start-line="62" selection-start-column="100" selection-end-line="62" selection-end-column="100" />
           <folding />
         </state>
       </provider>
