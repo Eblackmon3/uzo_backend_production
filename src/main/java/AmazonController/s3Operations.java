@@ -101,6 +101,7 @@ public class s3Operations {
 
     //https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/1/Resume
     public static String uploadJobFile(int job_id, MultipartFile file){
+        System.out.println("Checking where error is ");
         String fileName =  "jobfolder/"+job_id+"/"+file.getOriginalFilename();
         String resource_location="https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/jobfolder/"+job_id+"/"+file.getOriginalFilename();
         File convFile;
