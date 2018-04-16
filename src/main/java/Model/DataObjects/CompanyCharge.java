@@ -4,7 +4,8 @@ public class CompanyCharge {
 
     private int company_id;
     private String token_id;
-    private int amount;
+    private double amount;
+
 
     public void setCompany_id(int company_id) {
         this.company_id = company_id;
@@ -22,11 +23,13 @@ public class CompanyCharge {
         this.token_id = token_id;
     }
 
-    public int getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+
+
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
