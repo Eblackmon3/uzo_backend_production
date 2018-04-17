@@ -1166,6 +1166,21 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     }
 
 
+    /*
+    * example url:https://uzo-web-app.herokuapp.com/delete_job_by_id
+    * example header:
+    * {
+        "job_id": 1
+       }
+    *
+    */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/delete_job_by_id")
+    public String deleteJobById(@RequestBody Job job ){
+        JobManager manager= new JobManager();
+        return manager.deleteJob(job).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 
 
 

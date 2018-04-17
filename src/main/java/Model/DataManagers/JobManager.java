@@ -105,6 +105,76 @@ public class JobManager {
 
     }
 
+    public JSONObject deleteJob(Job job){
+        JSONObject insertedJob= new JSONObject();
+        ResultSet lastJob = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="delete from t_job_info where job_id =";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            if(job.getJob_id()==0){
+                throw new Exception("Missing Parameter");
+            }
+
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, job.getJob_id());
+            boolean didItWork;
+            affectedRows = pstmt.executeUpdate();
+            insertedJob.put("affected_rows",affectedRows);
+            pstmt.close();
+            lastJob.close();
+            conn.close();
+            jdbcObj.closePool();
+
+        }catch(Exception e){
+            e.printStackTrace();
+            try {
+                insertedJob.put("error", e.toString());
+            }catch (Exception f){
+                f.printStackTrace();
+            }
+
+        }finally{
+            if(lastJob!=null){
+                try {
+                    lastJob.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+        return insertedJob;
+
+    }
+
     public JSONArray getJobStudentList(Job job){
         //One of the students that are associated with a job
         JSONObject selectedJobsStudent= new JSONObject();
