@@ -110,7 +110,7 @@ public class JobManager {
         ResultSet lastJob = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="delete from t_job_info where job_id =";
+        String sql="delete from t_job_info where job_id =?";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
