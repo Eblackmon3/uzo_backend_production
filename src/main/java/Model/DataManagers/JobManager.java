@@ -131,7 +131,6 @@ public class JobManager {
             affectedRows = pstmt.executeUpdate();
             insertedJob.put("affected_rows",affectedRows);
             pstmt.close();
-            lastJob.close();
             conn.close();
             jdbcObj.closePool();
 
