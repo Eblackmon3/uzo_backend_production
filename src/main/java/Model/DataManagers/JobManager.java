@@ -6,6 +6,7 @@ import Model.DataObjects.Job;
 import Model.DataObjects.JobInsert;
 import Model.DataObjects.StudentJob;
 import Model.DbConn;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.web.multipart.MultipartFile;
@@ -1279,6 +1280,82 @@ public class JobManager {
 
 
         return  jobStatuses;
+    }
+
+
+    public JSONObject updateJob(String jobData, String category,int job_id){
+        JSONObject insertedJob= new JSONObject();
+        ResultSet lastJob = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="update t_job_info set " + StringEscapeUtils.escapeJava(category)+" =? where job_id= "+ job_id+";";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            if(job_id==0){
+                throw new Exception("Missing Parameter");
+            }
+
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            if(category.equals("num_employees")) {
+                pstmt.setInt(1, Integer.parseInt(jobData));
+
+            }else{
+                pstmt.setString(1, jobData);
+            }
+            pstmt.setString(2,category);
+            pstmt.setInt(3,job_id);
+            affectedRows = pstmt.executeUpdate();
+            insertedJob.put("affected_rows",affectedRows);
+            pstmt.close();
+            conn.close();
+            jdbcObj.closePool();
+
+        }catch(Exception e){
+            e.printStackTrace();
+            try {
+                insertedJob.put("error", e.toString());
+            }catch (Exception f){
+                f.printStackTrace();
+            }
+
+        }finally{
+            if(lastJob!=null){
+                try {
+                    lastJob.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+        return insertedJob;
+
     }
 
 

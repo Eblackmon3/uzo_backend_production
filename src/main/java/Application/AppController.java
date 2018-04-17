@@ -1183,5 +1183,69 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     }
 
 
+    /*
+ * api call example https://uzo-web-app.herokuapp.com/update_job_info
+ * All of the paramters are optional
+ * headers
+ *   {
+        "date": "2018-06-15",
+         "rate": "40/hr",
+         "job_title": "Janitor",
+         "start_time":2300,
+         "end_time":2300,
+         "company_id":1,
+         "description":"chillen"
+         "num_employees": 7
+       }
+ * used a string as to not process the JSONOBJECT on response
+ */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/update_job_info")
+    public String updateJobInfo(@RequestBody Job insertJob){
+        JSONObject obj= new JSONObject();
+        int everythingNull=1;
+        JobManager manager= new JobManager();
+        if(insertJob.getJob_id()==0) {
+            return "{ \"Error\":\"Missing Parameter\"}";
+        }
+        if(insertJob.getDate()!=null){
+            manager.updateJob(insertJob.getDate(),"date",insertJob.getJob_id() ).toString();
+            everythingNull=0;
+
+        }if(insertJob.getRate()!=null){
+            manager.updateJob(insertJob.getRate(),"rate", insertJob.getJob_id()).toString();
+            everythingNull=0;
+
+        }if(insertJob.getJob_title()!=null){
+            manager.updateJob(insertJob.getJob_title(),"job_title", insertJob.getJob_id()).toString();
+            everythingNull=0;
+
+        }if(insertJob.getDescription()!=null){
+            manager.updateJob(insertJob.getDescription(),"description", insertJob.getJob_id()).toString();
+            everythingNull=0;
+
+        }if(insertJob.getNum_employees()!=0){
+            manager.updateJob(insertJob.getNum_employees()+"","num_employees", insertJob.getJob_id()).toString();
+            everythingNull=0;
+
+        }if(insertJob.getStart_time()!=null){
+            manager.updateJob(insertJob.getStart_time(), "start_time", insertJob.getCompany_id()).toString();
+            everythingNull=0;
+
+        }if(insertJob.getEnd_time()!=null){
+            manager.updateJob(insertJob.getEnd_time(),"end_time", insertJob.getCompany_id()).toString();
+            everythingNull=0;
+
+        }if(everythingNull==1) {
+            return "{ \"Error\":\"No job detail specified\"}";
+        }else{
+            return "{ \"" + insertJob.getCompany_id()+" Updated\":\"affected Rows:1\"}";
+        }
+
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+
+
 
 }
