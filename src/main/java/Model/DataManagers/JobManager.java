@@ -1310,8 +1310,6 @@ public class JobManager {
             }else{
                 pstmt.setString(1, jobData);
             }
-            pstmt.setString(2,category);
-            pstmt.setInt(3,job_id);
             affectedRows = pstmt.executeUpdate();
             insertedJob.put("affected_rows",affectedRows);
             pstmt.close();

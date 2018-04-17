@@ -1229,17 +1229,17 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
             everythingNull=0;
 
         }if(insertJob.getStart_time()!=null){
-            manager.updateJob(insertJob.getStart_time(), "start_time", insertJob.getCompany_id()).toString();
+            manager.updateJob(insertJob.getStart_time(), "start_time", insertJob.getJob_id()).toString();
             everythingNull=0;
 
         }if(insertJob.getEnd_time()!=null){
-            manager.updateJob(insertJob.getEnd_time(),"end_time", insertJob.getCompany_id()).toString();
+            manager.updateJob(insertJob.getEnd_time(),"end_time", insertJob.getJob_id()).toString();
             everythingNull=0;
 
         }if(everythingNull==1) {
             return "{ \"Error\":\"No job detail specified\"}";
         }else{
-            return "{ \"" + insertJob.getCompany_id()+" Updated\":\"affected Rows:1\"}";
+            return "{ \"" + insertJob.getJob_id()+" Updated\":\"affected Rows:1\"}";
         }
 
         //return ResponseEntity.status(HttpStatus.CREATED).build();
