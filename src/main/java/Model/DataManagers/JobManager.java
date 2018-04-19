@@ -1415,7 +1415,7 @@ public class JobManager {
         int co_captain;
         String description;
         DbConn jdbcObj = new DbConn();
-        String sql= "select * from t_job_info where students_on <num_employees?";
+        String sql= "select * from t_job_info where students_on <num_employees";
         try {
 
 
