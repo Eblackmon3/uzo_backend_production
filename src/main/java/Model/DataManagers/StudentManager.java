@@ -1742,6 +1742,7 @@ public class StudentManager {
         Connection conn = null;
         PreparedStatement pstmt = null;
         String sql="insert into t_interested_students_jobs(student_id, job_id) Values(?,?);";
+        String sql2= "select * from t_interested_students_jobs where student_id= ? job_id= ?;";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
@@ -1755,6 +1756,14 @@ public class StudentManager {
             //check how many connections we have
             System.out.println(jdbcObj.printDbStatus());
             //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql2);
+            pstmt.setInt(1, interestedStudent.getStudent_id());
+            pstmt.setInt(2, interestedStudent.getJob_id());
+            rsObj = pstmt.executeQuery();
+            if(rsObj.next()){
+                return  insertedStudent.put("result", "student already inserted");
+            }
+
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, interestedStudent.getStudent_id());
             pstmt.setInt(2, interestedStudent.getJob_id());
@@ -1774,6 +1783,13 @@ public class StudentManager {
             }
 
         }finally{
+            if(rsObj!=null){
+                try {
+                    rsObj.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
             if(pstmt!=null){
                 try {
                     pstmt.close();
