@@ -504,6 +504,22 @@ public class  AppController {
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    /*
+        example url: https://uzo-web-app.herokuapp.com/add_one_student_to_job
+        header:
+            {
+             "job_id":1
+            }
+
+     */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/add_one_student_to_job")
+    public String addStudentToJob(@RequestBody Job job){
+        JobManager manager= new JobManager();
+        return manager.addStudent(job).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
      /*
         example url: https://uzo-web-app.herokuapp.com/insert_job_co_captain
         header:
@@ -536,6 +552,8 @@ public class  AppController {
         return manager.getJobById(job).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+
 
      /*
         example url: https://uzo-web-app.herokuapp.com/check_student_email
@@ -1114,6 +1132,17 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     public String getStripeKey(){
         StripeController key= new StripeController();
         return key.getKey().toString();
+    }
+
+    /*
+     * api call example https://uzo-web-app.herokuapp.com/get_open_jobs
+
+     */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @RequestMapping(value="/get_open_jobs")
+    public String getOpenJobs(){
+        JobManager key= new JobManager();
+        return key.getOpenJobs().toString();
     }
 
     /*

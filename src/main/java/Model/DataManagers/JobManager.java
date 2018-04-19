@@ -544,6 +544,46 @@ public class JobManager {
 
     }
 
+
+    public JSONObject addStudent(Job job){
+        JSONObject insertedCaptain= new JSONObject();
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="update t_job_info set students_on= students_on+1 where job_id=?;";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            if(job.getJob_id()==0){
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, job.getJob_id());
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            insertedCaptain.put("affected_rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+            try{
+                insertedCaptain.put("error", e.toString());
+
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+
+        }return insertedCaptain;
+
+    }
+
     public JSONObject getJobById(Job job){
         JSONObject selectedStudentJob= new JSONObject();
         Connection conn = null;
@@ -1354,6 +1394,115 @@ public class JobManager {
         }
         return insertedJob;
 
+    }
+
+    public JSONObject getOpenJobs(){
+        JSONObject selectedStudentJob= new JSONObject();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs=null;
+        int job_id;
+        String date;
+        String rate;
+        String dress_code;
+        double duration;
+        boolean open;
+        String job_title;
+        String start_time;
+        String  end_time;
+        int company_id;
+        int captain;
+        int co_captain;
+        String description;
+        DbConn jdbcObj = new DbConn();
+        String sql= "select * from t_job_info where students_on <num_employees?";
+        try {
+
+
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+
+            pstmt = conn.prepareStatement(sql);
+            rs= pstmt.executeQuery();
+            while(rs.next()){
+                job_id=rs.getInt("job_id");
+                date=rs.getString("date");
+                rate=rs.getString("rate");
+                dress_code= rs.getString("dress_code");
+                duration = rs.getDouble("duration");
+                open= rs.getBoolean("open");
+                job_title= rs.getString("job_title");
+                company_id=rs.getInt("company_id");
+                start_time=rs.getString("start_time");
+                end_time=rs.getString("end_time");
+                captain=rs.getInt("captain");
+                co_captain=rs.getInt("co_captain");
+                description= rs.getString("description");
+                selectedStudentJob.put("job_id",job_id);
+                selectedStudentJob.put("date",date);
+                selectedStudentJob.put("rate",rate);
+                selectedStudentJob.put("dress_code",dress_code);
+                selectedStudentJob.put("duration",duration);
+                selectedStudentJob.put("open", open);
+                selectedStudentJob.put("job_title", job_title);
+                selectedStudentJob.put("company_id",company_id);
+                selectedStudentJob.put("start_time", start_time);
+                selectedStudentJob.put("end_time", end_time);
+                selectedStudentJob.put("captain", captain);
+                selectedStudentJob.put("co_captain",co_captain);
+                selectedStudentJob.put("description",description);
+                selectedStudentJob.put("important_quality",rs.getString("important_quality"));
+                selectedStudentJob.put("preferred_skills",rs.getString("preferred_skills"));
+                selectedStudentJob.put("num_employees",rs.getInt("num_employees"));
+            }
+            pstmt.close();
+            conn.close();
+            rs.close();
+
+        }catch( Exception e){
+            e.printStackTrace();
+            try {
+                selectedStudentJob.put("error", e.toString());
+            }catch( Exception f){
+                f.printStackTrace();
+            }
+
+        }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+
+        return  selectedStudentJob;
     }
 
 
