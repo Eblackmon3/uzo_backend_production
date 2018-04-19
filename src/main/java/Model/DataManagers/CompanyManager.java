@@ -928,7 +928,7 @@ public class CompanyManager {
         DbConn jdbcObj = new DbConn();
 
         try{
-            if(company.getCompany_id()==0|| company.getToken_id()==null){
+            if(company.getCompany_id()==0){
                 throw new Exception("Missing Parameter");
             }
             //Connect to the database

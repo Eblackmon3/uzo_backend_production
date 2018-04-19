@@ -3,6 +3,7 @@ package Model.DataManagers;
 import AmazonController.s3Operations;
 import Model.DataObjects.*;
 import Model.DbConn;
+import StripeController.StripeController;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -2347,5 +2348,75 @@ public class StudentManager {
         return studentObj;
     }
 
+
+
+
+    public JSONObject insertStudentAccount(StudentAcctTokens account){
+        String customer_token= StripeController.createStudentAccount(account);
+        JSONObject insertedStudent= new JSONObject();
+        ResultSet rs=null;
+        int affectedRows=0;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="insert into t_student_account_tokens(student_id,toekn) Values(?,?)";
+        DbConn jdbcObj = new DbConn();
+
+        try{
+            if(account.getStudent_id()==0){
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, account.getStudent_id());
+            pstmt.setString(2,customer_token);
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            insertedStudent.put("affected_rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+            try {
+                insertedStudent.put("error", e.toString());
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+
+        }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+        return insertedStudent;
+    }
 
 }

@@ -1161,6 +1161,23 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
         return manager.insertCompanyCard(companyPaymentCard).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    /*
+      example url: https://uzo-web-app.herokuapp.com/insert_student_account
+      header:
+          {
+           "student_id": 1,
+           "token_id":"adsfasdf"
+          }
+
+   */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/insert_student_account")
+    public String insertStudentAccount(@RequestBody StudentAcctTokens account){
+        StudentManager manager= new StudentManager();
+        return manager.insertStudentAccount(account).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
     /*
       example url: https://uzo-web-app.herokuapp.com/charge_company_card
       header:

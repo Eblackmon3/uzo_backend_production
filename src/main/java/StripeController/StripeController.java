@@ -1,10 +1,10 @@
 package StripeController;
 
 import Model.DataManagers.CompanyManager;
-import Model.DataObjects.Company;
-import Model.DataObjects.CompanyCharge;
-import Model.DataObjects.CompanyPaymentCard;
+import Model.DataManagers.StudentManager;
+import Model.DataObjects.*;
 import com.stripe.Stripe;
+import com.stripe.model.Account;
 import com.stripe.model.Charge;
 import com.stripe.model.Customer;
 import com.stripe.model.Token;
@@ -71,6 +71,27 @@ public class StripeController {
             customerParams.put("customer", companyInfo.get("token"));
             Charge charge = Charge.create(customerParams);
             return charge.toJson();
+
+        }catch(Exception e ){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String createStudentAccount(StudentAcctTokens studentAcct ){
+        Stripe.apiKey=System.getenv("STRIPE_SECRET_KEY");
+        JSONObject studentInfo= new JSONObject();
+        Student student = new Student();
+        try {
+            StudentManager manager= new StudentManager();
+            student.setStudent_id(studentAcct.getStudent_id());
+            studentInfo= manager.getStudentById(student);
+            // Create a Customer:
+            Map<String, Object> accountParams = new HashMap<String, Object>();
+            accountParams.put("type", "'standard'");
+            accountParams.put("country", "'US'");
+            accountParams.put("email", "'"+ studentInfo.get("email")+"'");
+            return Account.create(accountParams).getId();
 
         }catch(Exception e ){
             e.printStackTrace();
