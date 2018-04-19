@@ -90,7 +90,7 @@ public class StripeController {
             Map<String, Object> accountParams = new HashMap<String, Object>();
             accountParams.put("type", "standard");
             accountParams.put("country", "US");
-            accountParams.put("email",studentInfo.get("email");
+            accountParams.put("email",studentInfo.get("email"));
             return Account.create(accountParams).getId();
 
         }catch(Exception e ){
