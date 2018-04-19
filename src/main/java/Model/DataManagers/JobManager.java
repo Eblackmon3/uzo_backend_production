@@ -1404,6 +1404,10 @@ public class JobManager {
         ResultSet rs=null;
         int job_id;
         String date;
+        String city;
+        String state;
+        String company_name;
+        String street;
         String rate;
         String dress_code;
         double duration;
@@ -1443,10 +1447,18 @@ public class JobManager {
                 end_time=rs.getString("end_time");
                 captain=rs.getInt("captain");
                 co_captain=rs.getInt("co_captain");
+                state= rs.getString("state");
+                city= rs.getString("city");
+                street= rs.getString("street");
+                company_name= rs.getString("company_name");
                 description= rs.getString("description");
+
                 selectedStudentJob.put("job_id",job_id);
                 selectedStudentJob.put("date",date);
                 selectedStudentJob.put("rate",rate);
+                selectedStudentJob.put("state",state);
+                selectedStudentJob.put("city",city);
+                selectedStudentJob.put("street",street);
                 selectedStudentJob.put("dress_code",dress_code);
                 selectedStudentJob.put("duration",duration);
                 selectedStudentJob.put("open", open);
