@@ -1459,6 +1459,7 @@ public class JobManager {
                 selectedStudentJob.put("state",state);
                 selectedStudentJob.put("city",city);
                 selectedStudentJob.put("street",street);
+                selectedStudentJob.put("company_name",company_name);
                 selectedStudentJob.put("dress_code",dress_code);
                 selectedStudentJob.put("duration",duration);
                 selectedStudentJob.put("open", open);
