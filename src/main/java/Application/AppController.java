@@ -1166,8 +1166,7 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
       example url: https://uzo-web-app.herokuapp.com/insert_student_account
       header:
           {
-           "student_id": 1,
-           "token_id":"adsfasdf"
+           "student_id": 1
           }
 
    */

@@ -2358,7 +2358,7 @@ public class StudentManager {
         int affectedRows=0;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="insert into t_student_account_tokens(student_id,toekn) Values(?,?)";
+        String sql="insert into t_student_account_tokens(student_id,token) Values(?,?)";
         DbConn jdbcObj = new DbConn();
 
         try{
