@@ -65,8 +65,8 @@
       <file leaf-file-name="JobManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/JobManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="1463" column="52" lean-forward="false" selection-start-line="1463" selection-start-column="52" selection-end-line="1463" selection-end-column="52" />
+            <state relative-caret-position="354">
+              <caret line="1473" column="48" lean-forward="false" selection-start-line="1473" selection-start-column="48" selection-end-line="1473" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -113,7 +113,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getCompanysCompletedJobsById</find>
       <find>getJob</find>
       <find>insertjo</find>
       <find>getCompanyJo</find>
@@ -143,6 +142,7 @@
       <find>captain</find>
       <find>insert</find>
       <find>get_o</find>
+      <find>OpenJ</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -1483,8 +1483,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/JobManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="1463" column="52" lean-forward="false" selection-start-line="1463" selection-start-column="52" selection-end-line="1463" selection-end-column="52" />
+        <state relative-caret-position="354">
+          <caret line="1473" column="48" lean-forward="false" selection-start-line="1473" selection-start-column="48" selection-end-line="1473" selection-end-column="48" />
           <folding />
         </state>
       </provider>

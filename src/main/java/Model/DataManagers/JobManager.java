@@ -1398,7 +1398,7 @@ public class JobManager {
 
     public JSONArray getOpenJobs(){
         JSONObject selectedStudentJob= new JSONObject();
-        JSONArray allJObs= new JSONArray();
+        JSONArray allJobs= new JSONArray();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs=null;
@@ -1460,8 +1460,8 @@ public class JobManager {
                 selectedStudentJob.put("important_quality",rs.getString("important_quality"));
                 selectedStudentJob.put("preferred_skills",rs.getString("preferred_skills"));
                 selectedStudentJob.put("num_employees",rs.getInt("num_employees"));
-                allJObs.put(selectedStudentJob);
-                selectedStudentJob=new JSONObject();
+                allJobs.put(selectedStudentJob);
+                selectedStudentJob= new JSONObject();
             }
             pstmt.close();
             conn.close();
@@ -1471,6 +1471,7 @@ public class JobManager {
             e.printStackTrace();
             try {
                 selectedStudentJob.put("error", e.toString());
+                allJobs.put(selectedStudentJob);
             }catch( Exception f){
                 f.printStackTrace();
             }
@@ -1505,7 +1506,7 @@ public class JobManager {
         }
 
 
-        return  selectedStudentJob;
+        return  allJobs;
     }
 
 
