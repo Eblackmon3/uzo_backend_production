@@ -1742,7 +1742,7 @@ public class StudentManager {
         Connection conn = null;
         PreparedStatement pstmt = null;
         String sql="insert into t_interested_students_jobs(student_id, job_id) Values(?,?);";
-        String sql2= "select * from t_interested_students_jobs where student_id= ? job_id= ?;";
+        String sql2= "select * from t_interested_students_jobs where student_id= ? and job_id= ?;";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
