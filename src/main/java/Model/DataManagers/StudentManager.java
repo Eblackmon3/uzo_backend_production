@@ -720,8 +720,8 @@ public class StudentManager {
                     selectedStudentJob.put("description", description);
                     selectedStudentJob.put("company_name",company_name);
                     selectedStudentJob.put("address", street+ " "+ city+ " "+ state);
-                    selectedStudentJob=new JSONObject();
                     selectedJobs.put(selectedStudentJob);
+                    selectedStudentJob=new JSONObject();
                 }
 
             }
