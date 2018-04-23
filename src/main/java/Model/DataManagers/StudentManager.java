@@ -649,6 +649,10 @@ public class StudentManager {
         ResultSet rs=null;
         ArrayList<Integer> studentsJobs= new ArrayList<>();
         int job_id;
+        String company_name;
+        String city;
+        String street;
+        String state;
         int studentJobID;
         String date;
         String rate;
@@ -660,7 +664,7 @@ public class StudentManager {
         String end_time;
         int company_id;
         String description;
-        String sql2= "select * from t_job_info where job_id=?";
+        String sql2= "select * from t_job_info inner join t_company_info on t_job_info.company_id=t_company_info.company_id where job_id=?";
         String sql="select * from t_student_job_map where student_id =?";
         DbConn jdbcObj = new DbConn();
         try{
@@ -699,6 +703,10 @@ public class StudentManager {
                     start_time=rs.getString("start_time");
                     end_time=rs.getString("end_time");
                     description=rs.getString("description");
+                    company_name=rs.getString("company_name");
+                    state=rs.getString("state");
+                    city=rs.getString("city");
+                    street=rs.getString("street");
                     selectedStudentJob.put("job_id",job_id);
                     selectedStudentJob.put("date",date);
                     selectedStudentJob.put("rate",rate);
@@ -710,7 +718,8 @@ public class StudentManager {
                     selectedStudentJob.put("start_time", start_time);
                     selectedStudentJob.put("end_time", end_time);
                     selectedStudentJob.put("description", description);
-                    selectedJobs.put(selectedStudentJob);
+                    selectedStudentJob.put("company_name",company_name);
+                    selectedStudentJob.put("address", street+ " "+ city+ " "+ state);
                     selectedStudentJob=new JSONObject();
                 }
 
