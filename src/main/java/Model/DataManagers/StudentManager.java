@@ -681,6 +681,7 @@ public class StudentManager {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, student.getStudent_id());
             rs= pstmt.executeQuery();
+            System.out.println(rs.getInt("job_id"));
             while(rs.next()){
                 studentJobID=rs.getInt("job_id");
                 studentsJobs.add(studentJobID);
