@@ -689,7 +689,6 @@ public class StudentManager {
             pstmt = conn.prepareStatement(sql2);
             for(int i=0;i<studentsJobs.size();i++){
                 pstmt.setInt(1, studentsJobs.get(i));
-                System.out.println(studentsJobs.get(i));
                 rs= pstmt.executeQuery();
                 while(rs.next()){
 
@@ -722,6 +721,7 @@ public class StudentManager {
                     selectedStudentJob.put("company_name",company_name);
                     selectedStudentJob.put("address", street+ " "+ city+ " "+ state);
                     selectedStudentJob=new JSONObject();
+                    selectedJobs.put(selectedStudentJob);
                 }
 
             }
