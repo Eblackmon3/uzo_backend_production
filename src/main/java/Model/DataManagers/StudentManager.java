@@ -683,13 +683,13 @@ public class StudentManager {
             rs= pstmt.executeQuery();
             while(rs.next()){
                 studentJobID=rs.getInt("job_id");
-                System.out.println(rs.getInt("job_id"));
                 studentsJobs.add(studentJobID);
             }
 
             pstmt = conn.prepareStatement(sql2);
             for(int i=0;i<studentsJobs.size();i++){
                 pstmt.setInt(1, studentsJobs.get(i));
+                System.out.println(studentsJobs.get(i));
                 rs= pstmt.executeQuery();
                 while(rs.next()){
 
