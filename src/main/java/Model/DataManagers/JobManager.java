@@ -1242,8 +1242,8 @@ public class JobManager {
         int student_id=0;
         int company_id=0;
         int job_id=0;
-        int clock_in=0;
-        int clock_out=0;
+        String clock_in="";
+        String clock_out="";
         int search=0;
         boolean completed=false;
         DbConn jdbcObj = new DbConn();
@@ -1278,8 +1278,8 @@ public class JobManager {
                 job_id=rs.getInt("job_id");
                 student_id=rs.getInt("student_id");
                 company_id=rs.getInt("company_id");
-                clock_in= rs.getInt("clock_in");
-                clock_out = rs.getInt("clock_out");
+                clock_in= rs.getString("clock_in");
+                clock_out = rs.getString("clock_out");
                 completed= rs.getBoolean("completed");
                 selectedStudentJob.put("job_id",job_id);
                 selectedStudentJob.put("student_id",student_id);
