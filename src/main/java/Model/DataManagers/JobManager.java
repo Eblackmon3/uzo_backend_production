@@ -1250,18 +1250,10 @@ public class JobManager {
         try {
 
             String sql= "";
-            if(job.getStudent_id()!=0){
-                sql= "select * from t_student_job_map where student_id=?";
-                search=job.getStudent_id();
-            }else if(job.getJob_id()!=0){
-                sql= "select * from t_student_job_map where job_id=?";
-                search=job.getJob_id();
-
-            }else if(job.getCompany_id()!=0){
-                sql= "select * from t_student_job_map where company_id=?";
-                search=job.getCompany_id();
-            }else{
+            if(job.getStudent_id()==0&& job.getJob_id()==0){
                 throw new Exception("student_id, job_id, or company_id must be included");
+            }else{
+                sql= "select * from t_student_job_map where student_id=? and job_id=?";
             }
             //Connect to the database
             DataSource dataSource = jdbcObj.setUpPool();
@@ -1272,7 +1264,8 @@ public class JobManager {
             //can do normal DB operations here
 
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, search);
+            pstmt.setInt(1, job.getStudent_id());
+            pstmt.setInt(2, job.getJob_id());
             rs= pstmt.executeQuery();
             while(rs.next()){
                 job_id=rs.getInt("job_id");

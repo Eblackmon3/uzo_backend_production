@@ -1103,16 +1103,11 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     /*
          *example url:https://uzo-web-app.herokuapp.com/get_job_status
          * example header:
-         * {
-            "company_id": 1
-            }
+         *
 
             {
-            "job_id": 1
-            }
-
-            {
-            "student_id": 1
+            "student_id": 1,
+             "job_id": 1
             }
  */
     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
