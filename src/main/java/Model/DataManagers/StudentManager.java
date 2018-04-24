@@ -540,9 +540,11 @@ public class StudentManager {
             pstmt.setInt(1, studJob.getStudent_id());
             pstmt.setInt(2,studJob.getJob_id());
             affectedRows = pstmt.executeUpdate();
-            pstmt = conn.prepareStatement(sql2);
-            pstmt.setInt(1, studJob.getJob_id());
-            affectedRows = pstmt.executeUpdate();
+            if(affectedRows>0) {
+                pstmt = conn.prepareStatement(sql2);
+                pstmt.setInt(1, studJob.getJob_id());
+                affectedRows = pstmt.executeUpdate();
+            }
             pstmt.close();
             conn.close();
             jdbcObj.closePool();
