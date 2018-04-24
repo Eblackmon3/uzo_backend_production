@@ -1531,4 +1531,100 @@ public class JobManager {
 
 
 
+    public JSONArray populateStudentsAndJobs(){
+        JSONObject selectedStudentJob= new JSONObject();
+        JSONArray  selectStudents= new JSONArray();
+        Connection conn = null;
+        ArrayList<Integer> jobsInDB= new ArrayList<>();
+        PreparedStatement pstmt = null;
+        ResultSet rs=null;
+        int job_id;
+        int student_id;
+        String rate;
+        String clock_in;
+        String clock_out;
+        DbConn jdbcObj = new DbConn();
+        String preSql="select * from t_job_info";
+        String sql= "select * from t_student_job_map inner join t_job_info on t_student_job_map.job_id=t_job_info.job_id where t_job_info.job_id=?;";
+        try {
+
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+
+            pstmt = conn.prepareStatement(preSql);
+            rs= pstmt.executeQuery();
+            while(rs.next()){
+                jobsInDB.add(rs.getInt("job_id"));
+            }
+
+            for(int i=0;i<jobsInDB.size();i++) {
+                pstmt = conn.prepareStatement(sql);
+                pstmt.setInt(1, jobsInDB.get(i));
+                rs = pstmt.executeQuery();
+                while (rs.next()) {
+                    rate = rs.getString("rate");
+                    clock_in = rs.getString("clock_in");
+                    clock_out = rs.getString("clock_out");
+                    student_id = rs.getInt("student_id");
+                    selectedStudentJob.put("rate", rate);
+                    selectedStudentJob.put("clock_in", clock_in);
+                    selectedStudentJob.put("clock_out", clock_out);
+                    selectedStudentJob.put("student_id", student_id);
+                    selectStudents.put(selectedStudentJob);
+                    selectedStudentJob = new JSONObject();
+                }
+            }
+            pstmt.close();
+            conn.close();
+            rs.close();
+
+        }catch( Exception e){
+            e.printStackTrace();
+            try {
+                selectedStudentJob.put("error", e.toString());
+                selectStudents.put(selectedStudentJob);
+            }catch( Exception f){
+                f.printStackTrace();
+            }
+
+        }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+
+        return  selectStudents;
+    }
+
+
+
 }

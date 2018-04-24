@@ -1285,6 +1285,19 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    /*
+        example url: https://uzo-web-app.herokuapp.com/populate_student_job_list
+        header:
+
+
+     */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @GetMapping(value = "/populate_student_job_list")
+    public String populateStudentsAndJobs(){
+        JobManager manager= new JobManager();
+        return manager.populateStudentsAndJobs().toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 
 
 
