@@ -4,10 +4,7 @@ import Model.DataManagers.CompanyManager;
 import Model.DataManagers.StudentManager;
 import Model.DataObjects.*;
 import com.stripe.Stripe;
-import com.stripe.model.Account;
-import com.stripe.model.Charge;
-import com.stripe.model.Customer;
-import com.stripe.model.Token;
+import com.stripe.model.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.context.annotation.Configuration;
@@ -92,6 +89,27 @@ public class StripeController {
             accountParams.put("country", "US");
             accountParams.put("email",studentInfo.get("email"));
             return Account.create(accountParams).getId();
+
+        }catch(Exception e ){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String transferToStudent(StudentTransfer studentTrans ){
+        Stripe.apiKey=System.getenv("STRIPE_SECRET_KEY");
+        JSONObject studentInfo= new JSONObject();
+        Student student = new Student();
+        try {
+            StudentManager manager= new StudentManager();
+            student.setStudent_id(studentTrans.getStudent_id());
+            studentInfo=manager.getStudentAccount(student);
+            Map<String, Object> transferParams = new HashMap<String, Object>();
+            transferParams.put("amount", studentTrans.getIntAmount());
+            transferParams.put("currency", "usd");
+            transferParams.put("destination", studentInfo.get("token"));
+
+            Transfer.create(transferParams);
 
         }catch(Exception e ){
             e.printStackTrace();

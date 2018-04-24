@@ -540,11 +540,10 @@ public class StudentManager {
             pstmt.setInt(1, studJob.getStudent_id());
             pstmt.setInt(2,studJob.getJob_id());
             affectedRows = pstmt.executeUpdate();
-            if(affectedRows>0) {
-                pstmt = conn.prepareStatement(sql2);
-                pstmt.setInt(1, studJob.getJob_id());
-                affectedRows = pstmt.executeUpdate();
-            }
+            pstmt = conn.prepareStatement(sql2);
+            pstmt.setInt(1, studJob.getStudent_id());
+            pstmt.setInt(2,studJob.getJob_id());
+            affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
             jdbcObj.closePool();
@@ -2433,6 +2432,77 @@ public class StudentManager {
 
         }
         return insertedStudent;
+    }
+
+
+    public JSONObject getStudentAccount(Student student){
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="select * from t_student_account_tokens where student_id=?";
+        DbConn jdbcObj = new DbConn();
+        String account="";
+        JSONObject studentObj= new JSONObject();
+        ResultSet rs=null;
+        try {
+
+            if(student.getStudent_id()==0){
+                throw new Exception("Missing Parameter");
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,student.getStudent_id());
+            rs= pstmt.executeQuery();
+            while(rs.next()){
+                account=rs.getString("token");
+            }
+            rs.close();
+            pstmt.close();
+            conn.close();
+            jdbcObj.closePool();
+            studentObj.put("token",account);
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                studentObj.put("error", e.toString());
+            }catch(Exception f){
+                f.printStackTrace();
+            }
+        }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+        return studentObj;
     }
 
 }

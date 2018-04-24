@@ -1300,5 +1300,23 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     }
 
 
+    /*
+      example url: https://uzo-web-app.herokuapp.com/transfer_funds_to_student
+      header:
+          {
+           "student_id": 1,
+           "amount": .01
+          }
+
+   */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/transfer_funds_to_student")
+    public String transferToStudent(@RequestBody StudentTransfer studentTrans){
+        studentTrans.setIntAmount((int)Math.round(studentTrans.getAmount()*100));
+        return StripeController.transferToStudent(studentTrans).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+
 
 }
