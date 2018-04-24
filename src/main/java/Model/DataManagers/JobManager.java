@@ -1161,7 +1161,9 @@ public class JobManager {
         ResultSet rsObj = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
-        String sql="update t_student_job_map set completed= ? where job_id=? and student_id=?;";
+        String clock_in;
+        String clock_out;
+        String sql="update t_student_job_map set completed= ? where job_id=? and student_id=? returning *;";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
@@ -1179,10 +1181,15 @@ public class JobManager {
             pstmt.setBoolean(1, studentJob.isCompleted());
             pstmt.setInt(2, studentJob.getJob_id());
             pstmt.setInt(3, studentJob.getStudent_id());
-            affectedRows = pstmt.executeUpdate();
+            rsObj = pstmt.executeQuery();
+            while(rsObj.next()){
+                insertedCaptain.put("clock_in",rsObj.getString("clock_in"));
+                insertedCaptain.put("clock_out",rsObj.getString("clock_out"));
+            }
+            rsObj.close();
             pstmt.close();
             conn.close();
-            insertedCaptain.put("affected_rows",affectedRows);
+
 
         }catch(Exception e){
             e.printStackTrace();
@@ -1194,6 +1201,13 @@ public class JobManager {
             }
 
         }finally{
+            if(rsObj!=null){
+                try {
+                    rsObj.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
             if(pstmt!=null){
                 try {
                     pstmt.close();

@@ -522,6 +522,7 @@ public class StudentManager {
         Connection conn = null;
         PreparedStatement pstmt = null;
         String sql="delete from t_student_job_map where student_id =? and job_id =?";
+        String sql2="update t_job_info set students_on= students_on-1 where job_id=?;";
         DbConn jdbcObj = new DbConn();
         int affectedRows=0;
         try{
@@ -538,6 +539,9 @@ public class StudentManager {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, studJob.getStudent_id());
             pstmt.setInt(2,studJob.getJob_id());
+            affectedRows = pstmt.executeUpdate();
+            pstmt = conn.prepareStatement(sql2);
+            pstmt.setInt(1, studJob.getJob_id());
             affectedRows = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
