@@ -1575,6 +1575,8 @@ public class JobManager {
                     selectedStudentJob.put("clock_in", clock_in);
                     selectedStudentJob.put("clock_out", clock_out);
                     selectedStudentJob.put("student_id", student_id);
+                    selectedStudentJob.put("job_title", rs.getString("job_title"));
+                    selectedStudentJob.put("job_id", rs.getInt("job_id"));
                     selectStudents.put(selectedStudentJob);
                     selectedStudentJob = new JSONObject();
                 }
