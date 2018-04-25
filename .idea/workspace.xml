@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="629d3e88-3c46-4a87-8eb9-4b9e62a72580" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DataManagers/JobManager.java" afterPath="$PROJECT_DIR$/src/main/java/Model/DataManagers/JobManager.java" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DataManagers/StudentManager.java" afterPath="$PROJECT_DIR$/src/main/java/Model/DataManagers/StudentManager.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -21,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="JobManager.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="JobManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/JobManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="1578" column="70" lean-forward="false" selection-start-line="1578" selection-start-column="70" selection-end-line="1578" selection-end-column="70" />
+            <state relative-caret-position="130">
+              <caret line="697" column="28" lean-forward="false" selection-start-line="697" selection-start-column="22" selection-end-line="697" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -34,18 +35,18 @@
       <file leaf-file-name="AppController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="1297" column="46" lean-forward="false" selection-start-line="1297" selection-start-column="23" selection-end-line="1297" selection-end-column="46" />
+            <state relative-caret-position="43">
+              <caret line="1303" column="19" lean-forward="true" selection-start-line="1303" selection-start-column="19" selection-end-line="1303" selection-end-column="78" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StudentManager.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="StudentManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/StudentManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="545" column="21" lean-forward="false" selection-start-line="545" selection-start-column="21" selection-end-line="545" selection-end-column="21" />
+            <state relative-caret-position="173">
+              <caret line="542" column="32" lean-forward="false" selection-start-line="542" selection-start-column="32" selection-end-line="542" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -72,7 +73,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>get_o</find>
       <find>OpenJ</find>
       <find>getCompanyBy</find>
       <find>interested</find>
@@ -101,6 +101,7 @@
       <find>charge</find>
       <find>removeStudentJob</find>
       <find>login</find>
+      <find>populateStudentsAndJobs</find>
       <find>remove</find>
     </findStrings>
   </component>
@@ -599,8 +600,8 @@
         <option value="$PROJECT_DIR$/src/main/java/Model/DataObjects/StudentTransfer.java" />
         <option value="$PROJECT_DIR$/src/main/java/Application/AppController.java" />
         <option value="$PROJECT_DIR$/src/main/java/StripeController/StripeController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Model/DataManagers/StudentManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/DataManagers/JobManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Model/DataManagers/StudentManager.java" />
       </list>
     </option>
   </component>
@@ -1460,14 +1461,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/StudentManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="545" column="21" lean-forward="false" selection-start-line="545" selection-start-column="21" selection-end-line="545" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/CompanyManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="214">
@@ -1478,16 +1471,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Application/AppController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="1297" column="46" lean-forward="false" selection-start-line="1297" selection-start-column="23" selection-end-line="1297" selection-end-column="46" />
+        <state relative-caret-position="43">
+          <caret line="1303" column="19" lean-forward="true" selection-start-line="1303" selection-start-column="19" selection-end-line="1303" selection-end-column="78" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/JobManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="1578" column="70" lean-forward="false" selection-start-line="1578" selection-start-column="70" selection-end-line="1578" selection-end-column="70" />
+        <state relative-caret-position="130">
+          <caret line="697" column="28" lean-forward="false" selection-start-line="697" selection-start-column="22" selection-end-line="697" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/DataManagers/StudentManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="542" column="32" lean-forward="false" selection-start-line="542" selection-start-column="32" selection-end-line="542" selection-end-column="32" />
           <folding />
         </state>
       </provider>
