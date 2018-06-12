@@ -77,6 +77,26 @@ public class s3Operations {
         return resume_location;
 
     }
+    //https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/1/Resume
+    public static String uploadStudentProfilePic(int studentID, MultipartFile file){
+        String fileName =  "studentfolder/"+studentID+"/ProfilePic";
+        String resume_location="https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/studentfolder/"+studentID+"/ProfilePic";;
+        File convFile;
+        try {
+            convFile=multipartToFile(file);
+            System.out.println(convFile.length());
+            // create a PutObjectRequest passing the folder name suffixed by /
+            PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName,
+                    convFile).withCannedAcl(CannedAccessControlList.PublicRead);
+            // send request to S3 to create folder
+            PutObjectResult result = s3client.putObject(putObjectRequest);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return resume_location;
+
+    }
 
     //https://s3.us-east-2.amazonaws.com/uzo-s3-bucket/1/Resume
     public static String uploadCompanyFile(int company_id, MultipartFile file){

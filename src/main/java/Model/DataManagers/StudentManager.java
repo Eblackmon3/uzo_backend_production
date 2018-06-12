@@ -1442,6 +1442,70 @@ public class StudentManager {
         return uploadeResource;
     }
 
+    public JSONObject uploadStudentProfilePic(MultipartFile file, int student_id){
+        String reesource_location= s3Operations.uploadStudentProfilePic(student_id,file);
+        JSONObject uploadeResource= new JSONObject();
+        ResultSet rsObj = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        String sql="insert into t_student_resources(resource_location,student_id, file_name) Values(?,?,?)";
+        DbConn jdbcObj = new DbConn();
+        int affectedRows=0;
+        try{
+            if(file==null||student_id==0|| file.isEmpty()){
+                throw new Exception("Missing Parameter");
+
+            }
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, reesource_location);
+            pstmt.setInt(2,student_id);
+            pstmt.setString(3, "profilePic");
+            affectedRows = pstmt.executeUpdate();
+            pstmt.close();
+            conn.close();
+            uploadeResource.put("affectd_rows",affectedRows);
+
+        }catch(Exception e){
+            e.printStackTrace();
+            try{
+                uploadeResource.put("error", e.toString());
+
+            }catch(Exception f){
+                f.printStackTrace();
+
+            }
+
+        }finally{
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+        return uploadeResource;
+    }
+
     public JSONObject checkStudentEmail( Student student){
         ResultSet rsObj = null;
         Connection conn = null;

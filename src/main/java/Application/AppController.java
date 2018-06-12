@@ -614,7 +614,7 @@ public class  AppController {
 
 
      */
-     @CrossOrigin(origins = "*")
+     @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/upload_student_resume", consumes = "multipart/form-data")
     public String uploadStudentResume(@RequestParam("file") MultipartFile file,  int student_id){
          StudentManager manager= new StudentManager();
@@ -631,7 +631,7 @@ public class  AppController {
 
 
    */
-    @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/upload_student_resource", consumes = "multipart/form-data")
     public String uploadStudentFile(@RequestParam("file") MultipartFile file,  int student_id){
         StudentManager manager= new StudentManager();
@@ -639,6 +639,25 @@ public class  AppController {
         return manager.uploadStudentResource(file,student_id).toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    /*
+    example url: https://uzo-web-app.herokuapp.com/upload_student_resource
+    MUST SEND THIS AS A FORM DATA WITH THE BELOW AS
+    header:
+    file - file selected
+    student_id - <student_id >
+
+
+ */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @PostMapping(value = "/upload_student_profile_pic", consumes = "multipart/form-data")
+    public String uploadStudentProfilePic(@RequestParam("file") MultipartFile file,  int student_id){
+        StudentManager manager= new StudentManager();
+        System.out.println("Actually Uploaded");
+        return manager.uploadStudentProfilePic(file,student_id).toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
 
     /*
        example url: https://uzo-web-app.herokuapp.com/upload_company_resource
@@ -649,7 +668,7 @@ public class  AppController {
 
 
     */
-    @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/upload_company_resource", consumes = "multipart/form-data")
     public String uploadCompanyFile(@RequestParam("file") MultipartFile file,  int company_id){
         CompanyManager manager= new CompanyManager();
@@ -666,7 +685,7 @@ public class  AppController {
 
 
  */
-    @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
     @PostMapping(value = "/upload_job_resource", consumes = "multipart/form-data")
     public String uploadJobFile(@RequestParam("file") MultipartFile file,  int job_id){
         JobManager manager= new JobManager();
