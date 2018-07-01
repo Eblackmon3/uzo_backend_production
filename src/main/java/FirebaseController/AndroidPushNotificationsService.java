@@ -15,7 +15,7 @@ public class AndroidPushNotificationsService {
     private static final String APP_ID="uzoandroid-6bc69";
     private static final String FIREBASE_SERVER_KEY = System.getenv("FIREBASE_TOKEN");
     private static final String FIREBASE_API_URL = "https://fcm.googleapis.com/v1/projects/"+APP_ID
-            +"/messages:send HTTP/1.1";
+            +"messages:send";
 
     @Async
     public CompletableFuture<String> send(HttpEntity<String> entity) {

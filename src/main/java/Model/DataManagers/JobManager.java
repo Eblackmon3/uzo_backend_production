@@ -726,7 +726,7 @@ public class JobManager {
             pstmt = conn.prepareStatement(sql);
             rs= pstmt.executeQuery();
             while(rs.next()){
-                job_id=rs.getInt("job_id");
+                job_id=rs.getInt("max");
                 selectedStudentJob.put("job_id",job_id);
             }
             pstmt.close();
