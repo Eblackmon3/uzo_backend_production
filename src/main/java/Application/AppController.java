@@ -1,6 +1,7 @@
 package Application;
 
 import AmazonController.s3Operations;
+import FirebaseController.SendAndroidNotification;
 import Model.*;
 import Model.DataManagers.CompanyManager;
 import Model.DataManagers.EventManager;
@@ -309,7 +310,13 @@ public class  AppController {
     @PostMapping(value = "/insert_job")
     public String insertJob(@RequestBody JobInsert insertJob){
         JobManager manager= new JobManager();
-        return manager.insertJob(insertJob).toString();
+        String result=manager.insertJob(insertJob).toString();
+        if(!result.contains("error")){
+            SendAndroidNotification send= new SendAndroidNotification();
+            send.sendNotification();
+        }
+        return result;
+
     }
 
     /*
@@ -1315,6 +1322,19 @@ api call example https://uzo-web-app.herokuapp.com/get_job_resources
     public String populateStudentsAndJobs(){
         JobManager manager= new JobManager();
         return manager.populateStudentsAndJobs().toString();
+        //return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+    /*
+    example url: https://uzo-web-app.herokuapp.com/get_last_job
+    header:
+
+
+ */
+    @CrossOrigin(origins = "https://uzo-frontend.herokuapp.com")
+    @GetMapping(value = "/get_last_job")
+    public String getLastJob(){
+        JobManager manager= new JobManager();
+        return manager.getLastJob().toString();
         //return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

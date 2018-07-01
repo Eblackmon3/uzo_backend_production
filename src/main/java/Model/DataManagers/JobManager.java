@@ -694,6 +694,85 @@ public class JobManager {
 
         return  selectedStudentJob;
     }
+    public JSONObject getLastJob(){
+        JSONObject selectedStudentJob= new JSONObject();
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs=null;
+        int job_id;
+        String date;
+        String rate;
+        String dress_code;
+        double duration;
+        boolean open;
+        String job_title;
+        String start_time;
+        String  end_time;
+        int company_id;
+        int captain;
+        int co_captain;
+        String description;
+        DbConn jdbcObj = new DbConn();
+        String sql= "SELECT MAX(job_id) FROM t_job_info";
+        try {
+
+            //Connect to the database
+            DataSource dataSource = jdbcObj.setUpPool();
+            System.out.println(jdbcObj.printDbStatus());
+            conn = dataSource.getConnection();
+            //check how many connections we have
+            System.out.println(jdbcObj.printDbStatus());
+            //can do normal DB operations here
+            pstmt = conn.prepareStatement(sql);
+            rs= pstmt.executeQuery();
+            while(rs.next()){
+                job_id=rs.getInt("job_id");
+                selectedStudentJob.put("job_id",job_id);
+            }
+            pstmt.close();
+            conn.close();
+            rs.close();
+
+        }catch( Exception e){
+            e.printStackTrace();
+            try {
+                selectedStudentJob.put("error", e.toString());
+            }catch( Exception f){
+                f.printStackTrace();
+            }
+
+        }finally{
+            if(rs!=null){
+                try {
+                    rs.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(pstmt!=null){
+                try {
+                    pstmt.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+            if(conn!=null){
+                try{
+                    conn.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }try {
+                jdbcObj.closePool();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+
+        return  selectedStudentJob;
+    }
 
     public JSONObject removeJobsInterestedStudent(InterestedStudent interestedStudent){
         JSONObject deletedInterestedStudent= new JSONObject();
