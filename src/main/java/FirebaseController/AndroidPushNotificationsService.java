@@ -19,6 +19,7 @@ public class AndroidPushNotificationsService {
 
     @Async
     public CompletableFuture<String> send(HttpEntity<String> entity) {
+        System.out.println(FIREBASE_API_URL);
 
         RestTemplate restTemplate = new RestTemplate();
 
