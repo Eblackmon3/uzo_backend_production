@@ -1,6 +1,7 @@
 package Model.DataManagers;
 
 import AmazonController.s3Operations;
+import FirebaseController.SendAndroidNotification;
 import Model.DataObjects.InterestedStudent;
 import Model.DataObjects.Job;
 import Model.DataObjects.JobInsert;
@@ -65,6 +66,11 @@ public class JobManager {
             lastJob.close();
             conn.close();
             jdbcObj.closePool();
+            SendAndroidNotification.initializeApp();
+            SendAndroidNotification.sendNotification();
+
+
+
 
         }catch(Exception e){
             e.printStackTrace();

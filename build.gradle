@@ -87,6 +87,11 @@ dependencies {
     // https://mvnrepository.com/artifact/com.stripe/stripe-java
     compile group: 'com.stripe', name: 'stripe-java', version: '5.31.0'
 
+    compile 'com.google.api-client:google-api-client:1.23.0'
+
+    implementation 'com.google.firebase:firebase-admin:6.2.0'
+
+
 
 
 

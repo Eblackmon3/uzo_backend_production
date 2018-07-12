@@ -29,7 +29,7 @@ public class AndroidPushNotificationsService {
          Authorization:key=FIREBASE_SERVER_KEY*/
 
         ArrayList<ClientHttpRequestInterceptor> interceptors = new ArrayList<>();
-        interceptors.add(new HeaderRequestInterceptor("Authorization", "Bearer " + FIREBASE_SERVER_KEY));
+        interceptors.add(new HeaderRequestInterceptor("Authorization", "Bearer " + SendAndroidNotification.getAccessToken()));
         interceptors.add(new HeaderRequestInterceptor("Content-Type", "application/json"));
         restTemplate.setInterceptors(interceptors);
 
